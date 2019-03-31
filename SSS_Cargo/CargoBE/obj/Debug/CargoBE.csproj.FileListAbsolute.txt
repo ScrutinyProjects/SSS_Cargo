@@ -3,3 +3,6 @@ D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Debug\CargoBE.pdb
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\obj\Debug\CargoBE.csprojResolveAssemblyReference.cache
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\obj\Debug\CargoBE.dll
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\obj\Debug\CargoBE.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Debug\Newtonsoft.Json.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Debug\Newtonsoft.Json.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Debug\Newtonsoft.Json.xml

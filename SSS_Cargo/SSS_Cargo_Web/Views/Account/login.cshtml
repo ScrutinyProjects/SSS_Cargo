@@ -29,7 +29,7 @@
     <div id="divLoading" style="display: none; position: fixed; z-index: 5000; height: 760px; padding-top: 200px; width: 100%;">
         <center><img src="~/Assets/images/loading.gif" style="padding-left:45px;" /></center>
     </div>
-    <div id="navbar" class="navbar navbar-default">
+    @*<div id="navbar" class="navbar navbar-default">
         <div class="navbar-container" id="navbar-container">
             <div class="navbar-header pull-left" style="padding: 10px; width: 100%;">
                 <div style="text-align:center;">
@@ -37,11 +37,9 @@
                         <img src="~/Images/logo.png" />
                     </a>
                 </div>
-
             </div>
         </div>
-        <!-- /.navbar-container -->
-    </div>
+    </div>*@
     <div class="main-container">
         <div class="main-content">
             <div class="row">
@@ -60,7 +58,6 @@
                                                 <i class="ace-icon fa fa-user"></i>&nbsp; Login
                                             </h4>
                                             <div class="space-6"></div>
-                                            <form id="loginform">
                                                 <fieldset>
                                                     <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
                                                         <strong>Warning!</strong>
@@ -76,14 +73,14 @@
                                                     </div>
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="text" id="textusername" class="form-control" placeholder="Username" />
+                                                            <input type="text" id="textusername" maxlength="10" class="form-control mobile-number" placeholder="Username" />
                                                             <i class="ace-icon fa fa-user" style="right: 10px;"></i>
                                                         </span>
                                                         <span class="red" id="spanusernamehelper"></span>
                                                     </label>
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="password" id="textpassword" class="form-control" placeholder="Password" />
+                                                            <input type="password" id="textpassword" maxlength="16" class="form-control" placeholder="Password" />
                                                             <i class="ace-icon fa fa-lock" style="right: 10px;"></i>
                                                         </span>
                                                         <span class="red" id="spanpasswordhelper"></span>
@@ -98,7 +95,6 @@
 
                                                     <div class="space-4"></div>
                                                 </fieldset>
-                                            </form>
                                         </div>
                                     </div>
                                     <!-- /.widget-main -->
@@ -140,8 +136,8 @@
     <script type="text/javascript">
         if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
-    @*<script src="~/Scripts/common.js"></script>
-    <script src="~/Scripts/Login.js"></script>*@
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/login.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#loginform').keypress(function (e) {

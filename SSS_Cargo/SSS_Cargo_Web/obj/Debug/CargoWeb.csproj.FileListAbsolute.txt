@@ -44,3 +44,15 @@ D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Web.Mvc.xml
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\obj\Debug\CargoWeb.csprojResolveAssemblyReference.cache
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\obj\Debug\SSS_Cargo_Web.dll
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\obj\Debug\SSS_Cargo_Web.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\Newtonsoft.Json.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\Newtonsoft.Json.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\Newtonsoft.Json.xml
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\CargoBE.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\CargoBE.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Net.Http.Formatting.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Web.Cors.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Web.Http.Cors.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Web.Http.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Net.Http.Formatting.xml
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Web.Http.xml
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo_Web\bin\System.Web.Http.Cors.xml

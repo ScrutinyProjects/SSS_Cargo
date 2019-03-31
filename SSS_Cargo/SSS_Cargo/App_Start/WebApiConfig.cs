@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace CargoAPI
+namespace SSS_Cargo
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+
             // Web API configuration and services
 
             // Web API routes

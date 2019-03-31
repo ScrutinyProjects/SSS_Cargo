@@ -6,68 +6,40 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
+using System.Web.Http;
 
-[assembly: OwinStartupAttribute(typeof(CargoAPI.Startup))]
-namespace CargoAPI
+[assembly: OwinStartup(typeof(SSS_Cargo.Startup))]
+
+namespace SSS_Cargo
 {
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
-        {
-            // Configure the application for OAuth based flow
-            //PublicClientId = "self";
-            //OAuthOptions = new OAuthAuthorizationServerOptions
-            //{
-            //    TokenEndpointPath = new PathString("/token"),
-            //    Provider = new ApplicationOAuthProvider(PublicClientId),
-            //    AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-            //    AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-            //    // In production mode set AllowInsecureHttp = false
-            //    AllowInsecureHttp = true
-            //};
+        {            
+            //app.useC
 
-            //var oauthProvider = new OAuthAuthorizationServerProvider
-            //{
-            //    OnGrantResourceOwnerCredentials = async context =>
-            //    {
-            //        if (context.UserName == "rranjan" && context.Password == "password@123")
-            //        {
-            //            var claimsIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
-            //            claimsIdentity.AddClaim(new Claim("user", context.UserName));
-            //            context.Validated(claimsIdentity);
-            //            return;
-            //        }
-            //        context.Rejected();
-            //    },
-            //    OnValidateClientAuthentication = async context =>
-            //    {
-            //        string clientId;
-            //        string clientSecret;
-            //        if (context.TryGetBasicCredentials(out clientId, out clientSecret))
-            //        {
-            //            if (clientId == "rajeev" && clientSecret == "secretKey")
-            //            {
-            //                context.Validated();
-            //            }
-            //        }
-            //    }
-            //};
-            //var oauthOptions = new OAuthAuthorizationServerOptions
-            //{
-            //    AllowInsecureHttp = true,
-            //    TokenEndpointPath = new PathString("/accesstoken"),
-            //    Provider = oauthProvider,
-            //    AuthorizationCodeExpireTimeSpan = TimeSpan.FromMinutes(1),
-            //    AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(3),
-            //    SystemClock = new SystemClock()
+            var myProvider = new MyAuthorizationProvider();
 
-            //};
-            //app.UseOAuthAuthorizationServer(oauthOptions);
-            //app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(720),
+                Provider = myProvider
+            };
 
-            //var config = new HttpConfiguration();
-            //config.MapHttpAttributeRoutes();
-            //app.UseWebApi(config);
+            app.UseOAuthAuthorizationServer(options);
+
+            app.UseOAuthBearerAuthentication
+            (
+                new OAuthBearerAuthenticationOptions
+                {
+                    Provider = new OAuthBearerAuthenticationProvider()
+                }
+            );
+
+            HttpConfiguration config = new HttpConfiguration();
+            WebApiConfig.Register(config);
         }
     }
 }

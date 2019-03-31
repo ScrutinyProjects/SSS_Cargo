@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CargoBE.Responses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,25 @@ namespace SSS_Cargo_Web.Controllers
         {
             Session.Abandon();
             return Redirect("/login");
+        }
+
+        [HttpPost]
+        public ActionResult SaveLoginDetails(LoginResponse objresponse)
+        {
+            try
+            {
+                objManageSessions.SaveUserSessions(objresponse);                
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = "Oops!! unable to process your request";
+            }
+            return Json(new
+            {
+                StatusId = objresponse.StatusId,
+                StatusMessage = objresponse.StatusMessage
+            });
         }
     }
 }
