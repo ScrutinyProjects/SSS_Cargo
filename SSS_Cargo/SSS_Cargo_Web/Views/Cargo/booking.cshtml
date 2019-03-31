@@ -1,0 +1,459 @@
+﻿@{
+    ViewBag.Title = "SSS Cargo - Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            Home
+        </li>
+        <li class="active">Booking</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Booking
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form">
+                <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                    <strong>Warning!</strong>
+                    <span id="spanWarningAlert"></span>
+                </div>
+                <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                    <strong>Error!</strong>
+                    <span id="spanErrorAlert"></span>
+                </div>
+                <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                    <strong>Success!</strong>
+                    <span id="spanSuccessAlert"></span>
+                </div>
+                @*<input type="hidden" id="hiddenloginid" value="@ViewBag.LoginID" />*@
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="selectgctype">GC Type <span class="red">*</span> </label>
+                                <select class="form-control" id="selectgctype">
+                                    <option value="0">Select GC Type</option>
+                                </select>
+                                <span class="red" id="spangctypehelper"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Sender Info</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textsendercounter">From <span class="red">*</span> </label>
+                                <input type="text" id="textsendercounter" maxlength="50" value="" placeholder="From" class="form-control" disabled />
+                                <span class="red" id="spansendercounter"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textsendermobile">Mobile Number <span class="red">*</span> </label>
+                                <input type="text" id="textsendermobile" maxlength="10" value="" placeholder="Mobile Number" class="form-control mobile-number" />
+                                <span class="red" id="spansendermobile"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textsendername">Name <span class="red">*</span> </label>
+                                <input type="text" id="textsendername" maxlength="50" value="" placeholder="Name" class="form-control" />
+                                <span class="red" id="spansendername"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textsenderaddress">Address <span class="red">*</span> </label>
+                                <input type="text" id="textsenderaddress" maxlength="100" value="" placeholder="Address" class="form-control" />
+                                <span class="red" id="spansenderaddress"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Receiver Info</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textreceivercounter">To <span class="red">*</span> </label>
+                                <input type="text" id="textreceivercounter" maxlength="50" value="" placeholder="To" class="form-control" />
+                                <span class="red" id="spanreceivercounter"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textreceivermobile">Mobile Number <span class="red">*</span> </label>
+                                <input type="text" id="textreceivermobile" maxlength="10" value="" placeholder="Mobile Number" class="form-control mobile-number" />
+                                <span class="red" id="spanreceivermobile"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textreceivername">Name <span class="red">*</span> </label>
+                                <input type="text" id="textreceivername" maxlength="50" value="" placeholder="Name" class="form-control" />
+                                <span class="red" id="spanreceivername"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textreceiveraddress">Address <span class="red">*</span> </label>
+                                <input type="text" id="textreceiveraddress" maxlength="100" value="" placeholder="Address" class="form-control" />
+                                <span class="red" id="spanreceiveraddress"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Weight Info</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textactualweight">Actual Weight <span class="red">*</span> </label>
+                                <input type="text" id="textactualweight" maxlength="4" value="" placeholder="Actual Weight" class="form-control numeric" />
+                                <span class="red" id="spanactualweight"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textpieces">Pieces <span class="red">*</span> </label>
+                                <input type="text" id="textpieces" maxlength="5" value="" placeholder="Pieces" class="form-control numeric" />
+                                <span class="red" id="spanpieces"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="selectpiecestype">Pieces Type <span class="red">*</span> </label>
+                                <select class="form-control" id="selectpiecestype">
+                                    <option value="0">Select Pieces Type</option>
+                                </select>
+                                <span class="red" id="spanpiecestype"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textactualweight">Actual Weight <span class="red">*</span> </label>
+                                <input type="text" id="textactualweight" maxlength="4" value="" placeholder="Actual Weight" class="form-control numeric" disabled />
+                                <span class="red" id="spanactualweight"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textcalculatedweight">Calculated Weight <span class="red">*</span> </label>
+                                <input type="text" id="textcalculatedweight" maxlength="6" value="" placeholder="Calculated Weight numeric" class="form-control" disabled />
+                                <span class="red" id="spancalculatedweight"></span>
+                            </div>
+                            <div style="float:left">
+                                <button class="btn btn-sm btn-success pull-right" type="button" style="margin: 25px 13px 4px 13px;" onclick="return addparcelitems()">
+                                    <i class="ace-icon fa fa-plus bigger-110"></i>
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">S.No.</th>
+                                            <th style="width: 15%;">Actual Weight</th>
+                                            <th style="width: 15%;">Pieces</th>
+                                            <th style="width: 15%;">Pieces Type</th>
+                                            <th style="width: 15%;">Total Weight</th>
+                                            <th style="width: 10%;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodydata">
+                                        <tr>
+                                            <td colspan="6" style="text-align:center">No parcel items added</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>5 Kgs</td>
+                                            <td>4</td>
+                                            <td>Box</td>
+                                            <td>20 Kgs</td>
+                                            <td><a href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>&nbsp;&nbsp;<a href="javascript:void(0)"><i class="fa fa-remove"></i> Remove</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>5 Kgs</td>
+                                            <td>2</td>
+                                            <td>Nos</td>
+                                            <td>10 Kgs</td>
+                                            <td><a href="javascript:void(0)"><i class="fa fa-pencil"></i> Edit</a>&nbsp;&nbsp;<a href="javascript:void(0)"><i class="fa fa-remove"></i> Remove</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Transhipment Points</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textpoint1">Point 1 </label>
+                                <input type="text" id="textpoint1" maxlength="50" value="" placeholder="Point 1" class="form-control" />
+                                <span class="red" id="spanpoint1"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textpoint2">Point 2 </label>
+                                <input type="text" id="textpoint2" maxlength="50" value="" placeholder="Point 2" class="form-control" />
+                                <span class="red" id="spanpoint2"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Other Info</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="selectproducttype">Product Type <span class="red">*</span> </label>
+                                <select class="form-control" id="selectproducttype">
+                                    <option value="0">Select Product Type</option>
+                                </select>
+                                <span class="red" id="spanproducttype"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textshipmentvalue">Shipment Value <span class="red">*</span> </label>
+                                <input type="text" id="textshipmentvalue" maxlength="5" value="" placeholder="Shipment Value" class="form-control numeric" />
+                                <span class="red" id="spanshipmentvalue"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label" style="text-align: left;" for="textshipmentdescription">Description </label>
+                                <textarea id="textshipmentdescription" maxlength="500" value="" placeholder="Description" rows="3" class="form-control"></textarea>
+                                <span class="red" id="spanshipmentdescription"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Price Info</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textbasicamount">Basic Amount <span class="red">*</span> </label>
+                                <input type="text" id="textbasicamount" maxlength="5" value="0" placeholder="Basic Amount" class="form-control numeric" />
+                                <span class="red" id="spanbasicamount"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textsupcharges">SUP Charges <span class="red">*</span> </label>
+                                <input type="text" id="textsupcharges" maxlength="5" value="0" placeholder="SUP Charges" class="form-control numeric" />
+                                <span class="red" id="spansupcharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textwithpasscharges">With Pass Charges <span class="red">*</span> </label>
+                                <input type="text" id="textwithpasscharges" maxlength="5" value="0" placeholder="With Pass Charges" class="form-control numeric" />
+                                <span class="red" id="spanwithpasscharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdocketcharges">Docket Charges <span class="red">*</span> </label>
+                                <input type="text" id="textdocketcharges" maxlength="5" value="0" placeholder="Docket Charges" class="form-control numeric" />
+                                <span class="red" id="spandocketcharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textvaluesrcharges">Value SR Charges <span class="red">*</span> </label>
+                                <input type="text" id="textvaluesrcharges" maxlength="5" value="0" placeholder="Value SR Charges" class="form-control numeric" />
+                                <span class="red" id="spanvaluesrcharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textcollection">Collection <span class="red">*</span> </label>
+                                <input type="text" id="textcollection" maxlength="5" value="0" placeholder="Collection" class="form-control numeric" />
+                                <span class="red" id="spancollection"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="texthamalicharges">Hamali Charges <span class="red">*</span> </label>
+                                <input type="text" id="texthamalicharges" maxlength="5" value="0" placeholder="Hamali Charges" class="form-control numeric" />
+                                <span class="red" id="spanhamalicharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textaoccharges">AOC Charges <span class="red">*</span> </label>
+                                <input type="text" id="textaoccharges" maxlength="5" value="0" placeholder="AOC Charges" class="form-control numeric" />
+                                <span class="red" id="spanaoccharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="texttranshipmentcharges">Transhipment Charges <span class="red">*</span> </label>
+                                <input type="text" id="texttranshipmentcharges" maxlength="5" value="0" placeholder="Transhipment Charges" class="form-control numeric" />
+                                <span class="red" id="spantranshipmentcharges"></span>
+                            </div>
+                            <div style="float:left">
+                                <button class="btn btn-sm btn-success pull-right" type="button" style="margin: 25px 13px 4px 13px;" onclick="return calculateprice()">
+                                    <i class="ace-icon fa fa-calculator bigger-110"></i>
+                                    Calculate
+                                </button>
+                            </div>
+                        </div>
+                        <div id="divfinalcalculation" style="display:none;">
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Basic Amount <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcbasicamount">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">SUP Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcsupcharges">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">With Pass Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcwithpasscharges">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Docket Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcdocketcharges">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Value SR Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcvaluesrcharges">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Hamali Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalchamalicharges">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">AOC Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcaoccharges">0</label>
+                                </div>
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Transhipment Charges <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalctranshipmentcharges">0</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">GST <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcgst">0</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Total Amount <span style="float:right">:</span></label>
+                                    <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalctotalamount">0</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Route <span style="float:right">:</span></label>
+                                    <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spanroute">Hanamkonda --> Parakal</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="col-sm-2 control-label" style="text-align: left;">Weight Info <span style="float:right">:</span></label>
+                                    <div class="col-sm-10">
+                                        <ul id="ulweightlist">
+                                            <li>
+                                                10 Kgs * 2 = 20 Kgs [2 Boxes]
+                                            </li>
+                                            <li>
+                                                5 Kgs * 2 = 10 Kgs [2 Nos]
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                                <div style="width: 95%;">
+                                    <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="ResetFields()">
+                                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                                        Reset
+                                    </button>
+                                    <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return SaveBooking()">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        Save Booking
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalsaveconfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closemodalsaveconfirm" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Add Booking Confirmation</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label style="padding: 0px 15px;">Are you sure do you want to add this Booking?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary" onclick="return BookingConfirm()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalbookingnumber" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closemodalbookingnumber" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Booking Confirmation</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label" style="text-align: left;">Thank you, Consignee booked successfully and Consignee No. is : <span style="text-align: center;font-weight:600" id="spanbookingnumber">HNK12345  </span> </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close & Add new Booking</button>
+                <button class="btn btn-danger" onclick="return PrintBookingConfirmation()">Print</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");
+</script>
+
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="~/Assets/js/jquery.dataTables.min.js"></script>
+<script src="~/Assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="~/Assets/js/dataTables.tableTools.min.js"></script>
+<script src="~/Assets/js/dataTables.colVis.min.js"></script>
+
+@*<script src="~/Scripts/common.js"></script>
+    <script src="~/Scripts/Area.js"></script>*@
+<script type="text/javascript">
+    jQuery(function ($) {
+        //$('.main-menu').removeClass('active');
+        //$('.sub-menu').removeClass('active');
+        //$('#menumasters').addClass('active open');
+        //$('#menuarea').addClass('active');
+        //GetCircles();
+        //GetAreas();
+    });
+
+    function SaveBooking() {
+        $('#modalsaveconfirm').modal();
+    }
+    function BookingConfirm() {
+        $('#closemodalsaveconfirm')[0].click();
+        $('#modalbookingnumber').modal();
+    }
+</script>

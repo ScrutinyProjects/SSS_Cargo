@@ -43,3 +43,10 @@ D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\System.Web.Http.WebHost.xm
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\obj\Debug\CargoAPI.csprojResolveAssemblyReference.cache
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\obj\Debug\SSS_Cargo.dll
 D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\obj\Debug\SSS_Cargo.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Microsoft.Owin.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Owin.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Microsoft.Owin.xml
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Microsoft.Owin.Security.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Microsoft.Owin.Security.xml
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\SSS_Cargo\bin\Microsoft.Owin.Security.OAuth.xml
