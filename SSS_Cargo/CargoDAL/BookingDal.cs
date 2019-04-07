@@ -49,7 +49,7 @@ namespace CargoDAL
         {
             SqlParameter[] sqlparams = { new SqlParameter("@UserLoginId", SqlDbType.Int) { Value = objrequest.UserLoginId },
                                             new SqlParameter("@FromCounterId", SqlDbType.Int) { Value = objrequest.FromCounterId },
-                                            new SqlParameter("@ToCounterId", SqlDbType.Int) { Value = objrequest.ToCounterId },
+                                            new SqlParameter("@ToCounter", SqlDbType.VarChar, 100) { Value = objrequest.ToCounter },
                                             new SqlParameter("@GCTypeId", SqlDbType.Int) { Value = objrequest.GCTypeId },
                                             new SqlParameter("@BookingTypeId", SqlDbType.Int) { Value = objrequest.BookingTypeId },
                                             new SqlParameter("@ProductTypeId", SqlDbType.Int) { Value = objrequest.ProductTypeId },
@@ -77,8 +77,10 @@ namespace CargoDAL
                                             new SqlParameter("@HamaliCharges", SqlDbType.Decimal) { Value = objrequest.HamaliCharges },
                                             new SqlParameter("@AOCCharges", SqlDbType.Decimal) { Value = objrequest.AOCCharges },
                                             new SqlParameter("@TranshipmentCharges", SqlDbType.Decimal) { Value = objrequest.TranshipmentCharges },
+                                            new SqlParameter("@PickupCharges", SqlDbType.Decimal) { Value = objrequest.PickupCharges },
                                             new SqlParameter("@GSTCharges", SqlDbType.Decimal) { Value = objrequest.GSTCharges },
                                             new SqlParameter("@TotalAmount", SqlDbType.Decimal) { Value = objrequest.TotalAmount },
+                                            new SqlParameter("@TotalKms", SqlDbType.Decimal) { Value = objrequest.TotalKms },
                                         };
             SqlDataReader reader = null;
             BookingSaveResponse objresponse = new BookingSaveResponse();
@@ -92,6 +94,44 @@ namespace CargoDAL
                     objresponse.StatusId = (int)reader["StatusId"];
                     objresponse.StatusMessage = (string)reader["StatusMessage"];
                     objresponse.BookingSerialNumber = (string)reader["BookingSerialNumber"];
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objresponse;
+        }
+
+        public CustomerDetailsResponse GetCustomerDetailsByMobileNumber(string mobilenumber)
+        {
+            SqlParameter[] sqlparams = {new SqlParameter("@MobileNumber", SqlDbType.VarChar, 10) { Value = mobilenumber }
+                                        };
+            SqlDataReader reader = null;
+            CustomerDetailsResponse objresponse = new CustomerDetailsResponse();
+
+            try
+            {
+                reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetCustomerDetailsByMobileNumber", sqlparams);
+
+                while (reader.Read())
+                {
+                    objresponse.StatusId = (int)reader["StatusId"];
+                    objresponse.StatusMessage = (string)reader["StatusMessage"];
+
+                    if (objresponse.StatusId == 1)
+                    {
+                        objresponse.Address = (string)reader["Address"];
+                        objresponse.CustomerId = (int)reader["CustomerId"];
+                        objresponse.CustomerName = (string)reader["CustomerName"];
+                        objresponse.MobileNumber = (string)reader["MobileNumber"];
+                    }
                 }
             }
             catch (Exception ex)

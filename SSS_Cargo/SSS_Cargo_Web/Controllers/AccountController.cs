@@ -14,7 +14,7 @@ namespace SSS_Cargo_Web.Controllers
         // GET: Account
         public ActionResult login()
         {
-            if (Session["UserLogin"] != null)
+            if (Session["SessionLogin"] != null)
             {
                 return Redirect("/cargo/index");
             }
@@ -27,7 +27,7 @@ namespace SSS_Cargo_Web.Controllers
         public ActionResult logout()
         {
             Session.Abandon();
-            return Redirect("/login");
+            return Redirect("/account/login");
         }
 
         [HttpPost]

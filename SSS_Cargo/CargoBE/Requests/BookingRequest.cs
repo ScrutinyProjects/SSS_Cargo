@@ -10,7 +10,7 @@ namespace CargoBE.Requests
     {
         public int UserLoginId { get; set; }
         public int FromCounterId { get; set; }
-        public int ToCounterId { get; set; }
+        public string ToCounter { get; set; }
         public int GCTypeId { get; set; }
         public int BookingTypeId { get; set; }
         public int ProductTypeId { get; set; }
@@ -37,7 +37,9 @@ namespace CargoBE.Requests
         public decimal HamaliCharges { get; set; }
         public decimal AOCCharges { get; set; }
         public decimal TranshipmentCharges { get; set; }
+        public decimal PickupCharges { get; set; }
         public decimal GSTCharges { get; set; }
         public decimal TotalAmount { get; set; }
+        public decimal TotalKms { get; set; }
     }
 }

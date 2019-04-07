@@ -28,7 +28,7 @@ namespace CargoBAL
 
             try
             {
-                DataSet ds = new DataSet();
+                DataSet ds = new DataSet(); 
 
                 int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
                 int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
@@ -83,6 +83,18 @@ namespace CargoBAL
                                            }).ToList();
 
                         objresponse.Books = books;
+
+                        var customers = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 6).
+                                           Select(x => new CustomersMasterResponse
+                                           {
+                                               CustomerId = x.Field<int>("Id"),
+                                               MobileNumber = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.Customers = customers;
+
+                        objresponse.StatusId = 1;
+                        objresponse.StatusMessage = "Valid";
                     }
                 }
             }
@@ -116,8 +128,8 @@ namespace CargoBAL
                 objrequest.ReceiverAddress = Convert.ToString(input["ReceiverAddress"]);
                 objrequest.ReceiverEmailId = Convert.ToString(input["ReceiverEmailId"]);
                 objrequest.ReceiverId = Convert.ToInt32(input["ReceiverId"]);
-                objrequest.ReceiverMobileNumber = Convert.ToString(input["BasicAmount"]);
-                objrequest.ReceiverName = Convert.ToString(input["BasicAmount"]);
+                objrequest.ReceiverMobileNumber = Convert.ToString(input["ReceiverMobileNumber"]);
+                objrequest.ReceiverName = Convert.ToString(input["ReceiverName"]);
                 objrequest.SenderAddress = Convert.ToString(input["SenderAddress"]);
                 objrequest.SenderEmailId = Convert.ToString(input["SenderEmailId"]);
                 objrequest.SenderId = Convert.ToInt32(input["SenderId"]);
@@ -126,13 +138,15 @@ namespace CargoBAL
                 objrequest.ShipmentDescription = Convert.ToString(input["ShipmentDescription"]);
                 objrequest.ShipmentValue = Convert.ToDecimal(input["ShipmentValue"]);
                 objrequest.SUPCharges = Convert.ToDecimal(input["SUPCharges"]);
-                objrequest.ToCounterId = Convert.ToInt32(input["ToCounterId"]);
+                objrequest.ToCounter = Convert.ToString(input["ToCounter"]);
                 objrequest.TotalAmount = Convert.ToDecimal(input["TotalAmount"]);
                 objrequest.TranshipmentCharges = Convert.ToDecimal(input["TranshipmentCharges"]);
+                objrequest.PickupCharges = Convert.ToDecimal(input["PickupCharges"]);
                 objrequest.TranshipmentPoints = Convert.ToString(input["TranshipmentPoints"]);
                 objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
                 objrequest.ValueSCCharges = Convert.ToDecimal(input["ValueSCCharges"]);
                 objrequest.WithPASSCharges = Convert.ToDecimal(input["WithPASSCharges"]);
+                objrequest.TotalKms = Convert.ToDecimal(input["TotalKms"]);
 
                 DataTable dtweights = new DataTable();
 
@@ -159,6 +173,24 @@ namespace CargoBAL
                 }
 
                 objresponse = objBookingDal.InsertBookingDetails(objrequest, dtweights);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public CustomerDetailsResponse GetCustomerDetailsByMobileNumber(JObject input)
+        {
+            CustomerDetailsResponse objresponse = new CustomerDetailsResponse();
+
+            try
+            {
+                string mobilenumber = Convert.ToString(input["MobileNumber"]);
+
+                objresponse = objBookingDal.GetCustomerDetailsByMobileNumber(mobilenumber);                
             }
             catch (Exception ex)
             {

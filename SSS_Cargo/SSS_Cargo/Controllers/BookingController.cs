@@ -20,7 +20,7 @@ namespace SSS_Cargo.Controllers
 
         #region APIs
 
-        [Authorize]
+        [AllowAnonymous]
         [Route("getmasters")]
         [HttpPost]
         public BookingMastersResponse GetMasters(JObject input)
@@ -38,7 +38,7 @@ namespace SSS_Cargo.Controllers
             return objresponse;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [Route("savebookingdetails")]
         [HttpPost]
         public BookingSaveResponse InsertBookingDetails(JObject input)
@@ -47,6 +47,24 @@ namespace SSS_Cargo.Controllers
             try
             {
                 objresponse = objBookingBal.InsertBookingDetails(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("getcustomerdetailsbymobilenumber")]
+        [HttpPost]
+        public CustomerDetailsResponse GetCustomerDetailsByMobileNumber(JObject input)
+        {
+            CustomerDetailsResponse objresponse = new CustomerDetailsResponse();
+            try
+            {
+                objresponse = objBookingBal.GetCustomerDetailsByMobileNumber(input);
             }
             catch (Exception ex)
             {

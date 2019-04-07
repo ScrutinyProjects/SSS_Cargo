@@ -27,5 +27,16 @@ namespace CargoBE.Responses
         public List<ParcelTypesResponse> ParcelTypes { get; set; }
         public List<ProductTypesResponse> ProductTypes { get; set; }
         public List<BooksMasterResponse> Books { get; set; }
+        public List<CustomersMasterResponse> Customers { get; set; }
+    }
+
+    public class CustomerDetailsResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public string MobileNumber { get; set; }
+        public string Address { get; set; }
     }
 }

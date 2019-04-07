@@ -44,8 +44,8 @@ namespace CargoDAL
                     objLoginResponse.RoleName = (string)reader["RoleName"];
                     objLoginResponse.StatusId = (int)reader["StatusId"];
                     objLoginResponse.StatusMessage = (string)reader["StatusMessage"];
-                    objLoginResponse.CounterName = (string)reader["CompanyName"];
-                    objLoginResponse.CounterId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["CompanyId"]));
+                    objLoginResponse.CounterName = (string)reader["CounterName"];
+                    objLoginResponse.CounterId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["CounterId"]));
                     objLoginResponse.EmailId = (string)reader["EmailId"];
                     objLoginResponse.ContactNumber = (string)reader["ContactNumber"];
                 }

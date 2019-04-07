@@ -12,12 +12,19 @@ namespace CargoWeb
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //routes.IgnoreRoute("");
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{param1}",
                 defaults: new { controller = "account", action = "login", param1 = UrlParameter.Optional }
             );
+
+           // routes.MapRoute(
+           //    name: "login",
+           //    url: "login/{param1}",
+           //    defaults: new { controller = "account", action = "login", param1 = UrlParameter.Optional }
+           //);
         }
     }
 }

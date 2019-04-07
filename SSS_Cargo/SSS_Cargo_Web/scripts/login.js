@@ -23,31 +23,28 @@
 
         var logindetails = [];
         logindetails = {
-            UserName: textusername.val().trim(),
-            Password: textpassword.val().trim(),
-            grant_type: "password"
+            Username: textusername.val().trim(),
+            Password: textpassword.val().trim()
         };
 
         $.ajax({
             type: "POST",
             data: (logindetails),
-            url: apiurl + "token",
+            url: apiurl + "api/account/login",
             dataType: "json",
             success: function (data) {
                 if (data.StatusId == 1) {
-                    //data.AccessToken = acc
-
                     $.ajax({
                         type: "POST",
                         data: (data),
                         url: "/account/savelogindetails",
                         dataType: "json",
-                        success: function (data) {
-                            if (data.StatusId == 1) {
+                        success: function (datac) {
+                            if (datac.StatusId == 1) {
                                 window.location = "/cargo/index";
                             }
                             else {
-                                showwarningalert(data.StatusMessage);
+                                showwarningalert(datac.StatusMessage);
                             }
                             hideloading();
                         },

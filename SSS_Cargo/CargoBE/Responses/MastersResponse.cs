@@ -40,4 +40,10 @@ namespace CargoBE.Responses
         public int BookId { get; set; }
         public string BookName { get; set; }
     }
+
+    public class CustomersMasterResponse
+    {
+        public int CustomerId { get; set; }
+        public string MobileNumber { get; set; }
+    }
 }

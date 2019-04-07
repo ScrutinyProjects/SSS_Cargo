@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CargoBE.Responses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,74 +12,94 @@ namespace SSS_Cargo_Web.Controllers
         // GET: Cargo
         public ActionResult index()
         {
-            //if (Session["UserLogin"] == null)
-            //{
-            //    return Redirect("/cargo/index");
-            //}
-            //else
-            //{
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
                 return View();
-            //}
+            }
         }
 
         public ActionResult booking()
         {
-            //if (Session["UserLogin"] == null)
-            //{
-            //    return Redirect("/cargo/index");
-            //}
-            //else
-            //{
-            return View();
-            //}
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
+                return View();
+            }
+        }
+
+        public ActionResult bookingsuccess(string param1)
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                //LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                //ViewBag.CounterName = loginresponse.CounterName;
+                //ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.BookingSerialNumber = param1;
+                return View();
+            }
         }
 
         public ActionResult loading()
         {
-            //if (Session["UserLogin"] == null)
-            //{
-            //    return Redirect("/cargo/index");
-            //}
-            //else
-            //{
-            return View();
-            //}
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult tobereceive()
         {
-            //if (Session["UserLogin"] == null)
-            //{
-            //    return Redirect("/cargo/index");
-            //}
-            //else
-            //{
-            return View();
-            //}
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult receive()
         {
-            //if (Session["UserLogin"] == null)
-            //{
-            //    return Redirect("/cargo/index");
-            //}
-            //else
-            //{
-            return View();
-            //}
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult delivery()
         {
-            //if (Session["UserLogin"] == null)
-            //{
-            //    return Redirect("/cargo/index");
-            //}
-            //else
-            //{
-            return View();
-            //}
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

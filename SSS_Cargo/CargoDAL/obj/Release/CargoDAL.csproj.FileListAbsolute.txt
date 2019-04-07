@@ -1,0 +1,11 @@
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\CargoDAL.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\CargoDAL.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\CargoBE.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\Microsoft.ApplicationBlocks.Data.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\Newtonsoft.Json.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\CargoBE.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\Newtonsoft.Json.pdb
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\bin\Release\Newtonsoft.Json.xml
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\obj\Release\CargoDAL.csprojResolveAssemblyReference.cache
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\obj\Release\CargoDAL.dll
+D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoDAL\obj\Release\CargoDAL.pdb

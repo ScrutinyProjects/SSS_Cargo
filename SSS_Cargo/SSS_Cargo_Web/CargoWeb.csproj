@@ -329,6 +329,7 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\common.js" />
+    <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
@@ -417,6 +418,7 @@
     <Content Include="Views\Cargo\tobereceive.cshtml" />
     <Content Include="Views\Cargo\receive.cshtml" />
     <Content Include="Views\Cargo\delivery.cshtml" />
+    <Content Include="Views\Cargo\bookingsuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -449,7 +451,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1318</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1318/</IISUrl>
+          <IISUrl>http://localhost:50963/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

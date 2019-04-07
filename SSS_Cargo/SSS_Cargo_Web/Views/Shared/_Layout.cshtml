@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -24,6 +26,7 @@
 </head>
 
 <body class="no-skin">
+
     <div id="divLoading" style="display: none; position: fixed; z-index: 5000; height: 760px; padding-top: 200px; width: 100%;">
         <center><img src="~/Assets/images/loading.gif" style="padding-left:45px;" /></center>
     </div>
@@ -40,10 +43,14 @@
             </button>
             <div class="navbar-header pull-left" style="padding: 10px; width: 80%;">
                 <!-------created by Harish On (09/01/17)------->
-                <div style="width: 10%; float: left; padding-left: 200px;">
-                    <a href="/Account/Index">
-                        <img src="~/Images/logo.png" style="float: left;" />
-                    </a>
+                <div style="font-size: 20px;
+    font-weight: 600;
+    color: #fff;">
+                    SS Cargo Parcel & Courier Services 
+                    @*<a href="/Account/Index">
+    <img src="/Images/logo.png" style="float: left;" />
+
+                    </a>*@
                 </div>
                 @*<div class="navbar-brand center" style="width: 80%; float: left;">
                     <h3 style="font-weight: 600; margin-top: 10px;">MUNCIPAL CORPORATION KARIMNAGAR ( <span style="color:#ffff66">Solid Waste Management System</span> )</h3>
@@ -56,23 +63,17 @@
                 <ul class="nav ace-nav">
                     <li class="light-blue">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <!-------created by Harish On (09/01/17)------->
-                            <span><small>Welcome, </small></span>
-                            <span>Karteek
-                                @*@if (Session[Resources.SWMS_Resources.SESSION_NAME] != null)
-                                {
-                                    @Session[Resources.SWMS_Resources.SESSION_NAME]
-                                }*@
-                            </span>
-                            <span style="display: none;" id="spandesignation"> Hanamkonda
-                                @*@if (Session[Resources.SWMS_Resources.SESSION_DESIGNATIONID] != null)
-                                {
-                                    @Session[Resources.SWMS_Resources.SESSION_DESIGNATIONID]
-                                }*@
-                            </span>
-                            <span class="ace-icon fa fa-caret-down"></span>
-                            <!-----------end---------->
-                        </a>
+                                <!-------created by Harish On (09/01/17)------->
+                                <span>
+                                    <small>Welcome, User</small>
+                                    @*@loginresponse.Name.ToString()*@
+                                </span>
+                                <span style="display: none;" id="spandesignation">
+                                    @*@loginresponse.CounterName.ToString()*@
+                                </span>
+                                <span class="ace-icon fa fa-caret-down"></span>
+                                <!-----------end---------->
+                            </a>
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>
                                 <a href="javascript:void(0)" onclick="location.href='@Url.Action("changepassword", "account")'">
@@ -116,7 +117,7 @@
                     <a href='/cargo/delivery'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Delivery</span></a>
                 </li>
             </ul>
-           
+
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
@@ -130,16 +131,15 @@
             </div>
         </div>
         <!-- /.main-content -->
-
         @*<div class="footer">
-            <div class="footer-inner">
-                <div class="footer-content">
-                    <span>
-                        © Copyright 2016 <span class="blue bolder">Municipal Corporation Karimnagar</span> | Powered by <span class="blue bolder">Netxcell Limited</span>
-                    </span>
+                <div class="footer-inner">
+                    <div class="footer-content">
+                        <span>
+                            © Copyright 2016 <span class="blue bolder">Municipal Corporation Karimnagar</span> | Powered by <span class="blue bolder">Netxcell Limited</span>
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
@@ -161,7 +161,7 @@
     <script src="~/Assets/js/ace.min.js"></script>
 
     @*<script src="~/Scripts/common.js"></script>
-    <script src="~/Scripts/Menu.js"></script>*@
+        <script src="~/Scripts/Menu.js"></script>*@
     <script type="text/javascript">
         $(document).ready(function () {
             //GetMenu();

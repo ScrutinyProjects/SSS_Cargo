@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "SSS Cargo - Loading";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            Home
+        </li>
+        <li class="active">Loading</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Loading
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form">
+                <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                    <strong>Warning!</strong>
+                    <span id="spanWarningAlert"></span>
+                </div>
+                <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                    <strong>Error!</strong>
+                    <span id="spanErrorAlert"></span>
+                </div>
+                <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                    <strong>Success!</strong>
+                    <span id="spanSuccessAlert"></span>
+                </div>
+                @*<input type="hidden" id="hiddenloginid" value="@ViewBag.LoginID" />*@
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="selectcircle">GC Number <span class="red">*</span> </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="" placeholder="GC Number" class="col-xs-10"  />
+                                <br />
+                                <br />
+                                <span class="red" id="spancirclehelper"></span>
+                            </div>
+                            <div class="form-group" style="background-color: #fff;">
+                                <div style="float: left;">
+                                    <button class="btn btn-sm btn-primary pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
+                                        <i class="ace-icon  bigger-110"></i>
+                                        GO
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Route Info </label>
+                            <div class="col-sm-4">                                
+                                <label id="spancodehelper">Hanamkonda --> Parakal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;">S.No.</th>
+                                            <th style="width: 15%;">GC Number</th>
+                                            <th style="width: 15%;">Peices Type</th>
+                                            <th style="width: 15%;">Pieces</th>
+                                            <th style="width: 15%;">Actual Weight</th>
+                                            <th style="width: 15%;">Total Weight</th>
+                                            <th style="width: 15%;">Total Amount</th>
+                                            <th style="width: 5%;">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodydata">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>HNK12345</td>
+                                            <td>Box</td>
+                                            <td>4</td>
+                                            <td>10 Kgs</td>
+                                            <td>40 Kgs</td>
+                                            <td>45</td>
+                                            <td><a href="javascript:void(0)"><i class="fa fa-remove"></i> Remove</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>HNK12346</td>
+                                            <td>Nos</td>
+                                            <td>2</td>
+                                            <td>5 Kgs</td>
+                                            <td>10 Kgs</td>
+                                            <td>25.5</td>
+                                            <td><a href="javascript:void(0)"><i class="fa fa-remove"></i> Remove</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Driver Name <span class="red">*</span> </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="" placeholder="Driver Name" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Driver Number <span class="red">*</span> </label>
+                            <div class="col-sm-3">
+                                <input type="text" id="textcode" maxlength="20" value="0" placeholder="Driver Number" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode"> Vehicle No./Service No. <span class="red">*</span> </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="" placeholder="Vehicle No./Service No." class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Remarks  </label>
+                            <div class="col-sm-4">
+                                <textarea type="text" id="textcode" maxlength="500" rows="3" value="" placeholder="Remarks" class="col-xs-10"></textarea>
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode"> Estimated Reach Time <span class="red">*</span> </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="03/30/2019 10:30 AM" placeholder="03/30/2019 10:30 AM" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Hamali Amount <span class="red">*</span>  </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="40" placeholder="Hamali Amount" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Driver Amount <span class="red">*</span>  </label>
+                            <div class="col-sm-3">
+                                <input type="text" id="textcode" maxlength="20" value="5" placeholder="Driver Amount" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+                <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                    <div style="width: 95%;">
+                        <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="ResetFields()">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            Reset
+                        </button>
+                        <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Save Loading
+                        </button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");
+</script>
+
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="~/Assets/js/jquery.dataTables.min.js"></script>
+<script src="~/Assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="~/Assets/js/dataTables.tableTools.min.js"></script>
+<script src="~/Assets/js/dataTables.colVis.min.js"></script>
+
+@*<script src="~/Scripts/common.js"></script>
+    <script src="~/Scripts/Area.js"></script>*@
+<script type="text/javascript">
+    jQuery(function ($) {
+        //$('.main-menu').removeClass('active');
+        //$('.sub-menu').removeClass('active');
+        //$('#menumasters').addClass('active open');
+        //$('#menuarea').addClass('active');
+        //GetCircles();
+        //GetAreas();
+    });
+
+</script>
