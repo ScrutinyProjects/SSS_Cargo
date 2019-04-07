@@ -297,6 +297,8 @@
     <Content Include="css\lightgallery.css" />
     <Content Include="css\menuzord-skins\menuzord-rounded-boxed.css" />
     <Content Include="css\pe-icon-7-stroke.css" />
+    <Content Include="css\picker.css" />
+    <Content Include="css\picker.min.css" />
     <Content Include="css\preloader.css" />
     <Content Include="css\responsive.css" />
     <Content Include="css\stroke-gap-icons.css" />
@@ -309,6 +311,10 @@
     <Content Include="js\jquery-plugin-collection.js" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="js\lightgallery.min.js" />
+    <Content Include="js\picker.common.js" />
+    <Content Include="js\picker.esm.js" />
+    <Content Include="js\picker.js" />
+    <Content Include="js\picker.min.js" />
     <Content Include="js\revolution-slider\css\layers.css" />
     <Content Include="js\revolution-slider\css\navigation.css" />
     <Content Include="js\revolution-slider\css\settings.css" />

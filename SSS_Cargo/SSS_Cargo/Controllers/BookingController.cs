@@ -74,6 +74,24 @@ namespace SSS_Cargo.Controllers
             return objresponse;
         }
 
+        [AllowAnonymous]
+        [Route("getbookingdetailsbybookingnumber")]
+        [HttpPost]
+        public BookingDetailsByBookingNumber GetBookingDetailsByBookingNumber(JObject input)
+        {
+            BookingDetailsByBookingNumber objresponse = new BookingDetailsByBookingNumber();
+            try
+            {
+                objresponse = objBookingBal.GetBookingDetailsByBookingNumber(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }

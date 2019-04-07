@@ -1,7 +1,7 @@
-﻿//var apiurl = "http://localhost:1533/";
-//var weburl = "http://localhost:50963/";
-var apiurl = "http://api.ssclogistics.co.in/";
-var weburl = "http://ssclogistics.co.in/";
+﻿var apiurl = "http://localhost:1533/";
+var weburl = "http://localhost:50963/";
+//var apiurl = "http://api.ssclogistics.co.in/";
+//var weburl = "http://ssclogistics.co.in/";
 
 function closemessage(obj) {
     $(obj).closest('.alert').hide();

@@ -1,4 +1,4 @@
-﻿
+﻿@using CargoBE.Responses;
 
 <!DOCTYPE html>
 <html>
@@ -26,128 +26,125 @@
 </head>
 
 <body class="no-skin">
+    @*@if (Session["SessionLogin"] != null)
+    {
+        LoginResponse response = (LoginResponse)Session["SessionLogin"];*@
+        <div>
 
-    <div id="divLoading" style="display: none; position: fixed; z-index: 5000; height: 760px; padding-top: 200px; width: 100%;">
-        <center><img src="~/Assets/images/loading.gif" style="padding-left:45px;" /></center>
-    </div>
-    <div id="navbar" class="navbar navbar-default">
-        <div class="navbar-container" id="navbar-container">
-            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-                <span class="sr-only">Toggle sidebar</span>
+            <div id="divLoading" style="display: none; position: fixed; z-index: 5000; height: 760px; padding-top: 200px; width: 100%;">
+                <center><img src="~/Assets/images/loading.gif" style="padding-left:45px;" /></center>
+            </div>
 
-                <span class="icon-bar"></span>
+            <div id="navbar" class="navbar navbar-default">
+                <div class="navbar-container" id="navbar-container">
+                    <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                        <span class="sr-only">Toggle sidebar</span>
 
-                <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
 
-                <span class="icon-bar"></span>
-            </button>
-            <div class="navbar-header pull-left" style="padding: 10px; width: 80%;">
-                <!-------created by Harish On (09/01/17)------->
-                <div style="font-size: 20px;
+                        <span class="icon-bar"></span>
+
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-header pull-left" style="padding: 10px; width: 80%;">
+                        <!-------created by Harish On (09/01/17)------->
+                        <div style="font-size: 20px;
     font-weight: 600;
     color: #fff;">
-                    SS Cargo Parcel & Courier Services 
-                    @*<a href="/Account/Index">
-    <img src="/Images/logo.png" style="float: left;" />
-
-                    </a>*@
-                </div>
-                @*<div class="navbar-brand center" style="width: 80%; float: left;">
-                    <h3 style="font-weight: 600; margin-top: 10px;">MUNCIPAL CORPORATION KARIMNAGAR ( <span style="color:#ffff66">Solid Waste Management System</span> )</h3>
-                    <h4 style="font-weight: 600; margin-top: 15px; color: pink;">Government Of Telangana</h4>
-                    </div>*@
-
-                <!---------end--------->
-            </div>
-            <div class="navbar-buttons navbar-header pull-right" role="navigation">
-                <ul class="nav ace-nav">
-                    <li class="light-blue">
-                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <!-------created by Harish On (09/01/17)------->
-                                <span>
-                                    <small>Welcome, User</small>
-                                    @*@loginresponse.Name.ToString()*@
-                                </span>
-                                <span style="display: none;" id="spandesignation">
-                                    @*@loginresponse.CounterName.ToString()*@
-                                </span>
-                                <span class="ace-icon fa fa-caret-down"></span>
-                                <!-----------end---------->
-                            </a>
-                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li>
-                                <a href="javascript:void(0)" onclick="location.href='@Url.Action("changepassword", "account")'">
-                                    <i class="ace-icon fa fa-cog"></i>
-                                    Change Password
+                            SS Cargo Parcel & Courier Services
+                        </div>
+                        <!---------end--------->
+                    </div>
+                    <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                        <ul class="nav ace-nav">
+                            <li class="light-blue">
+                                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                    <!-------created by Harish On (09/01/17)------->
+                                    <span>
+                                        <small>Welcome, User</small>
+                                        @*@loginresponse.Name.ToString()*@
+                                    </span>
+                                    <span style="display: none;" id="spandesignation">
+                                        @*@loginresponse.CounterName.ToString()*@
+                                    </span>
+                                    <span class="ace-icon fa fa-caret-down"></span>
+                                    <!-----------end---------->
                                 </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a id="alogout" href="javascript:void(0)" onclick="location.href='@Url.Action("logout", "account")'">
-                                    <i class="ace-icon fa fa-power-off"></i>Logout
-                                </a>
+                                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                    <li>
+                                        <a href="javascript:void(0)" onclick="location.href='@Url.Action("changepassword", "account")'">
+                                            <i class="ace-icon fa fa-cog"></i>
+                                            Change Password
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a id="alogout" href="javascript:void(0)" onclick="location.href='@Url.Action("logout", "account")'">
+                                            <i class="ace-icon fa fa-power-off"></i>Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.navbar-container -->
-    </div>
-
-    <div class="main-container" id="main-container">
-        <div id="sidebar" class="sidebar responsive sidebar-scroll">
-            <ul class="nav nav-list" id="ulmenu">
-                <li class="mainmenu">
-                    <a href='/cargo/index'><i class='menu-icon fa fa-home'></i><span class='menu-text'>Dashboard</span></a>
-                </li>
-                <li class="mainmenu">
-                    <a href='/cargo/booking'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Booking</span></a>
-                </li>
-                <li class="mainmenu">
-                    <a href='/cargo/loading'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Loading</span></a>
-                </li>
-                <li class="mainmenu">
-                    <a href='/cargo/tobereceive'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>To be Receive</span></a>
-                </li>
-                <li class="mainmenu">
-                    <a href='/cargo/receive'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Receive</span></a>
-                </li>
-                <li class="mainmenu">
-                    <a href='/cargo/delivery'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Delivery</span></a>
-                </li>
-            </ul>
-
-            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-            </div>
-
-        </div>
-
-        <div class="main-content">
-            <div class="main-content-inner">
-                @RenderBody()
-                <!-- /.page-content -->
-            </div>
-        </div>
-        <!-- /.main-content -->
-        @*<div class="footer">
-                <div class="footer-inner">
-                    <div class="footer-content">
-                        <span>
-                            © Copyright 2016 <span class="blue bolder">Municipal Corporation Karimnagar</span> | Powered by <span class="blue bolder">Netxcell Limited</span>
-                        </span>
                     </div>
                 </div>
-            </div>*@
+        <!-- /.navbar-container -->
+            </div>
 
-        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-        </a>
-    </div>
+            <div class="main-container" id="main-container">
+                <div id="sidebar" class="sidebar responsive sidebar-scroll">
+                    <ul class="nav nav-list" id="ulmenu">
+                        <li class="mainmenu">
+                            <a href='/cargo/index'><i class='menu-icon fa fa-home'></i><span class='menu-text'>Dashboard</span></a>
+                        </li>
+                        <li class="mainmenu">
+                            <a href='/cargo/booking'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Booking</span></a>
+                        </li>
+                        <li class="mainmenu">
+                            <a href='/cargo/loading'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Loading</span></a>
+                        </li>
+                        <li class="mainmenu">
+                            <a href='/cargo/tobereceive'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>To be Receive</span></a>
+                        </li>
+                        <li class="mainmenu">
+                            <a href='/cargo/receive'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Receive</span></a>
+                        </li>
+                        <li class="mainmenu">
+                            <a href='/cargo/delivery'><i class='menu-icon fa fa-angle-right'></i><span class='menu-text'>Delivery</span></a>
+                        </li>
+                    </ul>
 
+                    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                        <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                    </div>
+
+                </div>
+
+                <div class="main-content">
+                    <div class="main-content-inner">
+                        @RenderBody()
+                        <!-- /.page-content -->
+                    </div>
+                </div>
+                <!-- /.main-content -->
+                @*<div class="footer">
+                        <div class="footer-inner">
+                            <div class="footer-content">
+                                <span>
+                                    © Copyright 2016 <span class="blue bolder">Municipal Corporation Karimnagar</span> | Powered by <span class="blue bolder">Netxcell Limited</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+                </a>
+            </div>
+
+        </div>
     <!-- page specific plugin scripts -->
-
+    @*  *@}
     <script src="~/Assets/js/jquery-ui.custom.min.js"></script>
     <script src="~/Assets/js/jquery.ui.touch-punch.min.js"></script>
     <script src="~/Assets/js/jquery.easypiechart.min.js"></script>

@@ -28,7 +28,7 @@ namespace CargoBAL
 
             try
             {
-                DataSet ds = new DataSet(); 
+                DataSet ds = new DataSet();
 
                 int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
                 int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
@@ -190,7 +190,26 @@ namespace CargoBAL
             {
                 string mobilenumber = Convert.ToString(input["MobileNumber"]);
 
-                objresponse = objBookingDal.GetCustomerDetailsByMobileNumber(mobilenumber);                
+                objresponse = objBookingDal.GetCustomerDetailsByMobileNumber(mobilenumber);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public BookingDetailsByBookingNumber GetBookingDetailsByBookingNumber(JObject input)
+        {
+            BookingDetailsByBookingNumber objresponse = new BookingDetailsByBookingNumber();
+
+            try
+            {
+                string bookingnumber = Convert.ToString(input["BookingNumber"]);
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+
+                objresponse = objBookingDal.GetBookingDetailsByBookingNumber(bookingnumber, counterid);
             }
             catch (Exception ex)
             {

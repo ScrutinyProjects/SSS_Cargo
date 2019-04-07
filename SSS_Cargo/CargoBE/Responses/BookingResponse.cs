@@ -39,4 +39,27 @@ namespace CargoBE.Responses
         public string MobileNumber { get; set; }
         public string Address { get; set; }
     }
+
+    public class BookingDetailsByBookingNumber
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public int BookingId { get; set; }
+        public int GCTypeId { get; set; }
+        public string GCType { get; set; }
+        public string MeasurementIn { get; set; }
+        public string BookSerialNumber { get; set; }
+        public decimal TotalAmount { get; set; }
+        public List<BookingParcelDetails> BookingParcels { get; set; }
+    }
+
+    public class BookingParcelDetails
+    {
+        public int BookingParcelId { get; set; }
+        public int ParcelTypeId { get; set; }
+        public string ParcelType { get; set; }
+        public int NumberOfPieces { get; set; }
+        public decimal ActualWeight { get; set; }
+        public decimal TotalWeight { get; set; }
+    }
 }

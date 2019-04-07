@@ -84,7 +84,7 @@ namespace CargoDAL
                                         };
             SqlDataReader reader = null;
             BookingSaveResponse objresponse = new BookingSaveResponse();
-            
+
             try
             {
                 reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_InsertBookingDetails", sqlparams);
@@ -131,6 +131,66 @@ namespace CargoDAL
                         objresponse.CustomerId = (int)reader["CustomerId"];
                         objresponse.CustomerName = (string)reader["CustomerName"];
                         objresponse.MobileNumber = (string)reader["MobileNumber"];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objresponse;
+        }
+
+        public BookingDetailsByBookingNumber GetBookingDetailsByBookingNumber(string bookingnumber, int counterid)
+        {
+            SqlParameter[] sqlparams = {new SqlParameter("@BookingNumber", SqlDbType.VarChar, 20) { Value = bookingnumber },
+                                           new SqlParameter("@CounterId", SqlDbType.Int) { Value = counterid }
+                                        };
+            DataSet ds = null;
+            BookingDetailsByBookingNumber objresponse = new BookingDetailsByBookingNumber();
+
+            try
+            {
+                ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetBookingDetailsByBookingNumber", sqlparams);
+
+                if (ds.Tables.Count > 0)
+                {
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        DataRow dr = ds.Tables[0].Rows[0];
+
+                        objresponse.StatusId = (int)dr["StatusId"];
+                        objresponse.StatusMessage = (string)dr["StatusMessage"];
+
+                        if (objresponse.StatusId == 1)
+                        {
+                            objresponse.BookingId = (int)dr["BookingId"];
+                            objresponse.BookSerialNumber = (string)dr["BookSerialNumber"];
+                            objresponse.GCType = (string)dr["GCType"];
+                            objresponse.GCTypeId = (int)dr["GCTypeId"];
+                            objresponse.MeasurementIn = (string)dr["MeasurementIn"];
+                            objresponse.TotalAmount = (decimal)dr["TotalAmount"];
+
+                            if (ds.Tables.Count > 1)
+                            {
+                                objresponse.BookingParcels = ds.Tables[1].AsEnumerable().
+                                          Select(x => new BookingParcelDetails
+                                          {
+                                              ActualWeight = x.Field<decimal>("ActualWeight"),
+                                              BookingParcelId = x.Field<int>("BookingParcelId"),
+                                              NumberOfPieces = x.Field<int>("NumberOfPieces"),
+                                              ParcelType = x.Field<string>("ParcelType"),
+                                              ParcelTypeId = x.Field<int>("ParcelTypeId"),
+                                              TotalWeight = x.Field<decimal>("TotalWeight")
+                                          }).ToList();
+                            }
+                        }
                     }
                 }
             }

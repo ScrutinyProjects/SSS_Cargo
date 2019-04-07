@@ -2,21 +2,22 @@
     ViewBag.Title = "SSS Cargo - Loading";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link href="~/css/picker.css" rel="stylesheet" />
 <div class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
             Home
         </li>
-        <li class="active">Loading</li>
+        <li class="active" style="font-size:14px; font-weight:600">
+            Loading
+        </li>
     </ul>
 </div>
 <div class="page-content">
-    <div class="page-header">
-        <h1>
-            Loading
-        </h1>
-    </div>
+    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
+    <input type="hidden" id="hiddenmobilenumber" value="@ViewBag.ContactNumber" />
+
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
@@ -33,24 +34,19 @@
                     <strong>Success!</strong>
                     <span id="spanSuccessAlert"></span>
                 </div>
-                @*<input type="hidden" id="hiddenloginid" value="@ViewBag.LoginID" />*@
                 <div class="panel">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="text-align: left;" for="selectcircle">GC Number <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="" placeholder="GC Number" class="col-xs-10"  />
-                                <br />
-                                <br />
-                                <span class="red" id="spancirclehelper"></span>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textgcnuber">GC Number <span class="red">*</span> </label>
+                                <input type="text" id="textgcnuber" maxlength="20" value="" placeholder="GC Number" class="form-control" />
+                                <span class="red" id="spangcnuber"></span>
                             </div>
-                            <div class="form-group" style="background-color: #fff;">
-                                <div style="float: left;">
-                                    <button class="btn btn-sm btn-primary pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
-                                        <i class="ace-icon  bigger-110"></i>
-                                        GO
-                                    </button>
-                                </div>
+                            <div style="float: left;">
+                                <button class="btn btn-sm btn-primary pull-right" type="button" style="margin: 25px 5px 5px 5px;" onclick="return searchbooking()">
+                                    <i class="ace-icon fa fa-search bigger-110"></i>
+                                    Search
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -58,19 +54,19 @@
                 <div class="panel">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Route Info </label>
-                            <div class="col-sm-4">                                
-                                <label id="spancodehelper">Hanamkonda --> Parakal</label>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Route <span style="float:right">:</span></label>
+                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spanroute"></label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                <table id="dynamic-table" class="table table-striped table-bordered table-hover" style="margin-bottom: 0;">
                                     <thead>
                                         <tr>
                                             <th style="width: 5%;">S.No.</th>
                                             <th style="width: 15%;">GC Number</th>
-                                            <th style="width: 15%;">Peices Type</th>
+                                            <th style="width: 15%;">GC Type</th>
                                             <th style="width: 15%;">Pieces</th>
                                             <th style="width: 15%;">Actual Weight</th>
                                             <th style="width: 15%;">Total Weight</th>
@@ -78,26 +74,9 @@
                                             <th style="width: 5%;">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbodydata">
+                                    <tbody id="tbodyparcelitems">
                                         <tr>
-                                            <td>1</td>
-                                            <td>HNK12345</td>
-                                            <td>Box</td>
-                                            <td>4</td>
-                                            <td>10 Kgs</td>
-                                            <td>40 Kgs</td>
-                                            <td>45</td>
-                                            <td><a href="javascript:void(0)"><i class="fa fa-remove"></i> Remove</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>HNK12346</td>
-                                            <td>Nos</td>
-                                            <td>2</td>
-                                            <td>5 Kgs</td>
-                                            <td>10 Kgs</td>
-                                            <td>25.5</td>
-                                            <td><a href="javascript:void(0)"><i class="fa fa-remove"></i> Remove</a></td>
+                                            <td colspan="8" style="text-align:center">No search results found</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -105,92 +84,63 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="panel">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Driver Name <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="" placeholder="Driver Name" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
-                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Driver Number <span class="red">*</span> </label>
                             <div class="col-sm-3">
-                                <input type="text" id="textcode" maxlength="20" value="0" placeholder="Driver Number" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
+                                <label class="control-label" style="text-align: left;" for="textdrivername">Driver Name <span class="red">*</span> </label>
+                                <input type="text" id="textdrivername" maxlength="50" placeholder="Driver Name" class="form-control" />
+                                <span class="red" id="spandrivername"></span>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode"> Vehicle No./Service No. <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="" placeholder="Vehicle No./Service No." class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Remarks  </label>
-                            <div class="col-sm-4">
-                                <textarea type="text" id="textcode" maxlength="500" rows="3" value="" placeholder="Remarks" class="col-xs-10"></textarea>
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode"> Estimated Reach Time <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="03/30/2019 10:30 AM" placeholder="03/30/2019 10:30 AM" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Hamali Amount <span class="red">*</span>  </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="40" placeholder="Hamali Amount" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
-                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Driver Amount <span class="red">*</span>  </label>
                             <div class="col-sm-3">
-                                <input type="text" id="textcode" maxlength="20" value="5" placeholder="Driver Amount" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
+                                <label class="control-label" style="text-align: left;" for="textdrivernumber">Driver Number <span class="red">*</span> </label>
+                                <input type="text" id="textdrivernumber" maxlength="10" placeholder="Driver Number" class="form-control numeric" />
+                                <span class="red" id="spandrivernumber"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textvehiclenumber">Vehicle No./Service No. <span class="red">*</span> </label>
+                                <input type="text" id="textvehiclenumber" maxlength="20" placeholder="Vehicle/Service No." class="form-control" />
+                                <span class="red" id="spanvehiclenumber"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdriveramount">Driver Amount <span class="red">*</span> </label>
+                                <input type="text" id="textdriveramount" maxlength="6" value="0" placeholder="Driver Amount" class="form-control" />
+                                <span class="red" id="spandriveramount"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="texthamaliamount">Hamali Amount <span class="red">*</span> </label>
+                                <input type="text" id="texthamaliamount" maxlength="6" value="0" placeholder="Hamali Amount" class="form-control" />
+                                <span class="red" id="spanhamaliamount"></span>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="control-label" style="text-align: left;" for="textreachdatetime">Estimated Reach Time  </label>
+                                <input type="text" id="textreachdatetime" maxlength="30" value="0" placeholder="Date & Time" class="form-control" />
+                                <span class="red" id="spanreachdatetime"></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="control-label" style="text-align: left;" for="textremarks">Remarks </label>
+                                <textarea type="text" id="textremarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
+                                <span class="red" id="spanremarks"></span>
+                            </div>
+                        </div>
+                        <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                            <div style="width: 95%;">
+                                <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="resetfields()">
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    Reset
+                                </button>
+                                <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return saveloading()">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Save Loading
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                        
-                <div class="clearfix form-actions form-group" style="background-color: #fff;">
-                    <div style="width: 95%;">
-                        <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="ResetFields()">
-                            <i class="ace-icon fa fa-undo bigger-110"></i>
-                            Reset
-                        </button>
-                        <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
-                            <i class="ace-icon fa fa-check bigger-110"></i>
-                            Save Loading
-                        </button>
-                    </div>
-                </div>
-                
             </form>
         </div>
     </div>
 </div>
-
-
-
-
 <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
 
 <script type="text/javascript">
@@ -201,7 +151,7 @@
     if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 <script src="~/Assets/js/bootstrap.min.js"></script>
-
+<script src="~/js/picker.js"></script>
 <!-- page specific plugin scripts -->
 <script src="~/Assets/js/jquery.dataTables.min.js"></script>
 <script src="~/Assets/js/jquery.dataTables.bootstrap.min.js"></script>
@@ -212,12 +162,10 @@
     <script src="~/Scripts/Area.js"></script>*@
 <script type="text/javascript">
     jQuery(function ($) {
-        //$('.main-menu').removeClass('active');
-        //$('.sub-menu').removeClass('active');
-        //$('#menumasters').addClass('active open');
-        //$('#menuarea').addClass('active');
-        //GetCircles();
-        //GetAreas();
+        var input = document.getElementById('textreachdatetime');
+        var picker = new Picker(input, {
+            format: 'YYYY/MM/DD HH:mm',
+        });
     });
 
 </script>
