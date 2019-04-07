@@ -42,7 +42,7 @@ namespace SSS_Cargo_Web.Controllers
         {
             if (Session["SessionLogin"] == null)
             {
-                return Redirect("/account/login");
+                return Redirect("/account/login"); 
             }
             else
             {

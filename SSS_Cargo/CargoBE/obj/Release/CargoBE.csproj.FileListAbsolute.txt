@@ -1,7 +1,0 @@
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Release\CargoBE.dll
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Release\CargoBE.pdb
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Release\Newtonsoft.Json.dll
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Release\Newtonsoft.Json.pdb
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\bin\Release\Newtonsoft.Json.xml
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\obj\Release\CargoBE.dll
-D:\Karteek\Projects\SSS_Cargo\SSS_Cargo\CargoBE\obj\Release\CargoBE.pdb
