@@ -1,138 +1,111 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "SSS Cargo - To be Receive";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
 
+<link href="~/css/picker.css" rel="stylesheet" />
 <div class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
             Home
         </li>
-        <li class="active">To be Receive</li>
+        <li class="active" style="font-size:14px; font-weight:600">
+            To be Receive
+        </li>
     </ul>
 </div>
 <div class="page-content">
-    <div class="page-header">
-        <h1>
-            To be Receive
-        </h1>
-    </div>
+    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
+    <input type="hidden" id="hiddenmobilenumber" value="@ViewBag.ContactNumber" />
+
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
-            <form class="form-horizontal" role="form">
-                <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
-                    <strong>Warning!</strong>
-                    <span id="spanWarningAlert"></span>
-                </div>
-                <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
-                    <strong>Error!</strong>
-                    <span id="spanErrorAlert"></span>
-                </div>
-                <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
-                    <strong>Success!</strong>
-                    <span id="spanSuccessAlert"></span>
-                </div>
-                @*<input type="hidden" id="hiddenloginid" value="@ViewBag.LoginID" />*@
-                <div class="panel">
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="selectcircle">GC Number <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="" placeholder="GC Number" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancirclehelper"></span>
-                            </div>
-                            <label class="col-sm-2 control-label" style="text-align: left;" for="selectcircle">GC Type <span class="red">*</span> </label>
-                            <div class="col-sm-3">
-                                <select class="col-xs-10" id="selectcircle" onchange="GetWards(this)">
-                                    <option value="0">Select GC Type</option>
-                                </select>
-                                <br />
-                                <br />
-                                <span class="red" id="spancirclehelper"></span>
-                            </div>
+            <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                <strong>Warning!</strong>
+                <span id="spanWarningAlert"></span>
+            </div>
+            <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                <strong>Error!</strong>
+                <span id="spanErrorAlert"></span>
+            </div>
+            <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                <strong>Success!</strong>
+                <span id="spanSuccessAlert"></span>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="textgcnuber">GC Number <span class="red">*</span> </label>
+                            <input type="text" id="textgcnuber" maxlength="20" value="" placeholder="GC Number" class="form-control" />
+                            <span class="red" id="spangcnuber"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">From <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="Hanamkonda" placeholder="From" class="col-xs-10" disabled />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="selectgctype">GC Type <span class="red">*</span> </label>
+                            <select class="form-control" id="selectgctype">
+                                <option value="0">Select GC Type</option>
+                            </select>
+                            <span class="red" id="spangctype"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">No. of Pieces <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="10" placeholder="No. of Pieces" class="col-xs-10"  />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="textfromcounter">From <span class="red">*</span> </label>
+                            <input type="text" id="textfromcounter" maxlength="50" value="" placeholder="From" class="form-control" />
+                            <span class="red" id="spanfromcounter"></span>
+                        </div> 
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="textnumberofpieces">No. of Pieces <span class="red">*</span> </label>
+                            <input type="text" id="textnumberofpieces" maxlength="5" value="" placeholder="No. of Pieces" class="form-control" />
+                            <span class="red" id="spannumberofpieces"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode"> Estimated Reach Time <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="03/30/2019 10:30 AM" placeholder="03/30/2019 10:30 AM" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="textreachdatetime">Estimated Reach Time  </label>
+                            <input type="text" id="textreachdatetime" maxlength="30" value="" placeholder="Estimated Reach Time" class="form-control" />
+                            <span class="red" id="spanreachdatetime"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Driver Name <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="" placeholder="Driver Name" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="textdrivername">Driver Name <span class="red">*</span> </label>
+                            <input type="text" id="textdrivername" maxlength="50" placeholder="Driver Name" class="form-control" />
+                            <span class="red" id="spandrivername"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Driver Number <span class="red">*</span> </label>
-                            <div class="col-sm-4">
-                                <input type="text" id="textcode" maxlength="20" value="0" placeholder="Driver Number" class="col-xs-10" />
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="textdrivernumber">Driver Number <span class="red">*</span> </label>
+                            <input type="text" id="textdrivernumber" maxlength="10" placeholder="Driver Number" class="form-control numeric" />
+                            <span class="red" id="spandrivernumber"></span>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Remarks  </label>
-                            <div class="col-sm-4">
-                                <textarea type="text" id="textcode" maxlength="500" rows="3" value="" placeholder="Remarks" class="col-xs-10"></textarea>
-                                <br />
-                                <br />
-                                <span class="red" id="spancodehelper"></span>
-                            </div>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="text-align: left;" for="textremarks">Remarks </label>
+                            <textarea type="text" id="textremarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
+                            <span class="red" id="spanremarks"></span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="clearfix form-actions form-group" style="background-color: #fff;">
-                    <div style="width: 95%;">
-                        <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="ResetFields()">
-                            <i class="ace-icon fa fa-undo bigger-110"></i>
-                            Reset
-                        </button>
-                        <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
-                            <i class="ace-icon fa fa-check bigger-110"></i>
-                            Save 
-                        </button>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                        <div style="width: 95%;">
+                            <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="clearallfields()">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                Reset
+                            </button>
+                            <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return savereceiving()">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                Save Receiving
+                            </button>
+                        </div>
                     </div>
                 </div>
-
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
-
-
-
 <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+<script src="~/Assets/js/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
     window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");
@@ -142,23 +115,19 @@
     if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 <script src="~/Assets/js/bootstrap.min.js"></script>
+<script src="~/js/picker.js"></script>
 
-<!-- page specific plugin scripts -->
-<script src="~/Assets/js/jquery.dataTables.min.js"></script>
-<script src="~/Assets/js/jquery.dataTables.bootstrap.min.js"></script>
-<script src="~/Assets/js/dataTables.tableTools.min.js"></script>
-<script src="~/Assets/js/dataTables.colVis.min.js"></script>
+<script src="~/scripts/common.js"></script>
+<script src="~/scripts/tobereceive.js"></script>
 
-@*<script src="~/Scripts/common.js"></script>
-    <script src="~/Scripts/Area.js"></script>*@
 <script type="text/javascript">
     jQuery(function ($) {
-        //$('.main-menu').removeClass('active');
-        //$('.sub-menu').removeClass('active');
-        //$('#menumasters').addClass('active open');
-        //$('#menuarea').addClass('active');
-        //GetCircles();
-        //GetAreas();
+        var input = document.getElementById('textreachdatetime');
+        var picker = new Picker(input, {
+            format: 'YYYY/MM/DD HH:mm',
+        });
     });
-
+    jQuery(function ($) {
+        getmasters();
+    });
 </script>

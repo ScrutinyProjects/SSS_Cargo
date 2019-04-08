@@ -219,6 +219,113 @@ namespace CargoBAL
             return objresponse;
         }
 
+        public SaveRespone InsertLoadingDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+
+            try
+            {
+                LoadingRequest objrequest = new LoadingRequest();
+
+                objrequest.BookingIds = Convert.ToString(input["BookingIds"]);
+                objrequest.CounterId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                objrequest.DriverAmount = Convert.ToDecimal(input["DriverAmount"]);
+                objrequest.DriverMobileNumber = Convert.ToString(input["DriverMobileNumber"]);
+                objrequest.DriverName = Convert.ToString(input["DriverName"]);
+                objrequest.LoadingDateTime = Convert.ToString(input["LoadingDateTime"]);
+                objrequest.EstimatedDateTime = Convert.ToString(input["EstimatedDateTime"]);
+                objrequest.HamaliAmount = Convert.ToDecimal(input["HamaliAmount"]);
+                objrequest.Remarks = Convert.ToString(input["Remarks"]);
+                objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["UserLoginId"])));
+                objrequest.VehicleNumber = Convert.ToString(input["VehicleNumber"]);
+                
+                objresponse = objBookingDal.InsertLoadingDetails(objrequest);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public TobeReceiveMastersResponse GetMastersForToBeReceive(JObject input)
+        {
+            TobeReceiveMastersResponse objresponse = new TobeReceiveMastersResponse();
+
+            try
+            {
+                DataSet ds = new DataSet();
+
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
+
+                ds = objBookingDal.GetMastersForToBeReceive(counterid, loginid);
+
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        var gctypes = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 1).
+                                           Select(x => new GCTypesResponse
+                                           {
+                                               GCTypeId = x.Field<int>("Id"),
+                                               GCType = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.GCTypes = gctypes;
+
+                        var counters = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 2).
+                                           Select(x => new CounterMastersResponse
+                                           {
+                                               CounterId = x.Field<int>("Id"),
+                                               CounterName = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.Counters = counters;
+                        
+                        objresponse.StatusId = 1;
+                        objresponse.StatusMessage = "Valid";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public SaveRespone InsertToBeReceiveDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+
+            try
+            {
+                TobereceiveRequest objrequest = new TobereceiveRequest();
+                
+                objrequest.CounterId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["UserLoginId"])));
+                objrequest.DriverMobileNumber = Convert.ToString(input["DriverMobileNumber"]);
+                objrequest.DriverName = Convert.ToString(input["DriverName"]);
+                objrequest.EstimatedDateTime = Convert.ToString(input["EstimatedDateTime"]);
+                objrequest.FromCounter = Convert.ToString(input["FromCounter"]);
+                objrequest.GCBookingNumber = Convert.ToString(input["GCBookingNumber"]);
+                objrequest.GCType = Convert.ToInt32(input["GCType"]);
+                objrequest.Remarks = Convert.ToString(input["Remarks"]);
+                objrequest.NumberOfPieces = Convert.ToInt32(input["NumberOfPieces"]);
+
+                objresponse = objBookingDal.InsertToBeReceiveDetails(objrequest);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }

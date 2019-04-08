@@ -30,6 +30,14 @@ namespace CargoBE.Responses
         public List<CustomersMasterResponse> Customers { get; set; }
     }
 
+    public class TobeReceiveMastersResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public List<GCTypesResponse> GCTypes { get; set; }
+        public List<CounterMastersResponse> Counters { get; set; }
+    }
+
     public class CustomerDetailsResponse
     {
         public int StatusId { get; set; }
@@ -50,6 +58,9 @@ namespace CargoBE.Responses
         public string MeasurementIn { get; set; }
         public string BookSerialNumber { get; set; }
         public decimal TotalAmount { get; set; }
+        public string FromCounterName { get; set; }
+        public string ToCounterName { get; set; }
+        public string TranshipmentPoints { get; set; }
         public List<BookingParcelDetails> BookingParcels { get; set; }
     }
 

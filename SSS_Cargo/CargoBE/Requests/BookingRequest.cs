@@ -42,4 +42,32 @@ namespace CargoBE.Requests
         public decimal TotalAmount { get; set; }
         public decimal TotalKms { get; set; }
     }
+   
+    public class LoadingRequest
+    {
+        public int UserLoginId { get; set; }
+        public int CounterId { get; set; }
+        public string DriverName { get; set; }
+        public string DriverMobileNumber { get; set; }
+        public string VehicleNumber { get; set; }
+        public decimal DriverAmount { get; set; }
+        public decimal HamaliAmount { get; set; }
+        public string LoadingDateTime { get; set; }
+        public string EstimatedDateTime { get; set; }
+        public string Remarks { get; set; }
+        public string BookingIds { get; set; }
+    }
+    public class TobereceiveRequest
+    {
+        public int UserLoginId { get; set; }
+        public int CounterId { get; set; }
+        public string GCBookingNumber { get; set; }
+        public int GCType { get; set; }
+        public string FromCounter { get; set; }
+        public int NumberOfPieces { get; set; }
+        public string DriverName { get; set; }
+        public string DriverMobileNumber { get; set; }
+        public string EstimatedDateTime { get; set; }
+        public string Remarks { get; set; }
+    }
 }

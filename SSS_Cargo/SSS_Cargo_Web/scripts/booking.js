@@ -663,10 +663,6 @@ function savebooking() {
         var trs = $('#tbodyparcelitems').find('.trdynamic');
 
         for (var i = 0; i < trs.length; i++) {
-            var td = $(trs[i]).find('.sno')[0];
-            $(td).html((i + 1));
-            $(trs[i]).attr("id", "trparcel" + (i + 1));
-
             var actualweight = $(trs[i]).find('#spanactualweight').html();
             var numberofpieces = $(trs[i]).find('#spannumberofpieces').html();
             var piecestypeid = $(trs[i]).find('#spanpiecestypeid').html();

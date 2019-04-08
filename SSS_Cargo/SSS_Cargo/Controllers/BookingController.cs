@@ -92,6 +92,60 @@ namespace SSS_Cargo.Controllers
             return objresponse;
         }
 
+        [AllowAnonymous]
+        [Route("saveloadingdetails")]
+        [HttpPost]
+        public SaveRespone InsertLoadingDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+            try
+            {
+                objresponse = objBookingBal.InsertLoadingDetails(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("getmastersfortobereceive")]
+        [HttpPost]
+        public TobeReceiveMastersResponse GetMastersForToBeReceive(JObject input)
+        {
+            TobeReceiveMastersResponse objresponse = new TobeReceiveMastersResponse();
+            try
+            {
+                objresponse = objBookingBal.GetMastersForToBeReceive(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("savetobereceivedetails")]
+        [HttpPost]
+        public SaveRespone InsertToBeReceiveDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+            try
+            {
+                objresponse = objBookingBal.InsertToBeReceiveDetails(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }

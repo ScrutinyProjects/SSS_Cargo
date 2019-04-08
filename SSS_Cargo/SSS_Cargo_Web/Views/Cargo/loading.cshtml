@@ -67,16 +67,14 @@
                                             <th style="width: 5%;">S.No.</th>
                                             <th style="width: 15%;">GC Number</th>
                                             <th style="width: 15%;">GC Type</th>
-                                            <th style="width: 15%;">Pieces</th>
-                                            <th style="width: 15%;">Actual Weight</th>
-                                            <th style="width: 15%;">Total Weight</th>
+                                            <th style="width: 45%;">Parcel Items</th>                                           
                                             <th style="width: 15%;">Total Amount</th>
                                             <th style="width: 5%;">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbodyparcelitems">
+                                    <tbody id="tbodybookings">
                                         <tr>
-                                            <td colspan="8" style="text-align:center">No search results found</td>
+                                            <td colspan="6" style="text-align:center">No search results found</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -96,12 +94,12 @@
                                 <label class="control-label" style="text-align: left;" for="textdrivernumber">Driver Number <span class="red">*</span> </label>
                                 <input type="text" id="textdrivernumber" maxlength="10" placeholder="Driver Number" class="form-control numeric" />
                                 <span class="red" id="spandrivernumber"></span>
-                            </div>
+                            </div> 
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textvehiclenumber">Vehicle No./Service No. <span class="red">*</span> </label>
                                 <input type="text" id="textvehiclenumber" maxlength="20" placeholder="Vehicle/Service No." class="form-control" />
                                 <span class="red" id="spanvehiclenumber"></span>
-                            </div>
+                            </div> 
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textdriveramount">Driver Amount <span class="red">*</span> </label>
                                 <input type="text" id="textdriveramount" maxlength="6" value="0" placeholder="Driver Amount" class="form-control" />
@@ -113,8 +111,13 @@
                                 <span class="red" id="spanhamaliamount"></span>
                             </div>
                             <div class="col-sm-4">
+                                <label class="control-label" style="text-align: left;" for="textloadtime">Loading Time <span class="red">*</span> </label>
+                                <input type="text" id="textloadtime" maxlength="30" value="" placeholder="Loading Time" class="form-control" />
+                                <span class="red" id="spanloadtime"></span>
+                            </div>
+                            <div class="col-sm-4">
                                 <label class="control-label" style="text-align: left;" for="textreachdatetime">Estimated Reach Time  </label>
-                                <input type="text" id="textreachdatetime" maxlength="30" value="0" placeholder="Date & Time" class="form-control" />
+                                <input type="text" id="textreachdatetime" maxlength="30" value="" placeholder="Estimated Reach Time" class="form-control" />
                                 <span class="red" id="spanreachdatetime"></span>
                             </div>
                             <div class="col-sm-5">
@@ -125,7 +128,7 @@
                         </div>
                         <div class="clearfix form-actions form-group" style="background-color: #fff;">
                             <div style="width: 95%;">
-                                <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="resetfields()">
+                                <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="clearallfields()">
                                     <i class="ace-icon fa fa-undo bigger-110"></i>
                                     Reset
                                 </button>
@@ -138,6 +141,28 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div id="modaldeletebooking" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closemodaldeletebooking" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Delete Booking From List</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label style="padding: 0px 15px;">Are you sure do you want to delete this Booking from the list?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary" onclick="return deletebookingconfirm()">Confirm</button>
+            </div>
         </div>
     </div>
 </div>
@@ -158,14 +183,20 @@
 <script src="~/Assets/js/dataTables.tableTools.min.js"></script>
 <script src="~/Assets/js/dataTables.colVis.min.js"></script>
 
-@*<script src="~/Scripts/common.js"></script>
-    <script src="~/Scripts/Area.js"></script>*@
+<script src="~/scripts/common.js"></script>
+<script src="~/scripts/loading.js"></script>
+
 <script type="text/javascript">
     jQuery(function ($) {
         var input = document.getElementById('textreachdatetime');
         var picker = new Picker(input, {
             format: 'YYYY/MM/DD HH:mm',
         });
+        var input2 = document.getElementById('textloadtime');
+        var picker = new Picker(input2, {
+            format: 'YYYY/MM/DD HH:mm',
+            date: new Date()
+        });
     });
-
+    
 </script>

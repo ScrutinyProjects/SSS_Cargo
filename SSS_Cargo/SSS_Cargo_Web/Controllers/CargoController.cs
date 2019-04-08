@@ -46,9 +46,6 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
-                //LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
-                //ViewBag.CounterName = loginresponse.CounterName;
-                //ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.BookingSerialNumber = param1;
                 return View();
             }
@@ -62,6 +59,10 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 return View();
             }
         }
@@ -74,6 +75,10 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 return View();
             }
         }
