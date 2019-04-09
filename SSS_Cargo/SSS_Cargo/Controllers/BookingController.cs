@@ -146,6 +146,60 @@ namespace SSS_Cargo.Controllers
             return objresponse;
         }
 
+        [AllowAnonymous]
+        [Route("getmastersforreceiving")]
+        [HttpPost]
+        public ReceivingMastersResponse GetMastersForReceiving(JObject input)
+        {
+            ReceivingMastersResponse objresponse = new ReceivingMastersResponse();
+            try
+            {
+                objresponse = objBookingBal.GetMastersForReceiving(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("gettobereceiveddetailsbybookingnumber")]
+        [HttpPost]
+        public ToBereceiveDetailsByBookingNumber GetToBeReceivedDetailsByBookingNumber(JObject input)
+        {
+            ToBereceiveDetailsByBookingNumber objresponse = new ToBereceiveDetailsByBookingNumber();
+            try
+            {
+                objresponse = objBookingBal.GetToBeReceivedDetailsByBookingNumber(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("savereceivingdetails")]
+        [HttpPost]
+        public SaveRespone InsertReceivingDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+            try
+            {
+                objresponse = objBookingBal.InsertReceivingDetails(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }

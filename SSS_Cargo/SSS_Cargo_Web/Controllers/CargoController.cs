@@ -91,6 +91,10 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 return View();
             }
         }
@@ -103,6 +107,10 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 return View();
             }
         }

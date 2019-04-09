@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_07_Apr</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_08_Apr</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -478,7 +478,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:29</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>04/07/2019 13:44:17</publishTime>
+      <publishTime>04/09/2019 00:48:27</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -547,7 +547,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/SSS_Cargo_Web.dll">
-      <publishTime>04/07/2019 13:45:10</publishTime>
+      <publishTime>04/09/2019 00:49:03</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -632,6 +632,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="css/pe-icon-7-stroke.css">
       <publishTime>01/10/2017 21:52:36</publishTime>
+    </File>
+    <File Include="css/picker.css">
+      <publishTime>04/07/2019 22:56:24</publishTime>
+    </File>
+    <File Include="css/picker.min.css">
+      <publishTime>04/05/2019 19:31:42</publishTime>
     </File>
     <File Include="css/preloader.css">
       <publishTime>01/10/2017 21:52:36</publishTime>
@@ -765,6 +771,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="js/lightgallery.min.js">
       <publishTime>01/10/2017 21:52:38</publishTime>
     </File>
+    <File Include="js/picker.common.js">
+      <publishTime>04/05/2019 19:31:42</publishTime>
+    </File>
+    <File Include="js/picker.esm.js">
+      <publishTime>04/05/2019 19:31:42</publishTime>
+    </File>
+    <File Include="js/picker.js">
+      <publishTime>04/05/2019 19:31:42</publishTime>
+    </File>
+    <File Include="js/picker.min.js">
+      <publishTime>04/05/2019 19:31:42</publishTime>
+    </File>
     <File Include="js/revolution-slider/css/layers.css">
       <publishTime>01/10/2017 21:52:38</publishTime>
     </File>
@@ -820,7 +838,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:30</publishTime>
     </File>
     <File Include="scripts/booking.js">
-      <publishTime>04/07/2019 13:21:30</publishTime>
+      <publishTime>04/08/2019 22:26:02</publishTime>
     </File>
     <File Include="scripts/bootstrap.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -829,7 +847,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2017 12:15:14</publishTime>
     </File>
     <File Include="scripts/common.js">
-      <publishTime>04/07/2019 13:42:14</publishTime>
+      <publishTime>04/07/2019 21:58:41</publishTime>
     </File>
     <File Include="scripts/jquery-2.2.3.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -870,14 +888,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="scripts/jquery.signalR-2.2.1.min.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
     </File>
+    <File Include="scripts/loading.js">
+      <publishTime>04/08/2019 23:33:57</publishTime>
+    </File>
     <File Include="scripts/login.js">
       <publishTime>04/01/2019 22:32:12</publishTime>
+    </File>
+    <File Include="scripts/tobereceive.js">
+      <publishTime>04/09/2019 00:39:08</publishTime>
     </File>
     <File Include="Views/Account/login.cshtml">
       <publishTime>04/07/2019 11:48:10</publishTime>
     </File>
     <File Include="Views/Cargo/booking.cshtml">
-      <publishTime>04/07/2019 00:42:28</publishTime>
+      <publishTime>04/07/2019 22:27:24</publishTime>
     </File>
     <File Include="Views/Cargo/bookingsuccess.cshtml">
       <publishTime>04/07/2019 13:39:14</publishTime>
@@ -889,22 +913,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/29/2019 21:18:54</publishTime>
     </File>
     <File Include="Views/Cargo/loading.cshtml">
-      <publishTime>03/29/2019 23:43:04</publishTime>
+      <publishTime>04/09/2019 00:29:18</publishTime>
     </File>
     <File Include="Views/Cargo/receive.cshtml">
       <publishTime>03/30/2019 00:00:11</publishTime>
     </File>
     <File Include="Views/Cargo/tobereceive.cshtml">
-      <publishTime>03/29/2019 23:46:48</publishTime>
+      <publishTime>04/09/2019 00:38:01</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/06/2019 23:00:20</publishTime>
+      <publishTime>04/07/2019 21:57:55</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>03/28/2019 21:41:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2019 13:45:11</publishTime>
+      <publishTime>04/09/2019 00:49:03</publishTime>
     </File>
   </ItemGroup>
 </Project>

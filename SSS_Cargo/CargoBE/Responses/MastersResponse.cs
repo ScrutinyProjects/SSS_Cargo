@@ -40,6 +40,11 @@ namespace CargoBE.Responses
         public int BookId { get; set; }
         public string BookName { get; set; }
     }
+    public class ReceivingTypesResponse
+    {
+        public int ReceivingTypeId { get; set; }
+        public string ReceivingTypeName { get; set; }
+    }
 
     public class CustomersMasterResponse
     {

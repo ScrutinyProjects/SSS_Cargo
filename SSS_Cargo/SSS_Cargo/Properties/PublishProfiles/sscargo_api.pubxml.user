@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_API_07_Apr</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_API_08_Apr</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -19,13 +19,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2019 22:21:05</publishTime>
     </File>
     <File Include="bin/CargoBAL.dll">
-      <publishTime>04/07/2019 13:44:18</publishTime>
+      <publishTime>04/09/2019 00:48:28</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>04/07/2019 13:44:17</publishTime>
+      <publishTime>04/09/2019 00:48:27</publishTime>
     </File>
     <File Include="bin/CargoDAL.dll">
-      <publishTime>04/07/2019 13:44:18</publishTime>
+      <publishTime>04/09/2019 00:48:28</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -109,7 +109,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/SSS_Cargo.dll">
-      <publishTime>04/07/2019 13:44:27</publishTime>
+      <publishTime>04/09/2019 00:48:35</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -226,7 +226,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/31/2019 17:02:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2019 13:44:28</publishTime>
+      <publishTime>04/09/2019 00:48:36</publishTime>
     </File>
   </ItemGroup>
 </Project>

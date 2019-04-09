@@ -350,6 +350,7 @@
     <Content Include="scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="scripts\loading.js" />
     <Content Include="scripts\login.js" />
+    <Content Include="scripts\receiving.js" />
     <Content Include="scripts\tobereceive.js" />
     <Content Include="Web.config" />
   </ItemGroup>

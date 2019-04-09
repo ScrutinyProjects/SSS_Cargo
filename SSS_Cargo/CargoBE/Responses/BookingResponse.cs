@@ -38,6 +38,15 @@ namespace CargoBE.Responses
         public List<CounterMastersResponse> Counters { get; set; }
     }
 
+    public class ReceivingMastersResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public List<GCTypesResponse> GCTypes { get; set; }
+        public List<CounterMastersResponse> Counters { get; set; }
+        public List<ReceivingTypesResponse> ReceivingTypes { get; set; }
+    }
+
     public class CustomerDetailsResponse
     {
         public int StatusId { get; set; }
@@ -64,6 +73,25 @@ namespace CargoBE.Responses
         public List<BookingParcelDetails> BookingParcels { get; set; }
     }
 
+    public class ToBereceiveDetailsByBookingNumber
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public int BookingId { get; set; }
+        public int ToBeReceiveId { get; set; }
+        public int GCTypeId { get; set; }
+        public string GCType { get; set; }
+        public string MeasurementIn { get; set; }
+        public string GCBookingNumber { get; set; }
+        public string FromCounterName { get; set; }
+        public int NumberOfPieces { get; set; }
+        public string DriverName { get; set; }
+        public string DriverNumber { get; set; }
+        public string EstimatedDateTime { get; set; }
+        public string Remarks { get; set; }
+        public decimal TotalWeight { get; set; }
+    }
+    
     public class BookingParcelDetails
     {
         public int BookingParcelId { get; set; }

@@ -70,4 +70,25 @@ namespace CargoBE.Requests
         public string EstimatedDateTime { get; set; }
         public string Remarks { get; set; }
     }
+
+    public class ReceivingRequest
+    {
+        public int UserLoginId { get; set; }
+        public int ToBeReceiveId { get; set; }
+        public int CounterId { get; set; }
+        public int BookingId { get; set; }
+        public string GCBookingNumber { get; set; }
+        public int GCType { get; set; }
+        public string FromCounter { get; set; }
+        public int ReceivingType { get; set; }
+        public int NumberOfPieces { get; set; }
+        public string VehicleNumber { get; set; }
+        public string DriverName { get; set; }
+        public string DriverMobileNumber { get; set; }
+        public decimal HamaliCharges { get; set; }
+        public decimal TranshipmentCharges { get; set; }
+        public string DeliveryToName { get; set; }
+        public string DeliveryToNumber { get; set; }
+        public string Remarks { get; set; }
+    }
 }

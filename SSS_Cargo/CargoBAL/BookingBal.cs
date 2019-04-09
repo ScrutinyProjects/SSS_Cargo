@@ -326,6 +326,118 @@ namespace CargoBAL
             return objresponse;
         }
 
+        public ReceivingMastersResponse GetMastersForReceiving(JObject input)
+        {
+            ReceivingMastersResponse objresponse = new ReceivingMastersResponse();
+
+            try
+            {
+                DataSet ds = new DataSet();
+
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
+
+                ds = objBookingDal.GetMastersForReceiving(counterid, loginid);
+
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        var gctypes = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 1).
+                                           Select(x => new GCTypesResponse
+                                           {
+                                               GCTypeId = x.Field<int>("Id"),
+                                               GCType = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.GCTypes = gctypes;
+
+                        var counters = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 2).
+                                           Select(x => new CounterMastersResponse
+                                           {
+                                               CounterId = x.Field<int>("Id"),
+                                               CounterName = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.Counters = counters;
+
+                        var receivingtypes = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 3).
+                                           Select(x => new ReceivingTypesResponse
+                                           {
+                                               ReceivingTypeId = x.Field<int>("Id"),
+                                               ReceivingTypeName = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.ReceivingTypes = receivingtypes;
+
+                        objresponse.StatusId = 1;
+                        objresponse.StatusMessage = "Valid";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public ToBereceiveDetailsByBookingNumber GetToBeReceivedDetailsByBookingNumber(JObject input)
+        {
+            ToBereceiveDetailsByBookingNumber objresponse = new ToBereceiveDetailsByBookingNumber();
+
+            try
+            {
+                string bookingnumber = Convert.ToString(input["BookingNumber"]);
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+
+                objresponse = objBookingDal.GetToBeReceivedDetailsByBookingNumber(bookingnumber, counterid);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public SaveRespone InsertReceivingDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+
+            try
+            {
+                ReceivingRequest objrequest = new ReceivingRequest();
+
+                objrequest.CounterId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["UserLoginId"])));
+                objrequest.DriverMobileNumber = Convert.ToString(input["DriverMobileNumber"]);
+                objrequest.DriverName = Convert.ToString(input["DriverName"]);
+                objrequest.BookingId = Convert.ToInt32(input["BookingId"]);
+                objrequest.FromCounter = Convert.ToString(input["FromCounter"]);
+                objrequest.GCBookingNumber = Convert.ToString(input["GCBookingNumber"]);
+                objrequest.GCType = Convert.ToInt32(input["GCType"]);
+                objrequest.Remarks = Convert.ToString(input["Remarks"]);
+                objrequest.NumberOfPieces = Convert.ToInt32(input["NumberOfPieces"]);
+                objrequest.DeliveryToName = Convert.ToString(input["DeliveryToName"]);
+                objrequest.DeliveryToNumber = Convert.ToString(input["DeliveryToNumber"]);
+                objrequest.HamaliCharges = Convert.ToDecimal(input["HamaliCharges"]);
+                objrequest.ReceivingType = Convert.ToInt32(input["ReceivingType"]);
+                objrequest.TranshipmentCharges = Convert.ToInt32(input["TranshipmentCharges"]);
+                objrequest.VehicleNumber = Convert.ToString(input["VehicleNumber"]);
+                objrequest.ToBeReceiveId = Convert.ToInt32(input["ToBeReceiveId"]);
+
+                objresponse = objBookingDal.InsertReceivingDetails(objrequest);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }
