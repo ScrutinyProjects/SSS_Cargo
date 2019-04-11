@@ -47,7 +47,9 @@ namespace CargoDAL
                     objLoginResponse.CounterName = (string)reader["CounterName"];
                     objLoginResponse.CounterId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["CounterId"]));
                     objLoginResponse.EmailId = (string)reader["EmailId"];
-                    objLoginResponse.ContactNumber = (string)reader["ContactNumber"];
+                    objLoginResponse.ContactNumber = (string)reader["ContactNumber"]; 
+                    objLoginResponse.OTP = (string)reader["OTP"];
+                    objLoginResponse.IsOTPRequired = (bool)reader["IsOTPRequired"];
                 }
             }
             catch (Exception ex)
@@ -62,7 +64,38 @@ namespace CargoDAL
             }
             return objLoginResponse;
         }
-        
+
+        public SaveRespone ValidateLoginOTP(int loginid, string OTP)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@LoginId", SqlDbType.Int) { Value = loginid },
+                                            new SqlParameter("@OTP", SqlDbType.VarChar, 6) { Value = OTP }
+                                        };
+            SqlDataReader reader = null;
+            SaveRespone objLoginResponse = new SaveRespone();
+
+            try
+            {
+                reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_ValidateLoginOTP", sqlparams);
+
+                while (reader.Read())
+                {
+                    objLoginResponse.StatusId = (int)reader["StatusId"];
+                    objLoginResponse.StatusMessage = (string)reader["StatusMessage"];
+                }
+            }
+            catch (Exception ex)
+            {
+                objLoginResponse.StatusId = 0;
+                objLoginResponse.StatusMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objLoginResponse;
+        }
+
         #endregion
     }
 }

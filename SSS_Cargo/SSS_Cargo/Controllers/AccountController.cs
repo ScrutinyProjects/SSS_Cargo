@@ -43,6 +43,24 @@ namespace SSS_Cargo.Controllers
             return objresponse;
         }
 
+        [AllowAnonymous]
+        [Route("validateloginotp")]
+        [HttpPost]
+        public SaveRespone ValidateLoginOTP(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+            try
+            {
+                objresponse = objLoginBal.ValidateLoginOTP(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }

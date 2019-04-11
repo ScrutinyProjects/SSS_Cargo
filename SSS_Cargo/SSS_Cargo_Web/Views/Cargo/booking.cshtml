@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<div class="page-content"> 
+<div class="page-content">
     <input type="hidden" id="hiddenbookid" value="0" />
     <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
     <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
@@ -58,7 +58,7 @@
                                 <label class="control-label" style="text-align: left;" for="textsendermobile">Sender Mobile Number <span class="red">*</span> </label>
                                 <input type="text" id="textsendermobile" maxlength="10" value="" placeholder="Sender Mobile Number" class="form-control mobile-number" />
                                 <span class="red" id="spansendermobile"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textsendername">Sender Name <span class="red">*</span> </label>
                                 <input type="text" id="textsendername" maxlength="50" value="" placeholder="Sender Name" class="form-control" />
@@ -68,7 +68,7 @@
                                 <label class="control-label" style="text-align: left;" for="textsenderaddress">Sender Address <span class="red">*</span> </label>
                                 <input type="text" id="textsenderaddress" maxlength="100" value="" placeholder="Sender Address" class="form-control" />
                                 <span class="red" id="spansenderaddress"></span>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,12 +84,12 @@
                                 <label class="control-label" style="text-align: left;" for="textreceivermobile">Receiver Mobile Number <span class="red">*</span> </label>
                                 <input type="text" id="textreceivermobile" maxlength="10" value="" placeholder="Mobile Number" class="form-control mobile-number" />
                                 <span class="red" id="spanreceivermobile"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textreceivername">Receiver Name <span class="red">*</span> </label>
                                 <input type="text" id="textreceivername" maxlength="50" value="" placeholder="Name" class="form-control" />
                                 <span class="red" id="spanreceivername"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textreceiveraddress">Receiver Address <span class="red">*</span> </label>
                                 <input type="text" id="textreceiveraddress" maxlength="100" value="" placeholder="Address" class="form-control" />
@@ -165,18 +165,12 @@
                                 <label class="control-label" style="text-align: left;" for="textpoint1">Transhipment Point 1 </label>
                                 <input type="text" id="textpoint1" maxlength="50" value="" placeholder="Transhipment Point 1" class="form-control" onblur="getroutedetails()" />
                                 <span class="red" id="spanpoint1"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textpoint2">Transhipment Point 2 </label>
                                 <input type="text" id="textpoint2" maxlength="50" value="" placeholder="Transhipment Point 2" class="form-control" onblur="getroutedetails()" />
                                 <span class="red" id="spanpoint2"></span>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-body">
-                        <div class="form-group">
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="selectproducttype">Product Type <span class="red">*</span> </label>
                                 <select class="form-control" id="selectproducttype">
@@ -184,16 +178,22 @@
                                 </select>
                                 <span class="red" id="spanproducttype"></span>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textshipmentvalue">Shipment Value <span class="red">*</span> </label>
                                 <input type="text" id="textshipmentvalue" maxlength="5" value="" placeholder="Shipment Value" class="form-control numeric" />
                                 <span class="red" id="spanshipmentvalue"></span>
-                            </div> 
-                            <div class="col-sm-5">
-                                <label class="control-label" style="text-align: left;" for="textshipmentdescription">Description </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <label class="control-label" style="text-align: left;" for="textshipmentdescription">Description <span class="red">*</span></label>
                                 <textarea id="textshipmentdescription" maxlength="500" value="" placeholder="Description" rows="2" class="form-control"></textarea>
                                 <span class="red" id="spanshipmentdescription"></span>
-                            </div> 
+                            </div>
                             <div style="float:left">
                                 <button class="btn btn-sm btn-success pull-right" type="button" style="margin: 25px 13px 4px 13px;" onclick="return calculateprice()">
                                     <i class="ace-icon fa fa-calculator bigger-110"></i>
@@ -207,47 +207,81 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Total Pieces <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalctotalpieces">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Total Weight <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalctotalweight">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Route <span style="float:right">:</span></label>
+                                <label class="col-sm-4 control-label" style="text-align: left;font-weight: 600;" id="spanroute">--</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Kms <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="font-weight: 600;text-align: left;" id="spankms">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Weight Info <span style="float:right">:</span></label>
+                                <label class="col-sm-7 control-label" style="text-align: left;font-weight: 600;" id="spanweightlist">--</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Basic Amount <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcbasicamount">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcbasicamount">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">SUP Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcsupcharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcsupcharges">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">With Pass Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcwithpasscharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcwithpasscharges">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Docket Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcdocketcharges">0</label>
-                            </div> 
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcdocketcharges">0</label>
+                            </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Value SR Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcvaluesrcharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcvaluesrcharges">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Collection Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalccollectioncharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalccollectioncharges">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Hamali Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalchamalicharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalchamalicharges">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">AOC Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcaoccharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcaoccharges">0</label>
                             </div>
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Transhipment Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalctranshipmentcharges">0</label>
-                            </div> 
-                            <div class=""> 
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalctranshipmentcharges">0</label>
+                            </div>
+                            <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Pickup Charges <span style="float:right">:</span></label>
-                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcpickupcharges">0</label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcpickupcharges">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Location Pickup Charges <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalclocationpickupcharges">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Location Delivery Charges <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalclocationdeliverycharges">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Door Delivery Charges <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="text-align: left;font-weight: 600;" id="spancalcdoordeliverycharges">0</label>
                             </div>
                             <div style="float:left">
-                                <a class="pull-right" href="javascript:void(0)" style="margin: 5px 13px 5px 13px;" onclick="return editpricedetails()">
+                                <a class="pull-right" href="javascript:void(0)" id="aeditprice" style="margin: 5px 13px 5px 13px; display: block;" onclick="return editpricedetails()">
                                     <i class="ace-icon fa fa-pencil bigger-110"></i>
                                     Edit Price
                                 </a>
@@ -268,7 +302,7 @@
                                 <label class="control-label" style="text-align: left;" for="textwithpasscharges">With Pass Charges <span class="red">*</span> </label>
                                 <input type="text" id="textwithpasscharges" maxlength="5" value="0" placeholder="With Pass Charges" class="form-control numeric" />
                                 <span class="red" id="spanwithpasscharges"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textdocketcharges">Docket Charges <span class="red">*</span> </label>
                                 <input type="text" id="textdocketcharges" maxlength="5" value="0" placeholder="Docket Charges" class="form-control numeric" />
@@ -293,16 +327,36 @@
                                 <label class="control-label" style="text-align: left;" for="textaoccharges">AOC Charges <span class="red">*</span> </label>
                                 <input type="text" id="textaoccharges" maxlength="5" value="0" placeholder="AOC Charges" class="form-control numeric" />
                                 <span class="red" id="spanaoccharges"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="texttranshipmentcharges">Transhipment Charges <span class="red">*</span> </label>
                                 <input type="text" id="texttranshipmentcharges" maxlength="5" value="0" placeholder="Transhipment Charges" class="form-control numeric" />
                                 <span class="red" id="spantranshipmentcharges"></span>
-                            </div> 
+                            </div>
                             <div class="col-sm-3">
                                 <label class="control-label" style="text-align: left;" for="textpickupcharges">Pickup Charges <span class="red">*</span> </label>
                                 <input type="text" id="textpickupcharges" maxlength="5" value="0" placeholder="Pickup Charges" class="form-control numeric" />
                                 <span class="red" id="spanpickupcharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textlocationpickupcharges">Location Pickup Charges <span class="red">*</span> </label>
+                                <input type="text" id="textlocationpickupcharges" maxlength="5" value="0" placeholder="Location Pickup Charges" class="form-control numeric" />
+                                <span class="red" id="spanlocationpickupcharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textlocationdeliverycharges">Location Delivery Charges <span class="red">*</span> </label>
+                                <input type="text" id="textlocationdeliverycharges" maxlength="5" value="0" placeholder="Location Delivery Charges" class="form-control numeric" />
+                                <span class="red" id="spanlocationdeliverycharges"></span>
+                            </div> 
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdoordeliverycharges">Door Delivery Charges <span class="red">*</span> </label>
+                                <input type="text" id="textdoordeliverycharges" maxlength="5" value="0" placeholder="Pickup Charges" class="form-control numeric" />
+                                <span class="red" id="spandoordeliverycharges"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label" style="text-align: left;" for="textpriceeditremarks">Price Edit Remarks <span class="red">*</span></label>
+                                <textarea id="textpriceeditremarks" maxlength="500" value="" placeholder="Price Edit Remarks" rows="2" class="form-control"></textarea>
+                                <span class="red" id="spanpriceeditremarks"></span>
                             </div>
                             <div style="float:left">
                                 <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 25px 13px 4px 13px;" onclick="return updateprice()">
@@ -313,11 +367,13 @@
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">GST <span style="float:right">:</span></label>
+                                <label class="col-sm-2 control-label" style="text-align: left;">Sub Total <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcsubtotal">0</label>
+                            </div>
+                            <div class="">
+                                <label class="col-sm-2 control-label" style="text-align: left;">GST (<span id="spangstperc">5%</span>)<span style="float:right">:</span></label>
                                 <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcgst">0</label>
                             </div>
-                        </div>
-                        <div class="form-group"> 
                             <div class="">
                                 <label class="col-sm-2 control-label" style="text-align: left;">Total Amount <span style="float:right">:</span></label>
                                 <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalctotalamount">0</label>
@@ -325,24 +381,20 @@
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Route <span style="float:right">:</span></label>
-                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spanroute"></label>
+                                <label class="col-sm-2 control-label" style="text-align: left;">Discount Amount <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcdiscountamount">0</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Kms <span style="float:right">:</span></label>
-                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spankms">0</label> 
+                                <label class="col-sm-2 control-label" style="text-align: left;">Round Off <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcroundoffamount">0</label>
                             </div>
-                        </div>  
+                        </div>
                         <div class="form-group">
                             <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Weight Info <span style="float:right">:</span></label>
-                                <div class="col-sm-10">
-                                    <ul id="ulweightlist">
-                                       
-                                    </ul>
-                                </div>
+                                <label class="col-sm-2 control-label" style="text-align: left;">Grand Amount <span style="float:right">:</span></label>
+                                <label class="col-sm-1 control-label" style="font-weight: 600;" id="spancalcgrandtotal">0</label>
                             </div>
                         </div>
                         <div class="clearfix form-actions" style="background-color: #fff;margin-bottom: 0;margin-bottom: 0;padding: 5px 20px 5px;">

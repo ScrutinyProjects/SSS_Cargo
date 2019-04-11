@@ -45,48 +45,43 @@ function searchbooking() {
                             $('#spanroute').html(route);
                         }
 
-                        if (fromcounter == data.FromCounterName && tocounter == data.ToCounterName) {
-                            var meadurementin = data.MeasurementIn;
-                            var innertable = '';
+                        var meadurementin = data.MeasurementIn;
+                        var innertable = '';
 
-                            if (data.BookingParcels.length > 0) {
+                        if (data.BookingParcels.length > 0) {
 
-                                innertable = '<table class="table"><thead><tr>' +
-                                            '<th style="width: 30%;">Pieces</th>' +
-                                            '<th style="width: 30%;">Actual Weight</th>' +
-                                            '<th style="width: 40%;">Total Weight</th>' +
-                                            '</tr></thead>';
+                            innertable = '<table class="table"><thead><tr>' +
+                                        '<th style="width: 30%;">Pieces</th>' +
+                                        '<th style="width: 30%;">Actual Weight</th>' +
+                                        '<th style="width: 40%;">Total Weight</th>' +
+                                        '</tr></thead>';
 
-                                innertable = innertable + '<tbody>';
+                            innertable = innertable + '<tbody>';
 
-                                for (var i = 0; i < data.BookingParcels.length; i++) {
-                                    var parcel = data.BookingParcels[i];
+                            for (var i = 0; i < data.BookingParcels.length; i++) {
+                                var parcel = data.BookingParcels[i];
 
-                                    innertable = innertable + '<tr>' +
-                                    '<td>' + parcel.NumberOfPieces + ' ' + parcel.ParcelType + '</td>' +
-                                    '<td>' + parcel.ActualWeight + ' ' + meadurementin + '</td>' +
-                                    '<td>' + parcel.TotalWeight + ' ' + meadurementin + '</td>';
-                                }
-
-                                innertable = innertable + '</tbody>';
-                                innertable = innertable + '</table>';
+                                innertable = innertable + '<tr>' +
+                                '<td>' + parcel.NumberOfPieces + ' ' + parcel.ParcelType + '</td>' +
+                                '<td>' + parcel.ActualWeight + ' ' + meadurementin + '</td>' +
+                                '<td>' + parcel.TotalWeight + ' ' + meadurementin + '</td>';
                             }
 
-                            var tr = $('<tr class="trdynamic" />');
-                            tr.append('<td class="sno"></td>' +
-                                '<td><span id="spanbookingid" style="display:none">' + data.BookingId + '</span><span id="spanbookingnumber">' + data.BookSerialNumber + '</span></td>' +
-                                '<td>' + data.GCType + '</td>' +
-                                '<td>' + innertable + '</td>' +
-                                '<td>' + data.TotalAmount + '</td>' +
-                                '<td><a href="javascript:void(0)" onclick="deletebooking(this)"><i class="fa fa-remove"></i> Remove</a></td>');
-                            $('#tbodybookings').append(tr);
+                            innertable = innertable + '</tbody>';
+                            innertable = innertable + '</table>';
+                        }
 
-                            updatetableserialnumbers($('#tbodybookings'));
-                            $('#textgcnuber').val('');
-                        }
-                        else {
-                            showwarningalert("You can add only same route bookings to load");
-                        }
+                        var tr = $('<tr class="trdynamic" />');
+                        tr.append('<td class="sno"></td>' +
+                            '<td><span id="spanbookingid" style="display:none">' + data.BookingId + '</span><span id="spanbookingnumber">' + data.BookSerialNumber + '</span></td>' +
+                            '<td>' + data.GCType + '</td>' +
+                            '<td>' + innertable + '</td>' +
+                            '<td>' + data.TotalAmount + '</td>' +
+                            '<td><a href="javascript:void(0)" onclick="deletebooking(this)"><i class="fa fa-remove"></i> Remove</a></td>');
+                        $('#tbodybookings').append(tr);
+
+                        updatetableserialnumbers($('#tbodybookings'));
+                        $('#textgcnuber').val('');
                     }
                     else {
                         showwarningalert(data.StatusMessage);
@@ -253,7 +248,7 @@ function clearallfields() {
     $('#textloadtime').val('');
     $('#textremarks').val('');
     $('#spanroute').html('');
-    
+
     $('#tbodybookings tr').remove();
     var tr = $('<tr />');
     tr.append('<td colspan="6" style="text-align:center">No search results found</td>');

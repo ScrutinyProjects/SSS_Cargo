@@ -39,6 +39,23 @@ namespace SSS_Cargo.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getreceivinglocations")]
+        [HttpPost]
+        public List<CounterMastersResponse> GetReceivingLocations(JObject input)
+        {
+            List<CounterMastersResponse> objresponse = new List<CounterMastersResponse>();
+            try
+            {
+                objresponse = objBookingBal.GetReceivingLocations(input);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
         [Route("savebookingdetails")]
         [HttpPost]
         public BookingSaveResponse InsertBookingDetails(JObject input)

@@ -16,10 +16,13 @@ namespace CargoBE.Responses
         public string CounterId { get; set; }
         public string CounterName { get; set; }
         public int RoleId { get; set; }
+        public string OTP { get; set; }
         public string RoleName { get; set; }
         public int StatusId { get; set; }
         public string StatusMessage { get; set; }
         public string UserId { get; set; }
         public string AccessToken { get; set; }
+        public bool IsOTPRequired { get; set; }
     }
 }
+

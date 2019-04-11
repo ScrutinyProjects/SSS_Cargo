@@ -30,16 +30,16 @@
         <center><img src="~/Assets/images/loading.gif" style="padding-left:45px;" /></center>
     </div>
     @*<div id="navbar" class="navbar navbar-default">
-        <div class="navbar-container" id="navbar-container">
-            <div class="navbar-header pull-left" style="padding: 10px; width: 100%;">
-                <div style="text-align:center;">
-                    <a href="/account/index">
-                        <img src="~/Images/logo.png" />
-                    </a>
+            <div class="navbar-container" id="navbar-container">
+                <div class="navbar-header pull-left" style="padding: 10px; width: 100%;">
+                    <div style="text-align:center;">
+                        <a href="/account/index">
+                            <img src="~/Images/logo.png" />
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
     <div class="main-container">
         <div class="main-content">
             <div class="row">
@@ -58,43 +58,43 @@
                                                 <i class="ace-icon fa fa-user"></i>&nbsp; Login
                                             </h4>
                                             <div class="space-6"></div>
-                                                <fieldset>
-                                                    <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
-                                                        <strong>Warning!</strong>
-                                                        <span id="spanWarningAlert"></span>
-                                                    </div>
-                                                    <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
-                                                        <strong>Error!</strong>
-                                                        <span id="spanErrorAlert"></span>
-                                                    </div>
-                                                    <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
-                                                        <strong>Success!</strong>
-                                                        <span id="spanSuccessAlert"></span>
-                                                    </div>
-                                                    <label class="block clearfix">
-                                                        <span class="block input-icon input-icon-right">
-                                                            <input type="text" id="textusername" maxlength="10" class="form-control mobile-number" placeholder="Username" />
-                                                            <i class="ace-icon fa fa-user" style="right: 10px;"></i>
-                                                        </span>
-                                                        <span class="red" id="spanusernamehelper"></span>
-                                                    </label>
-                                                    <label class="block clearfix">
-                                                        <span class="block input-icon input-icon-right">
-                                                            <input type="password" id="textpassword" maxlength="16" class="form-control" placeholder="Password" />
-                                                            <i class="ace-icon fa fa-lock" style="right: 10px;"></i>
-                                                        </span>
-                                                        <span class="red" id="spanpasswordhelper"></span>
-                                                    </label>
-                                                    <div class="space"></div>
-                                                    <div class="clearfix">
-                                                        <button type="button" id="buttonlogin" class="width-35 pull-right btn btn-sm btn-primary" onclick="UserLogin()">
-                                                            <i class="ace-icon fa fa-key"></i>
-                                                            <span class="bigger-110">Login</span>
-                                                        </button>
-                                                    </div>
+                                            <fieldset>
+                                                <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                                                    <strong>Warning!</strong>
+                                                    <span id="spanWarningAlert"></span>
+                                                </div>
+                                                <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                                                    <strong>Error!</strong>
+                                                    <span id="spanErrorAlert"></span>
+                                                </div>
+                                                <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                                                    <strong>Success!</strong>
+                                                    <span id="spanSuccessAlert"></span>
+                                                </div>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="text" id="textusername" maxlength="10" class="form-control mobile-number" placeholder="Username" />
+                                                        <i class="ace-icon fa fa-user" style="right: 10px;"></i>
+                                                    </span>
+                                                    <span class="red" id="spanusernamehelper"></span>
+                                                </label>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="password" id="textpassword" maxlength="16" class="form-control" placeholder="Password" />
+                                                        <i class="ace-icon fa fa-lock" style="right: 10px;"></i>
+                                                    </span>
+                                                    <span class="red" id="spanpasswordhelper"></span>
+                                                </label>
+                                                <div class="space"></div>
+                                                <div class="clearfix">
+                                                    <button type="button" id="buttonlogin" class="width-35 pull-right btn btn-sm btn-primary" onclick="UserLogin()">
+                                                        <i class="ace-icon fa fa-key"></i>
+                                                        <span class="bigger-110">Login</span>
+                                                    </button>
+                                                </div>
 
-                                                    <div class="space-4"></div>
-                                                </fieldset>
+                                                <div class="space-4"></div>
+                                            </fieldset>
                                         </div>
                                     </div>
                                     <!-- /.widget-main -->
@@ -115,17 +115,59 @@
         </div>
         <!-- /.main-content -->
         @*<div class="footer">
-            <div class="footer-inner">
-                <div class="footer-content">
-                    <span>
-                        © Copyright 2019 <span class="blue bolder">Municipal Corporation Karimnagar</span> | Powered by <span class="blue bolder">Netxcell Limited</span>
-                    </span>
+                <div class="footer-inner">
+                    <div class="footer-content">
+                        <span>
+                            © Copyright 2019 <span class="blue bolder">Municipal Corporation Karimnagar</span> | Powered by <span class="blue bolder">Netxcell Limited</span>
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
     </div>
     <!-- /.main-container -->
-
+    <div id="modalotp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="closemodalotp" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>OTP Validation</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <fieldset>
+                            <div class="alert alert-warning" style="display: none;" id="divOTPWarningAlert">
+                                <strong>Warning!</strong> 
+                                <span id="spanOTPWarningAlert"></span>
+                            </div>
+                            <div class="alert alert-danger" style="display: none;" id="divOTPErrorAlert">
+                                <strong>Error!</strong>
+                                <span id="spanOTPErrorAlert"></span>
+                            </div>
+                            <div class="form-group">
+                                <label style="padding: 0px 15px;">OTP has sent to your mobile number. It will expire in 10 mins.</label>
+                            </div>
+                            <div class="form-group" style="width: 50%;">
+                                <div class="col-sm-6">
+                                    <label class="control-label" style="text-align: left;" for="textotp">OTP <span class="red">*</span> </label>
+                                    <input type="text" id="textotp" maxlength="6" value="" placeholder="OTP" class="form-control mobile-number" />
+                                    <span class="red" id="spanotphelper"></span>
+                                </div>
+                            </div>
+                            <div class="space"></div>
+                            <div class="clearfix">
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="buttonotpvalidate" class="width-35 pull-right btn btn-sm btn-primary" onclick="ValidateOTP()">
+                        <i class="ace-icon fa fa-key"></i>
+                        <span class="bigger-110">Validate OTP</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
 
     <!--[if !IE]> -->
@@ -136,6 +178,7 @@
     <script type="text/javascript">
         if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
     <script src="~/scripts/common.js"></script>
     <script src="~/scripts/login.js"></script>
     <script type="text/javascript">

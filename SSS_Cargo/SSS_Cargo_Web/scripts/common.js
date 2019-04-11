@@ -8,46 +8,33 @@ function closemessage(obj) {
 }
 
 function showsuccessalert(message) {
-    $('#divalertinfo').hide();
-    $('#divalertwarning').hide();
-    $('#divalertdanger').hide();
-
-    $('#divalertsuccess').show();
-    $('#spanalertsuccess').html(message);
+    $('#divErrorAlert').hide();
+    $('#divWarningAlert').hide();
+    
+    $('#divSuccessAlert').show();
+    $('#spanSuccessAlert').html(message);
 }
 
 function showwarningalert(message) {
-    $('#divalertinfo').hide();
-    $('#divalertsuccess').hide();
-    $('#divalertdanger').hide();
-
-    $('#divalertwarning').show();
-    $('#spanalertwarning').html(message);
+    $('#divErrorAlert').hide();
+    $('#divSuccessAlert').hide();
+    
+    $('#divWarningAlert').show();
+    $('#spanWarningAlert').html(message);
 }
 
 function showerroralert(message) {
-    $('#divalertinfo').hide();
-    $('#divalertsuccess').hide();
-    $('#divalertwarning').hide();
-
-    $('#divalertdanger').show();
-    $('#spanalertdanger').html(message);
-}
-
-function showinfoalert(message) {
-    $('#divalertdanger').hide();
-    $('#divalertsuccess').hide();
-    $('#divalertwarning').hide();
-
-    $('#divalertinfo').show();
-    $('#spanalertinfo').html(message);
+    $('#divWarningAlert').hide();
+    $('#divSuccessAlert').hide();
+    
+    $('#divErrorAlert').show();
+    $('#spanErrorAlert').html(message);
 }
 
 function hideallalerts() {
-    $('#divalertdanger').hide();
-    $('#divalertsuccess').hide();
-    $('#divalertwarning').hide();
-    $('#divalertinfo').hide();
+    $('#divErrorAlert').hide();
+    $('#divSuccessAlert').hide();
+    $('#divWarningAlert').hide();
 }
 
 function showloading() {

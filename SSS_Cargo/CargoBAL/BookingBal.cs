@@ -106,6 +106,39 @@ namespace CargoBAL
             return objresponse;
         }
 
+        public List<CounterMastersResponse> GetReceivingLocations(JObject input)
+        {
+            List<CounterMastersResponse> objresponse = new List<CounterMastersResponse>();
+
+            try
+            {
+                DataSet ds = new DataSet();
+
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
+
+                ds = objBookingDal.GetReceivingLocations(counterid, loginid);
+
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        objresponse = ds.Tables[0].AsEnumerable().
+                                           Select(x => new CounterMastersResponse
+                                           {
+                                               CounterId = x.Field<int>("Id"),
+                                               CounterName = x.Field<string>("Name")
+                                           }).ToList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            return objresponse;
+        }
+
         public BookingSaveResponse InsertBookingDetails(JObject input)
         {
             BookingSaveResponse objresponse = new BookingSaveResponse();

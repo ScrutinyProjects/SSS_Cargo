@@ -45,6 +45,29 @@ namespace CargoDAL
             return ds;
         }
 
+        public DataSet GetReceivingLocations(int counterid, int loginid)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@CounterId", SqlDbType.Int) { Value = counterid },
+                                            new SqlParameter("@LoginId", SqlDbType.Int) { Value = loginid }
+                                        };
+            DataSet ds = null;
+
+            try
+            {
+                ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetReceivingLocations", sqlparams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return ds;
+        }
+
         public BookingSaveResponse InsertBookingDetails(BookingRequest objrequest, DataTable dtWeights)
         {
             SqlParameter[] sqlparams = { new SqlParameter("@UserLoginId", SqlDbType.Int) { Value = objrequest.UserLoginId },
