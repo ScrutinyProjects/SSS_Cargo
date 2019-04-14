@@ -332,6 +332,7 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\booking.js" />
+    <Content Include="scripts\bookingprint.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\common.js" />
@@ -428,6 +429,7 @@
     <Content Include="Views\Cargo\receive.cshtml" />
     <Content Include="Views\Cargo\delivery.cshtml" />
     <Content Include="Views\Cargo\bookingsuccess.cshtml" />
+    <Content Include="Views\Cargo\printbookingreceipt.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -460,7 +462,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1318</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50963/</IISUrl>
+          <IISUrl>http://localhost:50964/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

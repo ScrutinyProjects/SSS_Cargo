@@ -16,8 +16,8 @@ namespace CargoWeb
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{param1}",
-                defaults: new { controller = "account", action = "login", param1 = UrlParameter.Optional }
+                url: "{controller}/{action}/{param1}/{param2}",
+                defaults: new { controller = "account", action = "login", param1 = UrlParameter.Optional, param2 = UrlParameter.Optional }
             );
 
            // routes.MapRoute(

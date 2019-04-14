@@ -10,6 +10,7 @@ namespace CargoBE.Requests
     {
         public int UserLoginId { get; set; }
         public int FromCounterId { get; set; }
+        public string FromCounter { get; set; }
         public string ToCounter { get; set; }
         public int GCTypeId { get; set; }
         public int BookingTypeId { get; set; }
@@ -25,7 +26,8 @@ namespace CargoBE.Requests
         public string ReceiverEmailId { get; set; }
         public string ReceiverMobileNumber { get; set; }
         public string ReceiverAddress { get; set; }
-        public string TranshipmentPoints { get; set; }
+        public string TranshipmentPoint1 { get; set; }
+        public string TranshipmentPoint2 { get; set; }
         public decimal ShipmentValue { get; set; }
         public string ShipmentDescription { get; set; }
         public decimal BasicAmount { get; set; }
@@ -38,11 +40,36 @@ namespace CargoBE.Requests
         public decimal AOCCharges { get; set; }
         public decimal TranshipmentCharges { get; set; }
         public decimal PickupCharges { get; set; }
+        public decimal LocationPickupCharges { get; set; }
+        public decimal LocationDeliveryCharges { get; set; }
+        public decimal DoorDeliveryCharges { get; set; }
+        public decimal SubTotal { get; set; }
         public decimal GSTCharges { get; set; }
         public decimal TotalAmount { get; set; }
+        public decimal DiscountAmount { get; set; }
+        public decimal TotalAmountAfterDiscount { get; set; }
+        public decimal RoundOffAmount { get; set; }
+        public decimal GrandTotal { get; set; }
         public decimal TotalKms { get; set; }
+        public string DiscountRemarks { get; set; }
+        public string EditPriceRemarks { get; set; }
+        public int TotalPieces { get; set; }
+        public decimal TotalWeight { get; set; }
+        public string WeightInfo { get; set; }
+        public string RouteInfo { get; set; }
     }
-   
+    
+    public class BookingPriceCalcRequest
+    {
+        public int LoginId { get; set; }
+        public int FromCounterId { get; set; }
+        public string ToCounterId { get; set; }
+        public int GCType { get; set; }
+        public int ProductType { get; set; }
+        public string TranshipmentPoints { get; set; }
+        public decimal ShipmentValue { get; set; }
+    }
+
     public class LoadingRequest
     {
         public int UserLoginId { get; set; }

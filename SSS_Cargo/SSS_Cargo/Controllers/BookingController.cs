@@ -56,6 +56,23 @@ namespace SSS_Cargo.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getcalculatedpriceforbooking")]
+        [HttpPost]
+        public BookingCalculatedPriceResponse GetCalculatedPriceForBooking(JObject input)
+        {
+            BookingCalculatedPriceResponse objresponse = new BookingCalculatedPriceResponse();
+            try
+            {
+                objresponse = objBookingBal.GetCalculatedPriceForBooking(input);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
         [Route("savebookingdetails")]
         [HttpPost]
         public BookingSaveResponse InsertBookingDetails(JObject input)
@@ -208,6 +225,24 @@ namespace SSS_Cargo.Controllers
             try
             {
                 objresponse = objBookingBal.InsertReceivingDetails(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("getbookingdetailstoprintbybookingid")]
+        [HttpPost]
+        public BookingDetailsForPrintResponse GetBookingDetailsToPrintByBookingId(JObject input)
+        {
+            BookingDetailsForPrintResponse objresponse = new BookingDetailsForPrintResponse();
+            try
+            {
+                objresponse = objBookingBal.GetBookingDetailsToPrintByBookingId(input);
             }
             catch (Exception ex)
             {

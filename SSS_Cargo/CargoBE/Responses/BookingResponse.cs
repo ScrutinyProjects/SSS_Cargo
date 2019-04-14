@@ -16,8 +16,27 @@ namespace CargoBE.Responses
         public int StatusId { get; set; }
         public string StatusMessage { get; set; }
         public string BookingSerialNumber { get; set; }
+        public string BookingId { get; set; }
     }
 
+    public class BookingCalculatedPriceResponse
+    {
+        public decimal BasicAmount { get; set; }
+        public decimal SUPCharges { get; set; }
+        public decimal WithPassCharges { get; set; }
+        public decimal DocketCharges { get; set; }
+        public decimal ValueSRCharges { get; set; }
+        public decimal CollectionCharges { get; set; }
+        public decimal HamaliCharges { get; set; }
+        public decimal AOCCharges { get; set; }
+        public decimal TranshipmentCharges { get; set; }
+        public decimal PickupCharges { get; set; }
+        public decimal LocationPickupCharges { get; set; }
+        public decimal LocationDeliveryCharges { get; set; }
+        public decimal DoorDeliveryCharges { get; set; }
+        public decimal TotalKms { get; set; }
+    }
+    
     public class BookingMastersResponse
     {
         public int StatusId { get; set; }
@@ -100,5 +119,50 @@ namespace CargoBE.Responses
         public int NumberOfPieces { get; set; }
         public decimal ActualWeight { get; set; }
         public decimal TotalWeight { get; set; }
+    }
+
+    public class BookingDetailsForPrintResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public string BookSerialNumber { get; set; }
+        public string GCType { get; set; }
+        public string BookingType { get; set; }
+        public string PaymentType { get; set; }
+        public string ProductType { get; set; }
+        public string BookingDate { get; set; }
+        public string SenderName { get; set; }
+        public string SenderMobileNumber { get; set; }
+        public string ReceiverName { get; set; }
+        public string ReceiverMobileNumber { get; set; }
+        public string FromCounterName { get; set; }
+        public string FromCounterGST { get; set; }
+        public string FromCounterPhoneNumber { get; set; }
+        public string ToCounterName { get; set; }
+        public string ToCounterGST { get; set; }
+        public string ToCounterPhoneNumber { get; set; }
+        public string ActualWeight { get; set; }
+        public string ChargedWeight { get; set; }
+        public int TotalPieces { get; set; }
+        public decimal ShipmentValue { get; set; }
+        public string ShipmentDescription { get; set; }
+        public string RouteInfo { get; set; }
+        public string CargoGSTIN { get; set; }
+        public decimal BasicAmount { get; set; }
+        public decimal HamaliCharges { get; set; }
+        public decimal SurCharges { get; set; }
+        public decimal ValueSurCharges { get; set; }
+        public decimal WithPassCharges { get; set; }
+        public decimal AOCCharges { get; set; }
+        public decimal TranshipmentCharges { get; set; }
+        public decimal CollectionCharges { get; set; }
+        public decimal PickupCharges { get; set; }
+        public decimal LocationDeliveryCharges { get; set; }
+        public decimal DoorDeliveryCharges { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal GSTAmount { get; set; }
+        public decimal DiscountAmount { get; set; }
+        public decimal RoundOffAmount { get; set; }
+        public decimal GrandTotal { get; set; }
     }
 }

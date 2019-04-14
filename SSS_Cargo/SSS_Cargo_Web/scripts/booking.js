@@ -489,35 +489,9 @@ function updatetableserialnumbers(tbody) {
 }
 
 function calculateprice() {
-    $('#divfinalcalculation').css("display", "block");
-    $('#divpriceentry').css("display", "none");
-    claculateweightinfo();
-}
-
-function claculateweightinfo() {
-    var trs = $('#tbodyparcelitems').find('.trdynamic');
-    var weightinto = '';
-
-    if (trs.length > 0) {
-        for (var i = 0; i < trs.length; i++) {
-            var tr = $(trs[i]).closest('tr')[0];
-            var actualweight = $(tr).find('#spanactualweight').html();
-            var numberofpieces = $(tr).find('#spannumberofpieces').html();
-            var piecestypename = $(tr).find('#spanpiecestypenameview').html();
-            var totalweight = $(tr).find('#spantotalweight').html();
-            var weight = '';
-
-            weight = '' + actualweight + ' ' + measurement + ' * ' + numberofpieces + ' ' + piecestypename + ' = ' + totalweight + ' ' + measurement + '';
-            weightinto = (weightinto == "") ? weight : weightinto + ', ' + weight;
-        }
-    }
-    $('#spanweightlist').html(weightinto);
-}
-
-function editpricedetails() {
+    hideallalerts();
     var isvalid = true;
 
-    var bookid = $('#hiddenbookid').val().trim();
     var counterid = $('#hiddencounterid').val().trim();
     var loginid = $('#hiddenloginid').val().trim();
     var gctype = $('#selectgctype').val().trim();
@@ -571,13 +545,200 @@ function editpricedetails() {
     if (validatetextbox(shipmentdescription, $('#spanshipmentdescription'), 'Please enter Description') == false) {
         isvalid = false;
     }
+    if ($('#tbodyparcelitems').find('.trdynamic').length == 0) {
+        isvalid = false;
+        alert("Please enter atleast one parcel");
+    }
+
+    if (sendercounter != "" && receivercounter != "") {
+        if (point1 != "") {
+            if (point1 == receivercounter) {
+                isvalid = false;
+                showwarningalert("Transhipment Point 1 and Receiving Location should not be same");
+            }
+        }
+        if (point2 != "") {
+            if (point2 == receivercounter) {
+                isvalid = false;
+                showwarningalert("Transhipment Point 2 and Receiving Location should not be same");
+            }
+            else if (point2 == point1) {
+                isvalid = false;
+                showwarningalert("Transhipment Point 1 and Transhipment Point 2 should not be same");
+            }
+        }
+    }
 
     if (isvalid) {
-        $('#divpriceentry').css("display", "block");
+        showloading();
+
+        var transhipmentpoints = '';
+
+        if (point1 != "") {
+            transhipmentpoints = point1;
+        }
+        if (point2 != "") {
+            transhipmentpoints = (transhipmentpoints == "") ? point2 : transhipmentpoints + "," + point2;
+        }
+
+        var parcelitems = [];
+
+        var trs = $('#tbodyparcelitems').find('.trdynamic');
+
+        for (var i = 0; i < trs.length; i++) {
+            var actualweight = $(trs[i]).find('#spanactualweight').html();
+            var numberofpieces = $(trs[i]).find('#spannumberofpieces').html();
+            var piecestypeid = $(trs[i]).find('#spanpiecestypeid').html();
+            var totalweight = $(trs[i]).find('#spantotalweight').html();
+
+            parcelitems.push({
+                ParcelType: piecestypeid,
+                CalculationType: 0,
+                NumberOfPieces: numberofpieces,
+                ActualWeight: actualweight,
+                TotalWeight: totalweight
+            })
+        }
+
+        var input = [];
+        input = {
+            CounterId: counterid,
+            GCTypeId: gctype,
+            ProductTypeId: producttype,
+            ShipmentValue: shipmentvalue,
+            ToCounter: receivercounter,
+            TranshipmentPoints: transhipmentpoints,
+            LoginId: loginid,
+            ParcelItems: parcelitems
+        };
+
+        $.ajax({
+            type: "POST",
+            data: (input),
+            url: apiurl + "api/booking/getcalculatedpriceforbooking",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    $('#divfinalcalculation').css("display", "block");
+                    $('#divpriceentry').css("display", "none");
+                    //$('#aeditprice').css("display", "none");
+                    //$('#aeditprice').removeAttr("onclick");
+                    claculateweightinfo();
+
+                    var totalamount = 0;
+
+                    totalamount = totalamount + data.BasicAmount;
+                    $('#spancalcbasicamount').html(data.BasicAmount);
+                    $('#textbasicamount').val(data.BasicAmount);
+
+                    totalamount = totalamount + data.SUPCharges;
+                    $('#spancalcsupcharges').html(data.SUPCharges);
+                    $('#textsupcharges').val(data.SUPCharges);
+
+                    totalamount = totalamount + data.WithPassCharges;
+                    $('#spancalcwithpasscharges').html(data.WithPassCharges);
+                    $('#textwithpasscharges').val(data.WithPassCharges);
+
+                    totalamount = totalamount + data.DocketCharges;
+                    $('#spancalcdocketcharges').html(data.DocketCharges);
+                    $('#textdocketcharges').val(data.DocketCharges);
+
+                    totalamount = totalamount + data.ValueSRCharges;
+                    $('#spancalcvaluesrcharges').html(data.ValueSRCharges);
+                    $('#textvaluesrcharges').val(data.ValueSRCharges);
+
+                    totalamount = totalamount + data.CollectionCharges;
+                    $('#spancalccollectioncharges').html(data.CollectionCharges);
+                    $('#textcollection').val(data.CollectionCharges);
+
+                    totalamount = totalamount + data.HamaliCharges;
+                    $('#spancalchamalicharges').html(data.HamaliCharges);
+                    $('#texthamalicharges').val(data.HamaliCharges);
+
+                    totalamount = totalamount + data.AOCCharges;
+                    $('#spancalcaoccharges').html(data.AOCCharges);
+                    $('#textaoccharges').val(data.AOCCharges);
+
+                    totalamount = totalamount + data.TranshipmentCharges;
+                    $('#spancalctranshipmentcharges').html(data.TranshipmentCharges);
+                    $('#texttranshipmentcharges').val(data.TranshipmentCharges);
+
+                    totalamount = totalamount + data.PickupCharges;
+                    $('#spancalcpickupcharges').html(data.PickupCharges);
+                    $('#textpickupcharges').val(data.PickupCharges);
+
+                    totalamount = totalamount + data.LocationPickupCharges;
+                    $('#spancalclocationpickupcharges').html(data.LocationPickupCharges);
+                    $('#textlocationpickupcharges').val(data.LocationPickupCharges);
+
+                    totalamount = totalamount + data.LocationDeliveryCharges;
+                    $('#spancalclocationdeliverycharges').html(data.LocationDeliveryCharges);
+                    $('#textlocationdeliverycharges').val(data.LocationDeliveryCharges);
+
+                    totalamount = totalamount + data.DoorDeliveryCharges;
+                    $('#spancalcdoordeliverycharges').html(data.DoorDeliveryCharges);
+                    $('#textdoordeliverycharges').val(data.DoorDeliveryCharges);
+
+                    $('#spancalcsubtotal').html(totalamount);
+
+                    var totalgst = parseFloat((gst / 100) * totalamount).toFixed(2);
+                    $('#spancalcgst').html(totalgst);
+
+                    totalamount = totalamount + parseFloat(totalgst);
+                    $('#spancalctotalamount').html(totalamount);
+
+                    var roundedamount = 0;
+                    var roundoff = (totalamount % 5);
+                    roundedamount = (roundoff <= 2) ? -(roundoff) : (5 - roundoff);
+                    $('#spancalcroundoffamount').html(roundedamount);
+
+                    totalamount = totalamount + roundedamount;
+                    $('#spancalcgrandtotal').html(totalamount);
+
+                    $('#spankms').html(data.TotalKms.toFixed(1));
+
+                    if (totalamount == 0) {
+                        $('#divpriceentry').css("display", "block");
+                    }
+                }
+                hideloading();
+            },
+            error: function (xhr) {
+                hideloading();
+                showerroralert(xhr.responseText);
+            }
+        });
     }
-    else {
-        $('#divpriceentry').css("display", "none");
+}
+
+function claculateweightinfo() {
+    var trs = $('#tbodyparcelitems').find('.trdynamic');
+    var weightinto = '';
+    var totalweightlabel = 0;
+    var totalpieces = 0;
+
+    if (trs.length > 0) {
+        for (var i = 0; i < trs.length; i++) {
+            var tr = $(trs[i]).closest('tr')[0];
+            var actualweight = $(tr).find('#spanactualweight').html();
+            var numberofpieces = $(tr).find('#spannumberofpieces').html();
+            var piecestypename = $(tr).find('#spanpiecestypenameview').html();
+            var totalweight = $(tr).find('#spantotalweight').html();
+            var weight = '';
+
+            totalpieces = totalpieces + parseFloat(numberofpieces);
+            totalweightlabel = totalweightlabel + parseFloat(totalweight);
+            weight = '' + actualweight + ' ' + measurement + ' * ' + numberofpieces + ' ' + piecestypename + ' = ' + totalweight + ' ' + measurement + '';
+            weightinto = (weightinto == "") ? weight : weightinto + ', ' + weight;
+        }
     }
+    $('#spancalctotalpieces').html(totalpieces);
+    $('#spancalctotalweight').html(totalweightlabel);
+    $('#spanweightlist').html(weightinto);
+}
+
+function editpricedetails() {
+    $('#divpriceentry').css("display", "block");
 }
 
 var priceeditremarks = '';
@@ -598,7 +759,7 @@ function updateprice() {
     var locationdeliverycharges = $('#textlocationdeliverycharges').val();
     var doordeliverycharges = $('#textdoordeliverycharges').val();
     var viewpriceeditremarks = $('#textpriceeditremarks').val();
-       
+
     var isvalid = true;
     var totalamount = 0;
 
@@ -713,27 +874,99 @@ function updateprice() {
     else {
         priceeditremarks = viewpriceeditremarks;
     }
-    
-    $('#spancalcsubtotal').html(totalamount);
 
-    var totalgst = parseFloat((gst / 100) * totalamount).toFixed(2);
-    $('#spancalcgst').html(totalgst);
+    if (isvalid) {
+        $('#spancalcsubtotal').html(totalamount);
 
-    totalamount = totalamount + totalgst;
-    $('#spancalctotalamount').html(totalamount);
+        var totalgst = parseFloat((gst / 100) * totalamount).toFixed(2);
+        $('#spancalcgst').html(totalgst);
 
-    var roundedamount = 0;
-    var roundoff = (totalamount % 5);
-    roundedamount = (roundoff <= 2) ? -(roundoff) : (5 - roundoff);
-    $('#spancalcroundoffamount').html(roundedamount);
+        totalamount = totalamount + parseFloat(totalgst);
+        $('#spancalctotalamount').html(totalamount);
 
-    totalamount = totalamount + roundedamount;
-    $('#spancalcgrandtotal').html(totalamount);
+        var roundedamount = 0;
+        var roundoff = (totalamount % 5);
+        roundedamount = (roundoff <= 2) ? -(roundoff) : (5 - roundoff);
+        $('#spancalcroundoffamount').html(roundedamount);
 
-    $('#divpriceentry').css("display", "none");
+        totalamount = totalamount + roundedamount;
+        $('#spancalcgrandtotal').html(totalamount);
+
+        $('#divpriceentry').css("display", "none");
+    }
+}
+
+function openapplydiscountmodal() {
+    $('#spandiscounttotalamount').html($('#spancalctotalamount').html());
+    $('#spantotalamountafterdiscount').html($('#spancalctotalamount').html());
+    $('#textdiscountamount').val('');
+    $('#textdiscountremarks').val('');
+    $('#modalapplydiscount').modal();
+}
+
+var discountremarks = '';
+
+function validatediscountamount() {
+    var discountamount = $('#textdiscountamount').val();
+    var totalamount = parseFloat($('#spandiscounttotalamount').html());
+
+    if (discountamount == "") {
+        $('#spandiscountamount').html("Please enter Discount Amount");
+        return false;
+    }
+    else if (parseFloat(discountamount) > totalamount) {
+        $('#spandiscountamount').html("Please enter Discount Amount less than Total Amount");
+        return false;
+    }
+    else {
+        totalamount = totalamount - discountamount;
+        $('#spancalcdiscountamount').html(discountamount);
+        $('#spantotalamountafterdiscount').html(totalamount);
+    }
+}
+
+function applydiscount() {
+    var discountamount = $('#textdiscountamount').val();
+    var remarks = $('#textdiscountremarks').val();
+
+    var isvalid = true;
+    var totalamount = parseFloat($('#spancalctotalamount').html());
+
+    if (discountamount == "") {
+        isvalid = false;
+        $('#spandiscountamount').html("Please enter Discount Amount");
+    }
+    else if (parseFloat(discountamount) > totalamount) {
+        isvalid = false;
+        $('#spandiscountamount').html("Please enter Discount Amount less than Total Amount");
+    }
+    if (remarks == "") {
+        isvalid = false;
+        $('#spandiscountremarks').html("Please enter Discount Remarks");
+    }
+    if (isvalid) {
+        discountremarks = remarks;
+        $('#spancalcdiscountremarks').html(remarks);
+        totalamount = totalamount - discountamount;
+        $('#spancalcdiscountamount').html(discountamount);
+        $('#spancalctotalafterdiscount').html(totalamount);
+        
+        var roundedamount = 0;
+        var roundoff = (totalamount % 5);
+        roundedamount = (roundoff <= 2) ? -(roundoff) : (5 - roundoff);
+        $('#spancalcroundoffamount').html(roundedamount);
+
+        totalamount = totalamount + roundedamount;
+        $('#spancalcgrandtotal').html(totalamount);
+
+        $('#textdiscountamount').val('');
+        $('#textdiscountremarks').val('');
+        $('#closemodalapplydiscount').click();
+    }
 }
 
 function savebooking() {
+    hideallalerts();
     var isvalid = true;
 
     var bookid = $('#hiddenbookid').val().trim();
@@ -753,6 +986,11 @@ function savebooking() {
     var producttype = $('#selectproducttype').val().trim();
     var shipmentvalue = $('#textshipmentvalue').val().trim();
     var shipmentdescription = $('#textshipmentdescription').val().trim();
+    var totalpieces = $('#spancalctotalpieces').html();
+    var totalweight = $('#spancalctotalweight').html();
+    var route = $('#spanroute').html();
+    var totalkms = $('#spankms').html();
+    var weightlist = $('#spanweightlist').html();
     var basicamount = $('#spancalcbasicamount').html();
     var supcharges = $('#spancalcsupcharges').html();
     var withpasscharges = $('#spancalcwithpasscharges').html();
@@ -763,9 +1001,16 @@ function savebooking() {
     var aoccharges = $('#spancalcaoccharges').html();
     var transhipmentcharges = $('#spancalctranshipmentcharges').html();
     var pickupcharges = $('#spancalcpickupcharges').html();
+    var locationpickupcharges = $('#spancalclocationpickupcharges').html();
+    var locationdeliverycharges = $('#spancalclocationdeliverycharges').html();
+    var doordeliverycharges = $('#spancalcdoordeliverycharges').html();
+    var subtotal = $('#spancalcsubtotal').html();
     var calcgst = $('#spancalcgst').html();
     var calctotalamount = $('#spancalctotalamount').html();
-    var totalkms = $('#spankms').html();
+    var discountamount = $('#spancalcdiscountamount').html();
+    var totalafterdiscount = $('#spancalctotalafterdiscount').html();
+    var roundoffamount = $('#spancalcroundoffamount').html();
+    var grandtotal = $('#spancalcgrandtotal').html();
 
     if (validatedropdown(gctype, $('#spangctypehelper'), 'Please select GC Type') == false) {
         isvalid = false;
@@ -812,6 +1057,25 @@ function savebooking() {
         alert("Please enter valid Price");
     }
 
+    if (sendercounter != "" && receivercounter != "") {
+        if (point1 != "") {
+            if (point1 == receivercounter) {
+                isvalid = false;
+                showwarningalert("Transhipment Point 1 and Receiving Location should not be same");
+            }
+        }
+        if (point2 != "") {
+            if (point2 == receivercounter) {
+                isvalid = false;
+                showwarningalert("Transhipment Point 2 and Receiving Location should not be same");
+            }
+            else if (point2 == point1) {
+                isvalid = false;
+                showwarningalert("Transhipment Point 1 and Transhipment Point 2 should not be same");
+            }
+        }
+    }
+
     if (isvalid) {
         showloading();
 
@@ -832,52 +1096,68 @@ function savebooking() {
             var actualweight = $(trs[i]).find('#spanactualweight').html();
             var numberofpieces = $(trs[i]).find('#spannumberofpieces').html();
             var piecestypeid = $(trs[i]).find('#spanpiecestypeid').html();
-            var totalweight = $(trs[i]).find('#spantotalweight').html();
+            var trtotalweight = $(trs[i]).find('#spantotalweight').html();
 
             parcelitems.push({
                 ParcelType: piecestypeid,
                 CalculationType: 0,
                 NumberOfPieces: numberofpieces,
                 ActualWeight: actualweight,
-                TotalWeight: totalweight
+                TotalWeight: trtotalweight
             })
         }
 
         var input = [];
         input = {
-            AOCCharges: aoccharges,
-            BasicAmount: basicamount,
-            BookId: bookid,
-            BookingTypeId: gctype,
-            CollectionCharges: collectioncharges,
-            DocketCharges: docketcharges,
+            LoginId: loginid,
             CounterId: counterid,
-            GCTypeId: gctype,
-            GSTCharges: calcgst,
-            HamaliCharges: hamalicharges,
-            ProductTypeId: producttype,
-            ReceiverAddress: receiveraddress,
-            ReceiverEmailId: '',
-            ReceiverId: receiverid,
-            ReceiverMobileNumber: receivermobile,
-            ReceiverName: receivername,
-            SenderAddress: senderaddress,
-            SenderEmailId: '',
-            SenderId: senderid,
-            SenderMobileNumber: sendermobile,
-            SenderName: sendername,
-            ShipmentDescription: shipmentdescription,
-            ShipmentValue: shipmentvalue,
-            SUPCharges: supcharges,
+            FromCounter: sendercounter,
             ToCounter: receivercounter,
-            TotalAmount: calctotalamount,
+            GCTypeId: gctype,
+            BookingTypeId: gctype,
+            ProductTypeId: producttype,
+            BookId: bookid,
+            SenderId: senderid,
+            SenderName: sendername,
+            SenderEmailId: '',
+            SenderMobileNumber: sendermobile,
+            SenderAddress: senderaddress,
+            ReceiverId: receiverid,
+            ReceiverName: receivername,
+            ReceiverEmailId: '',
+            ReceiverMobileNumber: receivermobile,
+            ReceiverAddress: receiveraddress,
+            TranshipmentPoint1: point1,
+            TranshipmentPoint2: point2,
+            ShipmentValue: shipmentvalue,
+            ShipmentDescription: shipmentdescription,
+            BasicAmount: basicamount,
+            SUPCharges: supcharges,
+            WithPASSCharges: withpasscharges,
+            DocketCharges: docketcharges,
+            ValueSCCharges: valuesrcharges,
+            CollectionCharges: collectioncharges,
+            HamaliCharges: hamalicharges,
+            AOCCharges: aoccharges,
             TranshipmentCharges: transhipmentcharges,
             PickupCharges: pickupcharges,
-            TranshipmentPoints: transhipmentpoints,
-            LoginId: loginid,
-            ValueSCCharges: valuesrcharges,
-            WithPASSCharges: withpasscharges,
+            LocationPickupCharges: locationpickupcharges,
+            LocationDeliveryCharges: locationdeliverycharges,
+            DoorDeliveryCharges: doordeliverycharges,
+            SubTotal: subtotal,
+            GSTCharges: calcgst,
+            TotalAmount: calctotalamount,
+            DiscountAmount: discountamount,
+            TotalAmountAfterDiscount: totalafterdiscount,
+            RoundOffAmount: roundoffamount,
+            GrandTotal: grandtotal,
             TotalKms: totalkms,
+            DiscountRemarks: discountremarks,
+            EditPriceRemarks: priceeditremarks,
+            TotalPieces: totalpieces,
+            TotalWeight: totalweight,
+            WeightInfo: weightlist,
+            RouteInfo: route,
             ParcelItems: parcelitems
         };
 
@@ -890,7 +1170,7 @@ function savebooking() {
                 if (data.StatusId != null) {
                     if (data.StatusId == 1) {
                         showsuccessalert(data.StatusMessage);
-                        window.location = "/cargo/bookingsuccess/" + data.BookingSerialNumber;
+                        window.location = "/cargo/bookingsuccess/" + data.BookingId + "/" + data.BookingSerialNumber;
                     }
                     else {
                         showwarningalert(data.StatusMessage);

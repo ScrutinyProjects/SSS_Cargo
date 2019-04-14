@@ -1,0 +1,672 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Invioce</title>
+</head>
+
+<body style="font-family: Calibri; font-size: 12px; margin: 0; position: relative;">
+    <div name="invoice" style="padding-bottom: 20px;">
+        <input type="hidden" id="hiddenbookingid" value="@ViewBag.BookingId" />
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="25%">
+                    <img src="http://sscargo.scrutinysolutions.com/img/ssclogo.jpg.JPEG" alt="logo" height="40" />
+
+                </td>
+                <td align="center" width="50%">
+                    <h2 style="margin: 0;">SRI SIDDHARTHA CARGO</h2>
+                    <h3 style="margin: 0;"><u>Customer Copy</u></h3>
+                </td>
+                <td align="right" width="25%">
+                    <img src="http://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Free-Image.png" alt="logo" height="40" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr style="margin-bottom: 0;" />
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left">
+                    <h3 style="margin: 0;">LR Number: <label class="lrnumber">043/GC5998</label></h3>
+                </td>
+                <td align="center">
+                    <h3 style="margin: 0;">Date : <label class="bookingdate">04/11/2019 11:00</label></h3>
+                </td>
+                <td align="center">
+                    <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0; display: inline-block;"><label class="fromlocation">Dharmavaram Lorem</label></h4>
+                    &#8594;
+                    <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0; display: inline-block;"><label class="tolocation">Hanmakonda</label></h4>
+                </td>
+                <td align="right">
+                    <h2 style="margin: 0; font-size: 23px"><label class="paymenttype">TOPAY</label></h2>
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0" style="border: 1px solid;">
+            <tr>
+                <td valign="top" width="72%">
+                    <table cellpadding="0" cellspacing="0" width="100%" style="border-bottom: 1px solid;">
+                        <tr>
+                            <td valign="top" style="padding: 3px; border-right: 1px solid;">
+
+                                <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0;"><u>Consignor : </u></h4>
+                                <span style="text-transform: uppercase; display: block;"><label class="sendername">Vijaya Silk House</label></span>
+                                <span style="display: block;">From Branch : <label class="fromlocation">Dharmavaram</label></span>
+                                <span style="display: block;">Ph no : <label class="senderphone">7331147270</label></span>
+                                <span style="display: block;">Booking Agent Ph no : <label class="fromcounterphone">7331147270</label></span>
+                                <span style="display: block;">GST No : <label class="fromgstnumber">37ACHPL7079B1H</label></span>
+
+                            </td>
+                            <td valign="top" style="padding: 3px; border-right: 1px solid;">
+
+                                <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0;"><u>Consignee : </u></h4>
+                                <span style="text-transform: uppercase; display: block;"><label class="receivername">Mangalya Shopping Mall</label></span>
+                                <span style="display: block;">To Branch : <label class="tolocation">Hanmakonda</label></span>
+                                <span style="display: block;">Ph no : <label class="receiverphone">7331147270</label></span>
+                                <span style="display: block;">Booking Agent Ph no : <label class="tocounterphone">7331147270</label></span>
+                                <span style="display: block;">GST No : <label class="togstnumber">37ACHPL7079B1H</label></span>
+
+                            </td>
+                            <td valign="top" style="padding: 3px;">
+
+                                <table border="0" width="100%" cellpadding="1" cellspacing="0">
+                                    <tr>
+                                        <td><span>Actual Weight : </span><span style="font-weight: 600;" class="actualweight">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Charged Weight : </span><span style="font-weight: 600;" class="chargedweight">0.00</span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span>No Of Peices : </span><span style="font-weight: 600;" class="numberofpieces">4</span></td>
+
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%">
+                        <tr>
+                            <td width="30.1%" style="border-right: 1px solid;">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Booking Type : </strong><span class="bookingtype">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Product Type : </strong><span class="producttype">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Type : </strong><span class="gctype">Lorem</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="69.9%">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Value : </strong><span class="shippingvalue">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Details : </strong><span class="route">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Remarks : </strong><span class="shippingdecription">Lorem</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2" style="border-bottom: 1px solid;">
+                                <strong>Terms & Conditions : </strong>
+                                <br />
+                                <span>1. Nature, contents and condition of the consignments are not known to company. The company carrier the good as packed at owner's risk only</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size: 14px;"><strong><span class="tolocation">Hanmakonda</span> Conatct No : </strong><span class="tocounterphone">9441018141</span></td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 35px;">
+                        <tr>
+                            <td><strong>SSCARGO GSTIN: <span class="cargogst">12354454574545</span> </strong></td>
+                            <td align="right" style="padding-right: 20px;"><strong>Booking Point Signature / Name</strong></td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="28%" valign="top">
+                    <table border="0" width="100%" cellpadding="1" cellspacing="0" style="border-left: 1px solid;">
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Freight Charges</span><span class="basicamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Hamali Charges</span><span class="hamaliamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Sur Charges</span><span class="supcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Value Sur Charges</span><span class="valuesrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">With Pass Charges</span><span class="withpasscharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 69%; padding-left: 4px;">Aoc Charges</span><span class="aoccharges" style="text-align: right; display: inline-block; width: 26%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Collection Charges</span><span class="collectioncharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pickup Charges</span><span class="pickupcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Location Delivery Charges</span><span class="locationdeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Door Delivery Charges</span><span class="doordeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <hr style="margin: 0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong style="display: inline-block; width: 60%; padding-left: 4px; font-size: 14px">Sub Total</strong><strong class="subtotal" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Discount</span><span class="discount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Round off</span><span class="roundoff" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <hr style="margin: 0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong style="display: inline-block; width: 60%; padding-left: 10px; font-size: 15px">TOTAL(Rs.) </strong><strong class="grandtotal" style="text-align: right; display: inline-block; width: 35%; font-size: 15px">0.00</strong></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div name="invoice" style="padding-bottom: 20px;">
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="25%">
+                    <img src="http://sscargo.scrutinysolutions.com/img/ssclogo.jpg.JPEG" alt="logo" height="40" />
+
+                </td>
+                <td align="center" width="50%">
+                    <h2 style="margin: 0;">SRI SIDDHARTHA CARGO</h2>
+                    <h3 style="margin: 0;"><u>Office Copy</u></h3>
+                </td>
+                <td align="right" width="25%">
+                    <img src="http://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Free-Image.png" alt="logo" height="40" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr style="margin-bottom: 0;" />
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left">
+                    <h3 style="margin: 0;">LR Number: <label class="lrnumber">043/GC5998</label></h3>
+                </td>
+                <td align="center">
+                    <h3 style="margin: 0;">Date : <label class="bookingdate">04/11/2019 11:00</label></h3>
+                </td>
+                <td align="center">
+                    <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0; display: inline-block;"><label class="fromlocation">Dharmavaram Lorem</label></h4>
+                    &#8594;
+                    <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0; display: inline-block;"><label class="tolocation">Hanmakonda</label></h4>
+                </td>
+                <td align="right">
+                    <h2 style="margin: 0; font-size: 23px"><label class="paymenttype">TOPAY</label></h2>
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0" style="border: 1px solid;">
+            <tr>
+                <td valign="top" width="72%">
+                    <table cellpadding="0" cellspacing="0" width="100%" style="border-bottom: 1px solid;">
+                        <tr>
+                            <td valign="top" style="padding: 3px; border-right: 1px solid;">
+
+                                <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0;"><u>Consignor : </u></h4>
+                                <span style="text-transform: uppercase; display: block;"><label class="sendername">Vijaya Silk House</label></span>
+                                <span style="display: block;">From Branch : <label class="fromlocation">Dharmavaram</label></span>
+                                <span style="display: block;">Ph no : <label class="senderphone">7331147270</label></span>
+                                <span style="display: block;">Booking Agent Ph no : <label class="fromcounterphone">7331147270</label></span>
+                                <span style="display: block;">GST No : <label class="fromgstnumber">37ACHPL7079B1H</label></span>
+
+                            </td>
+                            <td valign="top" style="padding: 3px; border-right: 1px solid;">
+
+                                <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0;"><u>Consignee : </u></h4>
+                                <span style="text-transform: uppercase; display: block;"><label class="receivername">Mangalya Shopping Mall</label></span>
+                                <span style="display: block;">To Branch : <label class="tolocation">Hanmakonda</label></span>
+                                <span style="display: block;">Ph no : <label class="receiverphone">7331147270</label></span>
+                                <span style="display: block;">Booking Agent Ph no : <label class="tocounterphone">7331147270</label></span>
+                                <span style="display: block;">GST No : <label class="togstnumber">37ACHPL7079B1H</label></span>
+
+                            </td>
+                            <td valign="top" style="padding: 3px;">
+
+                                <table border="0" width="100%" cellpadding="1" cellspacing="0">
+                                    <tr>
+                                        <td><span>Actual Weight : </span><span style="font-weight: 600;" class="actualweight">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Charged Weight : </span><span style="font-weight: 600;" class="chargedweight">0.00</span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span>No Of Peices : </span><span style="font-weight: 600;" class="numberofpieces">4</span></td>
+
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%">
+                        <tr>
+                            <td width="30.1%" style="border-right: 1px solid;">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Booking Type : </strong><span class="bookingtype">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Product Type : </strong><span class="producttype">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Type : </strong><span class="gctype">Lorem</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="69.9%">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Value : </strong><span class="shippingvalue">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Details : </strong><span class="route">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Remarks : </strong><span class="shippingdecription">Lorem</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2" style="border-bottom: 1px solid;">
+                                <strong>Terms & Conditions : </strong>
+                                <br />
+                                <span>1. Nature, contents and condition of the consignments are not known to company. The company carrier the good as packed at owner's risk only</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size: 14px;"><strong><span class="tolocation">Hanmakonda</span> Conatct No : </strong><span class="tocounterphone">9441018141</span></td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 35px;">
+                        <tr>
+                            <td><strong>SSCARGO GSTIN: <span class="cargogst">12354454574545</span> </strong></td>
+                            <td align="right" style="padding-right: 20px;"><strong>Booking Point Signature / Name</strong></td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="28%" valign="top">
+                    <table border="0" width="100%" cellpadding="1" cellspacing="0" style="border-left: 1px solid;">
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Freight Charges</span><span class="basicamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Hamali Charges</span><span class="hamaliamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Sur Charges</span><span class="supcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Value Sur Charges</span><span class="valuesrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">With Pass Charges</span><span class="withpasscharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 69%; padding-left: 4px;">Aoc Charges</span><span class="aoccharges" style="text-align: right; display: inline-block; width: 26%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Collection Charges</span><span class="collectioncharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pickup Charges</span><span class="pickupcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Location Delivery Charges</span><span class="locationdeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Door Delivery Charges</span><span class="doordeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <hr style="margin: 0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong style="display: inline-block; width: 60%; padding-left: 4px; font-size: 14px">Sub Total</strong><strong class="subtotal" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Discount</span><span class="discount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Round off</span><span class="roundoff" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <hr style="margin: 0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong style="display: inline-block; width: 60%; padding-left: 10px; font-size: 15px">TOTAL(Rs.) </strong><strong class="grandtotal" style="text-align: right; display: inline-block; width: 35%; font-size: 15px">0.00</strong></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div name="invoice" style="padding-bottom: 20px;">
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="25%">
+                    <img src="http://sscargo.scrutinysolutions.com/img/ssclogo.jpg.JPEG" alt="logo" height="40" />
+
+                </td>
+                <td align="center" width="50%">
+                    <h2 style="margin: 0;">SRI SIDDHARTHA CARGO</h2>
+                    <h3 style="margin: 0;"><u>With Pass Office Copy</u></h3>
+                </td>
+                <td align="right" width="25%">
+                    <img src="http://www.pngall.com/wp-content/uploads/2/Barcode-PNG-Free-Image.png" alt="logo" height="40" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr style="margin-bottom: 0;" />
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left">
+                    <h3 style="margin: 0;">LR Number: <label class="lrnumber">043/GC5998</label></h3>
+                </td>
+                <td align="center">
+                    <h3 style="margin: 0;">Date : <label class="bookingdate">04/11/2019 11:00</label></h3>
+                </td>
+                <td align="center">
+                    <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0; display: inline-block;"><label class="fromlocation">Dharmavaram Lorem</label></h4>
+                    &#8594;
+                    <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0; display: inline-block;"><label class="tolocation">Hanmakonda</label></h4>
+                </td>
+                <td align="right">
+                    <h2 style="margin: 0; font-size: 23px"><label class="paymenttype">TOPAY</label></h2>
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0" style="border: 1px solid;">
+            <tr>
+                <td valign="top" width="72%">
+                    <table cellpadding="0" cellspacing="0" width="100%" style="border-bottom: 1px solid;">
+                        <tr>
+                            <td valign="top" style="padding: 3px; border-right: 1px solid;">
+
+                                <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0;"><u>Consignor : </u></h4>
+                                <span style="text-transform: uppercase; display: block;"><label class="sendername">Vijaya Silk House</label></span>
+                                <span style="display: block;">From Branch : <label class="fromlocation">Dharmavaram</label></span>
+                                <span style="display: block;">Ph no : <label class="senderphone">7331147270</label></span>
+                                <span style="display: block;">Booking Agent Ph no : <label class="fromcounterphone">7331147270</label></span>
+                                <span style="display: block;">GST No : <label class="fromgstnumber">37ACHPL7079B1H</label></span>
+
+                            </td>
+                            <td valign="top" style="padding: 3px; border-right: 1px solid;">
+
+                                <h4 style="margin: 0; padding: 2px 0; font-size: 14px; font-weight: 600; padding-top: 0;"><u>Consignee : </u></h4>
+                                <span style="text-transform: uppercase; display: block;"><label class="receivername">Mangalya Shopping Mall</label></span>
+                                <span style="display: block;">To Branch : <label class="tolocation">Hanmakonda</label></span>
+                                <span style="display: block;">Ph no : <label class="receiverphone">7331147270</label></span>
+                                <span style="display: block;">Booking Agent Ph no : <label class="tocounterphone">7331147270</label></span>
+                                <span style="display: block;">GST No : <label class="togstnumber">37ACHPL7079B1H</label></span>
+
+                            </td>
+                            <td valign="top" style="padding: 3px;">
+
+                                <table border="0" width="100%" cellpadding="1" cellspacing="0">
+                                    <tr>
+                                        <td><span>Actual Weight : </span><span style="font-weight: 600;" class="actualweight">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Charged Weight : </span><span style="font-weight: 600;" class="chargedweight">0.00</span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span>No Of Peices : </span><span style="font-weight: 600;" class="numberofpieces">4</span></td>
+
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%">
+                        <tr>
+                            <td width="30.1%" style="border-right: 1px solid;">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Booking Type : </strong><span class="bookingtype">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Product Type : </strong><span class="producttype">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Type : </strong><span class="gctype">Lorem</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="69.9%">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Value : </strong><span class="shippingvalue">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">GC Details : </strong><span class="route">Lorem</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 80px;">Remarks : </strong><span class="shippingdecription">Lorem</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2" style="border-bottom: 1px solid;">
+                                <strong>Terms & Conditions : </strong>
+                                <br />
+                                <span>1. Nature, contents and condition of the consignments are not known to company. The company carrier the good as packed at owner's risk only</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size: 14px;"><strong><span class="tolocation">Hanmakonda</span> Conatct No : </strong><span class="tocounterphone">9441018141</span></td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 35px;">
+                        <tr>
+                            <td><strong>SSCARGO GSTIN: <span class="cargogst">12354454574545</span> </strong></td>
+                            <td align="right" style="padding-right: 20px;"><strong>Booking Point Signature / Name</strong></td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="28%" valign="top">
+                    <table border="0" width="100%" cellpadding="1" cellspacing="0" style="border-left: 1px solid;">
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Freight Charges</span><span class="basicamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Hamali Charges</span><span class="hamaliamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Sur Charges</span><span class="supcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Value Sur Charges</span><span class="valuesrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">With Pass Charges</span><span class="withpasscharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 69%; padding-left: 4px;">Aoc Charges</span><span class="aoccharges" style="text-align: right; display: inline-block; width: 26%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Collection Charges</span><span class="collectioncharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pickup Charges</span><span class="pickupcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Location Delivery Charges</span><span class="locationdeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Door Delivery Charges</span><span class="doordeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <hr style="margin: 0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong style="display: inline-block; width: 60%; padding-left: 4px; font-size: 14px">Sub Total</strong><strong class="subtotal" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Discount</span><span class="discount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Round off</span><span class="roundoff" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <hr style="margin: 0;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong style="display: inline-block; width: 60%; padding-left: 10px; font-size: 15px">TOTAL(Rs.) </strong><strong class="grandtotal" style="text-align: right; display: inline-block; width: 35%; font-size: 15px">0.00</strong></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+    <script src="~/Assets/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");
+    </script>
+
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/bookingprint.js"></script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            getbookingdetails();
+        });
+    </script>
+</body>
+</html>

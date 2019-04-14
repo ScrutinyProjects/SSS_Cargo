@@ -139,6 +139,55 @@ namespace CargoBAL
             return objresponse;
         }
 
+        public BookingCalculatedPriceResponse GetCalculatedPriceForBooking(JObject input)
+        {
+            BookingCalculatedPriceResponse objresponse = new BookingCalculatedPriceResponse();
+
+            try
+            {
+                BookingPriceCalcRequest objrequest = new BookingPriceCalcRequest();
+                
+                objrequest.FromCounterId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                objrequest.GCType = Convert.ToInt32(input["GCTypeId"]);
+                objrequest.ProductType = Convert.ToInt32(input["ProductTypeId"]);
+                objrequest.ShipmentValue = Convert.ToDecimal(input["ShipmentValue"]);
+                objrequest.ToCounterId = Convert.ToString(input["ToCounter"]);
+                objrequest.TranshipmentPoints = Convert.ToString(input["TranshipmentPoints"]);
+                objrequest.LoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
+
+                DataTable dtweights = new DataTable();
+
+                dtweights.Columns.Add("ParcelType", typeof(int));
+                dtweights.Columns.Add("CalculationType", typeof(int));
+                dtweights.Columns.Add("NumberOfPieces", typeof(int));
+                dtweights.Columns.Add("ActualWeight", typeof(decimal));
+                dtweights.Columns.Add("TotalWeight", typeof(decimal));
+
+                if (input["ParcelItems"] != null)
+                {
+                    JArray parcelitems = (JArray)input["ParcelItems"];
+
+                    foreach (JObject item in parcelitems)
+                    {
+                        DataRow dr = dtweights.NewRow();
+                        dr["ParcelType"] = Convert.ToInt32(item["ParcelType"]);
+                        dr["CalculationType"] = Convert.ToInt32(item["CalculationType"]);
+                        dr["NumberOfPieces"] = Convert.ToInt32(item["NumberOfPieces"]);
+                        dr["ActualWeight"] = Convert.ToDecimal(item["ActualWeight"]);
+                        dr["TotalWeight"] = Convert.ToDecimal(item["TotalWeight"]);
+                        dtweights.Rows.Add(dr);
+                    }
+                }
+
+                objresponse = objBookingDal.GetCalculatedPriceForBooking(objrequest, dtweights);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return objresponse;
+        }
+
         public BookingSaveResponse InsertBookingDetails(JObject input)
         {
             BookingSaveResponse objresponse = new BookingSaveResponse();
@@ -147,40 +196,56 @@ namespace CargoBAL
             {
                 BookingRequest objrequest = new BookingRequest();
 
-                objrequest.AOCCharges = Convert.ToDecimal(input["AOCCharges"]);
-                objrequest.BasicAmount = Convert.ToDecimal(input["BasicAmount"]);
-                objrequest.BookId = Convert.ToInt32(input["BookId"]);
-                objrequest.BookingTypeId = Convert.ToInt32(input["BookingTypeId"]);
-                objrequest.CollectionCharges = Convert.ToDecimal(input["CollectionCharges"]);
-                objrequest.DocketCharges = Convert.ToDecimal(input["DocketCharges"]);
+                objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
                 objrequest.FromCounterId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
-                objrequest.GCTypeId = Convert.ToInt32(input["GCTypeId"]);
-                objrequest.GSTCharges = Convert.ToDecimal(input["GSTCharges"]);
-                objrequest.HamaliCharges = Convert.ToDecimal(input["HamaliCharges"]);
-                objrequest.ProductTypeId = Convert.ToInt32(input["ProductTypeId"]);
-                objrequest.ReceiverAddress = Convert.ToString(input["ReceiverAddress"]);
-                objrequest.ReceiverEmailId = Convert.ToString(input["ReceiverEmailId"]);
-                objrequest.ReceiverId = Convert.ToInt32(input["ReceiverId"]);
-                objrequest.ReceiverMobileNumber = Convert.ToString(input["ReceiverMobileNumber"]);
-                objrequest.ReceiverName = Convert.ToString(input["ReceiverName"]);
-                objrequest.SenderAddress = Convert.ToString(input["SenderAddress"]);
-                objrequest.SenderEmailId = Convert.ToString(input["SenderEmailId"]);
-                objrequest.SenderId = Convert.ToInt32(input["SenderId"]);
-                objrequest.SenderMobileNumber = Convert.ToString(input["SenderMobileNumber"]);
-                objrequest.SenderName = Convert.ToString(input["SenderName"]);
-                objrequest.ShipmentDescription = Convert.ToString(input["ShipmentDescription"]);
-                objrequest.ShipmentValue = Convert.ToDecimal(input["ShipmentValue"]);
-                objrequest.SUPCharges = Convert.ToDecimal(input["SUPCharges"]);
+                objrequest.FromCounter = Convert.ToString(input["FromCounter"]);
                 objrequest.ToCounter = Convert.ToString(input["ToCounter"]);
-                objrequest.TotalAmount = Convert.ToDecimal(input["TotalAmount"]);
+                objrequest.GCTypeId = Convert.ToInt32(input["GCTypeId"]);
+                objrequest.BookingTypeId = Convert.ToInt32(input["BookingTypeId"]);
+                objrequest.ProductTypeId = Convert.ToInt32(input["ProductTypeId"]);
+                objrequest.BookId = Convert.ToInt32(input["BookId"]);
+                objrequest.SenderId = Convert.ToInt32(input["SenderId"]);
+                objrequest.SenderName = Convert.ToString(input["SenderName"]);
+                objrequest.SenderEmailId = Convert.ToString(input["SenderEmailId"]);
+                objrequest.SenderMobileNumber = Convert.ToString(input["SenderMobileNumber"]);
+                objrequest.SenderAddress = Convert.ToString(input["SenderAddress"]);
+                objrequest.ReceiverId = Convert.ToInt32(input["ReceiverId"]);
+                objrequest.ReceiverName = Convert.ToString(input["ReceiverName"]);
+                objrequest.ReceiverEmailId = Convert.ToString(input["ReceiverEmailId"]);
+                objrequest.ReceiverMobileNumber = Convert.ToString(input["ReceiverMobileNumber"]);
+                objrequest.ReceiverAddress = Convert.ToString(input["ReceiverAddress"]);
+                objrequest.TranshipmentPoint1 = Convert.ToString(input["TranshipmentPoint1"]);
+                objrequest.TranshipmentPoint2 = Convert.ToString(input["TranshipmentPoint2"]);
+                objrequest.ShipmentValue = Convert.ToDecimal(input["ShipmentValue"]);
+                objrequest.ShipmentDescription = Convert.ToString(input["ShipmentDescription"]);
+                objrequest.BasicAmount = Convert.ToDecimal(input["BasicAmount"]);
+                objrequest.SUPCharges = Convert.ToDecimal(input["SUPCharges"]);
+                objrequest.WithPASSCharges = Convert.ToDecimal(input["WithPASSCharges"]);
+                objrequest.DocketCharges = Convert.ToDecimal(input["DocketCharges"]);
+                objrequest.ValueSCCharges = Convert.ToDecimal(input["ValueSCCharges"]);
+                objrequest.CollectionCharges = Convert.ToDecimal(input["CollectionCharges"]);
+                objrequest.HamaliCharges = Convert.ToDecimal(input["HamaliCharges"]);
+                objrequest.AOCCharges = Convert.ToDecimal(input["AOCCharges"]);
                 objrequest.TranshipmentCharges = Convert.ToDecimal(input["TranshipmentCharges"]);
                 objrequest.PickupCharges = Convert.ToDecimal(input["PickupCharges"]);
-                objrequest.TranshipmentPoints = Convert.ToString(input["TranshipmentPoints"]);
-                objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
-                objrequest.ValueSCCharges = Convert.ToDecimal(input["ValueSCCharges"]);
-                objrequest.WithPASSCharges = Convert.ToDecimal(input["WithPASSCharges"]);
+                objrequest.LocationPickupCharges = Convert.ToDecimal(input["LocationPickupCharges"]);
+                objrequest.LocationDeliveryCharges = Convert.ToDecimal(input["LocationDeliveryCharges"]);
+                objrequest.DoorDeliveryCharges = Convert.ToDecimal(input["DoorDeliveryCharges"]);
+                objrequest.SubTotal = Convert.ToDecimal(input["SubTotal"]);
+                objrequest.GSTCharges = Convert.ToDecimal(input["GSTCharges"]);
+                objrequest.TotalAmount = Convert.ToDecimal(input["TotalAmount"]);
+                objrequest.DiscountAmount = Convert.ToDecimal(input["DiscountAmount"]);
+                objrequest.TotalAmountAfterDiscount = Convert.ToDecimal(input["TotalAmountAfterDiscount"]);
+                objrequest.RoundOffAmount = Convert.ToDecimal(input["RoundOffAmount"]);
+                objrequest.GrandTotal = Convert.ToDecimal(input["GrandTotal"]);
                 objrequest.TotalKms = Convert.ToDecimal(input["TotalKms"]);
-
+                objrequest.DiscountRemarks = Convert.ToString(input["DiscountRemarks"]);
+                objrequest.EditPriceRemarks = Convert.ToString(input["EditPriceRemarks"]);
+                objrequest.TotalPieces = Convert.ToInt32(input["TotalPieces"]);
+                objrequest.TotalWeight = Convert.ToDecimal(input["TotalWeight"]);
+                objrequest.WeightInfo = Convert.ToString(input["WeightInfo"]);
+                objrequest.RouteInfo = Convert.ToString(input["RouteInfo"]);
+                
                 DataTable dtweights = new DataTable();
 
                 dtweights.Columns.Add("ParcelType", typeof(int));
@@ -462,6 +527,24 @@ namespace CargoBAL
                 objrequest.ToBeReceiveId = Convert.ToInt32(input["ToBeReceiveId"]);
 
                 objresponse = objBookingDal.InsertReceivingDetails(objrequest);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public BookingDetailsForPrintResponse GetBookingDetailsToPrintByBookingId(JObject input)
+        {
+            BookingDetailsForPrintResponse objresponse = new BookingDetailsForPrintResponse();
+
+            try
+            {
+                int bookingid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["BookingId"])));
+
+                objresponse = objBookingDal.GetBookingDetailsToPrintByBookingId(bookingid);
             }
             catch (Exception ex)
             {

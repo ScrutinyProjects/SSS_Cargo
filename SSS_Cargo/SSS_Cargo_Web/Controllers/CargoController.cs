@@ -1,4 +1,5 @@
-﻿using CargoBE.Responses;
+﻿using CargoBE;
+using CargoBE.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace SSS_Cargo_Web.Controllers
             }
         }
 
-        public ActionResult bookingsuccess(string param1)
+        public ActionResult bookingsuccess(string param1, string param2)
         {
             if (Session["SessionLogin"] == null)
             {
@@ -46,7 +47,21 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
-                ViewBag.BookingSerialNumber = param1;
+                ViewBag.BookingId = param1;
+                ViewBag.BookingSerialNumber = CommonMethods.URLKeyDecrypt(param2);
+                return View();
+            }
+        }
+
+        public ActionResult printbookingreceipt(string param1)
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                ViewBag.BookingId = param1;
                 return View();
             }
         }
