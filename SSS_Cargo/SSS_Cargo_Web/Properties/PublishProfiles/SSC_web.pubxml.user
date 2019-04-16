@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_10_Apr</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_14_Apr</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -478,7 +478,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:29</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>04/10/2019 00:44:30</publishTime>
+      <publishTime>04/15/2019 00:57:55</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -547,7 +547,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/SSS_Cargo_Web.dll">
-      <publishTime>04/10/2019 00:45:28</publishTime>
+      <publishTime>04/15/2019 00:58:53</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -838,7 +838,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:30</publishTime>
     </File>
     <File Include="scripts/booking.js">
-      <publishTime>04/08/2019 22:26:02</publishTime>
+      <publishTime>04/14/2019 23:45:21</publishTime>
+    </File>
+    <File Include="scripts/bookingprint.js">
+      <publishTime>04/15/2019 00:51:38</publishTime>
     </File>
     <File Include="scripts/bootstrap.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -847,7 +850,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2017 12:15:14</publishTime>
     </File>
     <File Include="scripts/common.js">
-      <publishTime>04/07/2019 21:58:41</publishTime>
+      <publishTime>04/11/2019 22:10:50</publishTime>
     </File>
     <File Include="scripts/jquery-2.2.3.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -889,10 +892,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2017 12:15:14</publishTime>
     </File>
     <File Include="scripts/loading.js">
-      <publishTime>04/08/2019 23:33:57</publishTime>
+      <publishTime>04/11/2019 21:20:49</publishTime>
     </File>
     <File Include="scripts/login.js">
-      <publishTime>04/01/2019 22:32:12</publishTime>
+      <publishTime>04/11/2019 22:37:42</publishTime>
     </File>
     <File Include="scripts/receiving.js">
       <publishTime>04/10/2019 00:38:33</publishTime>
@@ -901,13 +904,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/09/2019 00:39:08</publishTime>
     </File>
     <File Include="Views/Account/login.cshtml">
-      <publishTime>04/07/2019 11:48:10</publishTime>
+      <publishTime>04/11/2019 22:31:41</publishTime>
     </File>
     <File Include="Views/Cargo/booking.cshtml">
-      <publishTime>04/07/2019 22:27:24</publishTime>
+      <publishTime>04/14/2019 23:44:58</publishTime>
     </File>
     <File Include="Views/Cargo/bookingsuccess.cshtml">
-      <publishTime>04/07/2019 13:39:14</publishTime>
+      <publishTime>04/14/2019 22:03:18</publishTime>
     </File>
     <File Include="Views/Cargo/delivery.cshtml">
       <publishTime>03/30/2019 00:03:31</publishTime>
@@ -917,6 +920,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Cargo/loading.cshtml">
       <publishTime>04/09/2019 00:29:18</publishTime>
+    </File>
+    <File Include="Views/Cargo/printbookingreceipt.cshtml">
+      <publishTime>04/15/2019 00:48:17</publishTime>
     </File>
     <File Include="Views/Cargo/receive.cshtml">
       <publishTime>04/10/2019 00:28:03</publishTime>

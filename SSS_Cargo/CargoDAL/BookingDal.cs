@@ -184,6 +184,8 @@ namespace CargoDAL
                     objresponse.StatusMessage = (string)reader["StatusMessage"];
                     objresponse.BookingSerialNumber = CommonMethods.URLKeyEncrypt((string)reader["BookingSerialNumber"]);
                     objresponse.BookingId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["BookingId"]));
+                    objresponse.SenderMessage = (string)reader["SenderMessage"];
+                    objresponse.ReceiverMessage = (string)reader["ReceiverMessage"];
                 }
             }
             catch (Exception ex)

@@ -604,5 +604,35 @@ namespace CargoBE
         }
 
         #endregion
+
+        #region Send SMS
+
+        public static void SendSMS(string mobilenumber, string message)
+        {
+            string SMSAPIKey = ConfigurationSettings.AppSettings["SMSAPIKey"].ToString();
+            string SMSSenderName = ConfigurationSettings.AppSettings["SMSSenderName"].ToString();
+
+            try
+            {
+                string url = "http://sms.adeep.in/api/v4/?api_key=" + SMSAPIKey + "&method=sms&message=" + message + "&to=" + mobilenumber + "&sender=" + SMSSenderName;
+                string resultData = string.Empty;
+
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+
+                using (HttpWebResponse response = (HttpWebResponse)req.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    resultData = reader.ReadToEnd();
+                }
+                //emailresult = JsonConvert.DeserializeObject<EmailVerificationResponse>(resultData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
     }
 }

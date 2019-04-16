@@ -271,6 +271,12 @@ namespace CargoBAL
                 }
 
                 objresponse = objBookingDal.InsertBookingDetails(objrequest, dtweights);
+
+                if(objresponse.StatusId == 1)
+                {
+                    CommonMethods.SendSMS(objrequest.SenderMobileNumber, objresponse.SenderMessage);
+                    CommonMethods.SendSMS(objrequest.ReceiverMobileNumber, objresponse.ReceiverMessage);
+                }
             }
             catch (Exception ex)
             {

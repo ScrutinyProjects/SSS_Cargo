@@ -17,6 +17,8 @@ namespace CargoBE.Responses
         public string StatusMessage { get; set; }
         public string BookingSerialNumber { get; set; }
         public string BookingId { get; set; }
+        public string SenderMessage { get; set; }
+        public string ReceiverMessage { get; set; }
     }
 
     public class BookingCalculatedPriceResponse
