@@ -25,59 +25,19 @@ function searchbooking() {
                         if ($('#tbodybookings').find('.trdynamic').length == 0) {
                             $('#tbodybookings tr').remove();
 
-                            var route = '';
-
-                            fromcounter = data.FromCounterName;
-                            tocounter = data.ToCounterName;
-
-                            route = fromcounter;
-
-                            if (data.TranshipmentPoints != "") {
-                                var transhipmentpoints = data.TranshipmentPoints.split(',');
-
-                                for (var i = 0; i < transhipmentpoints.length; i++) {
-                                    route = route + ' --> ' + transhipmentpoints[i];
-                                }
-                            }
-
-                            route = route + ' --> ' + tocounter;
-
-                            $('#spanroute').html(route);
+                            $('#spanroute').html(data.Route);
                         }
 
                         var meadurementin = data.MeasurementIn;
-                        var innertable = '';
-
-                        if (data.BookingParcels.length > 0) {
-
-                            innertable = '<table class="table"><thead><tr>' +
-                                        '<th style="width: 30%;">Pieces</th>' +
-                                        '<th style="width: 30%;">Actual Weight</th>' +
-                                        '<th style="width: 40%;">Total Weight</th>' +
-                                        '</tr></thead>';
-
-                            innertable = innertable + '<tbody>';
-
-                            for (var i = 0; i < data.BookingParcels.length; i++) {
-                                var parcel = data.BookingParcels[i];
-
-                                innertable = innertable + '<tr>' +
-                                '<td>' + parcel.NumberOfPieces + ' ' + parcel.ParcelType + '</td>' +
-                                '<td>' + parcel.ActualWeight + ' ' + meadurementin + '</td>' +
-                                '<td>' + parcel.TotalWeight + ' ' + meadurementin + '</td>';
-                            }
-
-                            innertable = innertable + '</tbody>';
-                            innertable = innertable + '</table>';
-                        }
-
+                        
                         var tr = $('<tr class="trdynamic" />');
                         tr.append('<td class="sno"></td>' +
                             '<td><span id="spanbookingid" style="display:none">' + data.BookingId + '</span><span id="spanbookingnumber">' + data.BookSerialNumber + '</span></td>' +
                             '<td>' + data.GCType + '</td>' +
-                            '<td>' + innertable + '</td>' +
-                            '<td>' + data.TotalAmount + '</td>' +
-                            '<td><a href="javascript:void(0)" onclick="deletebooking(this)"><i class="fa fa-remove"></i> Remove</a></td>');
+                            '<td>' + data.WeightInfo + '</td>' +
+                            '<td>' + data.TotalPieces + '</td>' +
+                            '<td>' + data.TotalAmount + '</td>');
+                            //'<td><a href="javascript:void(0)" onclick="deletebooking(this)"><i class="fa fa-remove"></i> Remove</a></td>
                         $('#tbodybookings').append(tr);
 
                         updatetableserialnumbers($('#tbodybookings'));
@@ -143,7 +103,7 @@ function deletebookingconfirm() {
     $('#closemodaldeletebooking').click();
 }
 
-function saveloading() {
+function loadingconfirm() {
     var isvalid = true;
 
     var counterid = $('#hiddencounterid').val().trim();
@@ -220,6 +180,7 @@ function saveloading() {
                     else {
                         showwarningalert(data.StatusMessage);
                     }
+                    $('#closemodalloading').click();
                 }
                 hideloading();
             },
@@ -256,4 +217,8 @@ function clearallfields() {
 
     fromcounter = '';
     tocounter = '';
+}
+
+function saveloading() {
+    $('#modalloading').modal();
 }

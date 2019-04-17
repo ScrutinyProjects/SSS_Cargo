@@ -80,7 +80,7 @@ namespace CargoDAL
                                             new SqlParameter("@TranshipmentPoints", SqlDbType.VarChar, 1000) { Value = objrequest.TranshipmentPoints },
                                             new SqlParameter("@ShipmentValue", SqlDbType.Decimal) { Value = objrequest.ShipmentValue },
                                         };
-            
+
             SqlDataReader reader = null;
             BookingCalculatedPriceResponse objresponse = new BookingCalculatedPriceResponse();
 
@@ -108,7 +108,7 @@ namespace CargoDAL
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
@@ -173,7 +173,7 @@ namespace CargoDAL
                                         };
             SqlDataReader reader = null;
             BookingSaveResponse objresponse = new BookingSaveResponse();
-           
+
             try
             {
                 reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_InsertBookingDetails", sqlparams);
@@ -257,36 +257,29 @@ namespace CargoDAL
                     {
                         DataRow dr = ds.Tables[0].Rows[0];
 
-                        objresponse.StatusId = (int)dr["StatusId"];
-                        objresponse.StatusMessage = (string)dr["StatusMessage"];
+                        objresponse.StatusId = 1;
+                        objresponse.StatusMessage = "Valid Booking Number";
 
-                        if (objresponse.StatusId == 1)
-                        {
-                            objresponse.BookingId = (int)dr["BookingId"];
-                            objresponse.BookSerialNumber = (string)dr["BookSerialNumber"];
-                            objresponse.GCType = (string)dr["GCType"];
-                            objresponse.GCTypeId = (int)dr["GCTypeId"];
-                            objresponse.MeasurementIn = (string)dr["MeasurementIn"];
-                            objresponse.TotalAmount = (decimal)dr["TotalAmount"];
-                            objresponse.FromCounterName = (string)dr["FromCounterName"];
-                            objresponse.ToCounterName = (string)dr["ToCounterName"];
-                            objresponse.TranshipmentPoints = (string)dr["TranshipmentPoints"];
-
-                            if (ds.Tables.Count > 1)
-                            {
-                                objresponse.BookingParcels = ds.Tables[1].AsEnumerable().
-                                          Select(x => new BookingParcelDetails
-                                          {
-                                              ActualWeight = x.Field<decimal>("ActualWeight"),
-                                              BookingParcelId = x.Field<int>("BookingParcelId"),
-                                              NumberOfPieces = x.Field<int>("NumberOfPieces"),
-                                              ParcelType = x.Field<string>("ParcelType"),
-                                              ParcelTypeId = x.Field<int>("ParcelTypeId"),
-                                              TotalWeight = x.Field<decimal>("TotalWeight")
-                                          }).ToList();
-                            }
-                        }
+                        objresponse.BookingId = (int)dr["BookingId"];
+                        objresponse.GCTypeId = (int)dr["GCTypeId"];
+                        objresponse.GCType = (string)dr["GCType"];
+                        objresponse.MeasurementIn = (string)dr["MeasurementIn"];
+                        objresponse.BookSerialNumber = (string)dr["BookSerialNumber"];
+                        objresponse.TotalAmount = (decimal)dr["TotalAmount"];
+                        objresponse.Route = (string)dr["Route"];
+                        objresponse.TotalPieces = (int)dr["TotalPieces"];
+                        objresponse.WeightInfo = (string)dr["WeightInfo"];
                     }
+                    else
+                    {
+                        objresponse.StatusId = 0;
+                        objresponse.StatusMessage = "Invalid Booking Number";
+                    }
+                }
+                else
+                {
+                    objresponse.StatusId = 0;
+                    objresponse.StatusMessage = "Invalid Booking Number";
                 }
             }
             catch (Exception ex)
@@ -380,7 +373,7 @@ namespace CargoDAL
                                         };
             SqlDataReader reader = null;
             SaveRespone objresponse = new SaveRespone();
-            
+
             try
             {
                 reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_InsertToBeReceiveDetails", sqlparams);
@@ -458,7 +451,7 @@ namespace CargoDAL
                         objresponse.GCBookingNumber = (string)reader["GCBookingNumber"];
                         objresponse.NumberOfPieces = (int)reader["NumberOfPieces"];
                         objresponse.Remarks = (string)reader["Remarks"];
-                        objresponse.TotalWeight = (decimal)reader["TotalWeight"]; 
+                        objresponse.TotalWeight = (decimal)reader["TotalWeight"];
                     }
                     else if (objresponse.StatusId == 2)
                     {
@@ -501,7 +494,7 @@ namespace CargoDAL
                                         };
             SqlDataReader reader = null;
             SaveRespone objresponse = new SaveRespone();
-            
+
             try
             {
                 reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_InsertReceivingDetails", sqlparams);

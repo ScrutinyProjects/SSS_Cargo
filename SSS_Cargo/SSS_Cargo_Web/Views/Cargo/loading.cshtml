@@ -48,17 +48,15 @@
                                     Search
                                 </button>
                             </div>
+                            <div class="col-sm-6" style="margin-top:25px">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Route <span style="float:right">:</span></label>
+                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spanroute">--</label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel">
                     <div class="panel-body">
-                        <div class="form-group">
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Route <span style="float:right">:</span></label>
-                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spanroute"></label>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <table id="dynamic-table" class="table table-striped table-bordered table-hover" style="margin-bottom: 0;">
@@ -66,10 +64,11 @@
                                         <tr>
                                             <th style="width: 5%;">S.No.</th>
                                             <th style="width: 15%;">GC Number</th>
-                                            <th style="width: 15%;">GC Type</th>
-                                            <th style="width: 45%;">Parcel Items</th>                                           
-                                            <th style="width: 15%;">Total Amount</th>
-                                            <th style="width: 5%;">Actions</th>
+                                            <th style="width: 10%;">GC Type</th>
+                                            <th style="width: 45%;">Weight Info</th>
+                                            <th style="width: 10%;">Total Pieces</th>                                           
+                                            <th style="width: 10%;">Total Amount</th>
+                                            @*<th style="width: 5%;">Actions</th>*@
                                         </tr>
                                     </thead>
                                     <tbody id="tbodybookings">
@@ -162,6 +161,28 @@
             <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 <button class="btn btn-primary" onclick="return deletebookingconfirm()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalloading" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closemodalloading" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Confirm Loading</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label style="padding: 0px 15px;">Are you sure do you want to loading selected GC Numbers?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button class="btn btn-primary" onclick="return loadingconfirm()">Confirm</button>
             </div>
         </div>
     </div>

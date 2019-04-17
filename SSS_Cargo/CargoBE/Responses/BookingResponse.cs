@@ -88,10 +88,9 @@ namespace CargoBE.Responses
         public string MeasurementIn { get; set; }
         public string BookSerialNumber { get; set; }
         public decimal TotalAmount { get; set; }
-        public string FromCounterName { get; set; }
-        public string ToCounterName { get; set; }
-        public string TranshipmentPoints { get; set; }
-        public List<BookingParcelDetails> BookingParcels { get; set; }
+        public string Route { get; set; }
+        public int TotalPieces { get; set; }
+        public string WeightInfo { get; set; }
     }
 
     public class ToBereceiveDetailsByBookingNumber

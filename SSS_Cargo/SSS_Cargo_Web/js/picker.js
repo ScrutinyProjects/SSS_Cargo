@@ -80,7 +80,7 @@
     // The date string format, also as the sorting order for columns.
     format: 'YYYY-MM-DD HH:mm',
     // Indicate whether show the column headers.
-    headers: false,
+    headers: true,
     // Define the increment for each date / time part.
     increment: 1,
     // Enable inline mode.
