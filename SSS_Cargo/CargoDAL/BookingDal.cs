@@ -69,6 +69,29 @@ namespace CargoDAL
             return ds;
         }
 
+        public DataSet GetBookingsByCounterId(int counterid, int loginid)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@CounterId", SqlDbType.Int) { Value = counterid },
+                                            new SqlParameter("@LoginId", SqlDbType.Int) { Value = loginid }
+                                        };
+            DataSet ds = null;
+
+            try
+            {
+                ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetBookingsByCounterId", sqlparams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return ds;
+        }
+
         public BookingCalculatedPriceResponse GetCalculatedPriceForBooking(BookingPriceCalcRequest objrequest, DataTable dtWeights)
         {
             SqlParameter[] sqlparams = { new SqlParameter("@LoginId", SqlDbType.Int) { Value = objrequest.LoginId },

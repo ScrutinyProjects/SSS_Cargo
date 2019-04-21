@@ -139,6 +139,48 @@ namespace CargoBAL
             return objresponse;
         }
 
+        public List<BookingsListByCounter> GetBookingsByCounterId(JObject input)
+        {
+            List<BookingsListByCounter> objresponse = new List<BookingsListByCounter>();
+
+            try
+            {
+                DataSet ds = new DataSet();
+
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
+
+                ds = objBookingDal.GetBookingsByCounterId(counterid, loginid);
+
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        objresponse = ds.Tables[0].AsEnumerable().
+                                           Select(x => new BookingsListByCounter
+                                           {
+                                               BookingId = x.Field<int>("BookingId"),
+                                               BookSerialNumber = x.Field<string>("BookSerialNumber"),
+                                               BookingDate = x.Field<string>("BookingDate"),
+                                               TotalWeight = x.Field<string>("TotalWeight"),
+                                               GCType = x.Field<string>("GCType"),
+                                               PaymentType = x.Field<string>("PaymentType"),
+                                               RouteInfo = x.Field<string>("RouteInfo"),
+                                               SenderMobileNumber = x.Field<string>("SenderMobileNumber"),
+                                               SenderName = x.Field<string>("SenderName"),
+                                               TotalPieces = x.Field<int>("TotalPieces"),
+                                               TotalAmount = x.Field<decimal>("TotalAmount"),
+                                           }).ToList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objresponse;
+        }
+
         public BookingCalculatedPriceResponse GetCalculatedPriceForBooking(JObject input)
         {
             BookingCalculatedPriceResponse objresponse = new BookingCalculatedPriceResponse();

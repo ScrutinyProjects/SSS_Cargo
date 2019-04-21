@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_API_16_Apr</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_API_19_Apr</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -18,14 +18,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ApplicationInsights.config">
       <publishTime>03/11/2019 22:21:05</publishTime>
     </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>04/19/2019 09:46:39</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>04/19/2019 09:46:39</publishTime>
+    </File>
     <File Include="bin/CargoBAL.dll">
-      <publishTime>04/16/2019 21:06:32</publishTime>
+      <publishTime>04/19/2019 09:39:58</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>04/16/2019 21:06:30</publishTime>
+      <publishTime>04/19/2019 09:39:56</publishTime>
     </File>
     <File Include="bin/CargoDAL.dll">
-      <publishTime>04/16/2019 21:06:31</publishTime>
+      <publishTime>04/19/2019 09:39:57</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -109,7 +115,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 20:19:46</publishTime>
     </File>
     <File Include="bin/SSS_Cargo.dll">
-      <publishTime>04/16/2019 21:06:43</publishTime>
+      <publishTime>04/19/2019 09:45:56</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -175,7 +181,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2019 22:20:36</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/01/2019 00:02:58</publishTime>
+      <publishTime>04/19/2019 09:43:15</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>04/19/2019 09:46:33</publishTime>
     </File>
     <File Include="scripts/ai.0.22.9-build00167.js">
       <publishTime>03/11/2019 22:21:06</publishTime>
@@ -226,7 +235,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/31/2019 17:02:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/16/2019 21:06:44</publishTime>
+      <publishTime>04/19/2019 09:46:32</publishTime>
     </File>
   </ItemGroup>
 </Project>

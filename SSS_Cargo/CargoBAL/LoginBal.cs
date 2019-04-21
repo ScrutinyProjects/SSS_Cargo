@@ -37,7 +37,7 @@ namespace CargoBAL
             return objLoginResponse;
         }
 
-        public SaveRespone ValidateLoginOTP(JObject input)
+        public SaveRespone ValidateLoginOTP(JObject input) 
         {
             SaveRespone objLoginResponse = new SaveRespone();
 

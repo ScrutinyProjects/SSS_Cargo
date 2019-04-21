@@ -91,6 +91,23 @@ namespace SSS_Cargo.Controllers
         }
 
         [AllowAnonymous]
+        [Route("getbookingsbycounterid")]
+        [HttpPost]
+        public List<BookingsListByCounter> GetBookingsByCounterId(JObject input)
+        {
+            List<BookingsListByCounter> objresponse = new List<BookingsListByCounter>();
+            try
+            {
+                objresponse = objBookingBal.GetBookingsByCounterId(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
         [Route("getcustomerdetailsbymobilenumber")]
         [HttpPost]
         public CustomerDetailsResponse GetCustomerDetailsByMobileNumber(JObject input)

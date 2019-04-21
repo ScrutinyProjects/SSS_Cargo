@@ -93,6 +93,21 @@ namespace CargoBE.Responses
         public string WeightInfo { get; set; }
     }
 
+    public class BookingsListByCounter
+    {
+        public string BookSerialNumber { get; set; }
+        public int BookingId { get; set; }
+        public string RouteInfo { get; set; }
+        public string GCType { get; set; }
+        public string PaymentType { get; set; }
+        public string BookingDate { get; set; }
+        public string SenderName { get; set; }
+        public string SenderMobileNumber { get; set; }
+        public string TotalWeight { get; set; }
+        public decimal TotalAmount { get; set; }
+        public int TotalPieces { get; set; }
+    }
+    
     public class ToBereceiveDetailsByBookingNumber
     {
         public int StatusId { get; set; }
