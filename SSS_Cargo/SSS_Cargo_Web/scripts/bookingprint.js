@@ -54,7 +54,8 @@
                     $('.discount').html(parseFloat(data.DiscountAmount).toFixed(2));
                     $('.roundoff').html(parseFloat(data.RoundOffAmount).toFixed(2));
                     $('.grandtotal').html(parseFloat(data.GrandTotal).toFixed(2));
-                }
+                    $('.barcode').attr('src', data.barcodeImage);
+                } 
             }
             hideloading();
         },

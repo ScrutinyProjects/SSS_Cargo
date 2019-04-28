@@ -318,6 +318,14 @@ namespace CargoBAL
                 {
                     CommonMethods.SendSMS(objrequest.SenderMobileNumber, objresponse.SenderMessage);
                     CommonMethods.SendSMS(objrequest.ReceiverMobileNumber, objresponse.ReceiverMessage);
+                    string encryptedbookingnumber = CommonMethods.URLKeyDecrypt(objresponse.BookingSerialNumber);
+                    int bookingid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(objresponse.BookingId));
+                    string barcodeimage = CommonMethods.GenerateBarCode(encryptedbookingnumber);
+
+                    if (!string.IsNullOrEmpty(barcodeimage))
+                    {
+                        objBookingDal.UpdateBookingBarcode(barcodeimage, bookingid);
+                    }
                 }
             }
             catch (Exception ex)

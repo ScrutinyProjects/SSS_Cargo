@@ -180,5 +180,6 @@ namespace CargoBE.Responses
         public decimal DiscountAmount { get; set; }
         public decimal RoundOffAmount { get; set; }
         public decimal GrandTotal { get; set; }
+        public string barcodeImage { get; set; }
     }
 }

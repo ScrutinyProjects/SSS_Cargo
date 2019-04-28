@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_19_Apr</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_25_Apr</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -484,7 +484,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2019 10:06:06</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>04/19/2019 09:39:56</publishTime>
+      <publishTime>04/26/2019 00:40:02</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -595,7 +595,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 21:50:24</publishTime>
     </File>
     <File Include="bin/SSS_Cargo_Web.dll">
-      <publishTime>04/19/2019 11:08:10</publishTime>
+      <publishTime>04/26/2019 00:40:57</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -626,6 +626,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/System.Web.Webpages.Razor.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/zxing.dll">
+      <publishTime>04/14/2018 18:39:12</publishTime>
     </File>
     <File Include="css/animate.css">
       <publishTime>01/10/2017 21:52:36</publishTime>
@@ -889,10 +892,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:30</publishTime>
     </File>
     <File Include="scripts/booking.js">
-      <publishTime>04/14/2019 23:45:21</publishTime>
+      <publishTime>04/24/2019 23:05:12</publishTime>
     </File>
     <File Include="scripts/bookingprint.js">
-      <publishTime>04/15/2019 00:51:38</publishTime>
+      <publishTime>04/25/2019 23:04:05</publishTime>
     </File>
     <File Include="scripts/bootstrap.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -901,7 +904,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2017 12:15:14</publishTime>
     </File>
     <File Include="scripts/common.js">
-      <publishTime>04/19/2019 09:48:49</publishTime>
+      <publishTime>04/25/2019 22:51:03</publishTime>
     </File>
     <File Include="scripts/jquery-2.2.3.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -958,7 +961,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2019 22:31:41</publishTime>
     </File>
     <File Include="Views/Cargo/booking.cshtml">
-      <publishTime>04/14/2019 23:44:58</publishTime>
+      <publishTime>04/24/2019 22:54:44</publishTime>
     </File>
     <File Include="Views/Cargo/bookingsuccess.cshtml">
       <publishTime>04/14/2019 22:03:18</publishTime>
@@ -967,19 +970,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/30/2019 00:03:31</publishTime>
     </File>
     <File Include="Views/Cargo/index.cshtml">
-      <publishTime>03/29/2019 21:18:54</publishTime>
+      <publishTime>04/26/2019 00:35:05</publishTime>
     </File>
     <File Include="Views/Cargo/loading.cshtml">
       <publishTime>04/18/2019 23:07:22</publishTime>
     </File>
     <File Include="Views/Cargo/printbookingreceipt.cshtml">
-      <publishTime>04/16/2019 21:04:24</publishTime>
+      <publishTime>04/25/2019 22:57:51</publishTime>
     </File>
     <File Include="Views/Cargo/receive.cshtml">
       <publishTime>04/10/2019 00:28:03</publishTime>
     </File>
     <File Include="Views/Cargo/tobereceive.cshtml">
-      <publishTime>04/09/2019 00:38:01</publishTime>
+      <publishTime>04/21/2019 22:57:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>04/07/2019 21:57:55</publishTime>
@@ -988,7 +991,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/19/2019 11:08:11</publishTime>
+      <publishTime>04/26/2019 00:40:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

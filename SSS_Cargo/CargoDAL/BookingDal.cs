@@ -224,6 +224,36 @@ namespace CargoDAL
             return objresponse;
         }
 
+        public void UpdateBookingBarcode(string barcodeimage, int bookingid)
+        {
+            SqlParameter[] sqlparams = {new SqlParameter("@BarcodeImage", SqlDbType.NVarChar, -1) { Value = barcodeimage },
+                                            new SqlParameter("@BookingId", SqlDbType.Int) { Value = bookingid }
+                                        };
+            SqlDataReader reader = null;
+            SaveRespone objresponse = new SaveRespone();
+
+            try
+            {
+                reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_UpdateBookingBarcode", sqlparams);
+
+                while (reader.Read())
+                {
+                    objresponse.StatusId = (int)reader["StatusId"];
+                    objresponse.StatusMessage = (string)reader["StatusMessage"];
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+        }
+
         public CustomerDetailsResponse GetCustomerDetailsByMobileNumber(string mobilenumber)
         {
             SqlParameter[] sqlparams = {new SqlParameter("@MobileNumber", SqlDbType.VarChar, 10) { Value = mobilenumber }
@@ -598,7 +628,8 @@ namespace CargoDAL
                         objresponse.TotalPieces = (int)reader["TotalPieces"];
                         objresponse.TranshipmentCharges = (decimal)reader["TranshipmentCharges"];
                         objresponse.ValueSurCharges = (decimal)reader["ValueSurCharges"];
-                        objresponse.WithPassCharges = (decimal)reader["WithPassCharges"];
+                        objresponse.WithPassCharges = (decimal)reader["WithPassCharges"]; 
+                        objresponse.barcodeImage = (string)reader["barcodeImage"];
                     }
                 }
             }

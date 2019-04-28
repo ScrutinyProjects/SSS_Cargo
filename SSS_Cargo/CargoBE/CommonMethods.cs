@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using ZXing;
 
 namespace CargoBE
 {
@@ -634,5 +637,67 @@ namespace CargoBE
         }
 
         #endregion
+        
+        public static string GenerateBarCode(string barcode)
+        {
+            string barcodeimage = string.Empty;
+
+            //using (MemoryStream memoryStream = new MemoryStream())
+            //{
+            //    using (Bitmap bitMap = new Bitmap(barcode.Length * 40, 80))
+            //    {
+            //        using (Graphics graphics = Graphics.FromImage(bitMap))
+            //        {
+            //            Font oFont = new Font("IDAutomationHC39M", 16);
+            //            PointF point = new PointF(2f, 2f);
+            //            SolidBrush whiteBrush = new SolidBrush(Color.White);
+            //            graphics.FillRectangle(whiteBrush, 0, 0, bitMap.Width, bitMap.Height);
+            //            SolidBrush blackBrush = new SolidBrush(Color.DarkBlue);
+            //            graphics.DrawString("*" + barcode + "*", oFont, blackBrush, point);
+            //        }
+
+            //        bitMap.Save(memoryStream, ImageFormat.Jpeg);
+
+            //        barcodeimage = "data:image/png;base64," + Convert.ToBase64String(memoryStream.ToArray());
+            //    }
+            //}
+
+            //return barcodeimage;
+
+            //byte[] BarCode;
+            //string BarCodeImage;
+            //Bitmap objBitmap = new Bitmap(barcode.Length * 28, 100);
+            //using (Graphics graphic = Graphics.FromImage(objBitmap))
+            //{
+            //    Font newFont = new Font("IDAutomationHC39M Free Version", 18, FontStyle.Regular);
+            //    PointF point = new PointF(2f, 2f);
+            //    SolidBrush balck = new SolidBrush(Color.Black);
+            //    SolidBrush white = new SolidBrush(Color.White);
+            //    graphic.FillRectangle(white, 0, 0, objBitmap.Width, objBitmap.Height);
+            //    graphic.DrawString("*" + barcode + "*", newFont, balck, point);
+            //}
+            //using (MemoryStream Mmst = new MemoryStream())
+            //{
+            //    objBitmap.Save(Mmst, ImageFormat.Png);
+            //    BarCode = Mmst.GetBuffer();
+            //    BarCodeImage = BarCode != null ? "data:image/jpg;base64," + Convert.ToBase64String((byte[])BarCode) : "";
+            //    return BarCodeImage;
+            //}
+
+            Image img = null;
+            using (var ms = new MemoryStream())
+            {
+                var writer = new BarcodeWriter() { Format = BarcodeFormat.CODE_128 };
+                writer.Options.Height = 20;
+                writer.Options.Width = 120;
+                writer.Options.PureBarcode = true;
+                img = writer.Write(barcode);
+                img.Save(ms, ImageFormat.Jpeg);
+                byte[] BarCode = ms.GetBuffer();
+                barcodeimage = "data:image/jpeg;base64," + Convert.ToBase64String(BarCode);
+            }
+
+            return barcodeimage;
+        }
     }
 }
