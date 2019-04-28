@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingDal.cs" />
+    <Compile Include="ExpenseDal.cs" />
     <Compile Include="LoginDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CargoBE\CargoBE.csproj">

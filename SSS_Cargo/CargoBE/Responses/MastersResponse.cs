@@ -51,4 +51,16 @@ namespace CargoBE.Responses
         public int CustomerId { get; set; }
         public string MobileNumber { get; set; }
     }
+
+    public class ExpenseTypeResponse
+    {
+        public int ExpenseTypeId { get; set; }
+        public string ExpenseType { get; set; }
+    }
+
+    public class BookingStatusResponse
+    {
+        public int BookingStatusId { get; set; }
+        public string BookingStatus { get; set; }
+    }
 }

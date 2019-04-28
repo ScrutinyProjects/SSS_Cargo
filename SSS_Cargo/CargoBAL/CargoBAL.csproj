@@ -45,8 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingBal.cs" />
+    <Compile Include="ExpenseBal.cs" />
     <Compile Include="LoginBal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsBal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CargoBE\CargoBE.csproj">
