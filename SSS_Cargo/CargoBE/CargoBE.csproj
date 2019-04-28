@@ -48,7 +48,9 @@
     <Compile Include="CommonMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BookingRequest.cs" />
+    <Compile Include="Requests\ExpenseRequest.cs" />
     <Compile Include="Responses\BookingResponse.cs" />
+    <Compile Include="Responses\ExpenseResponse.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="Responses\MastersResponse.cs" />
     <Compile Include="Responses\SaveRespone.cs" />

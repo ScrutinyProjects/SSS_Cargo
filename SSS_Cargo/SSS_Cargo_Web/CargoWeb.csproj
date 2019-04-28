@@ -333,11 +333,13 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\booking.js" />
     <Content Include="scripts\bookingprint.js" />
+    <Content Include="scripts\bookingreports.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\common.js" />
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="scripts\expense.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
@@ -360,6 +362,8 @@
     <Compile Include="CommonClasses\ManageSessions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CargoController.cs" />
+    <Compile Include="Controllers\ExpenseController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -430,6 +434,10 @@
     <Content Include="Views\Cargo\delivery.cshtml" />
     <Content Include="Views\Cargo\bookingsuccess.cshtml" />
     <Content Include="Views\Cargo\printbookingreceipt.cshtml" />
+    <Content Include="Views\Expense\ExpenseLock.cshtml" />
+    <Content Include="Views\Expense\Index.cshtml" />
+    <Content Include="Views\Reports\BookingReports.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "SSS Cargo - Receive";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            Home
+        </li>
+        <li class="active" style="font-size:14px; font-weight:600">Expense Lock</li>
+    </ul>
+</div>
+<div class="page-content">
+    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
+    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                <strong>Warning!</strong>
+                <span id="spanWarningAlert"></span>
+            </div>
+            <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                <strong>Error!</strong>
+                <span id="spanErrorAlert"></span>
+            </div>
+            <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                <strong>Success!</strong>
+                <span id="spanSuccessAlert"></span>
+            </div>
+        </div>
+    </div>
+    <input type="text" id="txtDateOfExpense"  placeholder="Date Of Expense" />
+    <button class="btn btn-sm btn-info" type="button" style="margin: 5px;" onclick="return GetExpensesByDate()">
+        Get Expenses
+    </button>
+    <span id="lblGridMessage" class="red" style="display:none;">No Records Found</span>
+    <div id="divExpenses" style="display:none;">
+        <div id="gridExpenses">
+        </div>
+        <span class="red">If all the expenses are entered on this date Click on lock expenses to lock</span>
+        <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return LockExpense()">
+            Lock Expenses
+        </button>
+    </div>
+</div>
+<script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+<script src="~/Assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");</script>
+<script type="text/javascript">if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
+@*<script src="~/scripts/kendo/2014.1.318/jquery.min.js"></script>*@
+<script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+<script src="~/scripts/common.js"></script>
+<script src="~/scripts/expense.js"></script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        applyDatePicker();
+        //getExpenses();
+    });</script>

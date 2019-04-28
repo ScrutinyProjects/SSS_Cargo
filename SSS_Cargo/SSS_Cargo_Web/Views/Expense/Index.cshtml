@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "SSS Cargo - Expense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            Home
+        </li>
+        <li class="active" style="font-size:14px; font-weight:600">Expense</li>
+    </ul>
+</div>
+<div class="page-content">
+    <input type="hidden" id="hiddenExpenseId" />
+    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
+    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <input type="hidden" id="hiddeniseditable" value="@ViewBag.IsEditable" />
+    <input type="hidden" id="hiddenisdeletable" value="@ViewBag.IsDeletable" />
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                <strong>Warning!</strong>
+                <span id="spanWarningAlert"></span>
+            </div>
+            <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                <strong>Error!</strong>
+                <span id="spanErrorAlert"></span>
+            </div>
+            <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                <strong>Success!</strong>
+                <span id="spanSuccessAlert"></span>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-body">
+                    <div class="form-group">
+
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="ddlExpenseType">Expense Type <span class="red">*</span> </label>
+                            <select class="form-control" id="ddlExpenseType">
+                                <option value="0">Select Expense Type</option>
+                            </select>
+                            <span class="red" id="spnExpenseType"></span>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="txtAmount">Amount <span class="red">*</span> </label>
+                            <input type="number" id="txtAmount" maxlength="5" value="" placeholder="Amount" class="form-control" />
+                            <span class="red" id="spnAmount"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="txtExpenseTo">Expense To </label>
+                            <input type="text" id="txtExpenseTo" maxlength="20" placeholder="Expense To" class="form-control" />
+                            <span class="red" id="spnExpenseTo"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="txtContactNumber">Contact Number </label>
+                            <input type="text" id="txtContactNumber" maxlength="20" placeholder="Contact Number" class="form-control" />
+                            <span class="red" id="spnContactNumber"></span>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="txtDateOfExpense">Date Of Expense<span class="red">*</span> </label>
+                            <input type="text" id="txtDateOfExpense" maxlength="10" readonly placeholder="Date Of Expense" class="form-control numeric" />
+                            <span class="red" id="spnDateOfExpense"></span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label" style="text-align: left;" for="txtRemarks">Remarks </label>
+                            <textarea type="text" id="txtRemarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
+                            <span class="red" id="spnRemarks"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                        <div style="width: 95%;">
+                            <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="clearallfields()">
+                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                Reset
+                            </button>
+                            <button class="btn btn-sm btn-info pull-right" id="btnSave" type="button" style="margin: 5px;" onclick="return SaveExpense()">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-sm btn-info pull-right" id="btnUpdate" type="button" style="display: none; margin: 5px;" onclick="return SaveExpense()">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="saveModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-me">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="btnCloseSaveModal" data-dissmiss="modal">
+                        ×
+                    </button>
+                    <h4>Expense Matched:</h4>
+                </div>
+                <div class="modal-body" id="divExpenseModal" style="min-height:250px;">
+                    <span>We found one record similar to the entry and details are</span>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label class="control-label" style="text-align: left;">Expense Type :- </label>
+                            <label class="control-label" style="text-align: left;" id="lblExpenseType"></label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="control-label" style="text-align: left;">Amount :- </label>
+                            <label class="control-label" style="text-align: left;" id="lblAmount"></label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="control-label" style="text-align: left;">Remarks :- </label>
+                            <label class="control-label" style="text-align: left;" id="lblRemarks"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return SaveExpense(true)">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Save
+                    </button>
+                    <button class="btn btn-sm btn-info pull-right" type="button" id="btnExpenseCancel" style="margin: 5px;">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    @*<div class="modal fade" tabindex="-1" id="editModal" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-me">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="btnCloseEditModal" data-dissmiss="modal">
+                            ×
+                        </button>
+                        <h4>Update Expense:</h4>
+                    </div>
+                    <div class="modal-body" id="divExpenseModal" style="min-height:150px;">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="txtEditAmount">Amount <span class="red">*</span> </label>
+                                <input type="text" id="txtEditAmount" maxlength="5" value="" placeholder="Amount" class="form-control" />
+                                <span class="red" id="spnEditAmount"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="txtEditRemarks">Remarks </label>
+                                <textarea type="text" id="txtEditRemarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
+                                <span class="red" id="spnEditRemarks"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return UpdateExpense()">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Save
+                        </button>
+                        <button class="btn btn-sm btn-info pull-right" type="button" id="btnEditExpenseCancel" style="margin: 5px;">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>*@
+    <span id="lblGridMessage" style="display:none;">No Records Found</span>
+    <div id="divExpenses">
+        <div id="gridExpenses">
+        </div>
+    </div>
+</div>
+    <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+    <script src="~/Assets/js/jquery-ui.min.js"></script>
+    <script type="text/javascript">window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");</script>
+    <script type="text/javascript">if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
+    @*<script src="~/scripts/kendo/2014.1.318/jquery.min.js"></script>*@
+    <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/expense.js"></script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            getExpenseTypes();
+            applyDatePicker();
+            getExpenses();
+            $('#txtContactNumber').bind('keyup paste', function () {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        });
+        
+    </script>
