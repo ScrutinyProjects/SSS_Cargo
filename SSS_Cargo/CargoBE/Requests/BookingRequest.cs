@@ -96,6 +96,7 @@ namespace CargoBE.Requests
         public string DriverMobileNumber { get; set; }
         public string EstimatedDateTime { get; set; }
         public string Remarks { get; set; }
+        public int InformationFromId { get; set; }
     }
 
     public class ReceivingRequest

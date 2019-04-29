@@ -687,6 +687,18 @@ function calculateprice() {
                     totalamount = totalamount + parseFloat(totalgst);
                     $('#spancalctotalamount').html(totalamount);
 
+                    if (totalamount > 0) {
+                        if (data.DiscountPercentage > 0) {
+                            discountpercentage = data.DiscountPercentage;
+                            var discount = (discountpercentage / 100) * totalamount;
+                            totalamount = totalamount - discount;
+                            $('#spancalcdiscountamount').html(discount);
+                            $('#spancalctotalafterdiscount').html(totalamount);
+                            $('#spancalcdiscountremarks').html(data.DiscountRemarks);
+                            discountremarks = data.DiscountRemarks;
+                        }
+                    }
+
                     var roundedamount = 0;
                     var roundoff = (totalamount % 5);
                     roundedamount = (roundoff <= 2) ? -(roundoff) : (5 - roundoff);
@@ -887,6 +899,14 @@ function updateprice() {
         totalamount = totalamount + parseFloat(totalgst);
         $('#spancalctotalamount').html(totalamount);
 
+        if (discountpercentage > 0) {
+            var discount = (discountpercentage / 100) * totalamount;
+            totalamount = totalamount - discount;
+            $('#spancalcdiscountamount').html(discount);
+            $('#spancalctotalafterdiscount').html(totalamount);
+            $('#spancalcdiscountremarks').html(discountremarks);
+        }
+
         var roundedamount = 0;
         var roundoff = (totalamount % 5);
         roundedamount = (roundoff <= 2) ? -(roundoff) : (5 - roundoff);
@@ -911,10 +931,12 @@ function openapplydiscountmodal() {
 }
 
 var discountremarks = '';
+var discountpercentage = 0;
 
 function validatediscountamount() {
     var discountamount = $('#textdiscountamount').val();
     var totalamount = parseFloat($('#spandiscounttotalamount').html());
+    discountpercentage = 0;
 
     if (discountamount == "") {
         $('#spandiscountamount').html("Please enter Discount Amount");

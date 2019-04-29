@@ -127,6 +127,8 @@ namespace CargoDAL
                     objresponse.ValueSRCharges = (decimal)reader["ValueSRCharges"];
                     objresponse.WithPassCharges = (decimal)reader["WithPassCharges"];
                     objresponse.TotalKms = (decimal)reader["TotalKms"];
+                    objresponse.DiscountPercentage = (decimal)reader["DiscountPercentage"];
+                    objresponse.DiscountRemarks = (string)reader["DiscountRemarks"];
                 }
             }
             catch (Exception ex)
@@ -205,10 +207,14 @@ namespace CargoDAL
                 {
                     objresponse.StatusId = (int)reader["StatusId"];
                     objresponse.StatusMessage = (string)reader["StatusMessage"];
-                    objresponse.BookingSerialNumber = CommonMethods.URLKeyEncrypt((string)reader["BookingSerialNumber"]);
-                    objresponse.BookingId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["BookingId"]));
-                    objresponse.SenderMessage = (string)reader["SenderMessage"];
-                    objresponse.ReceiverMessage = (string)reader["ReceiverMessage"];
+
+                    if (objresponse.StatusId > 0)
+                    {
+                        objresponse.BookingSerialNumber = CommonMethods.URLKeyEncrypt((string)reader["BookingSerialNumber"]);
+                        objresponse.BookingId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["BookingId"]));
+                        objresponse.SenderMessage = (string)reader["SenderMessage"];
+                        objresponse.ReceiverMessage = (string)reader["ReceiverMessage"];
+                    }
                 }
             }
             catch (Exception ex)
@@ -422,7 +428,8 @@ namespace CargoDAL
                                             new SqlParameter("@DriverName", SqlDbType.VarChar, 100) { Value = objrequest.DriverName },
                                             new SqlParameter("@DriverMobileNumber", SqlDbType.VarChar, 10) { Value = objrequest.DriverMobileNumber },
                                             new SqlParameter("@EstimatedDateTime", SqlDbType.VarChar, 50) { Value = objrequest.EstimatedDateTime },
-                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks }
+                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks },
+                                            new SqlParameter("@InformationFromId", SqlDbType.Int) { Value = objrequest.InformationFromId }
                                         };
             SqlDataReader reader = null;
             SaveRespone objresponse = new SaveRespone();

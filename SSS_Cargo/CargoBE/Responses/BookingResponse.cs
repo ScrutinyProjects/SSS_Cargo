@@ -37,6 +37,8 @@ namespace CargoBE.Responses
         public decimal LocationDeliveryCharges { get; set; }
         public decimal DoorDeliveryCharges { get; set; }
         public decimal TotalKms { get; set; }
+        public decimal DiscountPercentage { get; set; }
+        public string DiscountRemarks { get; set; }
     }
     
     public class BookingMastersResponse
@@ -57,6 +59,7 @@ namespace CargoBE.Responses
         public string StatusMessage { get; set; }
         public List<GCTypesResponse> GCTypes { get; set; }
         public List<CounterMastersResponse> Counters { get; set; }
+        public List<ToBeReceivingFromResponse> ToBeReceivingFrom { get; set; }
     }
 
     public class ReceivingMastersResponse

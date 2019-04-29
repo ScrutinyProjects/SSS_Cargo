@@ -29,6 +29,12 @@ function getmasters() {
                         }
                         $('#selectgctype').val(1);
                     }
+                    if (data.ToBeReceivingFrom != null) {
+                        for (var i = 0; i < data.ToBeReceivingFrom.length; i++) {
+                            var option = '<option value="' + data.ToBeReceivingFrom[i].InformationFromId + '">' + data.ToBeReceivingFrom[i].InformationFrom + '</option>';
+                            $('#selectrecevingfrom').append(option);
+                        }
+                    }
                     if (data.Counters != null) {
                         if (data.Counters.length > 0) {
                             var counters = [];
@@ -78,7 +84,7 @@ function validatedropdown(value, span, message) {
     }
 }
 
-function savereceiving() {
+function tobereceiveconfirm() {
     var isvalid = true;
 
     var counterid = $('#hiddencounterid').val().trim();
@@ -92,7 +98,8 @@ function savereceiving() {
     var drivername = $('#textdrivername').val().trim();
     var drivernumber = $('#textdrivernumber').val().trim();
     var remarks = $('#textremarks').val().trim();
-
+    var recevingfrom = $('#selectrecevingfrom').val().trim();
+    
     if (validatetextbox(gcnuber, $('#spangcnuber'), 'Please enter GC Number') == false) {
         isvalid = false;
     }
@@ -111,6 +118,9 @@ function savereceiving() {
     if (validatetextbox(drivernumber, $('#spandrivernumber'), 'Please enter Driver Mobile Number') == false) {
         isvalid = false;
     }
+    if (validatedropdown(recevingfrom, $('#spanrecevingfrom'), 'Please select Information From') == false) {
+        isvalid = false;
+    }
 
     if (isvalid) {
         showloading();
@@ -126,7 +136,8 @@ function savereceiving() {
             GCBookingNumber: gcnuber,
             GCType: gctype,
             Remarks: remarks,
-            NumberOfPieces: numberofpieces
+            NumberOfPieces: numberofpieces,
+            InformationFromId: recevingfrom
         };
 
         $.ajax({
@@ -143,6 +154,7 @@ function savereceiving() {
                     else {
                         showwarningalert(data.StatusMessage);
                     }
+                    $('#closemodaltoberecieve').click();
                 }
                 hideloading();
             },
@@ -163,6 +175,12 @@ function clearallfields() {
     $('#textdrivername').val('');
     $('#textdrivernumber').val('');
     $('#textremarks').val('');
-
+    $('#selectrecevingfrom').val('0');
+    
     tocounterid = '';
+}
+
+function savereceiving() {
+    $('#spanconfirmgnnum').html($('#textgcnuber').val());
+    $('#modaltoberecieve').modal();
 }

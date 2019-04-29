@@ -23,6 +23,12 @@ namespace CargoBE.Responses
         public string CounterName { get; set; }
     }
 
+    public class ToBeReceivingFromResponse
+    {
+        public int InformationFromId { get; set; }
+        public string InformationFrom { get; set; }
+    }
+
     public class ParcelTypesResponse
     {
         public int ParcelTypeId { get; set; }
