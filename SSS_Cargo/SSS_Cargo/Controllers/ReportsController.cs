@@ -1,5 +1,6 @@
 ﻿using CargoBAL;
 using CargoBE.Responses;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,25 @@ namespace SSS_Cargo.Controllers
             }
             return new { Locations = lstCounterMastersResponse, GCTypes = lstGCTypesResponse, BookingStatus = lstBookingStatusResponse };
         }
+
+
+        [Route("getbookingreport")]
+        [HttpPost]
+        public List<BookingReportResponse> GetBookingReport(JObject input)
+        {
+            List<BookingReportResponse> lstBookingReportResponse = null;
+            try
+            {
+                lstBookingReportResponse = objReportsBal.GetBookingReport(input);
+               
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return lstBookingReportResponse;
+        }
+
         #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CargoBE;
 using Microsoft.ApplicationBlocks.Data;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -27,7 +28,7 @@ namespace CargoDAL
                 SqlParameter[] sqlparams = {
                                             new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(loginId)) },
                                             new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(counterId)) },
-                                            new SqlParameter("@RequestType", SqlDbType.Date) { Value = requestType }
+                                            new SqlParameter("@RequestType", SqlDbType.VarChar) { Value = requestType }
                                         };
                 dsLocations = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetMyLocations", sqlparams);
             }
@@ -62,6 +63,30 @@ namespace CargoDAL
 
             }
             return dsBookingStatus;
+        }
+
+        public DataSet GetBookingReport(JObject input)
+        {
+            DataSet dsBookingReport = null;
+            try
+            {
+                SqlParameter[] sqlparams = {
+                                            new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
+                                            new SqlParameter("@FromDate", SqlDbType.DateTime) { Value = Convert.ToString(input["FromDate"]) },
+                                            new SqlParameter("@ToDate", SqlDbType.DateTime) { Value = Convert.ToString(input["ToDate"]) },
+                                            new SqlParameter("@LocationId", SqlDbType.Int) { Value = Convert.ToString(input["LocationId"]) },
+                                            new SqlParameter("@GCTypeId", SqlDbType.Int) { Value = Convert.ToString(input["GCTypeId"]) },
+                                            new SqlParameter("@BookingStatusId", SqlDbType.Int) { Value = Convert.ToString(input["BookingStatusId"]) }
+
+                                        };
+                dsBookingReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetBookingReport", sqlparams);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsBookingReport;
         }
         #endregion
     }

@@ -133,7 +133,6 @@ function getExpenses(dateOfExpense)
                 if (editable)
                     commands.push({
                         name: "Edit", click: function (e) {
-                            debugger;
                             var grid = $("#gridExpenses").data("kendoGrid");
                             var rowData = grid.dataItem($(e.target).parent().closest("tr"));
 
@@ -158,7 +157,6 @@ function getExpenses(dateOfExpense)
                 if (deletable)
                     commands.push({
                         name: "Delete", click: function (e) {
-                            debugger;
                             if (confirm("Are you sure do you want to delete?")) {
                                 var grid = $("#gridExpenses").data("kendoGrid");
                                 var rowData = grid.dataItem($(e.target).parent().closest("tr"));
@@ -270,7 +268,6 @@ function clearallfields() {
 }
 
 function SaveExpense(isVerified) {
-    debugger;
     var isvalid = true;
 
     var loginid = $('#hiddenloginid').val().trim();
@@ -359,67 +356,3 @@ function SaveExpense(isVerified) {
         });
     }
 }
-//function UpdateExpense()
-//{
-//    var isvalid = true;
-
-//    var loginid = $('#hiddenloginid').val().trim();
-//    var counterid = $('#hiddencounterid').val().trim();
-//    var amount = $('#txtEditAmount').val();
-//    var remarks = $('#txtEditRemarks').val().trim();
-
-//    if (validatetextbox(amount, $('#spnEditAmount'), 'Please enter Amount') == false) {
-//        isvalid = false;
-//    }
-//    if (validatetextbox(remarks, $('#spnEditRemarks'), 'Please enter remarks') == false) {
-//        isvalid = false;
-//    }
-
-//    if (isvalid) {
-//        showloading();
-//        if (!isVerified)
-//            isVerified = false;
-//        var input = {};
-//        input = {
-//            ExpenseId: expenseId,
-//            Amount: amount,
-//            CreatedBy: loginid,
-//            CounterId: counterid,
-//            EditRemarks: remarks
-//        };
-
-//        $.ajax({
-//            type: "POST",
-//            data: (input),
-//            url: apiurl + "api/expense/saveexpense?isVerified=" + isVerified,
-//            dataType: "json",
-//            success: function (data) {
-//                if (data.objSaveResponse && data.objSaveResponse.StatusId == 1) {
-//                    showsuccessalert(data.objSaveResponse.StatusMessage);
-//                    getExpenses();
-//                    clearallfields();
-//                    if (isVerified)
-//                        $("#saveModal").modal('hide');
-//                }
-//                else if (data.objSaveResponse.StatusId == 3) {
-//                    showwarningalert(data.objSaveResponse.StatusMessage);
-//                }
-//                else if (data.objSaveResponse.StatusId == 2 && data.objExpenseRequest) {
-//                    $("#lblExpenseType").text(data.objExpenseRequest.ExpenseType);
-//                    $("#lblAmount").text(data.objExpenseRequest.Amount);
-//                    $("#lblRemarks").text(data.objExpenseRequest.Remarks);
-//                    $("#saveModal").modal('show');
-//                    $("#btnCloseSaveModal, #btnExpenseCancel").unbind().click(function () {
-//                        $("#saveModal").modal('hide');
-//                    });
-//                }
-//                hideloading();
-//            },
-//            error: function (xhr) {
-//                hideloading();
-//                showerroralert(xhr.responseText);
-//            }
-//        });
-//    }
-//}
-

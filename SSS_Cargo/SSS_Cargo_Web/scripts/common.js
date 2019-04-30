@@ -1,5 +1,5 @@
 ﻿var apiurl = "http://localhost:15333/";
-var weburl = "http://localhost:50963/";
+var weburl = "http://localhost:50964/";
 //var apiurl = "http://api.ssclogistics.co.in/";
 //var weburl = "http://ssclogistics.co.in/";
 
