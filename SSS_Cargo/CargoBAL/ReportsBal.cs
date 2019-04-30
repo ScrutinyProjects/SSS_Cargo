@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CargoDAL;
 using CargoBE.Responses;
 using System.Data;
+using Newtonsoft.Json.Linq;
 
 namespace CargoBAL
 {
@@ -102,6 +103,53 @@ namespace CargoBAL
             }
             return lstBookingStatus;
         }
+
+
+
+        public List<BookingReportResponse> GetBookingReport(JObject input)
+        {
+            List<BookingReportResponse> lstBookingReportResponse = null;
+
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = objReportsDal.GetBookingReport(input);
+
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        lstBookingReportResponse = ds.Tables[0].AsEnumerable().
+                                           Select(x => new BookingReportResponse
+                                           {
+                                               BookingId = x.Field<int>("BookingId"),
+                                               GC_No = x.Field<string>("GC_No"),
+                                               GC_Type = x.Field<string>("GC_Type"),
+                                               FromLocation = x.Field<string>("FromLocation"),
+                                               ToLocation = x.Field<string>("ToLocation"),
+                                               RouteInfo = x.Field<string>("RouteInfo"),
+                                               ProductType = x.Field<string>("ProductType"),
+                                               Pieces = x.Field<int>("Pieces"),
+                                               WeightInfo = x.Field<decimal>("WeightInfo"),
+                                               SenderName = x.Field<string>("SenderName"),
+                                               SenderMobileNumber = x.Field<string>("SenderMobileNumber"),
+                                               ReceiverName = x.Field<string>("ReceiverName"),
+                                               ReceiverMobileNumber = x.Field<string>("ReceiverMobileNumber"),
+                                               CurrentStatus = x.Field<string>("CurrentStatus"),
+                                               BillAmount = x.Field<decimal>("BillAmount"),
+                                               BookedBy = x.Field<string>("BookedBy"),
+                                               BookedDateTime = x.Field<DateTime>("BookedDateTime")
+                                           }).ToList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return lstBookingReportResponse;
+        }
+
         #endregion
     }
 }

@@ -182,4 +182,32 @@ namespace CargoBE.Responses
         public decimal GrandTotal { get; set; }
         public string barcodeImage { get; set; }
     }
+
+    public class BookingReportResponse
+    {
+        public int BookingId { get; set; }
+        public string GC_No { get; set; }
+        public string GC_Type { get; set; }
+
+        public string FromLocation { get; set; }
+        public string ToLocation { get; set; }
+        public string RouteInfo { get; set; }
+
+        public string ProductType { get; set; }
+        public int Pieces { get; set; }
+        public decimal WeightInfo { get; set; }
+        public string SenderName { get; set; }
+        public string SenderMobileNumber { get; set; }
+
+        public string ReceiverName { get; set; }
+
+        public string ReceiverMobileNumber { get; set; }
+
+        public string CurrentStatus { get; set; }
+
+        public decimal BillAmount { get; set; }
+        public string BookedBy { get; set; }
+        public DateTime BookedDateTime { get; set; }
+
+    }
 }

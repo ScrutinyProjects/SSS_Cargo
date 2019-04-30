@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CargoConfig>
+  <Expense>
+    <EditRoles>Super Admin, Admin,Agent,Counter Operator</EditRoles>
+    <DeleteRoles>Super Admin, Admin,Agent,Counter Operator</DeleteRoles>
+  </Expense>
+</CargoConfig>
