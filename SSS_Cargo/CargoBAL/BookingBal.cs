@@ -273,6 +273,8 @@ namespace CargoBAL
                 objrequest.LocationPickupCharges = Convert.ToDecimal(input["LocationPickupCharges"]);
                 objrequest.LocationDeliveryCharges = Convert.ToDecimal(input["LocationDeliveryCharges"]);
                 objrequest.DoorDeliveryCharges = Convert.ToDecimal(input["DoorDeliveryCharges"]);
+                objrequest.DriverCharges = Convert.ToDecimal(input["DriverCharges"]);
+                objrequest.ToPayCharges = Convert.ToDecimal(input["ToPayCharges"]);
                 objrequest.SubTotal = Convert.ToDecimal(input["SubTotal"]);
                 objrequest.GSTCharges = Convert.ToDecimal(input["GSTCharges"]);
                 objrequest.TotalAmount = Convert.ToDecimal(input["TotalAmount"]);

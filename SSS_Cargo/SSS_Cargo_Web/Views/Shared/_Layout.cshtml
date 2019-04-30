@@ -1,11 +1,13 @@
 ﻿@using CargoBE.Responses;
+@using SSS_Cargo_Web;
+@*@using Microsoft.AspNetCore.Http*@
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title></title>
+    <title>SSCargo Logistics</title>
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -26,10 +28,13 @@
 </head>
 
 <body class="no-skin">
+    @*@var username = "";
+    @var countername = "";*@
+
     @*@if (Session["SessionLogin"] != null)
     {
-        LoginResponse response = (LoginResponse)Session["SessionLogin"];*@
-        <div>
+        LoginResponse response = (LoginResponse)Session["SessionLogin"];
+    *@
 
             <div id="divLoading" style="display: none; position: fixed; z-index: 5000; height: 760px; padding-top: 200px; width: 100%;">
                 <center><img src="~/Assets/images/loading.gif" style="padding-left:45px;" /></center>
@@ -61,11 +66,7 @@
                                 <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                                     <!-------created by Harish On (09/01/17)------->
                                     <span>
-                                        <small>Welcome, User</small>
-                                        @*@loginresponse.Name.ToString()*@
-                                    </span>
-                                    <span style="display: none;" id="spandesignation">
-                                        @*@loginresponse.CounterName.ToString()*@
+                                        <small>Welcome, @ViewBag.Name - @ViewBag.CounterName</small>
                                     </span>
                                     <span class="ace-icon fa fa-caret-down"></span>
                                     <!-----------end---------->
@@ -161,9 +162,8 @@
                 </a>
             </div>
 
-        </div>
     <!-- page specific plugin scripts -->
-    @*  *@}
+    @*}*@
     <script src="~/Assets/js/jquery-ui.custom.min.js"></script>
     <script src="~/Assets/js/jquery.ui.touch-punch.min.js"></script>
     <script src="~/Assets/js/jquery.easypiechart.min.js"></script>

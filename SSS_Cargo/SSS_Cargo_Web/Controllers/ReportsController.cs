@@ -24,6 +24,8 @@ namespace SSS_Cargo_Web.Controllers
             else
             {
                 LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.LoginId = loginresponse.LoginId;
                 ViewBag.CounterId = loginresponse.CounterId;
                 return View();

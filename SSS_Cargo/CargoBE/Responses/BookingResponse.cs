@@ -38,6 +38,8 @@ namespace CargoBE.Responses
         public decimal DoorDeliveryCharges { get; set; }
         public decimal TotalKms { get; set; }
         public decimal DiscountPercentage { get; set; }
+        public decimal DriverCharges { get; set; }
+        public decimal ToPayCharges { get; set; }
         public string DiscountRemarks { get; set; }
     }
     
@@ -172,6 +174,8 @@ namespace CargoBE.Responses
         public decimal SurCharges { get; set; }
         public decimal ValueSurCharges { get; set; }
         public decimal WithPassCharges { get; set; }
+        public decimal DriverCharges { get; set; }
+        public decimal ToPayCharges { get; set; }
         public decimal AOCCharges { get; set; }
         public decimal TranshipmentCharges { get; set; }
         public decimal CollectionCharges { get; set; }

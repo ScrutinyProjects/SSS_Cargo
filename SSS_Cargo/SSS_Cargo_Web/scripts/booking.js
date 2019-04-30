@@ -678,7 +678,15 @@ function calculateprice() {
                     totalamount = totalamount + data.DoorDeliveryCharges;
                     $('#spancalcdoordeliverycharges').html(data.DoorDeliveryCharges);
                     $('#textdoordeliverycharges').val(data.DoorDeliveryCharges);
-
+                    
+                    totalamount = totalamount + data.DriverCharges;
+                    $('#spancalcdrivercharges').html(data.DriverCharges);
+                    $('#textdrivercharges').val(data.DriverCharges);
+                    
+                    totalamount = totalamount + data.ToPayCharges;
+                    $('#spancalctopaycharges').html(data.ToPayCharges);
+                    $('#texttopaycharges').val(data.ToPayCharges);
+ 
                     $('#spancalcsubtotal').html(totalamount);
 
                     var totalgst = parseFloat((gst / 100) * totalamount).toFixed(2);
@@ -770,6 +778,8 @@ function updateprice() {
     var locationpickupcharges = $('#textlocationpickupcharges').val();
     var locationdeliverycharges = $('#textlocationdeliverycharges').val();
     var doordeliverycharges = $('#textdoordeliverycharges').val();
+    var drivercharges = $('#textdrivercharges').val();
+    var topaycharges = $('#texttopaycharges').val();
     var viewpriceeditremarks = $('#textpriceeditremarks').val();
 
     var isvalid = true;
@@ -881,6 +891,22 @@ function updateprice() {
     else {
         totalamount = totalamount + parseFloat(doordeliverycharges);
         $('#spancalcdoordeliverycharges').html(doordeliverycharges);
+    }
+    if (drivercharges == "") {
+        isvalid = false;
+        $('#spandrivercharges').html("Please enter Driver Charges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(drivercharges);
+        $('#spancalcdrivercharges').html(drivercharges);
+    }
+    if (topaycharges == "") {
+        isvalid = false;
+        $('#spantopaycharges').html("Please enter Topay Charges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(topaycharges);
+        $('#spancalctopaycharges').html(topaycharges);
     }
     if (viewpriceeditremarks == "") {
         isvalid = false;
@@ -1032,6 +1058,8 @@ function savebooking() {
     var locationpickupcharges = $('#spancalclocationpickupcharges').html();
     var locationdeliverycharges = $('#spancalclocationdeliverycharges').html();
     var doordeliverycharges = $('#spancalcdoordeliverycharges').html();
+    var drivercharges = $('#spancalcdrivercharges').html();
+    var topaycharges = $('#spancalctopaycharges').html();
     var subtotal = $('#spancalcsubtotal').html();
     var calcgst = $('#spancalcgst').html();
     var calctotalamount = $('#spancalctotalamount').html();
@@ -1172,6 +1200,8 @@ function savebooking() {
             LocationPickupCharges: locationpickupcharges,
             LocationDeliveryCharges: locationdeliverycharges,
             DoorDeliveryCharges: doordeliverycharges,
+            DriverCharges: drivercharges,
+            ToPayCharges: topaycharges,
             SubTotal: subtotal,
             GSTCharges: calcgst,
             TotalAmount: calctotalamount,

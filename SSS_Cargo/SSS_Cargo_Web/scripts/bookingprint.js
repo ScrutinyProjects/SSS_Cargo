@@ -48,7 +48,9 @@
                     $('.collectioncharges').html(parseFloat(data.CollectionCharges).toFixed(2));
                     $('.pickupcharges').html(parseFloat(data.PickupCharges).toFixed(2));
                     $('.locationdeliverycharges').html(parseFloat(data.LocationDeliveryCharges).toFixed(2));
-                    $('.doordeliverycharges').html(parseFloat(data.DoorDeliveryCharges).toFixed(2));
+                    $('.doordeliverycharges').html(parseFloat(data.DoorDeliveryCharges).toFixed(2)); 
+                    $('.drivercharges').html(parseFloat(data.DriverCharges).toFixed(2));
+                    $('.topaycharges').html(parseFloat(data.ToPayCharges).toFixed(2));
                     $('.subtotal').html(parseFloat(data.SubTotal).toFixed(2));
                     $('.gstamount').html(parseFloat(data.GSTAmount).toFixed(2));
                     $('.discount').html(parseFloat(data.DiscountAmount).toFixed(2));
