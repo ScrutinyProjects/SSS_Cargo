@@ -437,7 +437,16 @@ namespace CargoBAL
                                            }).ToList();
 
                         objresponse.Counters = counters;
-                        
+
+                        var receivingfrom = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 3).
+                                           Select(x => new ToBeReceivingFromResponse
+                                           {
+                                               InformationFromId = x.Field<int>("Id"),
+                                               InformationFrom = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.ToBeReceivingFrom = receivingfrom;
+
                         objresponse.StatusId = 1;
                         objresponse.StatusMessage = "Valid";
                     }
@@ -469,6 +478,7 @@ namespace CargoBAL
                 objrequest.GCType = Convert.ToInt32(input["GCType"]);
                 objrequest.Remarks = Convert.ToString(input["Remarks"]);
                 objrequest.NumberOfPieces = Convert.ToInt32(input["NumberOfPieces"]);
+                objrequest.InformationFromId = Convert.ToInt32(input["InformationFromId"]);
 
                 objresponse = objBookingDal.InsertToBeReceiveDetails(objrequest);
             }
