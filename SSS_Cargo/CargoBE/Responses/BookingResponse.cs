@@ -73,6 +73,13 @@ namespace CargoBE.Responses
         public List<ReceivingTypesResponse> ReceivingTypes { get; set; }
     }
 
+    public class DeliveryMastersResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public List<GCTypesResponse> GCTypes { get; set; }
+    }
+
     public class CustomerDetailsResponse
     {
         public int StatusId { get; set; }
@@ -130,6 +137,28 @@ namespace CargoBE.Responses
         public string EstimatedDateTime { get; set; }
         public string Remarks { get; set; }
         public decimal TotalWeight { get; set; }
+    }
+
+    public class ReceiveDetailsByBookingNumber
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public int BookingId { get; set; }
+        public int ReceivingId { get; set; }
+        public int GCTypeId { get; set; }
+        public string GCType { get; set; }
+        public string MeasurementIn { get; set; }
+        public string GCBookingNumber { get; set; }
+        public string FromCounterName { get; set; }
+        public int NumberOfPieces { get; set; }
+        public string DriverName { get; set; }
+        public string VehicleNumber { get; set; }
+        public string DriverNumber { get; set; }
+        public decimal TotalWeight { get; set; }
+        public string EstimatedDateTime { get; set; }
+        public string Remarks { get; set; }
+        public string DeliveryToName { get; set; }
+        public string DeliveryToNumber { get; set; }
     }
     
     public class BookingParcelDetails

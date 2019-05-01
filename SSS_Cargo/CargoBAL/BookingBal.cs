@@ -622,6 +622,92 @@ namespace CargoBAL
             return objresponse;
         }
 
+        public DeliveryMastersResponse GetMastersForDelivery(JObject input)
+        {
+            DeliveryMastersResponse objresponse = new DeliveryMastersResponse();
+
+            try
+            {
+                DataSet ds = new DataSet();
+
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                int loginid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"])));
+
+                ds = objBookingDal.GetMastersForDelivery(counterid, loginid);
+
+                if (ds != null)
+                {
+                    if (ds.Tables.Count > 0)
+                    {
+                        var gctypes = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 1).
+                                           Select(x => new GCTypesResponse
+                                           {
+                                               GCTypeId = x.Field<int>("Id"),
+                                               GCType = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.GCTypes = gctypes;
+                        
+                        objresponse.StatusId = 1;
+                        objresponse.StatusMessage = "Valid";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public ReceiveDetailsByBookingNumber GetReceivingDetailsByBookingNumber(JObject input)
+        {
+            ReceiveDetailsByBookingNumber objresponse = new ReceiveDetailsByBookingNumber();
+
+            try
+            {
+                string bookingnumber = Convert.ToString(input["BookingNumber"]);
+                int counterid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+
+                objresponse = objBookingDal.GetReceivingDetailsByBookingNumber(bookingnumber, counterid);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public SaveRespone InsertDeliveryDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+
+            try
+            {
+                DeliveryRequest objrequest = new DeliveryRequest();
+
+                objrequest.CounterId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"])));
+                objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["UserLoginId"])));
+                objrequest.BookingId = Convert.ToInt32(input["BookingId"]);
+                objrequest.GCBookingNumber = Convert.ToString(input["GCBookingNumber"]);
+                objrequest.GCType = Convert.ToInt32(input["GCType"]);
+                objrequest.Remarks = Convert.ToString(input["Remarks"]);
+                objrequest.DeliveryCharges = Convert.ToDecimal(input["DeliveryCharges"]);
+                objrequest.DemoCharges = Convert.ToDecimal(input["DemoCharges"]);
+                objrequest.ReceivingId = Convert.ToInt32(input["ReceivingId"]);
+
+                objresponse = objBookingDal.InsertDeliveryDetails(objrequest);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }
