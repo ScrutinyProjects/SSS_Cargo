@@ -121,17 +121,4 @@ namespace CargoBE.Requests
         public string DeliveryToNumber { get; set; }
         public string Remarks { get; set; }
     }
-
-    public class DeliveryRequest
-    {
-        public int UserLoginId { get; set; }
-        public int ReceivingId { get; set; }
-        public int CounterId { get; set; }
-        public int BookingId { get; set; }
-        public string GCBookingNumber { get; set; }
-        public int GCType { get; set; }
-        public decimal DeliveryCharges { get; set; }
-        public decimal DemoCharges { get; set; }
-        public string Remarks { get; set; }
-    }
 }

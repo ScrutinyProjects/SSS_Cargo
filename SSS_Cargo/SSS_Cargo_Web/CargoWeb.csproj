@@ -507,8 +507,11 @@
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.ttf" />
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery-1.9.1.min.map" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="scripts\delivery.js" />
     <Content Include="scripts\expense.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
@@ -944,12 +947,9 @@
     <Content Include="scripts\kendo\2014.1.318\kendo.window.min.js" />
     <Content Include="scripts\loading.js" />
     <Content Include="scripts\login.js" />
-    <Content Include="scripts\moment.js" />
     <Content Include="scripts\receiving.js" />
     <Content Include="scripts\tobereceive.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

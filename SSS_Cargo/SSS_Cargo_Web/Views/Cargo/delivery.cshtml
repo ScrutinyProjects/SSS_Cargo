@@ -8,19 +8,19 @@
         <li>
             Home
         </li>
-        <li class="active" style="font-size:14px; font-weight:600">
-            Delivery
-        </li>
+        <li class="active">Delivery</li>
     </ul>
 </div>
 <div class="page-content">
-    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
-    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
-    <input type="hidden" id="hiddenmobilenumber" value="@ViewBag.ContactNumber" />
-   
+    <div class="page-header">
+        <h1>
+            Delivery
+        </h1>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form">
                 <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
                     <strong>Warning!</strong>
                     <span id="spanWarningAlert"></span>
@@ -33,105 +33,128 @@
                     <strong>Success!</strong>
                     <span id="spanSuccessAlert"></span>
                 </div>
+                @*<input type="hidden" id="hiddenloginid" value="@ViewBag.LoginID" />*@
                 <div class="panel">
                     <div class="panel-body">
                         <div class="form-group">
-                            <div class="col-sm-3">
-                                <label class="control-label" style="text-align: left;" for="textgcnuber">GC Number <span class="red">*</span> </label>
-                                <input type="text" id="textgcnuber" maxlength="20" value="" placeholder="GC Number" class="form-control" />
-                                <span class="red" id="spangcnuber"></span>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="selectcircle">GC Number <span class="red">*</span> </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="" placeholder="GC Number" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancirclehelper"></span>
                             </div>
-                            <div style="float: left;">
-                                <button class="btn btn-sm btn-primary pull-right" type="button" style="margin: 25px 5px 5px 5px;" onclick="return searchbooking()">
-                                    <i class="ace-icon fa fa-search bigger-110"></i>
-                                    Search
-                                </button>
+                            <div class="form-group" style="background-color: #fff;">
+                                <div style="float: left;">
+                                    <button class="btn btn-sm btn-primary pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
+                                        <i class="ace-icon  bigger-110"></i>
+                                        GO
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4 class="panel-title" style="font-size: 14px;">Receiving Details</h4>
+                        <h4 class="panel-title">Receiving Details</h4>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">From <span style="float:right">:</span></label>
-                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryfrom">--</label>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">From  </label>
+                            <label class="col-sm-1 control-label" style="text-align: left;" for="textcode">:  </label>
+                            <div class="col-sm-3">
+                                <label id="spancodehelper">Hanamkonda</label>
                             </div>
-                            <div class="">
-                                <div class="col-sm-3">
-                                    <label class="control-label" style="text-align: left;" for="textgctype">GC Type <span class="red">*</span> </label>
-                                    <select class="col-xs-10" id="textgctype">
-                                        <option value="0">Select GC Type</option>
-                                    </select>
-                                    <span class="red" id="spandeliverygctype"></span>
-                                </div> 
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="selectcircle">GC Type <span class="red">*</span> </label>
+                            <div class="col-sm-4">
+                                <select class="col-xs-10" id="selectcircle" onchange="GetWards(this)">
+                                    <option value="0">Select GC Type</option>
+                                </select>
+                                <br />
+                                <br />
+                                <span class="red" id="spancirclehelper"></span>
                             </div>
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Pieces <span style="float:right">:</span></label>
-                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliverypieces">--</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Pieces  </label>
+                            <label class="col-sm-1 control-label" style="text-align: left;" for="textcode">:  </label>
+                            <div class="col-sm-3">
+                                <label id="spancodehelper">10</label>
                             </div>
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Weight <span style="float:right">:</span></label>
-                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryweight">--</label>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Weight  </label>
+                            <label class="col-sm-1 control-label" style="text-align: left;" for="textcode">:  </label>
+                            <div class="col-sm-3">
+                                <label id="spancodehelper">20 Kgs</label>
                             </div>
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Delivery To <span style="float:right">:</span></label>
-                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryto">--</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Delivery To   </label>
+                            <label class="col-sm-1 control-label" style="text-align: left;" for="textcode">:  </label>
+                            <div class="col-sm-3">
+                                <label id="spancodehelper">Delivery To</label>
                             </div>
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Phone Number <span style="float:right">:</span></label>
-                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryphonenumber">--</label>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Phone Number  </label>
+                            <label class="col-sm-1 control-label" style="text-align: left;" for="textcode">:  </label>
+                            <div class="col-sm-3">
+                                <label id="spancodehelper">Phone Number</label>
                             </div>
-                            <div class="">
-                                <label class="col-sm-2 control-label" style="text-align: left;">Remarks <span style="float:right">:</span></label>
-                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spandeliverytoberemarks">--</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Remarks  </label>
+                            <label class="col-sm-1 control-label" style="text-align: left;" for="textcode">:  </label>
+                            <div class="col-sm-9">
+                                <label id="spancodehelper">Remarks</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Delivery Charges   </label>
+                            <div class="col-sm-4">
+                                <input type="text" id="textcode" maxlength="20" value="40" placeholder="Delivery Charges" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                            <label class="col-sm-2 control-label" style="text-align: left;" for="textcode">Demo Charges   </label>
+                            <div class="col-sm-3">
+                                <input type="text" id="textcode" maxlength="20" value="5" placeholder="Demo Charges" class="col-xs-10" />
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: left;" for="textcode">Remarks  </label>
+                            <div class="col-sm-4">
+                                <textarea type="text" id="textcode" maxlength="500" rows="3" value="" placeholder="Remarks" class="col-xs-10"></textarea>
+                                <br />
+                                <br />
+                                <span class="red" id="spancodehelper"></span>
                             </div>
                         </div>
                     </div>
                 </div>
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="textdeliverycharges">Delivery Charges </label>
-                            <input type="text" id="textdeliverycharges" maxlength="6" value="0" placeholder="Delivery Charges" class="form-control" />
-                            <span class="red" id="spandeliverycharges"></span>
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="textdemocharges">Demo Charges </label>
-                            <input type="text" id="textdemocharges" maxlength="6" value="0" placeholder="Demo Charges" class="form-control" />
-                            <span class="red" id="spandemocharges"></span>
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="control-label" style="text-align: left;" for="textdeliveryremarks">Remarks </label>
-                            <textarea type="text" id="textdeliveryremarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
-                            <span class="red" id="spandeliveryremarks"></span>
-                        </div>
+
+                <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                    <div style="width: 95%;">
+                        <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="ResetFields()">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            Reset
+                        </button>
+                        <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return ValidateSave()">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Update Delivery
+                        </button>
                     </div>
                 </div>
-            </div>
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
-                        <div style="width: 95%;">
-                            <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="clearallfields()">
-                                <i class="ace-icon fa fa-undo bigger-110"></i>
-                                Reset
-                            </button>
-                            <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return updatedelivery()">
-                                <i class="ace-icon fa fa-check bigger-110"></i>
-                                Update Delivery
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            </form>
         </div>
     </div>
 </div>
+
+
+
 
 <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
 
@@ -144,12 +167,22 @@
 </script>
 <script src="~/Assets/js/bootstrap.min.js"></script>
 
-<script src="~/scripts/common.js"></script>
-<script src="~/scripts/delivery.js"></script>
+<!-- page specific plugin scripts -->
+<script src="~/Assets/js/jquery.dataTables.min.js"></script>
+<script src="~/Assets/js/jquery.dataTables.bootstrap.min.js"></script>
+<script src="~/Assets/js/dataTables.tableTools.min.js"></script>
+<script src="~/Assets/js/dataTables.colVis.min.js"></script>
 
+@*<script src="~/Scripts/common.js"></script>
+    <script src="~/Scripts/Area.js"></script>*@
 <script type="text/javascript">
-    jQuery(function ($) {       
-        getmasters();
+    jQuery(function ($) {
+        //$('.main-menu').removeClass('active');
+        //$('.sub-menu').removeClass('active');
+        //$('#menumasters').addClass('active open');
+        //$('#menuarea').addClass('active');
+        //GetCircles();
+        //GetAreas();
     });
 
 </script>
