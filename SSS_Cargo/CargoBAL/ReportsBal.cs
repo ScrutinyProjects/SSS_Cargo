@@ -130,7 +130,7 @@ namespace CargoBAL
                                                RouteInfo = x.Field<string>("RouteInfo"),
                                                ProductType = x.Field<string>("ProductType"),
                                                Pieces = x.Field<int>("Pieces"),
-                                               WeightInfo = x.Field<decimal>("WeightInfo"),
+                                               WeightInfo = x.Field<string>("WeightInfo"),
                                                SenderName = x.Field<string>("SenderName"),
                                                SenderMobileNumber = x.Field<string>("SenderMobileNumber"),
                                                ReceiverName = x.Field<string>("ReceiverName"),

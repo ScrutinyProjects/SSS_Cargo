@@ -35,7 +35,7 @@ function getmasters() {
                             var option = '<option value="' + data.GCTypes[i].GCTypeId + '">' + data.GCTypes[i].GCType + '</option>';
                             $('#selectgctype').append(option);
                         }
-                        $('#selectgctype').val(1);
+                        $('#selectgctype').val(0);
                     }
                     if (data.ParcelTypes != null) {
                         for (var i = 0; i < data.ParcelTypes.length; i++) {

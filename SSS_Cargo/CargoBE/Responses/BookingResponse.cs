@@ -202,7 +202,7 @@ namespace CargoBE.Responses
 
         public string ProductType { get; set; }
         public int Pieces { get; set; }
-        public decimal WeightInfo { get; set; }
+        public string WeightInfo { get; set; }
         public string SenderName { get; set; }
         public string SenderMobileNumber { get; set; }
 

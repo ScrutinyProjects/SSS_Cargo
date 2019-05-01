@@ -194,8 +194,7 @@ function viewbillbreakup(bookingId) {
 }
 function updatestatus(bookingId) {
     debugger;
-    if (lstBookingStatus && lstBookingStatus.length > 0) {
-        
+    if (lstBookingStatus && lstBookingStatus.length > 0 && $('#ddlLatestBookingStatus option').length == 1) {
         for (var i = 0; i < lstBookingStatus.length; i++) {
             var option = '<option value="' + lstBookingStatus[i].BookingStatusId + '">' + lstBookingStatus[i].BookingStatus + '</option>';
             $('#ddlLatestBookingStatus').append(option);
