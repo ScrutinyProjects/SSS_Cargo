@@ -269,6 +269,60 @@ namespace SSS_Cargo.Controllers
             return objresponse;
         }
 
+        [AllowAnonymous]
+        [Route("getmastersfordelivery")]
+        [HttpPost]
+        public DeliveryMastersResponse GetMastersForDelivery(JObject input)
+        {
+            DeliveryMastersResponse objresponse = new DeliveryMastersResponse();
+            try
+            {
+                objresponse = objBookingBal.GetMastersForDelivery(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("getreceivingdetailsbybookingnumber")]
+        [HttpPost]
+        public ReceiveDetailsByBookingNumber GetReceivingDetailsByBookingNumber(JObject input)
+        {
+            ReceiveDetailsByBookingNumber objresponse = new ReceiveDetailsByBookingNumber();
+            try
+            {
+                objresponse = objBookingBal.GetReceivingDetailsByBookingNumber(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("insertdeliverydetails")]
+        [HttpPost]
+        public SaveRespone InsertDeliveryDetails(JObject input)
+        {
+            SaveRespone objresponse = new SaveRespone();
+            try
+            {
+                objresponse = objBookingBal.InsertDeliveryDetails(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
         #endregion
     }
 }
