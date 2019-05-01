@@ -130,7 +130,7 @@ namespace CargoBAL
                                                RouteInfo = x.Field<string>("RouteInfo"),
                                                ProductType = x.Field<string>("ProductType"),
                                                Pieces = x.Field<int>("Pieces"),
-                                               WeightInfo = x.Field<decimal>("WeightInfo"),
+                                               WeightInfo = x.Field<string>("WeightInfo"),
                                                SenderName = x.Field<string>("SenderName"),
                                                SenderMobileNumber = x.Field<string>("SenderMobileNumber"),
                                                ReceiverName = x.Field<string>("ReceiverName"),
@@ -150,6 +150,65 @@ namespace CargoBAL
             return lstBookingReportResponse;
         }
 
+        public bool UpdateBookingStatus(JObject input)
+        {
+            bool result = false;
+            try
+            {
+                result = objReportsDal.UpdateBookingStatus(input);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
+        public BookingPriceResponse BookingPriceDetails(int bookingId)
+        {
+            BookingPriceResponse objBookingPriceResponse = null;
+            try
+            {
+                DataSet ds = objReportsDal.BookingPriceDetails(bookingId);
+                if(ds != null && ds.Tables.Count >0 && ds.Tables[0].Rows.Count>0)
+                {
+                    objBookingPriceResponse = ds.Tables[0].AsEnumerable().
+                                          Select(x => new BookingPriceResponse
+                                          {
+                                              BasicFrieght = x.Field<decimal>("BasicFrieght"),
+                                              Hamali = x.Field<decimal>("Hamali"),
+                                              SC60 = x.Field<decimal>("SC60"),
+                                              ValueSC = x.Field<decimal>("ValueSC"),
+                                              StatCharges = x.Field<decimal>("StatCharges"),
+                                              TranshipmentCharges = x.Field<decimal>("TranshipmentCharges"),
+                                              AOC = x.Field<decimal>("AOC"),
+                                              CollectionCharges = x.Field<decimal>("CollectionCharges"),
+                                              DeliveryCharges = x.Field<decimal>("DeliveryCharges"),
+                                              WithPASS = x.Field<decimal>("WithPASS"),
+                                              GST5 = x.Field<decimal>("GST5"),
+                                              TotalAmount = x.Field<decimal>("TotalAmount"),
+                                              DocketCharges = x.Field<decimal>("DocketCharges"),
+                                              PickupCharges = x.Field<decimal>("PickupCharges"),
+                                              LocationPickupCharges = x.Field<decimal>("LocationPickupCharges"),
+                                              LocationDeliveryCharges = x.Field<decimal>("LocationDeliveryCharges"),
+                                              DoorDeliveryCharges = x.Field<decimal>("DoorDeliveryCharges"),
+                                              SubTotal = x.Field<decimal>("SubTotal"),
+                                              DiscountAmount = x.Field<decimal>("DiscountAmount"),
+                                              TotalAmountAfterDiscount = x.Field<decimal>("TotalAmountAfterDiscount"),
+                                              RoundOffAmount = x.Field<decimal>("RoundOffAmount"),
+                                              GrandTotal = x.Field<decimal>("GrandTotal"),
+                                              DriverCharges = x.Field<decimal>("DriverCharges"),
+                                              ToPayCharges = x.Field<decimal>("ToPayCharges")
+                                          }).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objBookingPriceResponse;
+        }
         #endregion
     }
 }

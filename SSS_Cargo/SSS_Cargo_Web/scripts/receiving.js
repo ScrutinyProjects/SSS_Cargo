@@ -91,6 +91,7 @@ function searchbooking() {
     var counterid = $('#hiddencounterid').val();
 
     if (bookingnumber != "") {
+        $("#spantobegcnumber").html(bookingnumber);
         showloading();
 
         var input = [];
@@ -161,6 +162,7 @@ function searchbooking() {
                         $('#textactualremarks').val('');
                     }
                     else {
+                        gcbookingnumber = bookingnumber;
                         showwarningalert(data.StatusMessage);
                     }
                 }

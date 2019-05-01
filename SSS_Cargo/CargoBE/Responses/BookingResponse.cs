@@ -202,7 +202,7 @@ namespace CargoBE.Responses
 
         public string ProductType { get; set; }
         public int Pieces { get; set; }
-        public decimal WeightInfo { get; set; }
+        public string WeightInfo { get; set; }
         public string SenderName { get; set; }
         public string SenderMobileNumber { get; set; }
 
@@ -217,4 +217,33 @@ namespace CargoBE.Responses
         public DateTime BookedDateTime { get; set; }
 
     }
+
+    public class BookingPriceResponse
+    {
+        public decimal BasicFrieght { get; set; }
+        public decimal Hamali { get; set; }
+        public decimal SC60 { get; set; }
+        public decimal ValueSC { get; set; }
+        public decimal StatCharges { get; set; }
+        public decimal TranshipmentCharges { get; set; }
+        public decimal AOC { get; set; }
+        public decimal CollectionCharges { get; set; }
+        public decimal DeliveryCharges { get; set; }
+        public decimal WithPASS { get; set; }
+        public decimal GST5 { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal DocketCharges { get; set; }
+        public decimal PickupCharges { get; set; }
+        public decimal LocationPickupCharges { get; set; }
+        public decimal LocationDeliveryCharges { get; set; }
+        public decimal DoorDeliveryCharges { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal DiscountAmount { get; set; }
+        public decimal TotalAmountAfterDiscount { get; set; }
+        public decimal RoundOffAmount { get; set; }
+        public decimal GrandTotal { get; set; }
+        public decimal DriverCharges { get; set; }
+        public decimal ToPayCharges { get; set; }
+    }
+
 }
