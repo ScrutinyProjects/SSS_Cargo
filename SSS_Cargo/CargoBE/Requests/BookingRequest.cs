@@ -43,6 +43,8 @@ namespace CargoBE.Requests
         public decimal LocationPickupCharges { get; set; }
         public decimal LocationDeliveryCharges { get; set; }
         public decimal DoorDeliveryCharges { get; set; }
+        public decimal DriverCharges { get; set; }
+        public decimal ToPayCharges { get; set; }
         public decimal SubTotal { get; set; }
         public decimal GSTCharges { get; set; }
         public decimal TotalAmount { get; set; }

@@ -22,6 +22,11 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 return View();
             }
         }
@@ -35,6 +40,7 @@ namespace SSS_Cargo_Web.Controllers
             else
             {
                 LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
                 ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.LoginId = loginresponse.LoginId;
@@ -50,6 +56,11 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 ViewBag.BookingId = param1;
                 ViewBag.BookingSerialNumber = CommonMethods.URLKeyDecrypt(param2);
                 return View();
@@ -64,6 +75,11 @@ namespace SSS_Cargo_Web.Controllers
             }
             else
             {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
                 ViewBag.BookingId = param1;
                 return View();
             }
@@ -78,6 +94,7 @@ namespace SSS_Cargo_Web.Controllers
             else
             {
                 LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
                 ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.LoginId = loginresponse.LoginId;
@@ -95,6 +112,7 @@ namespace SSS_Cargo_Web.Controllers
             {
                 LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
                 ViewBag.ContactNumber = loginresponse.ContactNumber;
+                ViewBag.Name = loginresponse.Name;
                 ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.LoginId = loginresponse.LoginId;
@@ -111,6 +129,7 @@ namespace SSS_Cargo_Web.Controllers
             else
             {
                 LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
                 ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.LoginId = loginresponse.LoginId;
@@ -127,6 +146,7 @@ namespace SSS_Cargo_Web.Controllers
             else
             {
                 LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
                 ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.LoginId = loginresponse.LoginId;

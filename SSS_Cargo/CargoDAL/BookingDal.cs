@@ -128,6 +128,8 @@ namespace CargoDAL
                     objresponse.WithPassCharges = (decimal)reader["WithPassCharges"];
                     objresponse.TotalKms = (decimal)reader["TotalKms"];
                     objresponse.DiscountPercentage = (decimal)reader["DiscountPercentage"];
+                    objresponse.DriverCharges = (decimal)reader["DriverCharges"];
+                    objresponse.ToPayCharges = (decimal)reader["ToPayCharges"];
                     objresponse.DiscountRemarks = (string)reader["DiscountRemarks"];
                 }
             }
@@ -181,6 +183,8 @@ namespace CargoDAL
                                             new SqlParameter("@LocationPickupCharges", SqlDbType.Decimal) { Value = objrequest.LocationPickupCharges },
                                             new SqlParameter("@LocationDeliveryCharges", SqlDbType.Decimal) { Value = objrequest.LocationDeliveryCharges },
                                             new SqlParameter("@DoorDeliveryCharges", SqlDbType.Decimal) { Value = objrequest.DoorDeliveryCharges },
+                                            new SqlParameter("@DriverCharges", SqlDbType.Decimal) { Value = objrequest.DriverCharges },
+                                            new SqlParameter("@ToPayCharges", SqlDbType.Decimal) { Value = objrequest.ToPayCharges },
                                             new SqlParameter("@SubTotal", SqlDbType.Decimal) { Value = objrequest.SubTotal },
                                             new SqlParameter("@GSTCharges", SqlDbType.Decimal) { Value = objrequest.GSTCharges },
                                             new SqlParameter("@TotalAmount", SqlDbType.Decimal) { Value = objrequest.TotalAmount },
@@ -637,6 +641,8 @@ namespace CargoDAL
                         objresponse.ValueSurCharges = (decimal)reader["ValueSurCharges"];
                         objresponse.WithPassCharges = (decimal)reader["WithPassCharges"]; 
                         objresponse.barcodeImage = (string)reader["barcodeImage"];
+                        objresponse.DriverCharges = (decimal)reader["DriverCharges"];
+                        objresponse.ToPayCharges = (decimal)reader["ToPayCharges"];
                     }
                 }
             }
