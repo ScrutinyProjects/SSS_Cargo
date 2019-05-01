@@ -4,4 +4,5 @@
     <EditRoles>Super Admin, Admin,Agent,Counter Operator</EditRoles>
     <DeleteRoles>Super Admin, Admin,Agent,Counter Operator</DeleteRoles>
   </Expense>
+  <BookingReportRequestType>1</BookingReportRequestType>
 </CargoConfig>

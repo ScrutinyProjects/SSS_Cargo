@@ -58,6 +58,39 @@ namespace SSS_Cargo.Controllers
             return lstBookingReportResponse;
         }
 
+        [Route("updatebookingstatus")]
+        [HttpPost]
+        public bool UpdateBookingStatus(JObject input)
+        {
+            bool result = false;
+            try
+            {
+                result = objReportsBal.UpdateBookingStatus(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
+        [Route("bookingpricedetails")]
+        [HttpGet]
+        public BookingPriceResponse BookingPriceDetails(int bookingId)
+        {
+            BookingPriceResponse objBookingPriceResponse = null;
+            try
+            {
+                objBookingPriceResponse = objReportsBal.BookingPriceDetails(bookingId);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objBookingPriceResponse;
+        }
         #endregion
     }
 }

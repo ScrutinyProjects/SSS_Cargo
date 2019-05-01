@@ -15,6 +15,7 @@
     <input type="hidden" id="hiddenExpenseId" />
     <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
     <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <input type="hidden" id="hiddenrequesttype" value="@ViewBag.RequestType" />
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
@@ -130,12 +131,26 @@
                 </div>
                 <div class="modal-body" id="divUpdateStatusModal" style="min-height:250px;">
                     <div class="form-group">
-                        
-                    </div>
+                        <div class="col-sm-8">
+                            <span style="margin:5px;" id="spnMessage"></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="control-label" style="text-align: left;" for="ddlLatestBookingStatus">Booking Status <span class="red">*</span> </label>
+                                <select class="form-control" id="ddlLatestBookingStatus">
+                                    <option value="-1">Select Booking Status</option>
+                                </select>
+                                <span class="red" id="spnLatestBookingStatus"></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <label class="control-label" style="text-align: left;" for="txtEditRemarks">Remarks<span class="red">*</span> </label>
+                                <textarea id="txtEditRemarks" name="txtEditRemarks" maxlength="500" rows="3" placeholder="Remarks"></textarea>
+                                <span class="red" id="spnEditRemarks"></span>
+                            </div>
+                        </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return UpdateBookingStatus()">
+                    <button class="btn btn-sm btn-info pull-right" type="button" id="btnUpdateStatus" style="margin: 5px;" onclick="return UpdateBookingStatus()">
                         <i class="ace-icon fa fa-check bigger-110"></i>
                         Update
                     </button>
@@ -160,9 +175,107 @@
                     <h4>Bill Breakup:</h4>
                 </div>
                 <div class="modal-body" id="divBillBreakUpModal" style="min-height:250px;">
-                    <div class="form-group">
-
-                    </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>BasicFrieght</td>
+                                <td><span id="spnBasicfright"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Hamali</td>
+                                <td><span id="spnHamali"></span></td>
+                            </tr>
+                            <tr>
+                                <td>SC@60</td>
+                                <td><span id="spnSC60"></span></td>
+                            </tr>
+                            <tr>
+                                <td>ValueSC</td>
+                                <td><span id="spnValueSC"></span></td>
+                            </tr>
+                            <tr>
+                                <td>StatCharges</td>
+                                <td><span id="spnStatCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>TranshipmentCharges</td>
+                                <td><span id="spnTranshipmentCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>AOC</td>
+                                <td><span id="spnAOC"></span></td>
+                            </tr>
+                            <tr>
+                                <td>CollectionCharges</td>
+                                <td><span id="spnCollectionCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DeliveryCharges</td>
+                                <td><span id="spnDeliveryCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>WithPASS</td>
+                                <td><span id="spnWithPASS"></span></td>
+                            </tr>
+                            <tr>
+                                <td>GST@5</td>
+                                <td><span id="spnGST5"></span></td>
+                            </tr>
+                            <tr>
+                                <td>TotalAmount</td>
+                                <td><span id="spnTotalAmount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DocketCharges</td>
+                                <td><span id="spnDocketCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>PickupCharges</td>
+                                <td><span id="spnPickupCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>LocationPickupCharges</td>
+                                <td><span id="spnLocationPickupCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>LocationDeliveryCharges</td>
+                                <td><span id="spnLocationDeliveryCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DoorDeliveryCharges</td>
+                                <td><span id="spnDoorDeliveryCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>SubTotal</td>
+                                <td><span id="spnSubTotal"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DiscountAmount</td>
+                                <td><span id="spnDiscountAmount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>TotalAmountAfterDiscount</td>
+                                <td><span id="spnTotalAmountAfterDiscount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>RoundOffAmount</td>
+                                <td><span id="spnRoundOffAmount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>GrandTotal</td>
+                                <td><span id="spnGrandTotal"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DriverCharges</td>
+                                <td><span id="spnDriverCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>ToPayCharges</td>
+                                <td><span id="spnToPayCharges"></span></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="modal-footer">
@@ -177,24 +290,24 @@
 
     </div>
 </div>
-    <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
-    <script src="~/Assets/js/jquery-ui.min.js"></script>
-    <script type="text/javascript">window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");</script>
-    <script type="text/javascript">if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
-    <script src="~/Assets/js/bootstrap.min.js"></script>
-  <link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
+<script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+<script src="~/Assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");</script>
+<script type="text/javascript">if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
 <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
 @*<script src="~/scripts/kendo/2014.1.318/jquery.min.js"></script>*@
 <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
 <script src="~/scripts/moment.js"></script>
-    <script src="~/scripts/common.js"></script>
-    <script src="~/scripts/bookingreports.js"></script>
+<script src="~/scripts/common.js"></script>
+<script src="~/scripts/bookingreports.js"></script>
 
-    <script type="text/javascript">
-        jQuery(function ($) {
-            $("#txtFromDate,#txtToDate").kendoDateTimePicker({ format: "MM/dd/yyyy hh:mm tt" });
-            getBookingReportsData();
-        });
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#txtFromDate,#txtToDate").kendoDateTimePicker({ format: "MM/dd/yyyy hh:mm tt" });
+        getBookingReportsData();
+    });
 
-    </script>
+</script>
 
