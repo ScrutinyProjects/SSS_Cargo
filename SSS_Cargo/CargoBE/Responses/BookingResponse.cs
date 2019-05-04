@@ -137,8 +137,9 @@ namespace CargoBE.Responses
         public string EstimatedDateTime { get; set; }
         public string Remarks { get; set; }
         public decimal TotalWeight { get; set; }
+        public decimal CollectionCharges { get; set; }
     }
-
+    
     public class ReceiveDetailsByBookingNumber
     {
         public int StatusId { get; set; }

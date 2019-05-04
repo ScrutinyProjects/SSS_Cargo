@@ -516,7 +516,8 @@ namespace CargoDAL
                         objresponse.NumberOfPieces = (int)reader["NumberOfPieces"];
                         objresponse.Remarks = (string)reader["Remarks"];
                         objresponse.TotalWeight = (decimal)reader["TotalWeight"];
-                    }
+                        objresponse.CollectionCharges = (decimal)reader["CollectionCharges"];
+                    }                    
                     else if (objresponse.StatusId == 2)
                     {
                         objresponse.BookingId = (int)reader["BookingId"];
