@@ -199,8 +199,10 @@ namespace CargoBE.Responses
         public string RouteInfo { get; set; }
         public string CargoGSTIN { get; set; }
         public decimal BasicAmount { get; set; }
+        public decimal GSTPercentage { get; set; }
         public decimal HamaliCharges { get; set; }
         public decimal SurCharges { get; set; }
+        public decimal LRCharges { get; set; }        
         public decimal ValueSurCharges { get; set; }
         public decimal WithPassCharges { get; set; }
         public decimal DriverCharges { get; set; }
@@ -209,6 +211,7 @@ namespace CargoBE.Responses
         public decimal TranshipmentCharges { get; set; }
         public decimal CollectionCharges { get; set; }
         public decimal PickupCharges { get; set; }
+        public decimal DeliveryCharges { get; set; }        
         public decimal LocationDeliveryCharges { get; set; }
         public decimal DoorDeliveryCharges { get; set; }
         public decimal SubTotal { get; set; }
@@ -217,6 +220,7 @@ namespace CargoBE.Responses
         public decimal RoundOffAmount { get; set; }
         public decimal GrandTotal { get; set; }
         public string barcodeImage { get; set; }
+        public string BookedBy { get; set; }        
     }
 
     public class BookingReportResponse

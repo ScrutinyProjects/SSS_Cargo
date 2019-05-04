@@ -645,6 +645,10 @@ namespace CargoDAL
                         objresponse.barcodeImage = (string)reader["barcodeImage"];
                         objresponse.DriverCharges = (decimal)reader["DriverCharges"];
                         objresponse.ToPayCharges = (decimal)reader["ToPayCharges"];
+                        objresponse.GSTPercentage = (decimal)reader["GSTPercentage"];
+                        objresponse.LRCharges = (decimal)reader["LRCharges"];
+                        objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"]; 
+                        objresponse.BookedBy = (string)reader["BookedBy"];
                     }
                 }
             }

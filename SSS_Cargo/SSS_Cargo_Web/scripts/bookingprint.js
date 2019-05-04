@@ -31,6 +31,7 @@
                     $('.actualweight').html(data.ActualWeight);
                     $('.chargedweight').html(data.ChargedWeight);
                     $('.numberofpieces').html(data.TotalPieces);
+                    $('.bookedby').html(data.BookedBy);
                     $('.bookingtype').html(data.BookingType);
                     $('.producttype').html(data.ProductType);
                     $('.gctype').html(data.GCType);
@@ -40,7 +41,8 @@
                     $('.cargogst').html(data.CargoGSTIN);
                     $('.basicamount').html(parseFloat(data.BasicAmount).toFixed(2));
                     $('.hamaliamount').html(parseFloat(data.HamaliCharges).toFixed(2));
-                    $('.supcharges').html(parseFloat(data.SurCharges).toFixed(2));
+                    $('.supcharges').html(parseFloat(data.SurCharges).toFixed(2)); 
+                    $('.lrcharges').html(parseFloat(data.LRCharges).toFixed(2));
                     $('.valuesrcharges').html(parseFloat(data.ValueSurCharges).toFixed(2));
                     $('.withpasscharges').html(parseFloat(data.WithPassCharges).toFixed(2));
                     $('.aoccharges').html(parseFloat(data.AOCCharges).toFixed(2));
@@ -48,7 +50,8 @@
                     $('.collectioncharges').html(parseFloat(data.CollectionCharges).toFixed(2));
                     $('.pickupcharges').html(parseFloat(data.PickupCharges).toFixed(2));
                     $('.locationdeliverycharges').html(parseFloat(data.LocationDeliveryCharges).toFixed(2));
-                    $('.doordeliverycharges').html(parseFloat(data.DoorDeliveryCharges).toFixed(2)); 
+                    $('.deliverycharges').html(parseFloat(data.DeliveryCharges).toFixed(2));
+                    $('.doordeliverycharges').html(parseFloat(data.DoorDeliveryCharges).toFixed(2));
                     $('.drivercharges').html(parseFloat(data.DriverCharges).toFixed(2));
                     $('.topaycharges').html(parseFloat(data.ToPayCharges).toFixed(2));
                     $('.subtotal').html(parseFloat(data.SubTotal).toFixed(2));
@@ -57,7 +60,8 @@
                     $('.roundoff').html(parseFloat(data.RoundOffAmount).toFixed(2));
                     $('.grandtotal').html(parseFloat(data.GrandTotal).toFixed(2));
                     $('.barcode').attr('src', data.barcodeImage);
-                } 
+                    $('.gstlabel').html('GST @' + data.GSTPercentage + '% on basic');
+                }
             }
             hideloading();
         },
