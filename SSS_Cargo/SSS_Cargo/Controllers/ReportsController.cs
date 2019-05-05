@@ -3,6 +3,7 @@ using CargoBE.Responses;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -91,6 +92,42 @@ namespace SSS_Cargo.Controllers
             }
             return objBookingPriceResponse;
         }
+
+        [Route("{loginid}/{counterid}/getnotloadedreportsdata")]
+        [HttpGet]
+        public object GetNotLoadedReportsData(string loginId, string counterId, string requestType)
+        {
+            List<CounterMastersResponse> lstCounterMastersResponse = null;
+            try
+            {
+                lstCounterMastersResponse = objReportsBal.GetMyLocations(loginId, counterId, requestType);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return new { Locations = lstCounterMastersResponse };
+        }
+
+
+        [Route("getnotloadedreport")]
+        [HttpPost]
+        public DataSet GetNotLoadedReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetNotLoadedReport(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+
         #endregion
     }
 }

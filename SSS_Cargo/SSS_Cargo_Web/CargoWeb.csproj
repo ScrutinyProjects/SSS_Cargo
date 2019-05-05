@@ -948,6 +948,7 @@
     <Content Include="scripts\kendo\2014.1.318\kendo.window.min.js" />
     <Content Include="scripts\loading.js" />
     <Content Include="scripts\login.js" />
+    <Content Include="scripts\notloadedreports.js" />
     <Content Include="scripts\receiving.js" />
     <Content Include="scripts\tobereceive.js" />
     <Content Include="Web.config" />
@@ -1101,6 +1102,7 @@
     <Content Include="scripts\kendo\2014.1.318\kendo.binder.min.js.map" />
     <Content Include="scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
     <Content Include="scripts\kendo\2014.1.318\jquery.min.map" />
+    <Content Include="Views\Reports\NotLoadedReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

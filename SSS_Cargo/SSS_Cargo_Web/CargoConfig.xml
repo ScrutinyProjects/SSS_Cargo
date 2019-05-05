@@ -5,4 +5,5 @@
     <DeleteRoles>Super Admin, Admin,Agent,Counter Operator</DeleteRoles>
   </Expense>
   <BookingReportRequestType>1</BookingReportRequestType>
+  <NotLoadedReportRequestType>1</NotLoadedReportRequestType>
 </CargoConfig>

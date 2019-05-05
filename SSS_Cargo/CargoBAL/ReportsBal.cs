@@ -209,6 +209,19 @@ namespace CargoBAL
             }
             return objBookingPriceResponse;
         }
+        public DataSet  GetNotLoadedReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetNotLoadedReport(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
         #endregion
     }
 }
