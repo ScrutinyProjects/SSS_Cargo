@@ -63,7 +63,7 @@ namespace CargoBE.Responses
         public List<CounterMastersResponse> Counters { get; set; }
         public List<ToBeReceivingFromResponse> ToBeReceivingFrom { get; set; }
     }
-
+    
     public class ReceivingMastersResponse
     {
         public int StatusId { get; set; }
@@ -71,6 +71,13 @@ namespace CargoBE.Responses
         public List<GCTypesResponse> GCTypes { get; set; }
         public List<CounterMastersResponse> Counters { get; set; }
         public List<ReceivingTypesResponse> ReceivingTypes { get; set; }
+    }
+
+    public class DeliveryMastersResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public List<GCTypesResponse> GCTypes { get; set; }
     }
 
     public class CustomerDetailsResponse
@@ -130,8 +137,30 @@ namespace CargoBE.Responses
         public string EstimatedDateTime { get; set; }
         public string Remarks { get; set; }
         public decimal TotalWeight { get; set; }
+        public decimal CollectionCharges { get; set; }
     }
     
+    public class ReceiveDetailsByBookingNumber
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public int BookingId { get; set; }
+        public int ReceivingId { get; set; }
+        public int GCTypeId { get; set; }
+        public string GCType { get; set; }
+        public string MeasurementIn { get; set; }
+        public string GCBookingNumber { get; set; }
+        public string FromCounterName { get; set; }
+        public int NumberOfPieces { get; set; }
+        public string DriverName { get; set; }
+        public string DriverNumber { get; set; }
+        public string VehicleNumber { get; set; }
+        public string Remarks { get; set; }
+        public decimal TotalWeight { get; set; }
+        public string DeliveryToName { get; set; }
+        public string DeliveryToNumber { get; set; }
+    }
+
     public class BookingParcelDetails
     {
         public int BookingParcelId { get; set; }
@@ -170,8 +199,10 @@ namespace CargoBE.Responses
         public string RouteInfo { get; set; }
         public string CargoGSTIN { get; set; }
         public decimal BasicAmount { get; set; }
+        public decimal GSTPercentage { get; set; }
         public decimal HamaliCharges { get; set; }
         public decimal SurCharges { get; set; }
+        public decimal LRCharges { get; set; }        
         public decimal ValueSurCharges { get; set; }
         public decimal WithPassCharges { get; set; }
         public decimal DriverCharges { get; set; }
@@ -180,6 +211,7 @@ namespace CargoBE.Responses
         public decimal TranshipmentCharges { get; set; }
         public decimal CollectionCharges { get; set; }
         public decimal PickupCharges { get; set; }
+        public decimal DeliveryCharges { get; set; }        
         public decimal LocationDeliveryCharges { get; set; }
         public decimal DoorDeliveryCharges { get; set; }
         public decimal SubTotal { get; set; }
@@ -188,6 +220,7 @@ namespace CargoBE.Responses
         public decimal RoundOffAmount { get; set; }
         public decimal GrandTotal { get; set; }
         public string barcodeImage { get; set; }
+        public string BookedBy { get; set; }        
     }
 
     public class BookingReportResponse

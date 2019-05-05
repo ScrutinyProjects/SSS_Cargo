@@ -202,7 +202,7 @@ function savereceiveing() {
     var actualdeliveryto = $('#textactualdeliveryto').val().trim();
     var actualphonenumber = $('#textactualphonenumber').val().trim();
     var actualremarks = $('#textactualremarks').val().trim();
-
+    
     if (validatetextbox(actualfrom, $('#spanactualfrom'), 'Please select From Counter') == false) {
         isvalid = false;
     }
@@ -260,6 +260,7 @@ function savereceiveing() {
             HamaliCharges: actualhamaliamount,
             ReceivingType: actualreceivingtype,
             TranshipmentCharges: actualtranshipmentamount,
+            TotalWeight: actualtotalweight,
             VehicleNumber: actualvehiclenumber,
             ToBeReceiveId: tobereceiveid
         };
@@ -306,6 +307,7 @@ function clearallfields() {
     $('#textactualphonenumber').val('');
     $('#textactualremarks').val('');
 
+    $("#spantobegcnumber").html("--");
     $('#spantobefrom').html("--");
     $('#spantobegctype').html("--");
     $('#spantobepieces').html("--");

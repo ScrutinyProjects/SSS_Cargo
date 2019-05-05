@@ -89,6 +89,10 @@
                                         <td><span>No Of Peices : </span><span style="font-weight: 600;font-size:25px" class="numberofpieces">0</span></td>
 
                                     </tr>
+                                    <tr>
+                                        <td><span>Booked By : </span><span style="font-weight: 600;" class="bookedby">--</span></td>
+
+                                    </tr>
                                 </table>
 
                             </td>
@@ -137,7 +141,7 @@
                             <td align="right"><strong>SSCARGO GSTIN: <span class="cargogst"></span> </strong></td>
                         </tr>
                     </table>
-                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 15px;">
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 28px;">
                         <tr>
                             <td colspan="2" align="right" style="padding-right: 20px;"><strong>Booking Point Signature / Name</strong></td>
                         </tr>
@@ -151,50 +155,34 @@
 
                         </tr>
                         <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Driver Charges</span><span class="drivercharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Hamali Charges</span><span class="hamaliamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
-                        @*<tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Sur Charges</span><span class="supcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Value Sur Charges</span><span class="valuesrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">LR Charges</span><span class="lrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
-                        </tr>*@
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">With Pass Charges</span><span class="withpasscharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        @*<tr>
-                            <td><span style="display: inline-block; width: 69%; padding-left: 4px;">Aoc Charges</span><span class="aoccharges" style="text-align: right; display: inline-block; width: 26%; font-weight: 600;">0.00</span></td>
-                        </tr>*@
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
                         <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Collection Charges</span><span class="collectioncharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
                         <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Delivery Charges</span><span class="deliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pickup Charges</span><span class="pickupcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
-
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Location Delivery Charges</span><span class="locationdeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Door Delivery Charges</span><span class="doordeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Driver Charges</span><span class="drivercharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Topay Charges</span><span class="topaycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
 
                         <tr>
@@ -207,7 +195,7 @@
                         </tr>
 
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;" class="gstlabel">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
 
                         <tr>
@@ -309,6 +297,10 @@
                                         <td><span>No Of Peices : </span><span style="font-weight: 600;font-size:25px" class="numberofpieces">0</span></td>
 
                                     </tr>
+                                    <tr>
+                                        <td><span>Booked By : </span><span style="font-weight: 600;" class="bookedby">--</span></td>
+
+                                    </tr>
                                 </table>
 
                             </td>
@@ -357,7 +349,7 @@
                             <td align="right"><strong>SSCARGO GSTIN: <span class="cargogst"></span> </strong></td>
                         </tr>
                     </table>
-                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 15px;">
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 28px;">
                         <tr>
                             <td style="padding-left: 15px;"><strong>Sender Signature / Name / Mobile Number</strong></td>
                             <td align="right" style="padding-right: 20px;"><strong>Booking Point Signature / Name</strong></td>
@@ -372,50 +364,34 @@
 
                         </tr>
                         <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Driver Charges</span><span class="drivercharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Hamali Charges</span><span class="hamaliamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
-                        @*<tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Sur Charges</span><span class="supcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Value Sur Charges</span><span class="valuesrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">LR Charges</span><span class="lrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
-                        </tr>*@
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">With Pass Charges</span><span class="withpasscharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        @*<tr>
-                            <td><span style="display: inline-block; width: 69%; padding-left: 4px;">Aoc Charges</span><span class="aoccharges" style="text-align: right; display: inline-block; width: 26%; font-weight: 600;">0.00</span></td>
-                        </tr>*@
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
                         <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Collection Charges</span><span class="collectioncharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
                         <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Delivery Charges</span><span class="deliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pickup Charges</span><span class="pickupcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
-
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Location Delivery Charges</span><span class="locationdeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Door Delivery Charges</span><span class="doordeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Driver Charges</span><span class="drivercharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Topay Charges</span><span class="topaycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
 
                         <tr>
@@ -428,7 +404,7 @@
                         </tr>
 
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;" class="gstlabel">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
 
                         <tr>
@@ -530,6 +506,10 @@
                                         <td><span>No Of Peices : </span><span style="font-weight: 600;font-size:25px" class="numberofpieces">0</span></td>
 
                                     </tr>
+                                    <tr>
+                                        <td><span>Booked By : </span><span style="font-weight: 600;" class="bookedby">--</span></td>
+
+                                    </tr>
                                 </table>
 
                             </td>
@@ -578,7 +558,7 @@
                             <td align="right"><strong>SSCARGO GSTIN: <span class="cargogst"></span> </strong></td>
                         </tr>
                     </table>
-                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 15px;">
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 28px;">
                         <tr>
                             <td style="width: 40%;"><strong>Receiver Signature/ Name/ Mobile Number</strong></td>
                             <td style="width: 30%;"><strong>Delivery Point Signature/ Name</strong></td>
@@ -594,50 +574,34 @@
 
                         </tr>
                         <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Driver Charges</span><span class="drivercharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Hamali Charges</span><span class="hamaliamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
-                        @*<tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Sur Charges</span><span class="supcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Value Sur Charges</span><span class="valuesrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">LR Charges</span><span class="lrcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
-                        </tr>*@
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">With Pass Charges</span><span class="withpasscharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        @*<tr>
-                            <td><span style="display: inline-block; width: 69%; padding-left: 4px;">Aoc Charges</span><span class="aoccharges" style="text-align: right; display: inline-block; width: 26%; font-weight: 600;">0.00</span></td>
-                        </tr>*@
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
                         <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Collection Charges</span><span class="collectioncharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
                         <tr>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Delivery Charges</span><span class="deliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+
+                        </tr>
+                        <tr>
                             <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pickup Charges</span><span class="pickupcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
 
                         </tr>
-
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Location Delivery Charges</span><span class="locationdeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Door Delivery Charges</span><span class="doordeliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr>
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Driver Charges</span><span class="drivercharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
-                        </tr> 
-                        <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Topay Charges</span><span class="topaycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
-
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Transhipment Charges</span><span class="transhipmentcharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
 
                         <tr>
@@ -650,7 +614,7 @@
                         </tr>
 
                         <tr>
-                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
+                            <td><span style="display: inline-block; width: 60%; padding-left: 4px;" class="gstlabel">GST</span><span class="gstamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;">0.00</span></td>
                         </tr>
 
                         <tr>

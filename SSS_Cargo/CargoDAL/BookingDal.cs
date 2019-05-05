@@ -516,7 +516,8 @@ namespace CargoDAL
                         objresponse.NumberOfPieces = (int)reader["NumberOfPieces"];
                         objresponse.Remarks = (string)reader["Remarks"];
                         objresponse.TotalWeight = (decimal)reader["TotalWeight"];
-                    }
+                        objresponse.CollectionCharges = (decimal)reader["CollectionCharges"];
+                    }                    
                     else if (objresponse.StatusId == 2)
                     {
                         objresponse.BookingId = (int)reader["BookingId"];
@@ -554,7 +555,8 @@ namespace CargoDAL
                                             new SqlParameter("@TranshipmentCharges", SqlDbType.Decimal) { Value = objrequest.TranshipmentCharges },
                                             new SqlParameter("@DeliveryToName", SqlDbType.VarChar, 100) { Value = objrequest.DeliveryToName },
                                             new SqlParameter("@DeliveryToNumber", SqlDbType.VarChar, 10) { Value = objrequest.DeliveryToNumber },
-                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks }
+                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks },
+                                            new SqlParameter("@TotalWeight", SqlDbType.Decimal) { Value = objrequest.TotalWeight }
                                         };
             SqlDataReader reader = null;
             SaveRespone objresponse = new SaveRespone();
@@ -643,12 +645,127 @@ namespace CargoDAL
                         objresponse.barcodeImage = (string)reader["barcodeImage"];
                         objresponse.DriverCharges = (decimal)reader["DriverCharges"];
                         objresponse.ToPayCharges = (decimal)reader["ToPayCharges"];
+                        objresponse.GSTPercentage = (decimal)reader["GSTPercentage"];
+                        objresponse.LRCharges = (decimal)reader["LRCharges"];
+                        objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"]; 
+                        objresponse.BookedBy = (string)reader["BookedBy"];
                     }
                 }
             }
             catch (Exception ex)
             {
 
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objresponse;
+        }
+
+        public DataSet GetMastersForDelivery(int counterid, int loginid)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@CounterId", SqlDbType.Int) { Value = counterid },
+                                            new SqlParameter("@LoginId", SqlDbType.Int) { Value = loginid }
+                                        };
+            DataSet ds = null;
+
+            try
+            {
+                ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetMastersForDelivery", sqlparams);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return ds;
+        }
+
+        public ReceiveDetailsByBookingNumber GetReceivingDetailsByBookingNumber(string bookingnumber, int counterid)
+        {
+            SqlParameter[] sqlparams = {new SqlParameter("@BookingNumber", SqlDbType.VarChar, 20) { Value = bookingnumber },
+                                           new SqlParameter("@CounterId", SqlDbType.Int) { Value = counterid }
+                                        };
+            SqlDataReader reader = null;
+            ReceiveDetailsByBookingNumber objresponse = new ReceiveDetailsByBookingNumber();
+
+            try
+            {
+                reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetReceivingDetailsByBookingNumber", sqlparams);
+
+                while (reader.Read())
+                {
+                    objresponse.StatusId = (int)reader["StatusId"];
+                    objresponse.StatusMessage = (string)reader["StatusMessage"];
+
+                    if (objresponse.StatusId == 1)
+                    {
+                        objresponse.BookingId = (int)reader["BookingId"];
+                        objresponse.ReceivingId = (int)reader["ReceivingId"];
+                        objresponse.GCTypeId = (int)reader["GCTypeId"];
+                        objresponse.GCType = (string)reader["GCType"];
+                        objresponse.FromCounterName = (string)reader["FromCounterName"];
+                        objresponse.MeasurementIn = (string)reader["MeasurementIn"];
+                        objresponse.GCBookingNumber = (string)reader["GCBookingNumber"];
+                        objresponse.NumberOfPieces = (int)reader["NumberOfPieces"];
+                        objresponse.DriverName = (string)reader["DriverName"];
+                        objresponse.DriverNumber = (string)reader["DriverNumber"];
+                        objresponse.VehicleNumber = (string)reader["VehicleNumber"];
+                        objresponse.Remarks = (string)reader["Remarks"];
+                        objresponse.TotalWeight = (decimal)reader["TotalWeight"];
+                        objresponse.DeliveryToName = (string)reader["DeliveryToName"];
+                        objresponse.DeliveryToNumber = (string)reader["DeliveryToNumber"];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objresponse;
+        }
+
+        public SaveRespone InsertDeliveryDetails(DeliveryRequest objrequest)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@UserLoginId", SqlDbType.Int) { Value = objrequest.UserLoginId },
+                                            new SqlParameter("@ReceivingId", SqlDbType.Int) { Value = objrequest.ReceivingId },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = objrequest.CounterId },
+                                            new SqlParameter("@BookingId", SqlDbType.Int) { Value = objrequest.BookingId },
+                                            new SqlParameter("@GCBookingNumber", SqlDbType.VarChar, 100) { Value = objrequest.GCBookingNumber },
+                                            new SqlParameter("@GCType", SqlDbType.Int) { Value = objrequest.GCType },
+                                            new SqlParameter("@DeliveryCharges", SqlDbType.Decimal) { Value = objrequest.DeliveryCharges },
+                                            new SqlParameter("@DemoCharges", SqlDbType.Decimal) { Value = objrequest.DemoCharges },
+                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks }
+                                        };
+            SqlDataReader reader = null;
+            SaveRespone objresponse = new SaveRespone();
+
+            try
+            {
+                reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_InsertDeliveryDetails", sqlparams);
+
+                while (reader.Read())
+                {
+                    objresponse.StatusId = (int)reader["StatusId"];
+                    objresponse.StatusMessage = (string)reader["StatusMessage"];
+                }
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
             }
             finally
             {

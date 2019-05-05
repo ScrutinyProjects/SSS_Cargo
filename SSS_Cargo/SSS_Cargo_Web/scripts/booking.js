@@ -6,7 +6,7 @@ var senderid = 0;
 var receivermobile = '';
 var receiverid = 0;
 var measurement = 'Kgs';
-var gst = 5;
+var gst = 12;
 
 function getmasters() {
     hideallalerts();
@@ -282,8 +282,8 @@ function showmeasurement(obj) {
     else {
         $('.labelactualweightin').html('Kgs');
         measurement = 'Kgs';
-        gst = 5;
-        $('#spangstperc').html('5%');
+        gst = 12;
+        $('#spangstperc').html('12%');
     }
 }
 
@@ -511,6 +511,7 @@ function calculateprice() {
 
     if (validatedropdown(gctype, $('#spangctypehelper'), 'Please select GC Type') == false) {
         isvalid = false;
+        alert("Please select GC Type");
     }
     if (validatetextbox(sendercounter, $('#spansendercounter'), 'Please select Sending From') == false) {
         isvalid = false;
@@ -678,18 +679,18 @@ function calculateprice() {
                     totalamount = totalamount + data.DoorDeliveryCharges;
                     $('#spancalcdoordeliverycharges').html(data.DoorDeliveryCharges);
                     $('#textdoordeliverycharges').val(data.DoorDeliveryCharges);
-                    
+
                     totalamount = totalamount + data.DriverCharges;
                     $('#spancalcdrivercharges').html(data.DriverCharges);
                     $('#textdrivercharges').val(data.DriverCharges);
-                    
+
                     totalamount = totalamount + data.ToPayCharges;
                     $('#spancalctopaycharges').html(data.ToPayCharges);
                     $('#texttopaycharges').val(data.ToPayCharges);
- 
+
                     $('#spancalcsubtotal').html(totalamount);
 
-                    var totalgst = parseFloat((gst / 100) * totalamount).toFixed(2);
+                    var totalgst = parseFloat((gst / 100) * data.BasicAmount).toFixed(2);
                     $('#spancalcgst').html(totalgst);
 
                     totalamount = totalamount + parseFloat(totalgst);
@@ -919,7 +920,7 @@ function updateprice() {
     if (isvalid && totalamount > 0) {
         $('#spancalcsubtotal').html(totalamount);
 
-        var totalgst = parseFloat((gst / 100) * totalamount).toFixed(2);
+        var totalgst = parseFloat((gst / 100) * parseFloat(basicamount)).toFixed(2);
         $('#spancalcgst').html(totalgst);
 
         totalamount = totalamount + parseFloat(totalgst);
@@ -1019,7 +1020,7 @@ function applydiscount() {
     }
 }
 
-function savebooking() {
+function bookingconfirm() {
     hideallalerts();
     var isvalid = true;
 
@@ -1255,5 +1256,26 @@ function validatedropdown(value, span, message) {
     if (value == "0" || value == "") {
         $(span).html(message);
         return false;
+    }
+}
+
+function savebooking() {
+    var gctype = $('#selectgctype').val().trim();
+    var totalamount = $('#spancalcgrandtotal').html();
+
+    if (validatedropdown(gctype, $('#spangctypehelper'), 'Please select GC Type') == false) {
+        alert("Please select GC Type");
+    }
+    else if (totalamount == "") {
+        alert("Amount should not be '0'");
+    }
+    else if (parseFloat(totalamount) == 0) {
+        alert("Amount should not be '0'");
+    }
+    else {
+        $('#labelmodalgctype').html($("#selectgctype option:selected").text());
+        $('#labelmodaltotalamount').html($("#spancalcgrandtotal").html());
+
+        $('#modalbooking').modal();
     }
 }
