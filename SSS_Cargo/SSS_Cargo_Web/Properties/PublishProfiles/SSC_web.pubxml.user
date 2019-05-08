@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_01_May</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_04_May</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -484,7 +484,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2019 10:06:06</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>05/02/2019 01:33:13</publishTime>
+      <publishTime>05/04/2019 22:45:27</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -595,7 +595,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 21:50:24</publishTime>
     </File>
     <File Include="bin/SSS_Cargo_Web.dll">
-      <publishTime>05/02/2019 01:33:50</publishTime>
+      <publishTime>05/04/2019 22:46:22</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -1402,10 +1402,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:30</publishTime>
     </File>
     <File Include="scripts/booking.js">
-      <publishTime>05/02/2019 00:55:27</publishTime>
+      <publishTime>05/04/2019 22:15:30</publishTime>
     </File>
     <File Include="scripts/bookingprint.js">
-      <publishTime>04/30/2019 23:33:59</publishTime>
+      <publishTime>05/04/2019 22:39:51</publishTime>
     </File>
     <File Include="scripts/bookingreports.js">
       <publishTime>05/02/2019 00:55:27</publishTime>
@@ -2944,7 +2944,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2019 22:31:41</publishTime>
     </File>
     <File Include="Views/Cargo/booking.cshtml">
-      <publishTime>04/30/2019 23:27:24</publishTime>
+      <publishTime>05/04/2019 22:16:23</publishTime>
     </File>
     <File Include="Views/Cargo/bookingsuccess.cshtml">
       <publishTime>04/14/2019 22:03:18</publishTime>
@@ -2959,7 +2959,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/18/2019 23:07:22</publishTime>
     </File>
     <File Include="Views/Cargo/printbookingreceipt.cshtml">
-      <publishTime>04/30/2019 23:33:23</publishTime>
+      <publishTime>05/04/2019 22:40:45</publishTime>
     </File>
     <File Include="Views/Cargo/receive.cshtml">
       <publishTime>05/02/2019 00:55:27</publishTime>
