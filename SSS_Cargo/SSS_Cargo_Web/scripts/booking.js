@@ -632,61 +632,57 @@ function calculateprice() {
                     $('#spancalcbasicamount').html(data.BasicAmount);
                     $('#textbasicamount').val(data.BasicAmount);
 
-                    //totalamount = totalamount + data.SUPCharges;
-                    //$('#spancalcsupcharges').html(data.SUPCharges);
-                    //$('#textsupcharges').val(data.SUPCharges);
-
-                    totalamount = totalamount + data.WithPassCharges;
-                    $('#spancalcwithpasscharges').html(data.WithPassCharges);
-                    $('#textwithpasscharges').val(data.WithPassCharges);
-
-                    //totalamount = totalamount + data.DocketCharges;
-                    //$('#spancalcdocketcharges').html(data.DocketCharges);
-                    //$('#textdocketcharges').val(data.DocketCharges);
-
-                    //totalamount = totalamount + data.ValueSRCharges;
-                    //$('#spancalcvaluesrcharges').html(data.ValueSRCharges);
-                    //$('#textvaluesrcharges').val(data.ValueSRCharges);
-
-                    totalamount = totalamount + data.CollectionCharges;
-                    $('#spancalccollectioncharges').html(data.CollectionCharges);
-                    $('#textcollection').val(data.CollectionCharges);
+                    totalamount = totalamount + data.DriverCharges;
+                    $('#spancalcdrivercharges').html(data.DriverCharges);
+                    $('#textdrivercharges').val(data.DriverCharges);
 
                     totalamount = totalamount + data.HamaliCharges;
                     $('#spancalchamalicharges').html(data.HamaliCharges);
                     $('#texthamalicharges').val(data.HamaliCharges);
 
-                    //totalamount = totalamount + data.AOCCharges;
-                    //$('#spancalcaoccharges').html(data.AOCCharges);
-                    //$('#textaoccharges').val(data.AOCCharges);
+                    totalamount = totalamount + data.WithPassCharges;
+                    $('#spancalcwithpasscharges').html(data.WithPassCharges);
+                    $('#textwithpasscharges').val(data.WithPassCharges);
 
-                    totalamount = totalamount + data.TranshipmentCharges;
-                    $('#spancalctranshipmentcharges').html(data.TranshipmentCharges);
-                    $('#texttranshipmentcharges').val(data.TranshipmentCharges);
+                    totalamount = totalamount + data.SUPCharges;
+                    $('#spancalcsupcharges').html(data.SUPCharges);
+                    $('#textsupcharges').val(data.SUPCharges);
+
+                    totalamount = totalamount + data.LRCharges;
+                    $('#spancalclrcharges').html(data.LRCharges);
+                    $('#textdocketcharges').val(data.LRCharges);
+
+                    totalamount = totalamount + data.CollectionCharges;
+                    $('#spancalccollectioncharges').html(data.CollectionCharges);
+                    $('#textcollection').val(data.CollectionCharges);
+
+                    totalamount = totalamount + data.BookingOffCharges;
+                    $('#spancalcbookingoffcharges').html(data.BookingOffCharges);
+                    $('#textaoccharges').val(data.BookingOffCharges);
+
+                    //totalamount = totalamount + data.TranshipmentCharges;
+                    //$('#spancalctranshipmentcharges').html(data.TranshipmentCharges);
+                    //$('#texttranshipmentcharges').val(data.TranshipmentCharges);
 
                     totalamount = totalamount + data.PickupCharges;
                     $('#spancalcpickupcharges').html(data.PickupCharges);
                     $('#textpickupcharges').val(data.PickupCharges);
 
-                    totalamount = totalamount + data.LocationPickupCharges;
-                    $('#spancalclocationpickupcharges').html(data.LocationPickupCharges);
-                    $('#textlocationpickupcharges').val(data.LocationPickupCharges);
+                    //totalamount = totalamount + data.LocationPickupCharges;
+                    //$('#spancalclocationpickupcharges').html(data.LocationPickupCharges);
+                    //$('#textlocationpickupcharges').val(data.LocationPickupCharges);
 
-                    totalamount = totalamount + data.LocationDeliveryCharges;
-                    $('#spancalclocationdeliverycharges').html(data.LocationDeliveryCharges);
-                    $('#textlocationdeliverycharges').val(data.LocationDeliveryCharges);
+                    totalamount = totalamount + data.DeliveryCharges;
+                    $('#spancalclocationdeliverycharges').html(data.DeliveryCharges);
+                    $('#textlocationdeliverycharges').val(data.DeliveryCharges);
 
-                    totalamount = totalamount + data.DoorDeliveryCharges;
-                    $('#spancalcdoordeliverycharges').html(data.DoorDeliveryCharges);
-                    $('#textdoordeliverycharges').val(data.DoorDeliveryCharges);
+                    //totalamount = totalamount + data.DoorDeliveryCharges;
+                    //$('#spancalcdoordeliverycharges').html(data.DoorDeliveryCharges);
+                    //$('#textdoordeliverycharges').val(data.DoorDeliveryCharges);
 
-                    totalamount = totalamount + data.DriverCharges;
-                    $('#spancalcdrivercharges').html(data.DriverCharges);
-                    $('#textdrivercharges').val(data.DriverCharges);
-
-                    totalamount = totalamount + data.ToPayCharges;
-                    $('#spancalctopaycharges').html(data.ToPayCharges);
-                    $('#texttopaycharges').val(data.ToPayCharges);
+                    //totalamount = totalamount + data.ToPayCharges;
+                    //$('#spancalctopaycharges').html(data.ToPayCharges);
+                    //$('#texttopaycharges').val(data.ToPayCharges);
 
                     $('#spancalcsubtotal').html(totalamount);
 
@@ -767,20 +763,20 @@ var priceeditremarks = '';
 function updateprice() {
     priceeditremarks = '';
     var basicamount = $('#textbasicamount').val().trim();
-    //var supcharges = $('#textsupcharges').val().trim();
-    var withpasscharges = $('#textwithpasscharges').val();
-    //var docketcharges = $('#textdocketcharges').val();
-    //var valuesrcharges = $('#textvaluesrcharges').val();
-    var collection = $('#textcollection').val();
-    var hamalicharges = $('#texthamalicharges').val();
-    //var aoccharges = $('#textaoccharges').val();
-    var transhipmentcharges = $('#texttranshipmentcharges').val();
-    var pickupcharges = $('#textpickupcharges').val();
-    var locationpickupcharges = $('#textlocationpickupcharges').val();
-    var locationdeliverycharges = $('#textlocationdeliverycharges').val();
-    var doordeliverycharges = $('#textdoordeliverycharges').val();
     var drivercharges = $('#textdrivercharges').val();
-    var topaycharges = $('#texttopaycharges').val();
+    var hamalicharges = $('#texthamalicharges').val();
+    var withpasscharges = $('#textwithpasscharges').val();
+    var supcharges = $('#textsupcharges').val().trim();
+    var lrcharges = $('#textlrcharges').val();
+    var collection = $('#textcollection').val();
+    var bookingoffcharges = $('#textbookingoffcharges').val();
+    var pickupcharges = $('#textpickupcharges').val();
+    var deliverycharges = $('#textlocationdeliverycharges').val();
+    //var transhipmentcharges = $('#texttranshipmentcharges').val();
+    //var locationpickupcharges = $('#textlocationpickupcharges').val();
+    //var locationdeliverycharges = $('#textlocationdeliverycharges').val();
+    //var doordeliverycharges = $('#textdoordeliverycharges').val();
+    //var topaycharges = $('#texttopaycharges').val();
     var viewpriceeditremarks = $('#textpriceeditremarks').val();
 
     var isvalid = true;
@@ -794,45 +790,13 @@ function updateprice() {
         totalamount = totalamount + parseFloat(basicamount);
         $('#spancalcbasicamount').html(basicamount);
     }
-    //if (supcharges == "") {
-    //    isvalid = false;
-    //    $('#spansupcharges').html("Please enter SUP Charges");
-    //}
-    //else {
-    //    totalamount = totalamount + parseFloat(supcharges);
-    //    $('#spancalcsupcharges').html(supcharges);
-    //}
-    if (withpasscharges == "") {
+    if (drivercharges == "") {
         isvalid = false;
-        $('#spanwithpasscharges').html("Please enter With Pass Charges");
+        $('#spandrivercharges').html("Please enter Driver Charges");
     }
     else {
-        totalamount = totalamount + parseFloat(withpasscharges);
-        $('#spancalcwithpasscharges').html(withpasscharges);
-    }
-    //if (docketcharges == "") {
-    //    isvalid = false;
-    //    $('#spandocketcharges').html("Please enter Docket Charges");
-    //}
-    //else {
-    //    totalamount = totalamount + parseFloat(docketcharges);
-    //    $('#spancalcdocketcharges').html(docketcharges);
-    //}
-    //if (valuesrcharges == "") {
-    //    isvalid = false;
-    //    $('#spanvaluesrcharges').html("Please enter Value SR Charges");
-    //}
-    //else {
-    //    totalamount = totalamount + parseFloat(valuesrcharges);
-    //    $('#spancalcvaluesrcharges').html(valuesrcharges);
-    //}
-    if (collection == "") {
-        isvalid = false;
-        $('#spancollection').html("Please enter Collection Charges");
-    }
-    else {
-        totalamount = totalamount + parseFloat(collection);
-        $('#spancalccollectioncharges').html(collection);
+        totalamount = totalamount + parseFloat(drivercharges);
+        $('#spancalcdrivercharges').html(drivercharges);
     }
     if (hamalicharges == "") {
         isvalid = false;
@@ -842,14 +806,46 @@ function updateprice() {
         totalamount = totalamount + parseFloat(hamalicharges);
         $('#spancalchamalicharges').html(hamalicharges);
     }
-    //if (aoccharges == "") {
-    //    isvalid = false;
-    //    $('#spanaoccharges').html("Please enter AOC Charges");
-    //}
-    //else {
-    //    totalamount = totalamount + parseFloat(aoccharges);
-    //    $('#spancalcaoccharges').html(aoccharges);
-    //}
+    if (withpasscharges == "") {
+        isvalid = false;
+        $('#spanwithpasscharges').html("Please enter With Pass Charges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(withpasscharges);
+        $('#spancalcwithpasscharges').html(withpasscharges);
+    }
+    if (supcharges == "") {
+        isvalid = false;
+        $('#spansupcharges').html("Please enter SurCharges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(supcharges);
+        $('#spancalcsupcharges').html(supcharges);
+    }
+    if (lrcharges == "") {
+        isvalid = false;
+        $('#spanlrcharges').html("Please enter LR Charges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(lrcharges);
+        $('#spancalclrcharges').html(lrcharges);
+    }
+    if (collection == "") {
+        isvalid = false;
+        $('#spancollection').html("Please enter Collection Charges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(collection);
+        $('#spancalccollectioncharges').html(collection);
+    }
+    if (bookingoffcharges == "") {
+        isvalid = false;
+        $('#spancalcbookingoffcharges').html("Please enter Booking Off Charges");
+    }
+    else {
+        totalamount = totalamount + parseFloat(bookingoffcharges);
+        $('#spancalcbookingoffcharges').html(bookingoffcharges);
+    }
 
     if ($('#textpoint1').val() != '' || $('#textpoint2').val() != '') {
         if (transhipmentcharges == "0" || transhipmentcharges == "") {
@@ -869,45 +865,13 @@ function updateprice() {
         totalamount = totalamount + parseFloat(pickupcharges);
         $('#spancalcpickupcharges').html(pickupcharges);
     }
-    if (locationpickupcharges == "") {
+    if (deliverycharges == "") {
         isvalid = false;
-        $('#spanlocationpickupcharges').html("Please enter Location Pickup Charges");
+        $('#spanlocationdeliverycharges').html("Please enter Delivery Charges");
     }
     else {
-        totalamount = totalamount + parseFloat(locationpickupcharges);
-        $('#spancalclocationpickupcharges').html(locationpickupcharges);
-    }
-    if (locationdeliverycharges == "") {
-        isvalid = false;
-        $('#spanlocationdeliverycharges').html("Please enter Location Delivery Charges");
-    }
-    else {
-        totalamount = totalamount + parseFloat(locationdeliverycharges);
-        $('#spancalclocationdeliverycharges').html(locationdeliverycharges);
-    }
-    if (doordeliverycharges == "") {
-        isvalid = false;
-        $('#spandoordeliverycharges').html("Please enter Door Delivery Charges");
-    }
-    else {
-        totalamount = totalamount + parseFloat(doordeliverycharges);
-        $('#spancalcdoordeliverycharges').html(doordeliverycharges);
-    }
-    if (drivercharges == "") {
-        isvalid = false;
-        $('#spandrivercharges').html("Please enter Driver Charges");
-    }
-    else {
-        totalamount = totalamount + parseFloat(drivercharges);
-        $('#spancalcdrivercharges').html(drivercharges);
-    }
-    if (topaycharges == "") {
-        isvalid = false;
-        $('#spantopaycharges').html("Please enter Topay Charges");
-    }
-    else {
-        totalamount = totalamount + parseFloat(topaycharges);
-        $('#spancalctopaycharges').html(topaycharges);
+        totalamount = totalamount + parseFloat(deliverycharges);
+        $('#spancalclocationdeliverycharges').html(deliverycharges);
     }
     if (viewpriceeditremarks == "") {
         isvalid = false;
@@ -1047,20 +1011,20 @@ function bookingconfirm() {
     var totalkms = $('#spankms').html();
     var weightlist = $('#spanweightlist').html();
     var basicamount = $('#spancalcbasicamount').html();
-    //var supcharges = $('#spancalcsupcharges').html();
-    var withpasscharges = $('#spancalcwithpasscharges').html();
-    //var docketcharges = $('#spancalcdocketcharges').html();
-    //var valuesrcharges = $('#spancalcvaluesrcharges').html();
-    var collectioncharges = $('#spancalccollectioncharges').html();
-    var hamalicharges = $('#spancalchamalicharges').html();
-    //var aoccharges = $('#spancalcaoccharges').html();
-    var transhipmentcharges = $('#spancalctranshipmentcharges').html();
-    var pickupcharges = $('#spancalcpickupcharges').html();
-    var locationpickupcharges = $('#spancalclocationpickupcharges').html();
-    var locationdeliverycharges = $('#spancalclocationdeliverycharges').html();
-    var doordeliverycharges = $('#spancalcdoordeliverycharges').html();
     var drivercharges = $('#spancalcdrivercharges').html();
-    var topaycharges = $('#spancalctopaycharges').html();
+    var hamalicharges = $('#spancalchamalicharges').html();
+    var withpasscharges = $('#spancalcwithpasscharges').html();
+    var supcharges = $('#spancalcsupcharges').html();
+    var lrcharges = $('#spancalclrcharges').html();
+    var collectioncharges = $('#spancalccollectioncharges').html();
+    var bookingoffcharges = $('#spancalcbookingoffcharges').html();
+    var transhipmentcharges = 0;
+    var pickupcharges = $('#spancalcpickupcharges').html();
+    var locationpickupcharges = 0;
+    var locationdeliverycharges = 0;
+    var deliverycharges = $('#spancalcdoordeliverycharges').html();
+    var doordeliverycharges = 0;
+    var topaycharges = 0;
     var subtotal = $('#spancalcsubtotal').html();
     var calcgst = $('#spancalcgst').html();
     var calctotalamount = $('#spancalctotalamount').html();
@@ -1203,6 +1167,9 @@ function bookingconfirm() {
             DoorDeliveryCharges: doordeliverycharges,
             DriverCharges: drivercharges,
             ToPayCharges: topaycharges,
+            LRCharges: lrcharges,
+            BookingOffCharges: bookingoffcharges,
+            DeliveryCharges: deliverycharges,
             SubTotal: subtotal,
             GSTCharges: calcgst,
             TotalAmount: calctotalamount,
