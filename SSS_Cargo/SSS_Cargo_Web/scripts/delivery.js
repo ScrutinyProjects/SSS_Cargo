@@ -86,21 +86,26 @@ function searchbooking() {
                         gcbookingnumber = data.GCBookingNumber;
                         bookingid = data.BookingId;
                         receiveid = data.ReceivingId;
-                        var weight = (data.TotalWeight>0)?data.TotalWeight+" " + data.MeasurementIn:"--";
-
+                        var weight = (data.TotalWeight > 0) ? data.TotalWeight + " " + data.MeasurementIn : "--";
+                        $("#divReceivingDetails").css('display', '');
+                        $('#spangcnumber').html(bookingnumber);
                         $('#spandeliveryfrom').html((data.FromCounterName == "") ? "--" : data.FromCounterName);
                         $('#selectgctype').val(data.GCTypeId);
                         $('#spandeliverypieces').html((data.NumberOfPieces == "") ? "--" : data.NumberOfPieces);
                         $('#spandeliveryweight').html(weight);
-                        $('#spandeliveryto').html((data.DeliveryToName == "") ? "--" : data.DeliveryToName);
-                        $('#spandeliveryphonenumber').html((data.DeliveryToNumber == "") ? "--" : data.DeliveryToNumber);
+
+                        $('#spandeliveryto').html('');
+                        $('#textdeliveryto').val(data.DeliveryToName);
+                        $('#spandeliveryphonenumber').html('');
+                        $('#textdeliveryphonenumber').val(data.DeliveryToNumber);
                         $('#spandeliverytoberemarks').html((data.Remarks == "") ? "--" : data.Remarks);
                           
-                         $('#textdeliverycharges').val('');
-                         $('#textdemocharges').val('');
+                        $('#textdeliverycharges').val(data.DeliveryCharges);
+                        $('#textdemocharges').val(data.DemoCharges);
                          $('#textdeliveryremarks').val('');
-                    }
+                    }   
                     else {
+                        $("#divReceivingDetails").css('display', 'none');
                         gcbookingnumber = '';
                         showwarningalert(data.StatusMessage);
                     }
@@ -132,11 +137,16 @@ function updatedelivery() {
     var deliverycharges = $('#textdeliverycharges').val().trim();
     var democharges = $('#textdemocharges').val().trim();
     var deliveryremarks = $('#textdeliveryremarks').val().trim();
+    var deliveryphonenumber = $("#textdeliveryphonenumber").val().trim();
+    var deliveryto = $("#textdeliveryto").val().trim();
+    var billamount = $('#textbillamount').val().trim();
 
     if (validatedropdown(gctype, $('#spandeliverygctype'), 'Please select GC Type') == false) {
         isvalid = false;
     }
-
+    if (validatetextbox(billamount, $('#spanbillamount'), 'Please enter bill amount') == false) {
+        isvalid = false;
+    }
     if (isvalid) {
         showloading();
 
@@ -150,7 +160,10 @@ function updatedelivery() {
             Remarks: deliveryremarks,
             DeliveryCharges: (deliverycharges == "" ? 0 : deliverycharges),
             DemoCharges: (democharges == "" ? 0 : democharges),
-            ReceivingId: receiveid
+            ReceivingId: receiveid,
+            DeliveryPhoneNumber: deliveryphonenumber,
+            DeliveryTo: deliveryto,
+            BillAmount: billamount
         };
 
         $.ajax({
@@ -162,6 +175,7 @@ function updatedelivery() {
                 if (data.StatusId != null) {
                     if (data.StatusId == 1) {
                         showsuccessalert(data.StatusMessage);
+                        window.location = "/cargo/deliverysuccess/" + data.DeliveryId;
                         clearallfields();
                     }
                     else {

@@ -50,81 +50,95 @@
                     </div>
                 </div>
             </div>
-            <div class="panel">
-                <div class="panel-heading">
-                    <h4 class="panel-title" style="font-size: 14px;">Receiving Details</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="">
-                            <label class="col-sm-2 control-label" style="text-align: left;">From <span style="float:right">:</span></label>
-                            <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryfrom">--</label>
-                        </div>
-                        <div class="">
+            <div id="divReceivingDetails" style="display:none;">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" style="font-size: 14px;">Receiving Details</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
                             <div class="col-sm-3">
-                                <label class="control-label" style="text-align: left;" for="selectgctype">GC Type <span class="red">*</span> </label>
-                                <select class="form-control" id="selectgctype">
+                                <label class="col-sm-2 control-label" style="text-align: left;">GC Number <span style="float:right">:</span></label>
+                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spangcnumber">--</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="col-sm-2 control-label" style="text-align: left;">From <span style="float:right">:</span></label>
+                                <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryfrom">--</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label " style="text-align: left;" for="selectgctype">GC Type <span class="red">*</span> </label>
+                                <select class="form-control col-sm-3" id="selectgctype">
                                     <option value="0">Select GC Type</option>
                                 </select>
                                 <span class="red" id="spandeliverygctype"></span>
                             </div>
-                        </div>
-                        <div class="">
-                            <label class="col-sm-2 control-label" style="text-align: left;">Pieces <span style="float:right">:</span></label>
-                            <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliverypieces">--</label>
-                        </div>
-                        <div class="">
-                            <label class="col-sm-2 control-label" style="text-align: left;">Weight <span style="float:right">:</span></label>
-                            <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryweight">--</label>
-                        </div>
-                        <div class="">
-                            <label class="col-sm-2 control-label" style="text-align: left;">Delivery To <span style="float:right">:</span></label>
-                            <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryto">--</label>
-                        </div> 
-                        <div class="">
-                            <label class="col-sm-2 control-label" style="text-align: left;">Phone Number <span style="float:right">:</span></label>
-                            <label class="col-sm-2 control-label" style="font-weight: 600;text-align: left;" id="spandeliveryphonenumber">--</label>
-                        </div>
-                        <div class="">
-                            <label class="col-sm-2 control-label" style="text-align: left;">Remarks <span style="float:right">:</span></label>
-                            <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spandeliverytoberemarks">--</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="textdeliverycharges">Delivery Charges </label>
-                            <input type="text" id="textdeliverycharges" maxlength="6" value="0" placeholder="Delivery Charges" class="form-control" />
-                            <span class="red" id="spandeliverycharges"></span>
-                        </div> 
-                        <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="textdemocharges">Demo Charges </label>
-                            <input type="text" id="textdemocharges" maxlength="6" value="0" placeholder="Demo Charges" class="form-control" />
-                            <span class="red" id="spandemocharges"></span>
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="control-label" style="text-align: left;" for="textdeliveryremarks">Remarks </label>
-                            <textarea type="text" id="textdeliveryremarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
-                            <span class="red" id="spandeliveryremarks"></span>
+                            <div class="col-sm-6">
+                                <label class="control-label" style="text-align: left;">Pieces <span style="float:right">:</span></label>
+                                <label class="control-label" style="font-weight: 600;text-align: left;" id="spandeliverypieces">--</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label" style="text-align: left;">Weight <span style="float:right">:</span></label>
+                                <label class="control-label" style="font-weight: 600;text-align: left;" id="spandeliveryweight">--</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdeliveryto">Bill Amount</label>
+                                <input type="text" id="textbillamount" maxlength="6" value="0" placeholder="Bill Amount" class="form-control" />
+                                <span class="red" id="spanbillamount"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdeliveryto">Delivery To</label>
+                                <input type="text" id="textdeliveryto" maxlength="6" value="0" placeholder="Delivery To" class="form-control" />
+                                <span class="red" id="spandeliveryto"></span>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdeliveryphonenumber">Phone Number </label>
+                                <input type="text" id="textdeliveryphonenumber" maxlength="10" value="0" placeholder="Phone Number" class="form-control" />
+                                <span class="red" id="spandeliveryphonenumber"></span>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="col-sm-2 control-label" style="text-align: left;">Remarks <span style="float:right">:</span></label>
+                                <label class="col-sm-10 control-label" style="font-weight: 600;text-align: left;" id="spandeliverytoberemarks">--</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
-                        <div style="width: 95%;">
-                            <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="clearallfields()">
-                                <i class="ace-icon fa fa-undo bigger-110"></i>
-                                Reset
-                            </button>
-                            <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return updatedelivery()">
-                                <i class="ace-icon fa fa-check bigger-110"></i>
-                                Update Delivery
-                            </button>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdeliverycharges">Delivery Charges </label>
+                                <input type="text" id="textdeliverycharges" maxlength="6" value="0" placeholder="Delivery Charges" class="form-control" />
+                                <span class="red" id="spandeliverycharges"></span>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="control-label" style="text-align: left;" for="textdemocharges">Demo Charges </label>
+                                <input type="text" id="textdemocharges" maxlength="6" value="0" placeholder="Demo Charges" class="form-control" />
+                                <span class="red" id="spandemocharges"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="control-label" style="text-align: left;" for="textdeliveryremarks">Remarks </label>
+                                <textarea type="text" id="textdeliveryremarks" maxlength="500" rows="3" placeholder="Remarks" class="form-control"></textarea>
+                                <span class="red" id="spandeliveryremarks"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                            <div style="width: 95%;">
+                                <button class="btn btn-sm pull-right" type="reset" style="margin: 5px;" onclick="clearallfields()">
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    Reset
+                                </button>
+                                <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return updatedelivery()">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Update Delivery
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

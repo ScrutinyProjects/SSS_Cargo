@@ -509,6 +509,8 @@
     <Content Include="Content\kendo\2014.1.318\images\kendoui.ttf" />
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\delivery.js" />
+    <Content Include="scripts\deliveryprint.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
@@ -1103,6 +1105,8 @@
     <Content Include="scripts\kendo\2014.1.318\kendo.autocomplete.min.js.map" />
     <Content Include="scripts\kendo\2014.1.318\jquery.min.map" />
     <Content Include="Views\Reports\NotLoadedReport.cshtml" />
+    <Content Include="Views\Cargo\deliverysuccess.cshtml" />
+    <Content Include="Views\Cargo\printdeliveryreceipt.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

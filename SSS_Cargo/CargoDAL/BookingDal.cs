@@ -556,7 +556,8 @@ namespace CargoDAL
                                             new SqlParameter("@DeliveryToName", SqlDbType.VarChar, 100) { Value = objrequest.DeliveryToName },
                                             new SqlParameter("@DeliveryToNumber", SqlDbType.VarChar, 10) { Value = objrequest.DeliveryToNumber },
                                             new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks },
-                                            new SqlParameter("@TotalWeight", SqlDbType.Decimal) { Value = objrequest.TotalWeight }
+                                            new SqlParameter("@TotalWeight", SqlDbType.Decimal) { Value = objrequest.TotalWeight },
+                                            new SqlParameter("@BillAmount", SqlDbType.Decimal) { Value = objrequest.BillAmount }
                                         };
             SqlDataReader reader = null;
             SaveRespone objresponse = new SaveRespone();
@@ -721,6 +722,8 @@ namespace CargoDAL
                         objresponse.TotalWeight = (decimal)reader["TotalWeight"];
                         objresponse.DeliveryToName = (string)reader["DeliveryToName"];
                         objresponse.DeliveryToNumber = (string)reader["DeliveryToNumber"];
+                        objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"];
+                        objresponse.DemoCharges = (decimal)reader["DemoCharges"];
                     }
                 }
             }
@@ -737,7 +740,7 @@ namespace CargoDAL
             return objresponse;
         }
 
-        public SaveRespone InsertDeliveryDetails(DeliveryRequest objrequest)
+        public DeliverySaveResponse InsertDeliveryDetails(DeliveryRequest objrequest)
         {
             SqlParameter[] sqlparams = { new SqlParameter("@UserLoginId", SqlDbType.Int) { Value = objrequest.UserLoginId },
                                             new SqlParameter("@ReceivingId", SqlDbType.Int) { Value = objrequest.ReceivingId },
@@ -747,10 +750,13 @@ namespace CargoDAL
                                             new SqlParameter("@GCType", SqlDbType.Int) { Value = objrequest.GCType },
                                             new SqlParameter("@DeliveryCharges", SqlDbType.Decimal) { Value = objrequest.DeliveryCharges },
                                             new SqlParameter("@DemoCharges", SqlDbType.Decimal) { Value = objrequest.DemoCharges },
-                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks }
+                                            new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks },
+                                            new SqlParameter("@NameOfDeliveryPerson", SqlDbType.VarChar, 100) { Value = objrequest.DeliveryTo },
+                                            new SqlParameter("@DeliveryPhoneNumber", SqlDbType.VarChar, 20) { Value = objrequest.DeliveryPhoneNumber },
+                                            new SqlParameter("@BillAmount", SqlDbType.Decimal) { Value = objrequest.BillAmount }
                                         };
             SqlDataReader reader = null;
-            SaveRespone objresponse = new SaveRespone();
+            DeliverySaveResponse objresponse = new DeliverySaveResponse();
 
             try
             {
@@ -760,12 +766,57 @@ namespace CargoDAL
                 {
                     objresponse.StatusId = (int)reader["StatusId"];
                     objresponse.StatusMessage = (string)reader["StatusMessage"];
+                    objresponse.DeliveryId =Convert.ToString((int)reader["DeliveryId"]);
                 }
             }
             catch (Exception ex)
             {
                 objresponse.StatusId = 0;
                 objresponse.StatusMessage = ex.Message;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objresponse;
+        }
+        public DeliveryDetailsForPrintResponse GetDeliveryDetailsToPrintByDeliveryId(int deliveryId)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@DeliveryId", SqlDbType.Int) { Value = deliveryId }
+                                        };
+
+            SqlDataReader reader = null;
+            DeliveryDetailsForPrintResponse objresponse = new DeliveryDetailsForPrintResponse();
+
+            try
+            {
+                reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_GetDeliveryDetailsToPrintByDeliveryId", sqlparams);
+                while (reader.Read())
+                {
+                    objresponse.GCBookingNumber = (string)reader["GCBookingNumber"];
+                    objresponse.TotalPieces = (int)reader["TotalPieces"];
+                    objresponse.TotalWeight = (decimal)reader["TotalWeight"];
+                    objresponse.PaymentType = (string)reader["PaymentType"];
+                    objresponse.BillAmount = (decimal)reader["BillAmount"];
+                    objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"];
+                    objresponse.DemoCharges = (decimal)reader["DemoCharges"];
+                    objresponse.Remarks = (string)reader["Remarks"];
+                    objresponse.CounterName = (string)reader["CounterName"];
+                    if (objresponse.PaymentType.ToString().ToLower() == "topay")
+                    {
+                        objresponse.TotalAmount = objresponse.BillAmount + objresponse.DeliveryCharges + objresponse.DemoCharges;
+                    }
+                    else
+                    {
+                        objresponse.TotalAmount = objresponse.DeliveryCharges + objresponse.DemoCharges;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
             }
             finally
             {

@@ -179,5 +179,41 @@ namespace SSS_Cargo_Web.Controllers
 
             return View();
         }
+
+        public ActionResult deliverysuccess(string param1)
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.DeliveryId = param1;
+                return View();
+            }
+        }
+
+        public ActionResult printdeliveryreceipt(string param1)
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.DeliveryId = param1;
+                return View();
+            }
+        }
     }
 }
