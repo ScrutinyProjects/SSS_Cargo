@@ -99,25 +99,25 @@ function GetBookingReport() {
                         for (var i = 0; i < data.length; i++) {
                             var tr = $('<tr class="trdynamic" />');
                             tr.append('' +
-                                '<td>' + '<span id="spnSNo">' + i + 1 + '</span></td>' +
-                                '<td><span id="spnGCNo">' + data[i].GC_No + '</span></td>' +
-                                '<td><span id="spnGC_Type">' + data[i].GC_Type + '</span></td>' +
-                                '<td><span id="spnFromLocation" >' + data[i].FromLocation + '</span></td>' +
-                                '<td><span id="spnToLocation"  >' + data[i].ToLocation + '</span></td>' +
-                                '<td><span id="spnRouteInfo"  >' + data[i].RouteInfo + '</span></td>' +
-                                '<td><span id="spnProductType"  >' + data[i].ProductType + '</span></td>' +
-                                '<td><span id="spnPieces"  >' + data[i].Pieces + '</span></td>' +
-                                '<td><span id="spnWeightInfo"  >' + data[i].WeightInfo + '</span></td>' +
-                                 '<td><span id="spnSenderName"  >' + data[i].SenderName + '</span></td>' +
-                                '<td><span id="spnSenderMobileNumber"  >' + data[i].SenderMobileNumber + '</span></td>' +
-                                '<td><span id="spnReceiverName"  >' + data[i].ReceiverName + '</span></td>' +
-                                '<td><span id="spnReceiverMobileNumber"  >' + data[i].ReceiverMobileNumber + '</span></td>' +
-                                '<td><span id="spnCurrentStatus"  >' + data[i].CurrentStatus + '</span></td>' +
-                                '<td><span id="spnBillAmount"  >' + data[i].BillAmount + '</span></td>' +
-                                '<td><span id="spnBookedBy"  >' + data[i].BookedBy + '</span></td>' +
-                                 '<td><span id="spnBookedDateTime"  >' + moment(data[i].BookedDateTime).format("YYYY-MM-DD HH:mm") + '</span></td>' +
+                                '<td>' + '<span id="spnSNo_' + i + '">' + (i + 1) + '</span></td>' +
+                                '<td><span id="spnGCNo_' + i + '">' + data[i].GC_No + '</span></td>' +
+                                '<td><span id="spnGC_Type_' + i + '">' + data[i].GC_Type + '</span></td>' +
+                                '<td><span id="spnFromLocation_' + i + '" >' + data[i].FromLocation + '</span></td>' +
+                                '<td><span id="spnToLocation_' + i + '"  >' + data[i].ToLocation + '</span></td>' +
+                                '<td><span id="spnRouteInfo_' + i + '"  >' + data[i].RouteInfo + '</span></td>' +
+                                '<td><span id="spnProductType_' + i + '"  >' + data[i].ProductType + '</span></td>' +
+                                '<td><span id="spnPieces_' + i + '" >' + data[i].Pieces + '</span></td>' +
+                                '<td><span id="spnWeightInfo_' + i + '"  >' + data[i].WeightInfo + '</span></td>' +
+                                 '<td><span id="spnSenderName_' + i + '"  >' + data[i].SenderName + '</span></td>' +
+                                '<td><span id="spnSenderMobileNumber_' + i + '"  >' + data[i].SenderMobileNumber + '</span></td>' +
+                                '<td><span id="spnReceiverName_' + i + '"  >' + data[i].ReceiverName + '</span></td>' +
+                                '<td><span id="spnReceiverMobileNumber_' + i + '"  >' + data[i].ReceiverMobileNumber + '</span></td>' +
+                                '<td><span id="spnCurrentStatus_' + i + '"  >' + data[i].CurrentStatus + '</span></td>' +
+                                '<td><span id="spnBillAmount_' + i + '"  >' + data[i].BillAmount + '</span></td>' +
+                                '<td><span id="spnBookedBy_' + i + '"  >' + data[i].BookedBy + '</span></td>' +
+                                 '<td><span id="spnBookedDateTime_' + i + '"  >' + moment(data[i].BookedDateTime).format("YYYY-MM-DD HH:mm") + '</span></td>' +
 
-                                '<td><a href="javascript:void(0)" onclick="viewbillbreakup(' + data[i].BookingId + ')"><i class="fa fa-remove"></i> View Bill Breakup</a> <a href="javascript:void(0)" onclick="updatestatus(' + data[i].BookingId + ')"><i class="fa fa-remove"></i> Update Status</a></td>');
+                                '<td><a href="javascript:void(0)" onclick="viewbillbreakup(' + data[i].BookingId + ')"><i class="fa fa-remove"></i> View Bill Breakup</a> <a href="javascript:void(0)" onclick="updatestatus(' + data[i].BookingId + ', '+ i +')"><i class="fa fa-remove"></i> Update Status</a></td>');
                             //<a href="javascript:void(0)" onclick="editparcelitem(this)"><i class="fa fa-pencil"></i> Edit</a>&nbsp;&nbsp;
                             $('#tbodybookingrecords').append(tr);
                         }
@@ -151,7 +151,7 @@ function viewbillbreakup(bookingId) {
         success: function (data) {
             if (data) {
                 debugger;
-                $("#spnBasicfright").html(data.Basicfright);
+                $("#spnBasicfright").html(data.BasicFrieght);
                 $("#spnHamali").html(data.Hamali);
                 $("#spnSC60").html(data.SC60);
                 $("#spnValueSC").html(data.ValueSC);
@@ -192,7 +192,7 @@ function viewbillbreakup(bookingId) {
 
    
 }
-function updatestatus(bookingId) {
+function updatestatus(bookingId, index) {
     debugger;
     if (lstBookingStatus && lstBookingStatus.length > 0 && $('#ddlLatestBookingStatus option').length == 1) {
         for (var i = 0; i < lstBookingStatus.length; i++) {
@@ -200,17 +200,21 @@ function updatestatus(bookingId) {
             $('#ddlLatestBookingStatus').append(option);
         }
     }
-    $("#btnUpdateStatus").attr('data-Id', bookingId);
+    $("#btnUpdateStatus").attr('data-Id', bookingId + "~" + index);
     $("#UpdateStatusModal").modal('show');
     $("#btnUpdateStatusCancel, #btnCloseUpdateStatusModal").unbind().click(function () {
         $("#UpdateStatusModal").modal('hide');
     });
 }
-function UpdateBookingStatus(bookingId) {
+function UpdateBookingStatus() {
+
     var loginid = $("#hiddenloginid").val();
     var counterid = $("#hiddencounterid").val();
     if (loginid != "" && counterid) {
         showloading();
+        
+        var bookingId = $("#btnUpdateStatus").attr('data-Id').split('~')[0];
+        var index =parseInt($("#btnUpdateStatus").attr('data-Id').split('~')[1]);
         var bookingStatusId = $("#ddlLatestBookingStatus").val();
         var latestRemarks = $("#txtEditRemarks").val();
         var isvalid = true;
@@ -225,7 +229,7 @@ function UpdateBookingStatus(bookingId) {
             var input = {
                 LoginId: loginid,
                 CounterId: counterid,
-                BookingId:  $("#btnUpdateStatus").attr('data-Id'),
+                BookingId: bookingId,
                 BookingStatusId: bookingStatusId,
                 LatestRemarks: latestRemarks,
             }
@@ -237,15 +241,18 @@ function UpdateBookingStatus(bookingId) {
                 success: function (data) {
                     if (data) {
                         $("#spnMessage").html('Booking Status Updated Successfully');
+                        $("#spnMessage").css("display", "");
                         $("#spnMessage").css('color', 'green');
                         $("#ddlLatestBookingStatus").val(-1);
                         $("#txtEditRemarks").val('');
+                        $("#spnCurrentStatus_" + index).html(lstBookingStatus.filter(k=>k.BookingStatusId == bookingStatusId)[0].BookingStatus);
                     }
                     else {
                         $("#spnMessage").html('Failed to update status');
                         $("#spnMessage").css('color', 'red');
+                        $("#spnMessage").css("display", "");
                     }
-
+                    $("#btnUpdateStatusCancel").click();
                     hideloading();
                 },
                 error: function (xhr) {

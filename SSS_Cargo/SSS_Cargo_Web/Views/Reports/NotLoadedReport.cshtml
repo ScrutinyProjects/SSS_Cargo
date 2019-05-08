@@ -8,7 +8,7 @@
         <li>
             Home
         </li>
-        <li class="active" style="font-size:14px; font-weight:600">Booking Report</li>
+        <li class="active" style="font-size:14px; font-weight:600">Not Loaded Report</li>
     </ul>
 </div>
 <div class="page-content">
@@ -55,20 +55,6 @@
                             </select>
                             <span class="red" id="spnLocation"></span>
                         </div>
-                        <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="ddlGCType">GC Type <span class="red">*</span> </label>
-                            <select class="form-control" id="ddlGCType">
-                                <option value="-1">Select GC Type</option>
-                            </select>
-                            <span class="red" id="spnGCType"></span>
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="ddlBookingStatus">Booking Status <span class="red">*</span> </label>
-                            <select class="form-control" id="ddlBookingStatus">
-                                <option value="-1">Select Booking Status</option>
-                            </select>
-                            <span class="red" id="spnBookingStatus"></span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -76,7 +62,7 @@
                 <div class="panel-body">
                     <div class="clearfix form-actions form-group" style="background-color: #fff;">
                         <div style="width: 95%;">
-                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetBookingReport()">
+                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetNotLoadedReport()">
                                 <i class="ace-icon fa fa-check bigger-110"></i>
                                 Search
                             </button>
@@ -105,26 +91,20 @@
                         <th style="width: 15%;">Product Type</th>
                         <th style="width: 15%;">Pieces</th>
                         <th style="width: 15%;">Weight Info</th>
-                        <th style="width: 15%;">Sender Name</th>
-                        <th style="width: 15%;">Sender Mobile</th>
-                        <th style="width: 15%;">Receiver Name</th>
-                        <th style="width: 15%;">Receiver Mobile</th>
                         <th style="width: 15%;">Current Status</th>
-                        <th style="width: 15%;">Bill Amount</th>
                         <th style="width: 15%;">Booked By</th>
                         <th style="width: 15%;">Booked DateTime</th>
-                        <th style="width: 10%;">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="tbodybookingrecords">
+                <tbody id="tbodynotloadedrecords">
                     <tr>
-                        <td colspan="18" style="text-align:center">No booking records found</td>
+                        <td colspan="13" style="text-align:center">No not loaded records found</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="modal fade" tabindex="-1" id="UpdateStatusModal" data-keyboard="false" data-backdrop="static">
+    @*<div class="modal fade" tabindex="-1" id="UpdateStatusModal" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-me">
             <div class="modal-content">
                 <div class="modal-header">
@@ -136,6 +116,7 @@
                 <div class="modal-body" id="divUpdateStatusModal" style="min-height:250px;">
                     <div class="form-group">
                         <div class="col-sm-8">
+
                         </div>
                         <div class="col-sm-5">
                             <label class="control-label" style="text-align: left;" for="ddlLatestBookingStatus">Booking Status <span class="red">*</span> </label>
@@ -291,7 +272,7 @@
 
         </div>
 
-    </div>
+    </div>*@
 </div>
 <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
 <script src="~/Assets/js/jquery-ui.min.js"></script>
@@ -304,7 +285,7 @@
 <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
 <script src="~/scripts/moment.js"></script>
 <script src="~/scripts/common.js"></script>
-<script src="~/scripts/bookingreports.js"></script>
+<script src="~/scripts/notloadedreports.js"></script>
 
 <script type="text/javascript">
     jQuery(function ($) {
