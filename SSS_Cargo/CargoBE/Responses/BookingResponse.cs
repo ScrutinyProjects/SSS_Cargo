@@ -162,6 +162,8 @@ namespace CargoBE.Responses
         public decimal TotalWeight { get; set; }
         public string DeliveryToName { get; set; }
         public string DeliveryToNumber { get; set; }
+        public decimal DeliveryCharges { get; set; }
+        public decimal DemoCharges { get; set; }
     }
 
     public class BookingParcelDetails
@@ -283,4 +285,25 @@ namespace CargoBE.Responses
         public decimal ToPayCharges { get; set; }
     }
 
+    public class DeliverySaveResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public string DeliveryId { get; set; }
+        public string DeliverySerialNumber { get; set; }
+    }
+
+    public class DeliveryDetailsForPrintResponse 
+    {
+        public string GCBookingNumber { get; set; }
+        public int TotalPieces { get; set; }
+        public decimal TotalWeight { get; set; }
+        public string PaymentType { get; set; }
+        public decimal BillAmount { get; set; }
+        public decimal DeliveryCharges { get; set; }
+        public decimal DemoCharges { get; set; }
+        public string Remarks { get; set; }
+        public decimal TotalAmount { get; set; }
+        public string CounterName { get; set; }
+    }
 }

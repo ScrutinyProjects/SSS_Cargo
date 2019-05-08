@@ -202,6 +202,7 @@ function savereceiveing() {
     var actualdeliveryto = $('#textactualdeliveryto').val().trim();
     var actualphonenumber = $('#textactualphonenumber').val().trim();
     var actualremarks = $('#textactualremarks').val().trim();
+    var billamount = $('#textbillamount').val().trim();
     
     if (validatetextbox(actualfrom, $('#spanactualfrom'), 'Please select From Counter') == false) {
         isvalid = false;
@@ -239,6 +240,9 @@ function savereceiveing() {
     if (validatetextbox(actualphonenumber, $('#spanactualphonenumber'), 'Please enter Delivery To Person Mobile Number') == false) {
         isvalid = false;
     }
+    if (validatetextbox(billamount, $('#spanbillamount'), 'Please enter bill amount') == false) {
+        isvalid = false;
+    }
 
     if (isvalid) {
         showloading();
@@ -262,7 +266,8 @@ function savereceiveing() {
             TranshipmentCharges: actualtranshipmentamount,
             TotalWeight: actualtotalweight,
             VehicleNumber: actualvehiclenumber,
-            ToBeReceiveId: tobereceiveid
+            ToBeReceiveId: tobereceiveid,
+            BillAmount: billamount
         };
         
         $.ajax({

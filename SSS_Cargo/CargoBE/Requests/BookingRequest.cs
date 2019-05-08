@@ -124,6 +124,7 @@ namespace CargoBE.Requests
         public string DeliveryToName { get; set; }
         public string DeliveryToNumber { get; set; }
         public string Remarks { get; set; }
+        public decimal BillAmount { get; set; }
     }
     
     public class DeliveryRequest
@@ -137,5 +138,11 @@ namespace CargoBE.Requests
         public decimal DeliveryCharges { get; set; }
         public decimal DemoCharges { get; set; }
         public string Remarks { get; set; }
+
+        public string DeliveryPhoneNumber { get; set; }
+
+        public string DeliveryTo { get; set; }
+
+        public decimal BillAmount { get; set; }
     }
 }

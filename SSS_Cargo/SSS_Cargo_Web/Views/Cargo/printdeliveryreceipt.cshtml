@@ -1,0 +1,206 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Invioce</title>
+</head>
+
+<body style="font-family: Calibri; font-size: 12px; margin: 0; position: relative;">
+    <div name="invoice" style="padding-bottom: 20px;">
+        <input type="hidden" id="hiddendeliveryid" value="@ViewBag.DeliveryId" />
+        <table border="0" width="600" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <table border="0" width="300" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                <img src="http://sscargo.scrutinysolutions.com/img/ssclogo.jpg.JPEG" alt="logo" height="40" />
+
+                            </td>
+                            <td>
+                                <h2 style="margin: 0;">SRI SIDDHARTHA CARGO - </h2>
+                                <h3 style="margin: 0;"><span class="countername">CounterName</span></h3>
+                                <h3 style="margin: 0;"><u>Delivery Receipt</u> - <span>Customer Copy</span></h3>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" width="300" cellpadding="0" cellspacing="0" style="border: 1px solid; font-size: 14px;">
+                        <tr>
+                            <td width="28%" valign="top">
+                                <table border="0" width="100%" cellpadding="1" cellspacing="0">
+
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GC Number</span><span class="gcnumber" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pieces</span><span class="pieces" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Weight</span><span class="weight" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Payment Type</span><span class="paymenttype" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Bill Amt (Rs)</span><span class="billamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Delivery Chargers</span><span class="deliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Demu Charges</span><span class="democharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Remarks</span><span class="remarks" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <hr style="margin: 0;" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong style="display: inline-block; width: 60%; font-size: 16px">TOTAL AMT TO PAY(&#8377;) </strong><strong class="totalamount" style="text-align: right; display: inline-block; width: 35%; font-size: 16px"></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <hr style="margin: 0;" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table cellpadding="1" cellspacing="0" width="100%" style="margin-top:25px;">
+                                                <tr>
+                                                    <td><span>Operator Signature & Number</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="padding-left: 10px;">
+                    <table border="0" width="300" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                <img src="http://sscargo.scrutinysolutions.com/img/ssclogo.jpg.JPEG" alt="logo" height="40" />
+
+                            </td>
+                            <td>
+                                <h2 style="margin: 0;">SRI SIDDHARTHA CARGO - </h2>
+                                <h3 style="margin: 0;"><span class="countername">CounterName</span></h3>
+                                <h3 style="margin: 0;"><u>Delivery Receipt</u> - <span>Office Copy</span></h3>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" width="300" cellpadding="0" cellspacing="0" style="border: 1px solid; font-size: 14px;">
+                        <tr>
+                            <td width="28%" valign="top">
+                                <table border="0" width="100%" cellpadding="1" cellspacing="0">
+
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">GC Number</span><span class="gcnumber" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Pieces</span><span class="pieces" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Weight</span><span  class="weight" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Payment Type</span><span class="paymenttype" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Bill Amt (Rs)</span><span class="billamount" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Delivery Chargers</span><span class="deliverycharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Demu Charges</span><span class="democharges" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><span style="display: inline-block; width: 60%; padding-left: 4px;">Remarks</span><span class="remarks" style="text-align: right; display: inline-block; width: 35%; font-weight: 600;"></span></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <hr style="margin: 0;" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong style="display: inline-block; width: 60%; font-size: 16px">TOTAL AMT TO PAY(&#8377;) </strong><strong class="totalamount" style="text-align: right; display: inline-block; width: 35%; font-size: 16px"></strong></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <hr style="margin: 0;" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table cellpadding="1" cellspacing="0" width="100%" style="margin-top:25px;">
+                                                <tr>
+                                                    <td><span>Customer Signature</span></td>
+                                                    <td align="right"><span>Operator Signature</span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+    <script src="~/Assets/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");
+    </script>
+
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/deliveryprint.js"></script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            getdeliverydetails();
+        });
+    </script>
+</body>
+</html>

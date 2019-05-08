@@ -597,6 +597,7 @@ namespace CargoBAL
                 objrequest.TotalWeight = Convert.ToInt32(input["TotalWeight"]);
                 objrequest.VehicleNumber = Convert.ToString(input["VehicleNumber"]);
                 objrequest.ToBeReceiveId = Convert.ToInt32(input["ToBeReceiveId"]);
+                objrequest.BillAmount = Convert.ToDecimal(input["BillAmount"]);
 
                 objresponse = objBookingDal.InsertReceivingDetails(objrequest);
             }
@@ -684,9 +685,9 @@ namespace CargoBAL
             return objresponse;
         }
 
-        public SaveRespone InsertDeliveryDetails(JObject input)
+        public DeliverySaveResponse InsertDeliveryDetails(JObject input)
         {
-            SaveRespone objresponse = new SaveRespone();
+            DeliverySaveResponse objresponse = new DeliverySaveResponse();
 
             try
             {
@@ -701,13 +702,37 @@ namespace CargoBAL
                 objrequest.DeliveryCharges = Convert.ToDecimal(input["DeliveryCharges"]);
                 objrequest.DemoCharges = Convert.ToDecimal(input["DemoCharges"]);
                 objrequest.ReceivingId = Convert.ToInt32(input["ReceivingId"]);
+                objrequest.DeliveryPhoneNumber = Convert.ToString(input["DeliveryPhoneNumber"]);
+                objrequest.DeliveryTo = Convert.ToString(input["DeliveryTo"]);
+                objrequest.BillAmount = Convert.ToDecimal(input["BillAmount"]);
 
                 objresponse = objBookingDal.InsertDeliveryDetails(objrequest);
+
+                if (objresponse.StatusId == 1)
+                {
+                    CommonMethods.SendSMS(objrequest.DeliveryPhoneNumber, "Your LR Number: "+ objrequest.GCBookingNumber + " is delivered successfully to "+ objrequest.DeliveryTo + ", Mobile No: "+ objrequest.DeliveryPhoneNumber + "");
+                }
             }
             catch (Exception ex)
             {
                 objresponse.StatusId = 0;
                 objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+        public DeliveryDetailsForPrintResponse GetDeliveryDetailsToPrintByDeliveryId(JObject input)
+        {
+            DeliveryDetailsForPrintResponse objresponse = null;
+
+            try
+            {
+                int deliveryId = Convert.ToInt32(Convert.ToString(input["DeliveryId"]));
+
+                objresponse = objBookingDal.GetDeliveryDetailsToPrintByDeliveryId(deliveryId);
+            }
+            catch (Exception ex)
+            {
+               
             }
             return objresponse;
         }

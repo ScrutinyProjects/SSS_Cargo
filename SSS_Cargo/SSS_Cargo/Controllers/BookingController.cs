@@ -308,9 +308,9 @@ namespace SSS_Cargo.Controllers
         [AllowAnonymous]
         [Route("insertdeliverydetails")]
         [HttpPost]
-        public SaveRespone InsertDeliveryDetails(JObject input)
+        public DeliverySaveResponse InsertDeliveryDetails(JObject input)
         {
-            SaveRespone objresponse = new SaveRespone();
+            DeliverySaveResponse objresponse = new DeliverySaveResponse();
             try
             {
                 objresponse = objBookingBal.InsertDeliveryDetails(input);
@@ -322,7 +322,22 @@ namespace SSS_Cargo.Controllers
             }
             return objresponse;
         }
-
+        [AllowAnonymous]
+        [Route("getdeliverydetailstoprintbydeliveryid")]
+        [HttpPost]
+        public DeliveryDetailsForPrintResponse GetDeliveryDetailsToPrintByDeliveryId(JObject input)
+        {
+            DeliveryDetailsForPrintResponse objresponse = null;
+            try
+            {
+                objresponse = objBookingBal.GetDeliveryDetailsToPrintByDeliveryId(input);
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            return objresponse;
+        }
         #endregion
     }
 }
