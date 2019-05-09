@@ -6,4 +6,5 @@
   </Expense>
   <BookingReportRequestType>1</BookingReportRequestType>
   <NotLoadedReportRequestType>1</NotLoadedReportRequestType>
+<NotDeliveredReportRequestType>1</NotDeliveredReportRequestType>
 </CargoConfig>
