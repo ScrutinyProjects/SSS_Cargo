@@ -1153,7 +1153,7 @@ function bookingconfirm() {
             ShipmentValue: shipmentvalue,
             ShipmentDescription: shipmentdescription,
             BasicAmount: basicamount,
-            SUPCharges: 0,
+            SUPCharges: supcharges,
             WithPASSCharges: withpasscharges,
             DocketCharges: 0,
             ValueSCCharges: 0,
