@@ -275,6 +275,9 @@ namespace CargoBAL
                 objrequest.DoorDeliveryCharges = Convert.ToDecimal(input["DoorDeliveryCharges"]);
                 objrequest.DriverCharges = Convert.ToDecimal(input["DriverCharges"]);
                 objrequest.ToPayCharges = Convert.ToDecimal(input["ToPayCharges"]);
+                objrequest.LRCharges = Convert.ToDecimal(input["LRCharges"]);
+                objrequest.BookingOffCharges = Convert.ToDecimal(input["BookingOffCharges"]);
+                objrequest.DeliveryCharges = Convert.ToDecimal(input["DeliveryCharges"]);
                 objrequest.SubTotal = Convert.ToDecimal(input["SubTotal"]);
                 objrequest.GSTCharges = Convert.ToDecimal(input["GSTCharges"]);
                 objrequest.TotalAmount = Convert.ToDecimal(input["TotalAmount"]);

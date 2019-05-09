@@ -44,6 +44,7 @@
                     $('.supcharges').html(parseFloat(data.SurCharges).toFixed(2)); 
                     $('.lrcharges').html(parseFloat(data.LRCharges).toFixed(2));
                     $('.valuesrcharges').html(parseFloat(data.ValueSurCharges).toFixed(2));
+                    $('.bookingoffcharges').html(parseFloat(data.BookingOffCharges).toFixed(2));
                     $('.withpasscharges').html(parseFloat(data.WithPassCharges).toFixed(2));
                     $('.aoccharges').html(parseFloat(data.AOCCharges).toFixed(2));
                     $('.transhipmentcharges').html(parseFloat(data.TranshipmentCharges).toFixed(2));

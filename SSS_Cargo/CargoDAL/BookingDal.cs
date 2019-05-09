@@ -130,6 +130,9 @@ namespace CargoDAL
                     objresponse.DiscountPercentage = (decimal)reader["DiscountPercentage"];
                     objresponse.DriverCharges = (decimal)reader["DriverCharges"];
                     objresponse.ToPayCharges = (decimal)reader["ToPayCharges"];
+                    objresponse.LRCharges = (decimal)reader["LRCharges"];
+                    objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"];
+                    objresponse.BookingOffCharges = (decimal)reader["BookingOffCharges"];
                     objresponse.DiscountRemarks = (string)reader["DiscountRemarks"];
                 }
             }
@@ -185,6 +188,9 @@ namespace CargoDAL
                                             new SqlParameter("@DoorDeliveryCharges", SqlDbType.Decimal) { Value = objrequest.DoorDeliveryCharges },
                                             new SqlParameter("@DriverCharges", SqlDbType.Decimal) { Value = objrequest.DriverCharges },
                                             new SqlParameter("@ToPayCharges", SqlDbType.Decimal) { Value = objrequest.ToPayCharges },
+                                            new SqlParameter("@LRCharges", SqlDbType.Decimal) { Value = objrequest.LRCharges },
+                                            new SqlParameter("@BookingOffCharges", SqlDbType.Decimal) { Value = objrequest.BookingOffCharges },
+                                            new SqlParameter("@DeliveryCharges", SqlDbType.Decimal) { Value = objrequest.DeliveryCharges },
                                             new SqlParameter("@SubTotal", SqlDbType.Decimal) { Value = objrequest.SubTotal },
                                             new SqlParameter("@GSTCharges", SqlDbType.Decimal) { Value = objrequest.GSTCharges },
                                             new SqlParameter("@TotalAmount", SqlDbType.Decimal) { Value = objrequest.TotalAmount },
@@ -648,6 +654,7 @@ namespace CargoDAL
                         objresponse.ToPayCharges = (decimal)reader["ToPayCharges"];
                         objresponse.GSTPercentage = (decimal)reader["GSTPercentage"];
                         objresponse.LRCharges = (decimal)reader["LRCharges"];
+                        objresponse.BookingOffCharges = (decimal)reader["BookingOffCharges"];
                         objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"]; 
                         objresponse.BookedBy = (string)reader["BookedBy"];
                     }
