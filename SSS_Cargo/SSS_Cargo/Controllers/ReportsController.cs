@@ -126,6 +126,58 @@ namespace SSS_Cargo.Controllers
             }
             return ds;
         }
+        [Route("getnotdeliveredreport")]
+        [HttpPost]
+        public DataSet GetNotDeliveredReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetNotDeliveredReport(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+
+        [Route("{loginid}/{counterid}/getcashreportsdata")]
+        [HttpGet]
+        public DataSet GetCashReportsData(string loginId, string counterId, string requestType)
+        {
+            DataSet dsUsers = null;
+            try
+            {
+                dsUsers = objReportsBal.GetUsers();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsUsers;
+        }
+        [Route("getcashreport")]
+        [HttpPost]
+        public DataSet GetCashReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetCashReport(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+
+
 
 
         #endregion

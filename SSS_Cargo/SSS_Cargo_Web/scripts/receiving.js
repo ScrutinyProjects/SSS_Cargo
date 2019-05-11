@@ -73,7 +73,7 @@ function getmasters() {
 }
 
 function validatetextbox(value, span, message) {
-    if (value == "") {
+    if (value) {
         $(span).html(message);
         return false;
     }
