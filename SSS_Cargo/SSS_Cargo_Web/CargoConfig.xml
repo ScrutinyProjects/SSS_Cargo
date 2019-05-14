@@ -8,4 +8,5 @@
   <NotLoadedReportRequestType>1</NotLoadedReportRequestType>
 <NotDeliveredReportRequestType>1</NotDeliveredReportRequestType>
   <CashReportRequestType>1</CashReportRequestType>
+  <NotReceivedReportRequestType>1</NotReceivedReportRequestType>
 </CargoConfig>

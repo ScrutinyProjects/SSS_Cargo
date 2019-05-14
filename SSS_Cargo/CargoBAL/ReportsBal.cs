@@ -264,7 +264,19 @@ namespace CargoBAL
             return ds;
         }
 
+        public DataSet GetNotReceivedReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetNotReceivedReport(input);
+            }
+            catch (Exception ex)
+            {
 
+            }
+            return ds;
+        }
         #endregion
     }
 }

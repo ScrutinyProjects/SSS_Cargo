@@ -205,6 +205,26 @@ namespace CargoDAL
             return dsCashReport;
         }
 
+
+        public DataSet GetNotReceivedReport(JObject input)
+        {
+            DataSet dsNotReceivedReport = null;
+            try
+            {
+                SqlParameter[] sqlparams = {
+                                            new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
+                                            new SqlParameter("@FromDate", SqlDbType.DateTime) { Value = Convert.ToString(input["FromDate"]) },
+                                            new SqlParameter("@ToDate", SqlDbType.DateTime) { Value = Convert.ToString(input["ToDate"]) }
+                                        };
+                dsNotReceivedReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetNotReceivedReport", sqlparams);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsNotReceivedReport;
+        }
         #endregion
     }
 }

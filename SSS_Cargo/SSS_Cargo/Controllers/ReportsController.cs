@@ -50,7 +50,7 @@ namespace SSS_Cargo.Controllers
             try
             {
                 lstBookingReportResponse = objReportsBal.GetBookingReport(input);
-               
+
             }
             catch (Exception ex)
             {
@@ -178,7 +178,22 @@ namespace SSS_Cargo.Controllers
 
 
 
+        [Route("getnotreceivedreport")]
+        [HttpPost]
+        public DataSet GetNotReceivedReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetNotReceivedReport(input);
 
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
 
         #endregion
     }

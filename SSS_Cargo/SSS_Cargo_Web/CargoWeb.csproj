@@ -954,6 +954,7 @@
     <Content Include="scripts\login.js" />
     <Content Include="scripts\moment.js" />
     <Content Include="scripts\notloadedreports.js" />
+    <Content Include="scripts\notreceivedreports.js" />
     <Content Include="scripts\receiving.js" />
     <Content Include="scripts\tobereceive.js" />
     <Content Include="Web.config" />
@@ -1112,6 +1113,7 @@
     <Content Include="Views\Cargo\printdeliveryreceipt.cshtml" />
     <Content Include="Views\Reports\NotDeliveredReport.cshtml" />
     <Content Include="Views\Reports\CashReport.cshtml" />
+    <Content Include="Views\Reports\NotReceivedReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
