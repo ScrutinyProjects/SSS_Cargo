@@ -49,7 +49,10 @@ function GetCashReport() {
 
 
         if (isvalid) {
-
+            $("#divCashReport").css("display", "");
+            $("#btnPrintReport").css("display", "");
+            $("#lblTransactionDate").text(transactionDate);
+            $("#lblBy").text($("#ddlUser option:selected").html());
             var input = {};
             input = {
                 LoginId: loginid,
@@ -89,6 +92,7 @@ function GetCashReport() {
 
                     }
                     else {
+                        $("#btnPrintReport").css("display", "none");
                         var tr = $('<tr class="trdynamic" />');
                         tr.append('<td colspan = "15" No Reocrds Found </td>');
                         $('#tbodycashrecords').append(tr);

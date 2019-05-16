@@ -650,7 +650,7 @@ function calculateprice() {
 
                     totalamount = totalamount + data.LRCharges;
                     $('#spancalclrcharges').html(data.LRCharges);
-                    $('#textdocketcharges').val(data.LRCharges);
+                    $('#textlrcharges').val(data.LRCharges);
 
                     totalamount = totalamount + data.CollectionCharges;
                     $('#spancalccollectioncharges').html(data.CollectionCharges);
