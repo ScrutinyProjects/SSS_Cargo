@@ -222,6 +222,61 @@ namespace CargoBAL
             }
             return ds;
         }
+
+        public DataSet GetNotDeliveredReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetNotDeliveredReport(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+        public DataSet GetUsers()
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetUsers();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+        public DataSet GetCashReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetCashReport(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+        public DataSet GetNotReceivedReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetNotReceivedReport(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
         #endregion
     }
 }

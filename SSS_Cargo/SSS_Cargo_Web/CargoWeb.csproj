@@ -504,12 +504,17 @@
     <Content Include="scripts\bookingreports.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\cashreport.js" />
     <Content Include="scripts\common.js" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.ttf" />
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
     <Content Include="scripts\delivery.js" />
     <Content Include="scripts\deliveryprint.js" />
+    <Content Include="scripts\notdeliveredreports.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery-1.9.1.min.map" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\expense.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
@@ -948,6 +953,7 @@
     <Content Include="scripts\login.js" />
     <Content Include="scripts\moment.js" />
     <Content Include="scripts\notloadedreports.js" />
+    <Content Include="scripts\notreceivedreports.js" />
     <Content Include="scripts\receiving.js" />
     <Content Include="scripts\tobereceive.js" />
     <Content Include="Web.config" />
@@ -1104,6 +1110,9 @@
     <Content Include="Views\Reports\NotLoadedReport.cshtml" />
     <Content Include="Views\Cargo\deliverysuccess.cshtml" />
     <Content Include="Views\Cargo\printdeliveryreceipt.cshtml" />
+    <Content Include="Views\Reports\NotDeliveredReport.cshtml" />
+    <Content Include="Views\Reports\CashReport.cshtml" />
+    <Content Include="Views\Reports\NotReceivedReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

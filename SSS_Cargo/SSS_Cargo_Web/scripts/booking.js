@@ -650,7 +650,7 @@ function calculateprice() {
 
                     totalamount = totalamount + data.LRCharges;
                     $('#spancalclrcharges').html(data.LRCharges);
-                    $('#textdocketcharges').val(data.LRCharges);
+                    $('#textlrcharges').val(data.LRCharges);
 
                     totalamount = totalamount + data.CollectionCharges;
                     $('#spancalccollectioncharges').html(data.CollectionCharges);
@@ -1153,7 +1153,7 @@ function bookingconfirm() {
             ShipmentValue: shipmentvalue,
             ShipmentDescription: shipmentdescription,
             BasicAmount: basicamount,
-            SUPCharges: 0,
+            SUPCharges: supcharges,
             WithPASSCharges: withpasscharges,
             DocketCharges: 0,
             ValueSCCharges: 0,

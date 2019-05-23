@@ -151,6 +151,80 @@ namespace CargoDAL
             return dsNotLoadedReport;
         }
 
+        public DataSet GetNotDeliveredReport(JObject input)
+        {
+            DataSet dsNotDeliveredReport = null;
+            try
+            {
+                SqlParameter[] sqlparams = {
+                                            new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
+                                            new SqlParameter("@FromDate", SqlDbType.DateTime) { Value = Convert.ToString(input["FromDate"]) },
+                                            new SqlParameter("@ToDate", SqlDbType.DateTime) { Value = Convert.ToString(input["ToDate"]) }
+                                        };
+                dsNotDeliveredReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetNotDeliveredReport", sqlparams);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsNotDeliveredReport;
+        }
+
+        public DataSet GetUsers()
+        {
+            DataSet dsUsers = null;
+            try
+            {
+                dsUsers = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetUsers");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsUsers;
+        }
+
+        public DataSet GetCashReport(JObject input)
+        {
+            DataSet dsCashReport = null;
+            try
+            {
+                SqlParameter[] sqlparams = {
+                                            new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
+                                            new SqlParameter("@TransactionDate", SqlDbType.DateTime) { Value = Convert.ToString(input["TransactionDate"]) },
+                                            new SqlParameter("@UserId", SqlDbType.Int) { Value = Convert.ToString(input["UserId"]) }
+                                        };
+                dsCashReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetCashReport", sqlparams);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsCashReport;
+        }
+
+
+        public DataSet GetNotReceivedReport(JObject input)
+        {
+            DataSet dsNotReceivedReport = null;
+            try
+            {
+                SqlParameter[] sqlparams = {
+                                            new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
+                                            new SqlParameter("@FromDate", SqlDbType.DateTime) { Value = Convert.ToString(input["FromDate"]) },
+                                            new SqlParameter("@ToDate", SqlDbType.DateTime) { Value = Convert.ToString(input["ToDate"]) }
+                                        };
+                dsNotReceivedReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetNotReceivedReport", sqlparams);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dsNotReceivedReport;
+        }
         #endregion
     }
 }

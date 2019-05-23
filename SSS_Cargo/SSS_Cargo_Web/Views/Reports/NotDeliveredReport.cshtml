@@ -1,0 +1,286 @@
+﻿@{
+    ViewBag.Title = "SSS Cargo - Booking Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            Home
+        </li>
+        <li class="active" style="font-size:14px; font-weight:600">Not Delivered Report</li>
+    </ul>
+</div>
+<div class="page-content">
+    <input type="hidden" id="hiddenExpenseId" />
+    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
+    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="alert alert-warning" style="display: none;" id="divWarningAlert">
+                <strong>Warning!</strong>
+                <span id="spanWarningAlert"></span>
+            </div>
+            <div class="alert alert-danger" style="display: none;" id="divErrorAlert">
+                <strong>Error!</strong>
+                <span id="spanErrorAlert"></span>
+            </div>
+            <div class="alert alert-success" style="display: none;" id="divSuccessAlert">
+                <strong>Success!</strong>
+                <span id="spanSuccessAlert"></span>
+            </div>
+
+            <div class="panel">
+
+                <div class="panel-body">
+                    <div class="form-group">
+
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="txtFromDate">From Date: <span class="red">*</span> </label>
+                            <input type="text" id="txtFromDate" maxlength="10" placeholder="From Date" class="form-control numeric" />
+                            <span class="red" id="spnFromDate"></span>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label class="control-label" style="text-align: left;" for="txtToDate">To Date: <span class="red">*</span> </label>
+                            <input type="text" id="txtToDate" maxlength="10" placeholder="To Date" class="form-control numeric" />
+                            <span class="red" id="spnToDate"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                        <div style="width: 95%;">
+                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetNotDeliveredReport()">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-3" style="margin-top: 15px; margin-bottom:15px;">
+            <span style="display:none;" id="spnMessage"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12" style="overflow-x:auto;">
+            <table id="dynamic-table" class="table table-striped table-bordered table-hover" style="margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">S.No.</th>
+                        <th style="width: 15%;">GC Number</th>
+                        <th style="width: 15%;">GC Type</th>
+                        <th style="width: 15%;">From</th>
+                        <th style="width: 15%;">No. of pieces</th>
+                        <th style="width: 15%;">Weight</th>
+                        <th style="width: 15%;">Delivery To</th>
+                        <th style="width: 15%;">Phone Number</th>
+                        <th style="width: 15%;">Remarks</th>
+                        <th style="width: 15%;">Last Updated Date</th>
+                        <th style="width: 15%;">Latest Remarks</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodynotdelivredrecords">
+                    <tr>
+                        <td colspan="18" style="text-align:center">No not delivered records found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @*<div class="modal fade" tabindex="-1" id="UpdateStatusModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-me">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="btnCloseUpdateStatusModal" data-dissmiss="modal">
+                        ×
+                    </button>
+                    <h4>Update Booking Status:</h4>
+                </div>
+                <div class="modal-body" id="divUpdateStatusModal" style="min-height:250px;">
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-5">
+                            <label class="control-label" style="text-align: left;" for="ddlLatestBookingStatus">Booking Status <span class="red">*</span> </label>
+                            <select class="form-control" id="ddlLatestBookingStatus">
+                                <option value="-1">Select Booking Status</option>
+                            </select>
+                            <span class="red" id="spnLatestBookingStatus"></span>
+                        </div>
+                        <div class="col-sm-5">
+                            <label class="control-label" style="text-align: left;" for="txtEditRemarks">Remarks<span class="red">*</span> </label>
+                            <textarea id="txtEditRemarks" name="txtEditRemarks" maxlength="500" rows="3" placeholder="Remarks"></textarea>
+                            <span class="red" id="spnEditRemarks"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info pull-right" type="button" id="btnUpdateStatus" style="margin: 5px;" onclick="return UpdateBookingStatus()">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Update
+                    </button>
+                    <button class="btn btn-sm btn-info pull-right" type="button" id="btnUpdateStatusCancel" style="margin: 5px;">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="BillBreakUpModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-me">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="btnCloseBillBreakUpModal" data-dissmiss="modal">
+                        ×
+                    </button>
+                    <h4>Bill Breakup:</h4>
+                </div>
+                <div class="modal-body" id="divBillBreakUpModal" style="min-height:250px;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>BasicFrieght</td>
+                                <td><span id="spnBasicfright"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Hamali</td>
+                                <td><span id="spnHamali"></span></td>
+                            </tr>
+                            <tr>
+                                <td>SC@60</td>
+                                <td><span id="spnSC60"></span></td>
+                            </tr>
+                            <tr>
+                                <td>ValueSC</td>
+                                <td><span id="spnValueSC"></span></td>
+                            </tr>
+                            <tr>
+                                <td>StatCharges</td>
+                                <td><span id="spnStatCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>TranshipmentCharges</td>
+                                <td><span id="spnTranshipmentCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>AOC</td>
+                                <td><span id="spnAOC"></span></td>
+                            </tr>
+                            <tr>
+                                <td>CollectionCharges</td>
+                                <td><span id="spnCollectionCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DeliveryCharges</td>
+                                <td><span id="spnDeliveryCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>WithPASS</td>
+                                <td><span id="spnWithPASS"></span></td>
+                            </tr>
+                            <tr>
+                                <td>GST@5</td>
+                                <td><span id="spnGST5"></span></td>
+                            </tr>
+                            <tr>
+                                <td>TotalAmount</td>
+                                <td><span id="spnTotalAmount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DocketCharges</td>
+                                <td><span id="spnDocketCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>PickupCharges</td>
+                                <td><span id="spnPickupCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>LocationPickupCharges</td>
+                                <td><span id="spnLocationPickupCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>LocationDeliveryCharges</td>
+                                <td><span id="spnLocationDeliveryCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DoorDeliveryCharges</td>
+                                <td><span id="spnDoorDeliveryCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>SubTotal</td>
+                                <td><span id="spnSubTotal"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DiscountAmount</td>
+                                <td><span id="spnDiscountAmount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>TotalAmountAfterDiscount</td>
+                                <td><span id="spnTotalAmountAfterDiscount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>RoundOffAmount</td>
+                                <td><span id="spnRoundOffAmount"></span></td>
+                            </tr>
+                            <tr>
+                                <td>GrandTotal</td>
+                                <td><span id="spnGrandTotal"></span></td>
+                            </tr>
+                            <tr>
+                                <td>DriverCharges</td>
+                                <td><span id="spnDriverCharges"></span></td>
+                            </tr>
+                            <tr>
+                                <td>ToPayCharges</td>
+                                <td><span id="spnToPayCharges"></span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info pull-right" type="button" id="btnBillBreakUpModalCancel" style="margin: 5px;">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>*@
+</div>
+<script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+<script src="~/Assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");</script>
+<script type="text/javascript">if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+<script src="~/Assets/js/bootstrap.min.js"></script>
+<link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
+<link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
+@*<script src="~/scripts/kendo/2014.1.318/jquery.min.js"></script>*@
+<script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+<script src="~/scripts/moment.js"></script>
+<script src="~/scripts/common.js"></script>
+<script src="~/scripts/notdeliveredreports.js"></script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#txtFromDate,#txtToDate").kendoDateTimePicker({ format: "MM/dd/yyyy hh:mm tt" });
+    });
+
+</script>
+
