@@ -660,9 +660,9 @@ function calculateprice() {
                     $('#spancalcbookingoffcharges').html(data.BookingOffCharges);
                     $('#textaoccharges').val(data.BookingOffCharges);
 
-                    //totalamount = totalamount + data.TranshipmentCharges;
-                    //$('#spancalctranshipmentcharges').html(data.TranshipmentCharges);
-                    //$('#texttranshipmentcharges').val(data.TranshipmentCharges);
+                    totalamount = totalamount + data.TranshipmentCharges;
+                    $('#spancalctranshipmentcharges').html(data.TranshipmentCharges);
+                    $('#texttranshipmentcharges').val(data.TranshipmentCharges);
 
                     totalamount = totalamount + data.PickupCharges;
                     $('#spancalcpickupcharges').html(data.PickupCharges);
@@ -772,7 +772,7 @@ function updateprice() {
     var bookingoffcharges = $('#textbookingoffcharges').val();
     var pickupcharges = $('#textpickupcharges').val();
     var deliverycharges = $('#textlocationdeliverycharges').val();
-    //var transhipmentcharges = $('#texttranshipmentcharges').val();
+    var transhipmentcharges = $('#texttranshipmentcharges').val();
     //var locationpickupcharges = $('#textlocationpickupcharges').val();
     //var locationdeliverycharges = $('#textlocationdeliverycharges').val();
     //var doordeliverycharges = $('#textdoordeliverycharges').val();
@@ -1018,7 +1018,7 @@ function bookingconfirm() {
     var lrcharges = $('#spancalclrcharges').html();
     var collectioncharges = $('#spancalccollectioncharges').html();
     var bookingoffcharges = $('#spancalcbookingoffcharges').html();
-    var transhipmentcharges = 0;
+    var transhipmentcharges = $('#spancalctranshipmentcharges').html();
     var pickupcharges = $('#spancalcpickupcharges').html();
     var locationpickupcharges = 0;
     var locationdeliverycharges = 0;
