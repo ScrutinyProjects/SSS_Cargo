@@ -509,7 +509,6 @@
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.ttf" />
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
-    <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\delivery.js" />
     <Content Include="scripts\deliveryprint.js" />
     <Content Include="scripts\notdeliveredreports.js" />

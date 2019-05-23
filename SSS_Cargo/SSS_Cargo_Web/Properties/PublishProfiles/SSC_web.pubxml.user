@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_04_May</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Karteek\Publish\SSC_Web_09_May</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -484,7 +484,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2019 10:06:06</publishTime>
     </File>
     <File Include="bin/CargoBE.dll">
-      <publishTime>05/04/2019 22:45:27</publishTime>
+      <publishTime>05/09/2019 01:01:33</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>12/07/2015 19:04:38</publishTime>
@@ -595,7 +595,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 21:50:24</publishTime>
     </File>
     <File Include="bin/SSS_Cargo_Web.dll">
-      <publishTime>05/04/2019 22:46:22</publishTime>
+      <publishTime>05/09/2019 01:01:37</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -631,7 +631,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/14/2018 18:39:12</publishTime>
     </File>
     <File Include="CargoConfig.xml">
-      <publishTime>05/02/2019 00:55:27</publishTime>
+      <publishTime>05/09/2019 00:04:25</publishTime>
     </File>
     <File Include="Content/kendo/2014.1.318/Black/editor.png">
       <publishTime>04/30/2019 23:37:53</publishTime>
@@ -1402,13 +1402,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/28/2019 21:41:30</publishTime>
     </File>
     <File Include="scripts/booking.js">
-      <publishTime>05/04/2019 22:15:30</publishTime>
+      <publishTime>05/09/2019 00:50:11</publishTime>
     </File>
     <File Include="scripts/bookingprint.js">
-      <publishTime>05/04/2019 22:39:51</publishTime>
+      <publishTime>05/09/2019 00:53:23</publishTime>
     </File>
     <File Include="scripts/bookingreports.js">
-      <publishTime>05/02/2019 00:55:27</publishTime>
+      <publishTime>05/09/2019 00:04:25</publishTime>
     </File>
     <File Include="scripts/bootstrap.js">
       <publishTime>01/04/2017 12:15:14</publishTime>
@@ -1420,7 +1420,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2019 23:37:53</publishTime>
     </File>
     <File Include="scripts/delivery.js">
-      <publishTime>05/02/2019 01:20:44</publishTime>
+      <publishTime>05/09/2019 00:59:17</publishTime>
+    </File>
+    <File Include="scripts/deliveryprint.js">
+      <publishTime>05/09/2019 00:59:17</publishTime>
     </File>
     <File Include="scripts/expense.js">
       <publishTime>04/30/2019 23:37:53</publishTime>
@@ -2934,8 +2937,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="scripts/moment.js">
       <publishTime>04/30/2019 23:37:54</publishTime>
     </File>
+    <File Include="scripts/notloadedreports.js">
+      <publishTime>05/09/2019 00:04:25</publishTime>
+    </File>
     <File Include="scripts/receiving.js">
-      <publishTime>05/02/2019 01:26:06</publishTime>
+      <publishTime>05/09/2019 00:59:17</publishTime>
     </File>
     <File Include="scripts/tobereceive.js">
       <publishTime>05/02/2019 00:55:27</publishTime>
@@ -2944,13 +2950,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/11/2019 22:31:41</publishTime>
     </File>
     <File Include="Views/Cargo/booking.cshtml">
-      <publishTime>05/04/2019 22:16:23</publishTime>
+      <publishTime>05/09/2019 00:11:15</publishTime>
     </File>
     <File Include="Views/Cargo/bookingsuccess.cshtml">
       <publishTime>04/14/2019 22:03:18</publishTime>
     </File>
     <File Include="Views/Cargo/delivery.cshtml">
-      <publishTime>05/02/2019 01:27:12</publishTime>
+      <publishTime>05/09/2019 00:59:17</publishTime>
+    </File>
+    <File Include="Views/Cargo/deliverysuccess.cshtml">
+      <publishTime>05/09/2019 00:59:17</publishTime>
     </File>
     <File Include="Views/Cargo/index.cshtml">
       <publishTime>04/26/2019 00:35:05</publishTime>
@@ -2959,10 +2968,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/18/2019 23:07:22</publishTime>
     </File>
     <File Include="Views/Cargo/printbookingreceipt.cshtml">
-      <publishTime>05/04/2019 22:40:45</publishTime>
+      <publishTime>05/09/2019 00:43:49</publishTime>
+    </File>
+    <File Include="Views/Cargo/printdeliveryreceipt.cshtml">
+      <publishTime>05/09/2019 00:59:17</publishTime>
     </File>
     <File Include="Views/Cargo/receive.cshtml">
-      <publishTime>05/02/2019 00:55:27</publishTime>
+      <publishTime>05/09/2019 00:59:17</publishTime>
     </File>
     <File Include="Views/Cargo/tobereceive.cshtml">
       <publishTime>04/29/2019 23:46:46</publishTime>
@@ -2974,13 +2986,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2019 23:37:54</publishTime>
     </File>
     <File Include="Views/Reports/BookingReports.cshtml">
-      <publishTime>05/02/2019 00:55:27</publishTime>
+      <publishTime>05/09/2019 00:04:25</publishTime>
     </File>
     <File Include="Views/Reports/Index.cshtml">
       <publishTime>04/28/2019 22:29:38</publishTime>
     </File>
+    <File Include="Views/Reports/NotLoadedReport.cshtml">
+      <publishTime>05/09/2019 00:04:25</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/30/2019 22:59:41</publishTime>
+      <publishTime>05/09/2019 00:04:25</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>04/28/2019 22:29:38</publishTime>
