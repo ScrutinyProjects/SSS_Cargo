@@ -94,9 +94,13 @@ function GetBookingReport() {
                 url: apiurl + "api/reports/getbookingreport",
                 dataType: "json",
                 success: function (data) {
+                    var totalPieces = 0;
+                    var totalBillAmount = 0;
                     if (data && data.length > 0) {
                         $('#tbodybookingrecords').html('');
                         for (var i = 0; i < data.length; i++) {
+                            totalPieces += data[i].Pieces;
+                            totalBillAmount += data[i].BillAmount;
                             var tr = $('<tr class="trdynamic" />');
                             tr.append('' +
                                 '<td>' + '<span id="spnSNo_' + i + '">' + (i + 1) + '</span></td>' +
@@ -117,10 +121,35 @@ function GetBookingReport() {
                                 '<td><span id="spnBookedBy_' + i + '"  >' + data[i].BookedBy + '</span></td>' +
                                  '<td><span id="spnBookedDateTime_' + i + '"  >' + moment(data[i].BookedDateTime).format("YYYY-MM-DD HH:mm") + '</span></td>' +
 
-                                '<td><a href="javascript:void(0)" onclick="viewbillbreakup(' + data[i].BookingId + ')"><i class="fa fa-remove"></i> View Bill Breakup</a> <a href="javascript:void(0)" onclick="updatestatus(' + data[i].BookingId + ', '+ i +')"><i class="fa fa-remove"></i> Update Status</a></td>');
+                                '<td><a class="btn btn-primary" style="margin-bottom: 5px;" href="javascript:void(0)" onclick="viewbillbreakup(' + data[i].BookingId + ')"><i class="fa fa-remove"></i> View Bill Breakup</a> <br/> <a class="btn btn-primary" style="margin-bottom: 5px;"  href="javascript:void(0)" onclick="updatestatus(' + data[i].BookingId + ', ' + i + ')"><i class="fa fa-remove"></i> Update Status</a> <br/> <a id="btnDuplicatePrint_' + data[i].BookingId + '" class="btn btn-primary" style="margin-bottom: 5px;" data-id=' + data[i].EncBookingId + ' href="javascript:void(0)" ><i class="fa fa-remove"></i> Duplicate Print</a></td>');
                             //<a href="javascript:void(0)" onclick="editparcelitem(this)"><i class="fa fa-pencil"></i> Edit</a>&nbsp;&nbsp;
                             $('#tbodybookingrecords').append(tr);
                         }
+                        var tr = $('<tr class="trdynamic" />');
+                        tr.append('' +
+                                '<td></td>' +
+                                '<td></td>' +
+                                 '<td></td>' +
+                                  '<td></td>' +
+                                  '<td></td>' +
+                                  '<td></td>' +
+                                 '<td></td>' +
+                                '<td><span id="spnPieces_' + data.length + '" >' + totalPieces + '</span></td>' +
+                                 '<td></td>' +
+                                 '<td></td>' +
+                                 '<td></td>' +
+                                '<td></td>' +
+                                 '<td></td>' +
+                                '<td></td>' +
+                                '<td><span id="spnBillAmount_' + data.length + '"  >' + totalBillAmount + '</span></td>' +
+                                '<td></td>' +
+                                 '<td></td>' +
+                                '<td></td>');
+                        $('#tbodybookingrecords').append(tr);
+
+                        $('[id^=btnDuplicatePrint_]').unbind().click(function (e) {
+                            window.location = "/cargo/printbookingreceipt/" + $(this).attr('data-id');
+                        });
 
                     }
                     else {
@@ -143,7 +172,6 @@ function GetBookingReport() {
 }
 
 function viewbillbreakup(bookingId) {
-    debugger;
     $.ajax({
         type: "GET",
         url: apiurl + "api/reports/bookingpricedetails?bookingId=" + bookingId,
@@ -190,10 +218,9 @@ function viewbillbreakup(bookingId) {
         }
     });
 
-   
+
 }
 function updatestatus(bookingId, index) {
-    debugger;
     if (lstBookingStatus && lstBookingStatus.length > 0 && $('#ddlLatestBookingStatus option').length == 1) {
         for (var i = 0; i < lstBookingStatus.length; i++) {
             var option = '<option value="' + lstBookingStatus[i].BookingStatusId + '">' + lstBookingStatus[i].BookingStatus + '</option>';
@@ -206,15 +233,16 @@ function updatestatus(bookingId, index) {
         $("#UpdateStatusModal").modal('hide');
     });
 }
+
 function UpdateBookingStatus() {
 
     var loginid = $("#hiddenloginid").val();
     var counterid = $("#hiddencounterid").val();
     if (loginid != "" && counterid) {
         showloading();
-        
+
         var bookingId = $("#btnUpdateStatus").attr('data-Id').split('~')[0];
-        var index =parseInt($("#btnUpdateStatus").attr('data-Id').split('~')[1]);
+        var index = parseInt($("#btnUpdateStatus").attr('data-Id').split('~')[1]);
         var bookingStatusId = $("#ddlLatestBookingStatus").val();
         var latestRemarks = $("#txtEditRemarks").val();
         var isvalid = true;

@@ -7,6 +7,7 @@ using CargoDAL;
 using CargoBE.Responses;
 using System.Data;
 using Newtonsoft.Json.Linq;
+using CargoBE;
 
 namespace CargoBAL
 {
@@ -138,7 +139,8 @@ namespace CargoBAL
                                                CurrentStatus = x.Field<string>("CurrentStatus"),
                                                BillAmount = x.Field<decimal>("BillAmount"),
                                                BookedBy = x.Field<string>("BookedBy"),
-                                               BookedDateTime = x.Field<DateTime>("BookedDateTime")
+                                               BookedDateTime = x.Field<DateTime>("BookedDateTime"),
+                                               EncBookingId = CommonMethods.URLKeyEncrypt(Convert.ToString(x.Field<int>("BookingId")))
                                            }).ToList();
                     }
                 }

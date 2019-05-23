@@ -772,7 +772,7 @@ function updateprice() {
     var bookingoffcharges = $('#textbookingoffcharges').val();
     var pickupcharges = $('#textpickupcharges').val();
     var deliverycharges = $('#textlocationdeliverycharges').val();
-    //var transhipmentcharges = $('#texttranshipmentcharges').val();
+    var transhipmentcharges = $('#texttranshipmentcharges').val();
     //var locationpickupcharges = $('#textlocationpickupcharges').val();
     //var locationdeliverycharges = $('#textlocationdeliverycharges').val();
     //var doordeliverycharges = $('#textdoordeliverycharges').val();

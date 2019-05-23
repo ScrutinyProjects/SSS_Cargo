@@ -255,6 +255,7 @@ namespace CargoBE.Responses
         public string BookedBy { get; set; }
         public DateTime BookedDateTime { get; set; }
 
+        public string EncBookingId { get; set; }
     }
 
     public class BookingPriceResponse
