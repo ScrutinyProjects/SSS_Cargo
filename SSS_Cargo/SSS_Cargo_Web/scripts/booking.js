@@ -1022,7 +1022,7 @@ function bookingconfirm() {
     var pickupcharges = $('#spancalcpickupcharges').html();
     var locationpickupcharges = 0;
     var locationdeliverycharges = 0;
-    var deliverycharges = $('#spancalcdoordeliverycharges').html();
+    var deliverycharges = $('#spancalclocationdeliverycharges').html();
     var doordeliverycharges = 0;
     var topaycharges = 0;
     var subtotal = $('#spancalcsubtotal').html();
