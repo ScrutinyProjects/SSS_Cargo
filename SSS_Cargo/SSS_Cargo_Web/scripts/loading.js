@@ -2,6 +2,7 @@
 var tocounter = '';
 
 function searchbooking() {
+    hideallalerts();
     var bookingnumber = $('#textgcnuber').val().trim();
     var counterid = $('#hiddencounterid').val();
 
@@ -27,21 +28,25 @@ function searchbooking() {
 
                             $('#spanroute').html(data.Route);
                         }
+                        if ($('#spanroute').text() == data.Route) {
+                            var meadurementin = data.MeasurementIn;
 
-                        var meadurementin = data.MeasurementIn;
-                        
-                        var tr = $('<tr class="trdynamic" />');
-                        tr.append('<td class="sno"></td>' +
-                            '<td><span id="spanbookingid" style="display:none">' + data.BookingId + '</span><span id="spanbookingnumber">' + data.BookSerialNumber + '</span></td>' +
-                            '<td>' + data.GCType + '</td>' +
-                            '<td>' + data.WeightInfo + '</td>' +
-                            '<td>' + data.TotalPieces + '</td>' +
-                            '<td>' + data.TotalAmount + '</td>');
+                            var tr = $('<tr class="trdynamic" />');
+                            tr.append('<td class="sno"></td>' +
+                                '<td><span id="spanbookingid" style="display:none">' + data.BookingId + '</span><span id="spanbookingnumber">' + data.BookSerialNumber + '</span></td>' +
+                                '<td>' + data.GCType + '</td>' +
+                                '<td>' + data.WeightInfo + '</td>' +
+                                '<td>' + data.TotalPieces + '</td>' +
+                                '<td>' + data.TotalAmount + '</td>');
                             //'<td><a href="javascript:void(0)" onclick="deletebooking(this)"><i class="fa fa-remove"></i> Remove</a></td>
-                        $('#tbodybookings').append(tr);
+                            $('#tbodybookings').append(tr);
 
-                        updatetableserialnumbers($('#tbodybookings'));
-                        $('#textgcnuber').val('');
+                            updatetableserialnumbers($('#tbodybookings'));
+                            $('#textgcnuber').val('');
+                        }
+                        else {
+                            showwarningalert("Please select the same route bookings to loading");
+                        }
                     }
                     else {
                         showwarningalert(data.StatusMessage);
@@ -117,6 +122,7 @@ function loadingconfirm() {
     var reachdatetime = $('#textreachdatetime').val().trim();
     var loadtime = $('#textloadtime').val().trim();
     var remarks = $('#textremarks').val().trim();
+    var route = $('#spanroute').text();
 
     if (validatetextbox(drivername, $('#spandrivername'), 'Please enter Driver Name') == false) {
         isvalid = false;
@@ -163,7 +169,8 @@ function loadingconfirm() {
             HamaliAmount: hamaliamount,
             Remarks: remarks,
             UserLoginId: loginid,
-            VehicleNumber: vehiclenumber
+            VehicleNumber: vehiclenumber,
+            Route: route
         };
 
         $.ajax({
@@ -173,14 +180,15 @@ function loadingconfirm() {
             dataType: "json",
             success: function (data) {
                 if (data.StatusId != null) {
+                    $('#closemodalloading').click();
                     if (data.StatusId == 1) {
                         showsuccessalert(data.StatusMessage);
                         clearallfields();
+                        window.location = "/cargo/loadingsuccess/" + data.LoadingId;
                     }
                     else {
                         showwarningalert(data.StatusMessage);
                     }
-                    $('#closemodalloading').click();
                 }
                 hideloading();
             },

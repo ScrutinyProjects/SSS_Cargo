@@ -1,0 +1,122 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Loading Receipt</title>
+</head>
+
+<body style="font-family: Calibri; font-size: 12px; margin: 0; position: relative;">
+    <div name="invoice" style="padding-bottom: 20px;">
+        <input type="hidden" id="hiddenloadingid" value="@ViewBag.LoadingId" />
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    <img src="http://sscargo.scrutinysolutions.com/img/ssclogo.jpg.JPEG" alt="logo" height="40" />
+                    <h2 style="margin: 0;">SRI SIDDHARTHA CARGO</h2>
+                    <h3 style="margin: 0;"><u>Loading Copy</u></h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <hr style="margin-bottom: 0;" />
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left">
+                    <h3 style="margin: 0;">Date : <label class="loadingdate">25 May 2019</label></h3>
+                </td>
+                <td align="right" style="border-right: 1px solid;">
+                    <h3 style="margin: 0;">Route : <label class="route">Hanamkonda --> Hyderabad</label></h3>
+                </td>
+            </tr>
+        </table>
+        <table border="0" width="800" cellpadding="0" cellspacing="0" style="border: 1px solid;">
+            <tr>
+                <td valign="top" width="100%">
+                    <table cellpadding="1" cellspacing="0" width="100%">
+                        <tr>
+                            <td width="50%" style="border-right: 1px solid;">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 120px;">Vehicle/Service No. : </strong><span class="vehiclenumber">TS09EF8460</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 120px;">Driver Number : </strong><span class="drivernumber">5678567877</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="display: inline-block; width: 120px;">Transaction By : </strong><span class="transactionby">Naveen</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="50%">
+                                <table cellpadding="1" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 120px;">Driver Name : </strong><span class="drivername">Suresh</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid;"><strong style="display: inline-block; width: 120px;">Remarks : </strong><span class="loadingremarks">remarks</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="display: inline-block; width: 120px;">&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:6%;">S.No.</th>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:15%;">GC Number</th>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:10%;">GC Type</th>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:25%;">Description</th>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:10%;">Topay Rs.</th>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:10%;">Total Articles</th>
+                                <th style="border-top: 1px solid;border-right: 1px solid;border-bottom: 1px solid;width:14%;">Loaded Articles</th>
+                                <th style="border-top: 1px solid;border-bottom: 1px solid;width:10%;">Driver Inc</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyloadingitems">
+                            
+                        </tbody>
+                    </table>
+                    <table cellpadding="1" cellspacing="0" width="100%" style="margin-top: 28px;">
+                        <tr>
+                            <td colspan="2" align="left" width="50%"  style="padding-left: 20px;"><strong>Driver / Conductor Signature</strong></td>
+                            <td colspan="2" align="right" width="50%"  style="padding-right: 20px;"><strong>Agent Signature</strong></td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
+    <script src="~/Assets/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='~/Assets/js/jquery.min.js'>" + "<" + "/script>");
+    </script>
+
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='~/Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/loadingprint.js"></script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            getloadingdetails();
+        });
+    </script>
+</body>
+</html>

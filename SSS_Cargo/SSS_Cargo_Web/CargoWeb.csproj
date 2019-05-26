@@ -511,6 +511,7 @@
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
     <Content Include="scripts\delivery.js" />
     <Content Include="scripts\deliveryprint.js" />
+    <Content Include="scripts\loadingprint.js" />
     <Content Include="scripts\notdeliveredreports.js" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\expense.js" />
@@ -1110,6 +1111,8 @@
     <Content Include="Views\Reports\NotDeliveredReport.cshtml" />
     <Content Include="Views\Reports\CashReport.cshtml" />
     <Content Include="Views\Reports\NotReceivedReport.cshtml" />
+    <Content Include="Views\Cargo\printloadingreceipt.cshtml" />
+    <Content Include="Views\Cargo\loadingsuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

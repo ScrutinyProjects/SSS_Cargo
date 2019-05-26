@@ -157,6 +157,7 @@ namespace CargoDAL
                                             new SqlParameter("@GCTypeId", SqlDbType.Int) { Value = objrequest.GCTypeId },
                                             new SqlParameter("@BookingTypeId", SqlDbType.Int) { Value = objrequest.BookingTypeId },
                                             new SqlParameter("@ProductTypeId", SqlDbType.Int) { Value = objrequest.ProductTypeId },
+                                            new SqlParameter("@PaidTypeId", SqlDbType.Int) { Value = objrequest.PaidTypeId },
                                             new SqlParameter("@BookId", SqlDbType.Int) { Value = objrequest.BookId },
                                             new SqlParameter("@SenderId", SqlDbType.Int) { Value = objrequest.SenderId },
                                             new SqlParameter("@SenderName", SqlDbType.VarChar, 100) { Value = objrequest.SenderName },
@@ -364,7 +365,7 @@ namespace CargoDAL
             return objresponse;
         }
 
-        public SaveRespone InsertLoadingDetails(LoadingRequest objrequest)
+        public LoadingSaveResponse InsertLoadingDetails(LoadingRequest objrequest)
         {
             SqlParameter[] sqlparams = { new SqlParameter("@UserLoginId", SqlDbType.Int) { Value = objrequest.UserLoginId },
                                             new SqlParameter("@CounterId", SqlDbType.Int) { Value = objrequest.CounterId },
@@ -376,19 +377,21 @@ namespace CargoDAL
                                             new SqlParameter("@LoadingDateTime", SqlDbType.VarChar, 50) { Value = objrequest.LoadingDateTime },
                                             new SqlParameter("@EstimatedDateTime", SqlDbType.VarChar, 50) { Value = objrequest.EstimatedDateTime },
                                             new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks },
-                                            new SqlParameter("@BookingIds", SqlDbType.VarChar, -1) { Value = objrequest.BookingIds }
+                                            new SqlParameter("@BookingIds", SqlDbType.VarChar, -1) { Value = objrequest.BookingIds },
+                                            new SqlParameter("@Route", SqlDbType.VarChar, 500) { Value = objrequest.Route }
                                         };
             SqlDataReader reader = null;
-            SaveRespone objresponse = new SaveRespone();
-
+            LoadingSaveResponse objresponse = new LoadingSaveResponse();
+            
             try
             {
                 reader = SqlHelper.ExecuteReader(con, CommandType.StoredProcedure, "USP_InsertLoadingDetails", sqlparams);
 
                 while (reader.Read())
                 {
+                    objresponse.LoadingId = CommonMethods.URLKeyEncrypt(Convert.ToString((int)reader["LoadingId"])); 
                     objresponse.StatusId = (int)reader["StatusId"];
-                    objresponse.StatusMessage = (string)reader["StatusMessage"];
+                    objresponse.StatusMessage = (string)reader["StatusMessage"]; 
                 }
             }
             catch (Exception ex)
@@ -657,6 +660,71 @@ namespace CargoDAL
                         objresponse.BookingOffCharges = (decimal)reader["BookingOffCharges"];
                         objresponse.DeliveryCharges = (decimal)reader["DeliveryCharges"]; 
                         objresponse.BookedBy = (string)reader["BookedBy"];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
+            return objresponse;
+        }
+
+        public LoadingDetailsForPrintResponse GetLoadingDetailsToPrintByLoadingId(int loadingid)
+        {
+            SqlParameter[] sqlparams = { new SqlParameter("@LoadingId", SqlDbType.Int) { Value = loadingid }
+                                        };
+
+            DataSet dsdata = new DataSet();
+            LoadingDetailsForPrintResponse objresponse = new LoadingDetailsForPrintResponse();
+
+            try
+            {
+                dsdata = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetLoadingDetailsToPrintByLoadingId", sqlparams);
+
+                if (dsdata != null)
+                {
+                    if (dsdata.Tables.Count > 0)
+                    {
+                        if (dsdata.Tables[0].Rows.Count > 0)
+                        {
+                            DataRow dr = dsdata.Tables[0].Rows[0];
+
+                            objresponse.StatusId = (int)dr["StatusId"];
+                            objresponse.StatusMessage = (string)dr["StatusMessage"];
+
+                            if (objresponse.StatusId == 1)
+                            {
+                                objresponse.DriverAmount = (decimal)dr["DriverAmount"];
+                                objresponse.DriverName = (string)dr["DriverName"];
+                                objresponse.DriverNumber = (string)dr["DriverNumber"];
+                                objresponse.LoadingDate = (string)dr["LoadingDate"];
+                                objresponse.Remarks = (string)dr["Remarks"];
+                                objresponse.RouteInfo = (string)dr["RouteInfo"];
+                                objresponse.TransactionBy = (string)dr["TransactionBy"];
+                                objresponse.VehicleNumber = (string)dr["VehicleNumber"];
+
+                                if (dsdata.Tables.Count > 1)
+                                {
+                                    objresponse.LoadingBookings = dsdata.Tables[1].AsEnumerable().
+                                                       Select(x => new LoadingBookingsForPrintResponse
+                                                       {
+                                                           BookSerialNumber = x.Field<string>("BookSerialNumber"),
+                                                           Description = x.Field<string>("Description"),
+                                                           DriverInc = x.Field<decimal>("DriverInc"),
+                                                           GCType = x.Field<string>("GCType"),
+                                                           LoadedArticles = x.Field<int>("LoadedArticles"),
+                                                           TopayAmount = x.Field<decimal>("TopayAmount"),
+                                                           TotalPieces = x.Field<int>("TotalPieces")
+                                                       }).ToList();
+                                }
+                            }
+                        }
                     }
                 }
             }

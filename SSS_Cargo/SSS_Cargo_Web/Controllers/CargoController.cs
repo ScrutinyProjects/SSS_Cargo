@@ -66,7 +66,7 @@ namespace SSS_Cargo_Web.Controllers
                 return View();
             }
         }
-
+        
         public ActionResult printbookingreceipt(string param1)
         {
             if (Session["SessionLogin"] == null)
@@ -98,6 +98,42 @@ namespace SSS_Cargo_Web.Controllers
                 ViewBag.CounterName = loginresponse.CounterName;
                 ViewBag.CounterId = loginresponse.CounterId;
                 ViewBag.LoginId = loginresponse.LoginId;
+                return View();
+            }
+        }
+
+        public ActionResult loadingsuccess(string param1)
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.LoadingId = param1;
+                return View();
+            }
+        }
+
+        public ActionResult printloadingreceipt(string param1)
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.CounterId = loginresponse.CounterId;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.LoadingId = param1;
                 return View();
             }
         }
