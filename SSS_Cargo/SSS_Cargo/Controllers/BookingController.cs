@@ -146,9 +146,9 @@ namespace SSS_Cargo.Controllers
         [AllowAnonymous]
         [Route("saveloadingdetails")]
         [HttpPost]
-        public SaveRespone InsertLoadingDetails(JObject input)
+        public LoadingSaveResponse InsertLoadingDetails(JObject input)
         {
-            SaveRespone objresponse = new SaveRespone();
+            LoadingSaveResponse objresponse = new LoadingSaveResponse();
             try
             {
                 objresponse = objBookingBal.InsertLoadingDetails(input);
@@ -260,6 +260,24 @@ namespace SSS_Cargo.Controllers
             try
             {
                 objresponse = objBookingBal.GetBookingDetailsToPrintByBookingId(input);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        [AllowAnonymous]
+        [Route("getloadingdetailstoprintbyloadingid")]
+        [HttpPost]
+        public LoadingDetailsForPrintResponse GetLoadingDetailsToPrintByLoadingId(JObject input)
+        {
+            LoadingDetailsForPrintResponse objresponse = new LoadingDetailsForPrintResponse();
+            try
+            {
+                objresponse = objBookingBal.GetLoadingDetailsToPrintByLoadingId(input);
             }
             catch (Exception ex)
             {

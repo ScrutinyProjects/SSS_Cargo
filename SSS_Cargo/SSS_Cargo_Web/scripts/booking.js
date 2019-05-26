@@ -50,6 +50,12 @@ function getmasters() {
                         }
                         $('#selectproducttype').val(1);
                     }
+                    if (data.PaidTypes != null) {
+                        for (var i = 0; i < data.PaidTypes.length; i++) {
+                            var option = '<option value="' + data.PaidTypes[i].PaidTypeId + '">' + data.PaidTypes[i].PaidTypeName + '</option>';
+                            $('#selectpaidtype').append(option);
+                        }
+                    }
                     if (data.Books != null) {
                         if (data.Books.length > 0) {
                             $('#hiddenbookid').val(data.Books[0].BookId);
@@ -284,6 +290,13 @@ function showmeasurement(obj) {
         measurement = 'Kgs';
         gst = 12;
         $('#spangstperc').html('12%');
+    }
+    $('#selectpaidtype').val("0");
+    if ($(obj).val() == "1") {
+        $('#selectpaidtype').removeAttr("disabled");
+    }
+    else {
+        $('#selectpaidtype').attr("disabled", "disabled");
     }
 }
 
@@ -1003,6 +1016,7 @@ function bookingconfirm() {
     var point1 = $('#textpoint1').val().trim();
     var point2 = $('#textpoint2').val().trim();
     var producttype = $('#selectproducttype').val().trim();
+    var paidtype = $('#selectpaidtype').val().trim();
     var shipmentvalue = $('#textshipmentvalue').val().trim();
     var shipmentdescription = $('#textshipmentdescription').val().trim();
     var totalpieces = $('#spancalctotalpieces').html();
@@ -1022,7 +1036,7 @@ function bookingconfirm() {
     var pickupcharges = $('#spancalcpickupcharges').html();
     var locationpickupcharges = 0;
     var locationdeliverycharges = 0;
-    var deliverycharges = $('#spancalcdoordeliverycharges').html();
+    var deliverycharges = $('#spancalclocationdeliverycharges').html();
     var doordeliverycharges = 0;
     var topaycharges = 0;
     var subtotal = $('#spancalcsubtotal').html();
@@ -1094,6 +1108,14 @@ function bookingconfirm() {
                 isvalid = false;
                 showwarningalert("Transhipment Point 1 and Transhipment Point 2 should not be same");
             }
+        }
+    }
+
+    $('#spanpaidtype').html('');
+
+    if (gctype == "1") {
+        if (validatedropdown(paidtype, $('#spanpaidtype'), 'Please select Paid Type') == false) {
+            isvalid = false;
         }
     }
 
@@ -1184,7 +1206,8 @@ function bookingconfirm() {
             TotalWeight: totalweight,
             WeightInfo: weightlist,
             RouteInfo: route,
-            ParcelItems: parcelitems
+            ParcelItems: parcelitems,
+            PaidTypeId: paidtype
         };
 
         $.ajax({

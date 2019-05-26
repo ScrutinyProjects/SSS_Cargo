@@ -15,6 +15,7 @@ namespace CargoBE.Requests
         public int GCTypeId { get; set; }
         public int BookingTypeId { get; set; }
         public int ProductTypeId { get; set; }
+        public int PaidTypeId { get; set; }
         public int BookId { get; set; }
         public int SenderId { get; set; }
         public string SenderName { get; set; }
@@ -88,7 +89,8 @@ namespace CargoBE.Requests
         public string EstimatedDateTime { get; set; }
         public string Remarks { get; set; }
         public string BookingIds { get; set; }
-    }
+        public string Route { get; set; }
+    }    
     public class TobereceiveRequest
     {
         public int UserLoginId { get; set; }

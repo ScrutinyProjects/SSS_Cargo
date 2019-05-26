@@ -93,6 +93,15 @@ namespace CargoBAL
 
                         objresponse.Customers = customers;
 
+                        var paidtypes = ds.Tables[0].AsEnumerable().Where(a => a.Field<int>("MasterType") == 7).
+                                           Select(x => new PaidTypesMasterResponse
+                                           {
+                                               PaidTypeId = x.Field<int>("Id"),
+                                               PaidTypeName = x.Field<string>("Name")
+                                           }).ToList();
+
+                        objresponse.PaidTypes = paidtypes;
+
                         objresponse.StatusId = 1;
                         objresponse.StatusMessage = "Valid";
                     }
@@ -245,6 +254,7 @@ namespace CargoBAL
                 objrequest.GCTypeId = Convert.ToInt32(input["GCTypeId"]);
                 objrequest.BookingTypeId = Convert.ToInt32(input["BookingTypeId"]);
                 objrequest.ProductTypeId = Convert.ToInt32(input["ProductTypeId"]);
+                objrequest.PaidTypeId = Convert.ToInt32(input["PaidTypeId"]);
                 objrequest.BookId = Convert.ToInt32(input["BookId"]);
                 objrequest.SenderId = Convert.ToInt32(input["SenderId"]);
                 objrequest.SenderName = Convert.ToString(input["SenderName"]);
@@ -378,9 +388,9 @@ namespace CargoBAL
             return objresponse;
         }
 
-        public SaveRespone InsertLoadingDetails(JObject input)
+        public LoadingSaveResponse InsertLoadingDetails(JObject input)
         {
-            SaveRespone objresponse = new SaveRespone();
+            LoadingSaveResponse objresponse = new LoadingSaveResponse();
 
             try
             {
@@ -397,6 +407,7 @@ namespace CargoBAL
                 objrequest.Remarks = Convert.ToString(input["Remarks"]);
                 objrequest.UserLoginId = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["UserLoginId"])));
                 objrequest.VehicleNumber = Convert.ToString(input["VehicleNumber"]);
+                objrequest.Route = Convert.ToString(input["Route"]);
                 
                 objresponse = objBookingDal.InsertLoadingDetails(objrequest);
             }
@@ -618,6 +629,24 @@ namespace CargoBAL
                 int bookingid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["BookingId"])));
 
                 objresponse = objBookingDal.GetBookingDetailsToPrintByBookingId(bookingid);
+            }
+            catch (Exception ex)
+            {
+                objresponse.StatusId = 0;
+                objresponse.StatusMessage = ex.Message;
+            }
+            return objresponse;
+        }
+
+        public LoadingDetailsForPrintResponse GetLoadingDetailsToPrintByLoadingId(JObject input)
+        {
+            LoadingDetailsForPrintResponse objresponse = new LoadingDetailsForPrintResponse();
+
+            try
+            {
+                int loadingid = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoadingId"])));
+
+                objresponse = objBookingDal.GetLoadingDetailsToPrintByLoadingId(loadingid);
             }
             catch (Exception ex)
             {

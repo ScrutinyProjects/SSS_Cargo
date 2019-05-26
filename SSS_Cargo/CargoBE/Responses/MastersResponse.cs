@@ -58,6 +58,12 @@ namespace CargoBE.Responses
         public string MobileNumber { get; set; }
     }
 
+    public class PaidTypesMasterResponse
+    {
+        public int PaidTypeId { get; set; }
+        public string PaidTypeName { get; set; }
+    }
+
     public class ExpenseTypeResponse
     {
         public int ExpenseTypeId { get; set; }

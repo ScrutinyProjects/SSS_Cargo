@@ -21,6 +21,13 @@ namespace CargoBE.Responses
         public string ReceiverMessage { get; set; }
     }
 
+    public class LoadingSaveResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public string LoadingId { get; set; }
+    }
+
     public class BookingCalculatedPriceResponse
     {
         public decimal BasicAmount { get; set; }
@@ -56,6 +63,7 @@ namespace CargoBE.Responses
         public List<ProductTypesResponse> ProductTypes { get; set; }
         public List<BooksMasterResponse> Books { get; set; }
         public List<CustomersMasterResponse> Customers { get; set; }
+        public List<PaidTypesMasterResponse> PaidTypes { get; set; }
     }
 
     public class TobeReceiveMastersResponse
@@ -227,6 +235,32 @@ namespace CargoBE.Responses
         public decimal GrandTotal { get; set; }
         public string barcodeImage { get; set; }
         public string BookedBy { get; set; }        
+    }
+
+    public class LoadingDetailsForPrintResponse
+    {
+        public int StatusId { get; set; }
+        public string StatusMessage { get; set; }
+        public string DriverName { get; set; }
+        public string DriverNumber { get; set; }
+        public string VehicleNumber { get; set; }
+        public decimal DriverAmount { get; set; }
+        public string Remarks { get; set; }
+        public string RouteInfo { get; set; }
+        public string LoadingDate { get; set; }        
+        public string TransactionBy { get; set; }
+        public List<LoadingBookingsForPrintResponse> LoadingBookings { get; set; }
+    }
+
+    public class LoadingBookingsForPrintResponse
+    {
+        public string BookSerialNumber { get; set; }
+        public string GCType { get; set; }
+        public string Description { get; set; }
+        public decimal TopayAmount { get; set; }
+        public int TotalPieces { get; set; }
+        public int LoadedArticles { get; set; }
+        public decimal DriverInc { get; set; }
     }
 
     public class BookingReportResponse
