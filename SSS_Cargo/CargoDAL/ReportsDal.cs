@@ -76,7 +76,7 @@ namespace CargoDAL
                                             new SqlParameter("@FromDate", SqlDbType.DateTime) { Value = Convert.ToString(input["FromDate"]) },
                                             new SqlParameter("@ToDate", SqlDbType.DateTime) { Value = Convert.ToString(input["ToDate"]) },
                                             new SqlParameter("@LocationId", SqlDbType.Int) { Value = Convert.ToString(input["LocationId"]) },
-                                            new SqlParameter("@GCTypeId", SqlDbType.Int) { Value = Convert.ToString(input["GCTypeId"]) },
+                                            new SqlParameter("@GCTypes", SqlDbType.VarChar) { Value = Convert.ToString(input["GCTypes"]) },
                                             new SqlParameter("@BookingStatusId", SqlDbType.Int) { Value = Convert.ToString(input["BookingStatusId"]) }
 
                                         };
