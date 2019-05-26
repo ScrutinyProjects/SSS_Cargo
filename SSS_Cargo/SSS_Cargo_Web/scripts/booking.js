@@ -291,12 +291,14 @@ function showmeasurement(obj) {
         gst = 12;
         $('#spangstperc').html('12%');
     }
-    $('#selectpaidtype').val("0");
+    
     if ($(obj).val() == "1") {
         $('#selectpaidtype').removeAttr("disabled");
+        $('#selectpaidtype').val("1");
     }
     else {
         $('#selectpaidtype').attr("disabled", "disabled");
+        $('#selectpaidtype').val("0");
     }
 }
 
