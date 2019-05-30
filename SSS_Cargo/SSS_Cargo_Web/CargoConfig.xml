@@ -9,4 +9,6 @@
 <NotDeliveredReportRequestType>1</NotDeliveredReportRequestType>
   <CashReportRequestType>1</CashReportRequestType>
   <NotReceivedReportRequestType>1</NotReceivedReportRequestType>
+  <UserCashReportRequestType>1</UserCashReportRequestType>
+  <cashconsolidationreportrequesttype>1</cashconsolidationreportrequesttype>
 </CargoConfig>

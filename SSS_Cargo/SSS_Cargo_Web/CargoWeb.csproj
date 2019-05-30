@@ -504,6 +504,8 @@
     <Content Include="scripts\bookingreports.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\cashconsolidationreport.js" />
+    <Content Include="scripts\usercashreport.js" />
     <Content Include="scripts\cashreport.js" />
     <Content Include="scripts\common.js" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
@@ -1109,10 +1111,12 @@
     <Content Include="Views\Cargo\deliverysuccess.cshtml" />
     <Content Include="Views\Cargo\printdeliveryreceipt.cshtml" />
     <Content Include="Views\Reports\NotDeliveredReport.cshtml" />
-    <Content Include="Views\Reports\CashReport.cshtml" />
     <Content Include="Views\Reports\NotReceivedReport.cshtml" />
     <Content Include="Views\Cargo\printloadingreceipt.cshtml" />
     <Content Include="Views\Cargo\loadingsuccess.cshtml" />
+    <Content Include="Views\Reports\UserCashReport.cshtml" />
+    <Content Include="Views\Reports\PrintUserCashReport.cshtml" />
+    <Content Include="Views\Reports\CashConsolidationReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

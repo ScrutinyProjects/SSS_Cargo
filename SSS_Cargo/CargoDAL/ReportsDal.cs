@@ -185,24 +185,25 @@ namespace CargoDAL
             return dsUsers;
         }
 
-        public DataSet GetCashReport(JObject input)
+        public DataSet GetUserCashReport(JObject input)
         {
-            DataSet dsCashReport = null;
+            DataSet dsUserCashReport = null;
             try
             {
                 SqlParameter[] sqlparams = {
                                             new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
                                             new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
                                             new SqlParameter("@TransactionDate", SqlDbType.DateTime) { Value = Convert.ToString(input["TransactionDate"]) },
+                                            new SqlParameter("@LocationId", SqlDbType.Int) { Value = Convert.ToString(input["LocationId"]) },
                                             new SqlParameter("@UserId", SqlDbType.Int) { Value = Convert.ToString(input["UserId"]) }
                                         };
-                dsCashReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetCashReport", sqlparams);
+                dsUserCashReport = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "Usp_getusercashreport", sqlparams);
             }
             catch (Exception ex)
             {
 
             }
-            return dsCashReport;
+            return dsUserCashReport;
         }
 
 

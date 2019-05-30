@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "SSS Cargo - Booking Reports";
+    ViewBag.Title = "SSS Cargo - User Reports";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
@@ -8,13 +8,13 @@
         <li>
             Home
         </li>
-        <li class="active" style="font-size:14px; font-weight:600">Cash Report</li>
+        <li class="active" style="font-size:14px; font-weight:600">User Cash Report</li>
     </ul>
 </div>
 <div class="page-content">
-    <input type="hidden" id="hiddenExpenseId" />
-    <input type="hidden" id="hiddenloginid" value="@ViewBag.LoginId" />
-    <input type="hidden" id="hiddencounterid" value="@ViewBag.CounterId" />
+    <input type="hidden" id="hiddenloginid" name="hiddenloginid" value="@ViewBag.LoginId" />
+    <input type="hidden" id="hiddencounterid" name="hiddencounterid" value="@ViewBag.CounterId" />
+    <input type="hidden" id="hiddenrequesttype" value="@ViewBag.RequestType" />
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
@@ -38,16 +38,15 @@
 
                         <div class="col-sm-3">
                             <label class="control-label" style="text-align: left;" for="txtTransactionDate">Transaction Date: <span class="red">*</span> </label>
-                            <input type="text" id="txtTransactionDate" maxlength="10" placeholder="Transaction Date" class="form-control numeric" />
+                            <input type="text" id="txtTransactionDate" name="txtTransactionDate" maxlength="10" placeholder="Transaction Date" class="form-control numeric" />
                             <span class="red" id="spnTransactionDate"></span>
                         </div>
-
                         <div class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="ddlUser">Transaction By <span class="red">*</span> </label>
-                            <select class="form-control" id="ddlUser">
-                                <option value="-1">Select User</option>
+                            <label class="control-label" style="text-align: left;" for="ddlLocation">Location <span class="red">*</span> </label>
+                            <select class="form-control" id="ddlLocation" name="ddlLocation">
+                                <option value="-1">Select Location</option>
                             </select>
-                            <span class="red" id="spnUser"></span>
+                            <span class="red" id="spnLocation"></span>
                         </div>
                     </div>
                 </div>
@@ -56,7 +55,7 @@
                 <div class="panel-body">
                     <div class="clearfix form-actions form-group" style="background-color: #fff;">
                         <div style="width: 95%;">
-                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetCashReport()">
+                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetUserCashConsolidationReport()">
                                 <i class="ace-icon fa fa-check bigger-110"></i>
                                 Search
                             </button>
@@ -73,42 +72,25 @@
     </div>
     <input type="button" class="btn btn-primary pull-right" value="Print" style="display:none;" id="btnPrintReport">
     <div class="form-group">
-        <div class="col-sm-12" id="divCashReport" style="display:none; margin:10px;">
-            <label class="control-label" style="text-align: left;" >Collection Report On </label>
-            <label id="lblTransactionDate"></label>
-            <label class="control-label" style="text-align: left;">By</label>
-            <label id="lblBy"></label>
-        </div>
         <div class="col-xs-12" style="overflow-x:auto;">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover" style="margin-bottom: 0;">
                 <thead>
                     <tr>
                         <th style="width: 5%;">S.No.</th>
-                        <th style="width: 15%;">Transaction Date</th>
-                        <th style="width: 15%;">Transaction</th>
-                        <th style="width: 15%;">From/To</th>
-                        <th style="width: 15%;">Bill Amount</th>
-                        <th style="width: 15%;">Basic Charges</th>
-                        <th style="width: 15%;">Pass Charges</th>
-                        <th style="width: 15%;">Collection Charges</th>
-                        <th style="width: 15%;">Loading Charges</th>
-                        <th style="width: 15%;">Unloading Charges</th>
-                        <th style="width: 15%;">Tranship Charges</th>
-                        <th style="width: 15%;">Pickup Charges</th>
-                        <th style="width: 15%;">Delivery Charges</th>
-                        <th style="width: 15%;">Demo Charges</th>
-                        <th style="width: 15%;">Total Amount</th>
+                        <th style="width: 15%;">User Name</th>
+                        <th style="width: 15%;">Cash to be handover</th>
+                        <th style="width: 15%;">Paid Amount</th>
                     </tr>
                 </thead>
-                <tbody id="tbodycashrecords">
+                <tbody id="tbodycashconsolidationrecords">
                     <tr>
-                        <td colspan="18" style="text-align:center">No Cash records found</td>
+                        <td colspan="4" style="text-align:center">No User Cash Consolidation records found</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-  
+
 </div>
 <script src="~/Assets/js/jquery.2.1.1.min.js"></script>
 <script src="~/Assets/js/jquery-ui.min.js"></script>
@@ -121,12 +103,12 @@
 <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
 <script src="~/scripts/moment.js"></script>
 <script src="~/scripts/common.js"></script>
-<script src="~/scripts/cashreport.js"></script>
+<script src="~/scripts/cashconsolidationreport.js"></script>
 
 <script type="text/javascript">
     jQuery(function ($) {
         $("#txtTransactionDate").kendoDateTimePicker({ format: "MM/dd/yyyy hh:mm tt" });
-        getCashReportsData();
+        getUserCashConsolidationReportsData();
     });
 
 </script>

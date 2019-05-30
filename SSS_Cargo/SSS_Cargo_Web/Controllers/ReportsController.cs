@@ -91,31 +91,6 @@ namespace SSS_Cargo_Web.Controllers
             }
         }
 
-        public ActionResult CashReport()
-        {
-            if (Session["SessionLogin"] == null)
-            {
-                return Redirect("/account/login");
-            }
-            else
-            {
-                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
-                ViewBag.Name = loginresponse.Name;
-                ViewBag.CounterName = loginresponse.CounterName;
-                ViewBag.LoginId = loginresponse.LoginId;
-                ViewBag.CounterId = loginresponse.CounterId;
-                XElement xelement = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "/CargoConfig.xml");
-                IEnumerable<XElement> elements = xelement.Elements();
-                foreach (var element in elements)
-                {
-                    if (element.Name.ToString().ToLower() == "cashreportrequesttype")
-                        ViewBag.RequestType = element.Value;
-                }
-
-                return View();
-            }
-        }
-
 
         public ActionResult NotReceivedReport()
         {
@@ -142,5 +117,82 @@ namespace SSS_Cargo_Web.Controllers
             }
         }
 
+
+        public ActionResult UserCashReport()
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.CounterId = loginresponse.CounterId;
+                XElement xelement = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "/CargoConfig.xml");
+                IEnumerable<XElement> elements = xelement.Elements();
+                foreach (var element in elements)
+                {
+                    if (element.Name.ToString().ToLower() == "usercashreportrequesttype")
+                        ViewBag.RequestType = element.Value;
+                }
+                return View();
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult PrintUserCashReport(FormCollection collection)
+        {
+            try
+            {
+                if (Session["SessionLogin"] == null)
+                {
+                    return Redirect("/account/login");
+                }
+                else
+                {
+                    LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                    ViewBag.Name = loginresponse.Name;
+                    ViewBag.CounterName = loginresponse.CounterName;
+                    ViewBag.CounterId = loginresponse.CounterId;
+                    ViewBag.LoginId = loginresponse.LoginId;
+                    ViewBag.TransactionDate = collection["txtTransactionDate"];
+                    ViewBag.LocationId = collection["ddlLocation"];
+                    ViewBag.UserId = collection["ddlUser"];
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return View();
+        }
+        public ActionResult CashConsolidationReport()
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.CounterId = loginresponse.CounterId;
+                XElement xelement = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "/CargoConfig.xml");
+                IEnumerable<XElement> elements = xelement.Elements();
+                foreach (var element in elements)
+                {
+                    if (element.Name.ToString().ToLower() == "cashconsolidationreportrequesttype")
+                        ViewBag.RequestType = element.Value;
+                }
+                return View();
+            }
+        }
     }
 }
