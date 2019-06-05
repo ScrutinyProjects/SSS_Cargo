@@ -9,9 +9,17 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>PrintUserCashReport</title>
+    <style type="text/css">
+        table#dynamic-table {
+            border-spacing: 0px !important;
+        }
+        table#dynamic-table th, td{
+            border:1px solid black;
+        }
+    </style>
 </head>
 <body>
-    <div> 
+    <div>
         <input type="hidden" id="hiddenloginid" name="hiddenloginid" value="@ViewBag.LoginId" />
         <input type="hidden" id="hiddencounterid" name="hiddencounterid" value="@ViewBag.CounterId" />
         <input type="hidden" id="hiddentransactiondate" value="@ViewBag.TransactionDate" />
@@ -22,7 +30,7 @@
             <div class="col-sm-12" id="divUserCashReport" margin:10px;">
                 <label class="control-label" style="text-align: left;">User cash Report </label>
                 <label class="control-label" id="lblUserName" style="text-align: left;"> </label>,
-                Date of transaction is 
+                Date of transaction is
                 <label id="lblTransactionDate"></label>
                 location:
                 <label id="lblLocation"></label>
@@ -86,7 +94,7 @@
             </div>
             <div>
                 Cash to be handover : <span id="spnTotalCashHandover"></span>
-                Remarks: 
+                Remarks:
                 Cash Paid: <span id="spnTotalCashPaid"></span>
                 Print Date & Time: @DateTime.Now
                 Operator Signature & Name:

@@ -1,14 +1,16 @@
-﻿@{
-    ViewBag.Title = "SSS Cargo - User Reports";
+﻿
+@{
+    ViewBag.Title = "CashHandover";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
 <div class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
         <li>
             Home
         </li>
-        <li class="active" style="font-size:14px; font-weight:600">User Cash Report</li>
+        <li class="active" style="font-size:14px; font-weight:600">Cash Handover Report</li>
     </ul>
 </div>
 <div class="page-content">
@@ -48,14 +50,8 @@
                             </select>
                             <span class="red" id="spnLocation"></span>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
-                        <div style="width: 95%;">
-                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetUserCashConsolidationReport()">
+                        <div class="col-sm-3" style="margin-top:15px;">
+                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetCashHandoverReport()">
                                 <i class="ace-icon fa fa-check bigger-110"></i>
                                 Search
                             </button>
@@ -63,6 +59,15 @@
                     </div>
                 </div>
             </div>
+            @*<div class="panel">
+                <div class="panel-body">
+                    <div class="clearfix form-actions form-group" style="background-color: #fff;">
+                        <div style="width: 95%;">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>*@
         </div>
     </div>
     <div class="form-group">
@@ -81,13 +86,63 @@
                         <th style="width: 15%;">Paid Amount</th>
                     </tr>
                 </thead>
-                <tbody id="tbodycashconsolidationrecords">
+                <tbody id="tbodycashhandoverrecords">
                     <tr>
-                        <td colspan="4" style="text-align:center">No User Cash Consolidation records found</td>
+                        <td colspan="4" style="text-align:center">No Cash handover records found</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="col-xs-6" style="margin:15px 15px 0px 0px;">
+            <label class="control-label" style="text-align: left;" for="txtRemarks">Remarks <span class="red">*</span> </label>
+            <textarea id="txtRemarks" class="col-xs-12" style="margin-bottom:15px;" placeholder="Remarks"></textarea>
+            
+        </div>
+        <div class="col-xs-6" >
+            <input type="button" class="btn btn-primary" id="btnUpdatePayment" value="Update Payment">
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="confirmModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-me">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="btnCloseconfirmModal" data-dissmiss="modal">
+                        ×
+                    </button>
+                    <h4>Confirm:</h4>
+                </div>
+                <div class="modal-body" id="divExpenseModal" style="min-height:250px;">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label class="control-label" style="text-align: left;">Total Amount To Handover :- </label>
+                            <label class="control-label" style="text-align: left;" id="lblHandOverAmount"></label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="control-label" style="text-align: left;">Paid Amount :- </label>
+                            <label class="control-label" style="text-align: left;" id="lblPaidAmount"></label>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="control-label" style="text-align: left;">Remarks :- </label>
+                            <label class="control-label" style="text-align: left;" id="lblRemarks"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-info pull-right" type="button" style="margin: 5px;" onclick="return UpdatePayment()">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Save
+                    </button>
+                    <button class="btn btn-sm btn-info pull-right" type="button" id="btnCancelPayment" style="margin: 5px;">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 </div>
@@ -102,13 +157,15 @@
 <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
 <script src="~/scripts/moment.js"></script>
 <script src="~/scripts/common.js"></script>
-<script src="~/scripts/cashconsolidationreport.js"></script>
+<script src="~/scripts/cashhandoverreport.js"></script>
 
 <script type="text/javascript">
     jQuery(function ($) {
         $("#txtTransactionDate").kendoDateTimePicker({ format: "MM/dd/yyyy hh:mm tt" });
-        getUserCashConsolidationReportsData();
+        getCashHandoverReportsData();
     });
 
 </script>
+
+
 

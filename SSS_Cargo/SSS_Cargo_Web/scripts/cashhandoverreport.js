@@ -1,5 +1,5 @@
 ﻿var dsUsers = null;
-function getUserCashConsolidationReportsData() {
+function getCashHandoverReportsData() {
 
     var loginid = $("#hiddenloginid").val();
     var counterid = $("#hiddencounterid").val();
@@ -33,14 +33,15 @@ function getUserCashConsolidationReportsData() {
         return false;
     }
 }
-
-function GetUserCashConsolidationReport() {
+var transactionDate = "";
+var locationId  = "";
+function GetCashHandoverReport() {
     var loginid = $("#hiddenloginid").val();
     var counterid = $("#hiddencounterid").val();
     if (loginid != "" && counterid) {
         showloading();
-        var transactionDate = $("#txtTransactionDate").val();
-        var locationId = $("#ddlLocation").val();
+        transactionDate  = $("#txtTransactionDate").val();
+        locationId = $("#ddlLocation").val();
 
         var isvalid = true;
         if (validatetextbox(transactionDate, $('#spnTransactionDate'), 'Please select transaction  date') == false) {
@@ -67,16 +68,78 @@ function GetUserCashConsolidationReport() {
     }
 }
 
+$("#btnUpdatePayment").unbind().click(function () {
+    var isValid = true;
+    $("[id^=txtPaidAmount_]").each(function () {
+        if (this.value.trim() != "") {
+           // input.push({ id: $(this).attr("data-userId"), value: parseInt(this.value) });
+           // i++;
+        }
+        else {
+            isValid = false;
+        }
+    });
+    if (isValid) {
+        $("#lblHandOverAmount").text($("#spnTotalHandOverAmount").html());
+        $("#lblPaidAmount").text($("#spnTotalPaidAmount").html());
+        $("#lblRemarks").text($("#txtRemarks").val());
+        $("#confirmModal").modal('show');
+        $("#btnCloseconfirmModal, #btnCancelPayment").unbind().click(function () {
+            $("#confirmModal").modal('hide');
+        });
+    }
+});
+
+function UpdatePayment()
+{
+    var input = [];
+    var isValid = true;
+    $("[id^=txtPaidAmount_]").each(function () {
+        debugger;
+        if (this.value.trim() != "") {
+            input.push({ UserId: $(this).attr("data-userId"), PaidAmount: parseInt(this.value) });
+        }
+        else {
+            isValid = false;
+        }
+    });
+    if (isValid) {
+        $.ajax({
+            type: "POST",
+            data: ({ CashData: input, TransactionDate: transactionDate, LocationId: locationId }),
+            url: apiurl + "api/reports/updatecashhandover",
+            dataType: "json",
+            success: function (result) {
+                debugger;
+                $("#confirmModal").modal('hide');
+                $("#spnMessage").css("display", "");
+
+                if (result) {
+                    $("#spnMessage").html("Cash Hand Over details saved successfully");
+                }
+                else {
+                    $("#spnMessage").html("Failed to save Cash Hand Over details ");
+                }
+                hideloading();
+            },
+            error: function (xhr) {
+                hideloading();
+                showerroralert(xhr.responseText);
+            }
+        });
+    }
+}
+
 function LoadData(input) {
     $.ajax({
         type: "POST",
         data: (input),
-        url: apiurl + "api/reports/getcashconsolidationreport",
+        url: apiurl + "api/reports/getcashhandoverreport",
         dataType: "json",
         success: function (data) {
             debugger;
             if (data && data.Table.length > 0) {
-                $('#tbodycashconsolidationrecords').html('');
+                $('#tbodycashhandoverrecords').html('');
                 var totalCashToBeHandover = 0;
                 var totalPaidAmount = 0;
                 for (var i = 0; i < data.Table.length; i++) {
@@ -87,16 +150,28 @@ function LoadData(input) {
                         '<td>' + '<span>' + (i + 1) + '</span></td>' +
                          '<td><span>' + data.Table[i].UserName + '</span></td>' +
                            '<td><span>' + data.Table[i].CashToBeHandover + '</span></td>' +
-                        '<td><span>' + data.Table[i].PaidAmount + '</span></td>');
+                        '<td><input type="number" value="0" data-userId="' + data.Table[i].UserId + '" id="txtPaidAmount_' + i + '" /></td>');
                     //<a href="javascript:void(0)" onclick="editparcelitem(this)"><i class="fa fa-pencil"></i> Edit</a>&nbsp;&nbsp;
-                    $('#tbodycashconsolidationrecords').append(tr);
+                    $('#tbodycashhandoverrecords').append(tr);
                 }
                 var tr = $('<tr class="trdynamic" />');
                 tr.append('' +
                     '<td colspan="2"> Total </td>' +
-                    '<td><span>' + totalCashToBeHandover + '</span></td>' +
-                    '<td><span>' + totalPaidAmount + '</span></td>');
-                $('#tbodycashconsolidationrecords').append(tr);
+                    '<td><span id="spnTotalHandOverAmount">' + totalCashToBeHandover + '</span></td>' +
+                    '<td><span id="spnTotalPaidAmount">' + 0 + '</span></td>');
+                $('#tbodycashhandoverrecords').append(tr);
+                $("[id^=txtPaidAmount_]").change(function (e) {
+                    var total = 0;
+                    $("[id^=txtPaidAmount_]").each(function () {
+                        if (this.value.trim() != "") {
+                            total += parseInt(this.value);
+                            $(this).css("border", "1px solid #d5d5d5");
+                        }
+                        else
+                            $(this).css("border-color", "red");
+                    });
+                    $("#spnTotalPaidAmount").html(total);
+                });
             }
             else {
                 var tr = $('<tr class="trdynamic" />');

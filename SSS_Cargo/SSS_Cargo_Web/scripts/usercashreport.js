@@ -20,10 +20,10 @@ function getUserCashReportsData() {
                         }
                     }
                     dsUsers = data.Users;
-                   
+
                     $("#ddlLocation").change(function () {
                         $('#ddlUser option:not(:first)').remove();
-                        if (dsUsers && dsUsers.Table &&dsUsers.Table.length > 0) {
+                        if (dsUsers && dsUsers.Table && dsUsers.Table.length > 0) {
                             for (var i = 0; i < dsUsers.Table.length; i++) {
                                 if (dsUsers.Table[i].CounterId == parseInt($(this).val())) {
                                     var option = '<option value="' + dsUsers.Table[i].UserId + '">' + dsUsers.Table[i].UserName + '</option>';
@@ -53,7 +53,7 @@ function GetUserCashReport() {
     if (loginid != "" && counterid) {
         showloading();
         var transactionDate = $("#txtTransactionDate").val();
-        var locationId =  $("#ddlLocation").val();
+        var locationId = $("#ddlLocation").val();
         var userId = $("#ddlUser").val();
 
         var isvalid = true;
@@ -77,7 +77,7 @@ function GetUserCashReport() {
                 LoginId: loginid,
                 CounterId: counterid,
                 TransactionDate: transactionDate,
-                LocationId : locationId,
+                LocationId: locationId,
                 UserId: userId,
             };
             LoadData(input);
@@ -112,8 +112,7 @@ function PrintUserCashReport() {
         return false;
     }
 }
-function LoadData(input, isPrint)
-{
+function LoadData(input, isPrint) {
     $.ajax({
         type: "POST",
         data: (input),

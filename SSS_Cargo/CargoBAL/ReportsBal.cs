@@ -105,6 +105,23 @@ namespace CargoBAL
             return lstBookingStatus;
         }
 
+        public DataSet GetReceivingTypes()
+        {
+            DataSet ds = null;
+
+            try
+            {
+                ds = objReportsDal.GetReceivingTypes();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+
+
 
 
         public List<BookingReportResponse> GetBookingReport(JObject input)
@@ -152,6 +169,22 @@ namespace CargoBAL
             return lstBookingReportResponse;
         }
 
+
+        public DataSet GetReceivingReport(JObject input)
+        {
+            DataSet ds = null;
+
+            try
+            {
+                ds = objReportsDal.GetReceivingReport(input);
+            }
+            catch
+            {
+
+            }
+            return ds;
+        }
+                
         public bool UpdateBookingStatus(JObject input)
         {
             bool result = false;
@@ -173,7 +206,7 @@ namespace CargoBAL
             try
             {
                 DataSet ds = objReportsDal.BookingPriceDetails(bookingId);
-                if(ds != null && ds.Tables.Count >0 && ds.Tables[0].Rows.Count>0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     objBookingPriceResponse = ds.Tables[0].AsEnumerable().
                                           Select(x => new BookingPriceResponse
@@ -211,7 +244,7 @@ namespace CargoBAL
             }
             return objBookingPriceResponse;
         }
-        public DataSet  GetNotLoadedReport(JObject input)
+        public DataSet GetNotLoadedReport(JObject input)
         {
             DataSet ds = null;
             try
@@ -278,6 +311,47 @@ namespace CargoBAL
 
             }
             return ds;
+        }
+
+        public DataSet GetCashConsolidationReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetCashConsolidationReport(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+        public DataSet GetCashHandoverReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsDal.GetCashHandoverReport(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+        public bool UpdateCashHandover(JObject input)
+        {
+            bool result = false;
+            try
+            {
+                result = objReportsDal.UpdateCashHandover(input);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
         }
         #endregion
     }

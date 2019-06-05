@@ -501,11 +501,11 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\booking.js" />
     <Content Include="scripts\bookingprint.js" />
+    <Content Include="scripts\receivingreports.js" />
     <Content Include="scripts\bookingreports.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\cashconsolidationreport.js" />
-    <Content Include="scripts\usercashreport.js" />
     <Content Include="scripts\cashreport.js" />
     <Content Include="scripts\common.js" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
@@ -513,6 +513,7 @@
     <None Include="Properties\PublishProfiles\SSC_web.pubxml" />
     <Content Include="scripts\delivery.js" />
     <Content Include="scripts\deliveryprint.js" />
+    <Content Include="scripts\cashhandoverreport.js" />
     <Content Include="scripts\loadingprint.js" />
     <Content Include="scripts\notdeliveredreports.js" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
@@ -956,6 +957,7 @@
     <Content Include="scripts\notreceivedreports.js" />
     <Content Include="scripts\receiving.js" />
     <Content Include="scripts\tobereceive.js" />
+    <Content Include="scripts\usercashreport.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1111,12 +1113,14 @@
     <Content Include="Views\Cargo\deliverysuccess.cshtml" />
     <Content Include="Views\Cargo\printdeliveryreceipt.cshtml" />
     <Content Include="Views\Reports\NotDeliveredReport.cshtml" />
+    <Content Include="Views\Reports\UserCashReport.cshtml" />
     <Content Include="Views\Reports\NotReceivedReport.cshtml" />
     <Content Include="Views\Cargo\printloadingreceipt.cshtml" />
     <Content Include="Views\Cargo\loadingsuccess.cshtml" />
-    <Content Include="Views\Reports\UserCashReport.cshtml" />
-    <Content Include="Views\Reports\PrintUserCashReport.cshtml" />
     <Content Include="Views\Reports\CashConsolidationReport.cshtml" />
+    <Content Include="Views\Reports\PrintUserCashReport.cshtml" />
+    <Content Include="Views\Reports\CashHandoverReport.cshtml" />
+    <Content Include="Views\Reports\ReceivingReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

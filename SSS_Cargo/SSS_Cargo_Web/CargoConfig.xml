@@ -11,4 +11,6 @@
   <NotReceivedReportRequestType>1</NotReceivedReportRequestType>
   <UserCashReportRequestType>1</UserCashReportRequestType>
   <cashconsolidationreportrequesttype>1</cashconsolidationreportrequesttype>
+  <cashhandoverrequesttype>1</cashhandoverrequesttype>
+  <receivingreportrequesttype>1</receivingreportrequesttype>
 </CargoConfig>

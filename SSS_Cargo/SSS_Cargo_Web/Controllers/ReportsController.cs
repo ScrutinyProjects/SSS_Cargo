@@ -194,5 +194,54 @@ namespace SSS_Cargo_Web.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult CashHandoverReport()
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.CounterId = loginresponse.CounterId;
+                XElement xelement = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "/CargoConfig.xml");
+                IEnumerable<XElement> elements = xelement.Elements();
+                foreach (var element in elements)
+                {
+                    if (element.Name.ToString().ToLower() == "cashhandoverrequesttype")
+                        ViewBag.RequestType = element.Value;
+                }
+                return View();
+            }
+        }
+
+        public ActionResult ReceivingReport()
+        {
+            if (Session["SessionLogin"] == null)
+            {
+                return Redirect("/account/login");
+            }
+            else
+            {
+                LoginResponse loginresponse = (LoginResponse)Session["SessionLogin"];
+                ViewBag.Name = loginresponse.Name;
+                ViewBag.CounterName = loginresponse.CounterName;
+                ViewBag.LoginId = loginresponse.LoginId;
+                ViewBag.CounterId = loginresponse.CounterId;
+                XElement xelement = XElement.Load(AppDomain.CurrentDomain.BaseDirectory + "/CargoConfig.xml");
+                IEnumerable<XElement> elements = xelement.Elements();
+                foreach (var element in elements)
+                {
+                    if (element.Name.ToString().ToLower() == "receivingreportrequesttype")
+                        ViewBag.RequestType = element.Value;
+                }
+                return View();
+            }
+        }
     }
 }

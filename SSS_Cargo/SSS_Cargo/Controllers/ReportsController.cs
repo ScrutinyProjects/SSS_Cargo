@@ -199,6 +199,96 @@ namespace SSS_Cargo.Controllers
             return ds;
         }
 
+        [Route("getcashconsolidationreport")]
+        [HttpPost]
+        public DataSet GetCashConsolidationReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetCashConsolidationReport(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+        [Route("getcashhandoverreport")]
+        [HttpPost]
+        public DataSet GetCashHandoverReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetCashHandoverReport(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+        [Route("updatecashhandover")]
+        [HttpPost]
+        public bool UpdateCashHandover(JObject input)
+        {
+            bool result = false;
+            try
+            {
+                result = objReportsBal.UpdateCashHandover(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return result;
+        }
+
+        [Route("getreceivingreport")]
+        [HttpPost]
+        public DataSet GetReceivingReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetReceivingReport(input);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
+
+
+
+        [Route("{loginid}/{counterid}/getreceivingreportsdata")]
+        [HttpGet]
+        public object GetReceivingReportsData(string loginId, string counterId, string requestType)
+        {
+            List<CounterMastersResponse> lstCounterMastersResponse = null;
+            List<GCTypesResponse> lstGCTypesResponse = null;
+            DataSet ds = null;
+            try
+            {
+                lstCounterMastersResponse = objReportsBal.GetMyLocations(loginId, counterId, requestType);
+                lstGCTypesResponse = objReportsBal.GetGCTypes();
+                ds = objReportsBal.GetReceivingTypes();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return new { Locations = lstCounterMastersResponse, GCTypes = lstGCTypesResponse, ReceivingTypes = ds };
+        }
+
         #endregion
     }
 }
