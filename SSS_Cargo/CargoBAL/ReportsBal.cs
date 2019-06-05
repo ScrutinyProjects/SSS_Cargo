@@ -285,12 +285,12 @@ namespace CargoBAL
             }
             return ds;
         }
-        public DataSet GetCashReport(JObject input)
+        public DataSet GetUserCashReport(JObject input)
         {
             DataSet ds = null;
             try
             {
-                ds = objReportsDal.GetCashReport(input);
+                ds = objReportsDal.GetUserCashReport(input);
             }
             catch (Exception ex)
             {

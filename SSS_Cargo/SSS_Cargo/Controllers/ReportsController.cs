@@ -144,29 +144,31 @@ namespace SSS_Cargo.Controllers
         }
 
 
-        [Route("{loginid}/{counterid}/getcashreportsdata")]
+        [Route("{loginid}/{counterid}/getusercashreportsdata")]
         [HttpGet]
-        public DataSet GetCashReportsData(string loginId, string counterId, string requestType)
+        public Object GetCashReportsData(string loginId, string counterId, string requestType)
         {
             DataSet dsUsers = null;
+            List<CounterMastersResponse> lstCounterMastersResponse = null;
             try
             {
+                lstCounterMastersResponse = objReportsBal.GetMyLocations(loginId, counterId, requestType);
                 dsUsers = objReportsBal.GetUsers();
             }
             catch (Exception ex)
             {
 
             }
-            return dsUsers;
+            return new { Locations = lstCounterMastersResponse, Users = dsUsers }; 
         }
-        [Route("getcashreport")]
+        [Route("getusercashreport")]
         [HttpPost]
-        public DataSet GetCashReport(JObject input)
+        public DataSet GetUserCashReport(JObject input)
         {
             DataSet ds = null;
             try
             {
-                ds = objReportsBal.GetCashReport(input);
+                ds = objReportsBal.GetUserCashReport(input);
 
             }
             catch (Exception ex)
