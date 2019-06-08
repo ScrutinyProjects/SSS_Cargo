@@ -324,6 +324,27 @@ namespace CargoDAL
             }
             return ds;
         }
+
+        public DataSet GetDeliveryReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                SqlParameter[] sqlparams = {
+                                            new SqlParameter("@LoginUserId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["LoginId"]))) },
+                                            new SqlParameter("@CounterId", SqlDbType.Int) { Value = Convert.ToInt32(CommonMethods.URLKeyDecrypt(Convert.ToString(input["CounterId"]))) },
+                                            new SqlParameter("@FromDate", SqlDbType.DateTime) { Value = Convert.ToString(input["FromDate"]) },
+                                            new SqlParameter("@ToDate", SqlDbType.DateTime) { Value = Convert.ToString(input["ToDate"]) },
+                                            new SqlParameter("@LocationId", SqlDbType.Int) { Value = Convert.ToString(input["LocationId"]) },
+                                            new SqlParameter("@GCTypes", SqlDbType.VarChar) { Value = Convert.ToString(input["GCTypes"]) },
+                                        };
+                ds = SqlHelper.ExecuteDataset(con, CommandType.StoredProcedure, "USP_GetDeliveryReport", sqlparams);
+            }
+            catch (Exception ex)
+            {
+            }
+            return ds;
+        }
         #endregion
     }
 }

@@ -39,6 +39,8 @@ namespace CargoBE.Responses
     {
         public int ProductTypeId { get; set; }
         public string ProductType { get; set; }
+
+        public int? GCTypeId { get; set; }
     }
 
     public class BooksMasterResponse

@@ -550,6 +550,18 @@ namespace CargoBAL
 
                         objresponse.ReceivingTypes = receivingtypes;
 
+                        if (ds.Tables[1] != null)
+                        {
+                            var producttypes = ds.Tables[1].AsEnumerable().
+                                               Select(x => new ProductTypesResponse
+                                               {
+                                                   ProductTypeId = x.Field<int>("Id"),
+                                                   ProductType = x.Field<string>("Name"),
+                                                   GCTypeId = x.Field<Nullable<int>>("GCTypeId")
+                                               }).ToList();
+                            objresponse.ProductTypes = producttypes;
+                        }
+
                         objresponse.StatusId = 1;
                         objresponse.StatusMessage = "Valid";
                     }
@@ -598,6 +610,7 @@ namespace CargoBAL
                 objrequest.FromCounter = Convert.ToString(input["FromCounter"]);
                 objrequest.GCBookingNumber = Convert.ToString(input["GCBookingNumber"]);
                 objrequest.GCType = Convert.ToInt32(input["GCType"]);
+                objrequest.ProductType = Convert.ToInt32(input["ProductType"]);
                 objrequest.Remarks = Convert.ToString(input["Remarks"]);
                 objrequest.NumberOfPieces = Convert.ToInt32(input["NumberOfPieces"]);
                 objrequest.DeliveryToName = Convert.ToString(input["DeliveryToName"]);
@@ -682,6 +695,16 @@ namespace CargoBAL
 
                         objresponse.GCTypes = gctypes;
 
+                        var productTypes = ds.Tables[1].AsEnumerable().
+                                          Select(x => new ProductTypesResponse
+                                          {
+                                              ProductTypeId = x.Field<int>("ProductTypeId"),
+                                              ProductType = x.Field<string>("ProductType"),
+                                              GCTypeId = x.Field<Nullable<int>>("GC_Type_Id")
+                                          }).ToList();
+
+                        objresponse.ProductTypes = productTypes;
+
                         objresponse.StatusId = 1;
                         objresponse.StatusMessage = "Valid";
                     }
@@ -727,6 +750,7 @@ namespace CargoBAL
                 objrequest.BookingId = Convert.ToInt32(input["BookingId"]);
                 objrequest.GCBookingNumber = Convert.ToString(input["GCBookingNumber"]);
                 objrequest.GCType = Convert.ToInt32(input["GCType"]);
+                objrequest.ProductType = Convert.ToInt32(input["ProductType"]);
                 objrequest.Remarks = Convert.ToString(input["Remarks"]);
                 objrequest.DeliveryCharges = Convert.ToDecimal(input["DeliveryCharges"]);
                 objrequest.DemoCharges = Convert.ToDecimal(input["DemoCharges"]);

@@ -13,4 +13,5 @@
   <cashconsolidationreportrequesttype>1</cashconsolidationreportrequesttype>
   <cashhandoverrequesttype>1</cashhandoverrequesttype>
   <receivingreportrequesttype>1</receivingreportrequesttype>
+  <deliveryreportrequesttype>1</deliveryreportrequesttype>
 </CargoConfig>

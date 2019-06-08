@@ -2,7 +2,7 @@
 var gcbookingnumber = '';
 var bookingid = 0;
 var tobereceiveid = 0;
-
+var lstProductTypes = [];
 function getmasters() {
     hideallalerts();
 
@@ -36,7 +36,28 @@ function getmasters() {
                             var option = '<option value="' + data.ReceivingTypes[i].ReceivingTypeId + '">' + data.ReceivingTypes[i].ReceivingTypeName + '</option>';
                             $('#selectactualreceivingtype').append(option);
                         }
+                        $('#selectactualgctype').unbind().change(function () {
+                            debugger;
+                            $('#selectactualproducttype option:not(:first)').remove();
+                            if (lstProductTypes.length > 0) {
+                                for (var i = 0; i < lstProductTypes.length; i++) {
+                                    if (lstProductTypes[i].GCTypeId == parseInt(this.value)) {
+                                        var option = '<option value="' + lstProductTypes[i].ProductTypeId + '">' + lstProductTypes[i].ProductType + '</option>';
+                                        $('#selectactualproducttype').append(option);
+                                    }
+                                }
+                            }
+                        });
+
                     }
+                    if (data.ProductTypes != null) {
+                        lstProductTypes = data.ProductTypes;
+                        for (var i = 0; i < data.ProductTypes.length; i++) {
+                            var option = '<option value="' + data.ProductTypes[i].ProductTypeId + '">' + data.ProductTypes[i].ProductType + '</option>';
+                            $('#selectactualproducttype').append(option);
+                        }
+                    }
+                    
                     if (data.Counters != null) {
                         if (data.Counters.length > 0) {
                             var counters = [];
@@ -191,6 +212,7 @@ function savereceiveing() {
 
     var actualfrom = $('#textactualfrom').val().trim();
     var actualgctype = $('#selectactualgctype').val();
+    var actualproducttype = $('#selectactualproducttype').val();
     var actualreceivingtype = $('#selectactualreceivingtype').val();
     var actualnumberofpieces = $('#textactualnumberofpieces').val().trim();
     var actualvehiclenumber = $('#textactualvehiclenumber').val().trim();
@@ -203,11 +225,15 @@ function savereceiveing() {
     var actualphonenumber = $('#textactualphonenumber').val().trim();
     var actualremarks = $('#textactualremarks').val().trim();
     var billamount = $('#textbillamount').val().trim();
+
     
     if (validatetextbox(actualfrom, $('#spanactualfrom'), 'Please select From Counter') == false) {
         isvalid = false;
     }
     if (validatedropdown(actualgctype, $('#spanactualgctype'), 'Please select GC Type') == false) {
+        isvalid = false;
+    }
+    if (validatedropdown(actualproducttype, $('#spanactualproducttype'), 'Please select Product Type') == false) {
         isvalid = false;
     }
     if (validatedropdown(actualreceivingtype, $('#spanactualreceivingtype'), 'Please select Receiving Type') == false) {
@@ -257,6 +283,7 @@ function savereceiveing() {
             FromCounter: actualfrom,
             GCBookingNumber: gcbookingnumber,
             GCType: actualgctype,
+            ProductType: actualproducttype,
             Remarks: actualremarks,
             NumberOfPieces: actualnumberofpieces,
             DeliveryToName: actualdeliveryto,

@@ -501,6 +501,7 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\booking.js" />
     <Content Include="scripts\bookingprint.js" />
+    <Content Include="scripts\deliveryreports.js" />
     <Content Include="scripts\receivingreports.js" />
     <Content Include="scripts\bookingreports.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -1121,6 +1122,7 @@
     <Content Include="Views\Reports\PrintUserCashReport.cshtml" />
     <Content Include="Views\Reports\CashHandoverReport.cshtml" />
     <Content Include="Views\Reports\ReceivingReport.cshtml" />
+    <Content Include="Views\Reports\DeliveryReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

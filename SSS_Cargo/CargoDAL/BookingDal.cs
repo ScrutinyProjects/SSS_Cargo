@@ -554,6 +554,7 @@ namespace CargoDAL
                                             new SqlParameter("@BookingId", SqlDbType.Int) { Value = objrequest.BookingId },
                                             new SqlParameter("@GCBookingNumber", SqlDbType.VarChar, 100) { Value = objrequest.GCBookingNumber },
                                             new SqlParameter("@GCType", SqlDbType.Int) { Value = objrequest.GCType },
+                                            new SqlParameter("@ProductType", SqlDbType.Int) { Value = objrequest.ProductType },
                                             new SqlParameter("@FromCounter", SqlDbType.VarChar, 100) { Value = objrequest.FromCounter },
                                             new SqlParameter("@ReceivingType", SqlDbType.Int) { Value = objrequest.ReceivingType },
                                             new SqlParameter("@NumberOfPieces", SqlDbType.Int) { Value = objrequest.NumberOfPieces },
@@ -786,6 +787,8 @@ namespace CargoDAL
                         objresponse.ReceivingId = (int)reader["ReceivingId"];
                         objresponse.GCTypeId = (int)reader["GCTypeId"];
                         objresponse.GCType = (string)reader["GCType"];
+                        if (!string.IsNullOrEmpty(Convert.ToString(reader["ProductTypeId"])))
+                            objresponse.ProductTypeId = (int)reader["ProductTypeId"];
                         objresponse.FromCounterName = (string)reader["FromCounterName"];
                         objresponse.MeasurementIn = (string)reader["MeasurementIn"];
                         objresponse.GCBookingNumber = (string)reader["GCBookingNumber"];
@@ -823,6 +826,7 @@ namespace CargoDAL
                                             new SqlParameter("@BookingId", SqlDbType.Int) { Value = objrequest.BookingId },
                                             new SqlParameter("@GCBookingNumber", SqlDbType.VarChar, 100) { Value = objrequest.GCBookingNumber },
                                             new SqlParameter("@GCType", SqlDbType.Int) { Value = objrequest.GCType },
+                                            new SqlParameter("@ProductType", SqlDbType.Int) { Value = objrequest.ProductType },
                                             new SqlParameter("@DeliveryCharges", SqlDbType.Decimal) { Value = objrequest.DeliveryCharges },
                                             new SqlParameter("@DemoCharges", SqlDbType.Decimal) { Value = objrequest.DemoCharges },
                                             new SqlParameter("@Remarks", SqlDbType.VarChar, 500) { Value = objrequest.Remarks },

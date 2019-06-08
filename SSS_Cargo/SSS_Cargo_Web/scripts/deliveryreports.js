@@ -1,6 +1,6 @@
 ﻿//var lstBookingStatus = [];
 //var lstBookings = [];
-function getReceivingReportsData() {
+function getDeliveryReportsData() {
 
     var loginid = $("#hiddenloginid").val();
     var counterid = $("#hiddencounterid").val();
@@ -11,7 +11,7 @@ function getReceivingReportsData() {
 
         $.ajax({
             type: "GET",
-            url: apiurl + "api/reports/" + loginid + "/" + counterid + "/getreceivingreportsdata?requesttype=" + $("#hiddenrequesttype").val(),
+            url: apiurl + "api/reports/" + loginid + "/" + counterid + "/getdeliveryreportsdata?requesttype=" + $("#hiddenrequesttype").val(),
             dataType: "json",
             success: function (data) {
                 if (data) {
@@ -92,61 +92,6 @@ function getReceivingReportsData() {
                             $("#Header").attr("checked", false);
                         });
                     }
-                    debugger;
-                    if (data.ReceivingTypes && data.ReceivingTypes.Table && data.ReceivingTypes.Table.length > 0) {
-                        //lstBookingStatus.splice(0, 1);
-                        var ds = new kendo.data.DataSource({
-                            data: data.ReceivingTypes.Table
-                        });
-
-                        var checkInputs = function (elements) {
-                            elements.each(function () {
-                                var element = $(this);
-                                var input = element.children("input");
-                                input.prop("checked", element.hasClass("k-state-selected"));
-                                if (element.css('display') == 'none')
-                                    $("#ReceivingTypeHeader").attr("checked", false);
-                            });
-                        };
-
-                        $("#ddlReceivingType").kendoMultiSelect({
-                            dataValueField: "Id",
-                            dataTextField: "Name",
-                            dataSource: ds,
-                            dataBound: function () {
-                                var items = this.ul.find("li");
-                                setTimeout(function () {
-                                    checkInputs(items);
-                                });
-                            },
-                            itemTemplate: "<input type='checkbox' id= 'chkReceivingType_#:data.Id#'/> #:data.Name#",
-                            headerTemplate: "<div><input type='checkbox' id='ReceivingTypeHeader'><label> Select All</label></div>",
-                            autoClose: false,
-                            change: function () {
-                                var items = this.ul.find("li");
-                                checkInputs(items);
-                            }
-                        });
-
-                        $('#ReceivingTypeHeader').click(function () {
-                            if ($(this).is(':checked')) {
-                                $('#ddlReceivingType_listbox').find("li").each(function () {
-                                    if ($(this).css('display') != "none")
-                                        $(this).trigger("click");
-                                    // $(this).find("input").prop("checked",true);
-                                });
-                            } else {
-                                $('#ddlReceivingType_listbox').find("li").each(function () {
-                                    //$(this).trigger("click");
-                                    $(this).find("input").prop("checked", false);
-                                });
-                            }
-                        });
-
-                        $('#divReceivingType').keydown(function (e) {
-                            $("#ReceivingTypeHeader").attr("checked", false);
-                        });
-                    }
                 }
                 hideloading();
             },
@@ -160,21 +105,15 @@ function getReceivingReportsData() {
         return false;
     }
 }
-function GetReceivingReport() {
+function GetDeliveryReport() {
     var loginid = $("#hiddenloginid").val();
     var counterid = $("#hiddencounterid").val();
     var gcTypes = '';
-    var receivingTypes = '';
     if (loginid != "" && counterid) {
         showloading();
         $('#ddlGCType_listbox').find("li").each(function () {
             if ($(this).css('display') == "none")
                 gcTypes +=  $(this).find('input')[0].id.split('_')[1] + ",";
-            // $(this).find("input").prop("checked",true);
-        });
-        $('#ddlReceivingType_listbox').find("li").each(function () {
-            if ($(this).css('display') == "none")
-                receivingTypes += $(this).find('input')[0].id.split('_')[1] + ",";
             // $(this).find("input").prop("checked",true);
         });
         var fromDate = $("#txtFromDate").val();
@@ -195,9 +134,6 @@ function GetReceivingReport() {
         if (validatedropdown(gcTypes, $('#spnGCType'), 'Please select GC type') == false) {
             isvalid = false;
         }
-        if (validatedropdown(receivingTypes, $('#spnReceivingType'), 'Please select receiving type') == false) {
-            isvalid = false;
-        }
 
 
         if (isvalid) {
@@ -210,12 +146,11 @@ function GetReceivingReport() {
                 ToDate: toDate,
                 LocationId: locationId,
                 GCTypes: gcTypes,
-                ReceivingTypes: receivingTypes,
             };
             $.ajax({
                 type: "POST",
                 data: (input),
-                url: apiurl + "api/reports/getreceivingreport",
+                url: apiurl + "api/reports/getdeliveryreport",
                 dataType: "json",
                 success: function (data) {
                     //lstBookings = data;
@@ -236,48 +171,51 @@ function GetReceivingReport() {
 function BindGrid(data)
 {
     var totalBillAmount = 0;
+    var totalPieces = 0;
+    var totalDeliveryCharges = 0;
+    var totalDemoCharges = 0;
     if (data && data.Table && data.Table.length > 0) {
-        $('#tbodyreceivingrecords').html('');
+        $('#tbodydeliveryrecords').html('');
         for (var i = 0; i < data.Table.length; i++) {
             totalBillAmount += data.Table[i].BillAmount;
+            totalPieces += data.Table[i].Pieces;
+            totalDeliveryCharges += data.Table[i].DeliveryCharges;
+            totalDemoCharges += data.Table[i].DemoCharges;
+
             var tr = $('<tr class="trdynamic" />');
             tr.append('' +
                 '<td>' + '<span>' + (i + 1) + '</span></td>' +
                 '<td><span>' + data.Table[i].GC_No + '</span></td>' +
                 '<td><span>' + data.Table[i].FromLocation + '</span></td>' +
                 '<td><span>' + data.Table[i].GC_Type + '</span></td>' +
-                '<td><span>' + data.Table[i].ProductType + '</span></td>' +
-                '<td><span>' + data.Table[i].ReceivingType + '</span></td>' +
+                 '<td><span>' + data.Table[i].ProductType + '</span></td>' +
                 '<td><span>' + data.Table[i].Pieces + '</span></td>' +
-                '<td><span>' + data.Table[i].VehicleNumber + '</span></td>' +
-                 '<td><span>' + data.Table[i].DriverName + '</span></td>' +
-                '<td><span>' + data.Table[i].DriverNumber + '</span></td>' +
-                '<td><span>' + data.Table[i].UnloadingAmount + '</span></td>' +
-                '<td><span>' + data.Table[i].TranshipmentAmount + '</span></td>' +
-                '<td><span>' + data.Table[i].Weight + '</span></td>' +
-                '<td><span>' + data.Table[i].BillAmount + '</span></td>' +
+                  '<td><span>' + data.Table[i].BillAmount + '</span></td>' +
                 '<td><span>' + data.Table[i].DeliveryTo + '</span></td>' +
                 '<td><span>' + data.Table[i].PhoneNumber + '</span></td>' +
-                '<td><span>' + data.Table[i].Remarks + '</span></td>' +
-                '<td><span>' + data.Table[i].Status + '</span></td>');
-            $('#tbodyreceivingrecords').append(tr);
+                '<td><span>' + data.Table[i].DeliveryCharges + '</span></td>' +
+                 '<td><span>' + data.Table[i].DemoCharges + '</span></td>' +
+                '<td><span>' + data.Table[i].Remarks + '</span></td>');
+            $('#tbodydeliveryrecords').append(tr);
         }
         var tr = $('<tr class="trdynamic" />');
         tr.append('' +
-                '<td colspan="13">Total</td>' +
+                '<td colspan="5">Total</td>' +
+                '<td><span id="spnTotalPieces_' + data.Table.length + '"  >' + totalPieces + '</span></td>' +
                 '<td><span id="spnBillAmount_' + data.Table.length + '"  >' + totalBillAmount + '</span></td>' +
                 '<td></td>' +
-                 '<td></td>' +
-                 '<td></td>' +
+                '<td></td>' +
+                 '<td><span>' + totalDeliveryCharges + '</span></td>' +
+                 '<td><span>' + totalDemoCharges + '</span></td>' +
                 '<td></td>');
-        $('#tbodyreceivingrecords').append(tr);
+        $('#tbodydeliveryrecords').append(tr);
 
     }
     else {
-        $('#tbodyreceivingrecords').html('');
+        $('#tbodydeliveryrecords').html('');
         var tr = $('<tr class="trdynamic" />');
-        tr.append('<td colspan = "18"> No Records Found </td>');
-        $('#tbodyreceivingrecords').append(tr);
+        tr.append('<td colspan = "12"> No Records Found </td>');
+        $('#tbodydeliveryrecords').append(tr);
     }
 }
 

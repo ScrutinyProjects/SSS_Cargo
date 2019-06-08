@@ -2,7 +2,7 @@
 var gcbookingnumber = '';
 var bookingid = 0;
 var receiveid = 0;
-
+var lstProductTypes = [];
 function getmasters() {
     hideallalerts();
 
@@ -30,7 +30,28 @@ function getmasters() {
                             var option = '<option value="' + data.GCTypes[i].GCTypeId + '">' + data.GCTypes[i].GCType + '</option>';
                             $('#selectgctype').append(option);
                         }
+                        $('#selectgctype').unbind().change(function () {
+                            debugger;
+                            $('#selectproducttype option:not(:first)').remove();
+                            if (lstProductTypes.length > 0) {
+                                for (var i = 0; i < lstProductTypes.length; i++) {
+                                    if (lstProductTypes[i].GCTypeId == parseInt(this.value)) {
+                                        var option = '<option value="' + lstProductTypes[i].ProductTypeId + '">' + lstProductTypes[i].ProductType + '</option>';
+                                        $('#selectproducttype').append(option);
+                                    }
+                                }
+                            }
+                        });
                     }
+
+                    if (data.ProductTypes != null) {
+                        lstProductTypes = data.ProductTypes;
+                        for (var i = 0; i < data.ProductTypes.length; i++) {
+                            var option = '<option value="' + data.ProductTypes[i].ProductTypeId + '">' + data.ProductTypes[i].ProductType + '</option>';
+                            $('#selectproducttype').append(option);
+                        }
+                    }
+
                 }
                 else {
                     showwarningalert(data.StatusMessage);
@@ -91,6 +112,16 @@ function searchbooking() {
                         $('#spangcnumber').html(bookingnumber);
                         $('#spandeliveryfrom').html((data.FromCounterName == "") ? "--" : data.FromCounterName);
                         $('#selectgctype').val(data.GCTypeId);
+                        $('#selectproducttype option:not(:first)').remove();
+                        if (lstProductTypes.length > 0) {
+                            for (var i = 0; i < lstProductTypes.length; i++) {
+                                if (lstProductTypes[i].GCTypeId == parseInt(data.GCTypeId)) {
+                                    var option = '<option value="' + lstProductTypes[i].ProductTypeId + '">' + lstProductTypes[i].ProductType + '</option>';
+                                    $('#selectproducttype').append(option);
+                                }
+                            }
+                        }
+                        $('#selectproducttype').val(data.ProductTypeId);
                         $('#spandeliverypieces').html((data.NumberOfPieces == "") ? "--" : data.NumberOfPieces);
                         $('#spandeliveryweight').html(weight);
 
@@ -134,6 +165,7 @@ function updatedelivery() {
     var loginid = $('#hiddenloginid').val().trim();
 
     var gctype = $('#selectgctype').val();
+    var producttype = $("#selectproducttype").val();
     var deliverycharges = $('#textdeliverycharges').val().trim();
     var democharges = $('#textdemocharges').val().trim();
     var deliveryremarks = $('#textdeliveryremarks').val().trim();
@@ -142,6 +174,9 @@ function updatedelivery() {
     var billamount = $('#textbillamount').val().trim();
 
     if (validatedropdown(gctype, $('#spandeliverygctype'), 'Please select GC Type') == false) {
+        isvalid = false;
+    }
+    if (validatedropdown(producttype, $('#spanproducttype'), 'Please select Product Type') == false) {
         isvalid = false;
     }
     if (validatetextbox(billamount, $('#spanbillamount'), 'Please enter bill amount') == false) {
@@ -157,6 +192,7 @@ function updatedelivery() {
             BookingId: bookingid,
             GCBookingNumber: gcbookingnumber,
             GCType: gctype,
+            ProductType: producttype,
             Remarks: deliveryremarks,
             DeliveryCharges: (deliverycharges == "" ? 0 : deliverycharges),
             DemoCharges: (democharges == "" ? 0 : democharges),
@@ -201,6 +237,7 @@ function clearallfields() {
 
     $('#spandeliveryfrom').html("--");
     $('#selectgctype').val(0);
+    $("selectproducttype").val(0);
     $('#spandeliverypieces').html("--");
     $('#spandeliveryweight').html("--");
     $('#spandeliveryto').html("--");

@@ -265,7 +265,22 @@ namespace SSS_Cargo.Controllers
             return ds;
         }
 
+        [Route("getdeliveryreport")]
+        [HttpPost]
+        public DataSet GetDeliveryReport(JObject input)
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = objReportsBal.GetDeliveryReport(input);
 
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ds;
+        }
 
         [Route("{loginid}/{counterid}/getreceivingreportsdata")]
         [HttpGet]
@@ -285,6 +300,25 @@ namespace SSS_Cargo.Controllers
 
             }
             return new { Locations = lstCounterMastersResponse, GCTypes = lstGCTypesResponse, ReceivingTypes = ds };
+        }
+
+        [Route("{loginid}/{counterid}/getdeliveryreportsdata")]
+        [HttpGet]
+        public object GetDeliveryReportsData(string loginId, string counterId, string requestType)
+        {
+            List<CounterMastersResponse> lstCounterMastersResponse = null;
+            List<GCTypesResponse> lstGCTypesResponse = null;
+            DataSet ds = null;
+            try
+            {
+                lstCounterMastersResponse = objReportsBal.GetMyLocations(loginId, counterId, requestType);
+                lstGCTypesResponse = objReportsBal.GetGCTypes();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return new { Locations = lstCounterMastersResponse, GCTypes = lstGCTypesResponse };
         }
 
         #endregion

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "SSS Cargo - Receiving Reports";
+    ViewBag.Title = "SSS Cargo - Delivery Reports";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Assets/css/jquery-ui.min.css" rel="stylesheet" />
@@ -8,7 +8,7 @@
         <li>
             Home
         </li>
-        <li class="active" style="font-size:14px; font-weight:600">Receiving Report</li>
+        <li class="active" style="font-size:14px; font-weight:600">Delivery Report</li>
     </ul>
 </div>
 <div class="page-content">
@@ -60,14 +60,6 @@
                             <div id="ddlGCType"></div>
                             <span class="red" id="spnGCType"></span>
                         </div>
-                        <div id="divReceivingType" class="col-sm-3">
-                            <label class="control-label" style="text-align: left;" for="ddlReceivingType">Receiving Type <span class="red">*</span> </label>
-                            @*<select class="form-control" id="ddlReceivingType">
-                                <option value="-1">Select Receiving Type</option>
-                            </select>*@
-                            <div id="ddlReceivingType"></div>
-                            <span class="red" id="spnReceivingType"></span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +67,7 @@
                 <div class="panel-body">
                     <div class="clearfix form-actions form-group" style="background-color: #fff;">
                         <div style="width: 95%;">
-                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetReceivingReport()">
+                            <button class="btn btn-sm btn-info pull-right" id="btnSearch" type="button" style="margin: 5px;" onclick="return GetDeliveryReport()">
                                 <i class="ace-icon fa fa-check bigger-110"></i>
                                 Search
                             </button>
@@ -92,8 +84,8 @@
     </div>
     <div class="form-group">
         @*<div class="col-xs-12" style="margin-bottom:5px;">
-            <input type="text" id="txtSearch" placeholder="search" />
-        </div>*@
+                <input type="text" id="txtSearch" placeholder="search" />
+            </div>*@
         <div class="col-xs-12" style="overflow-x:auto; margin-bottom:20px;">
             <table id="dynamic-table" class="table table-striped table-bordered table-hover" style="margin-bottom: 0;">
                 <thead>
@@ -103,24 +95,18 @@
                         <th style="width: 15%;">From</th>
                         <th style="width: 15%;">GC Type</th>
                         <th style="width: 15%;">Product Type</th>
-                        <th style="width: 15%;">Receiving Type</th>
                         <th style="width: 15%;">Pieces</th>
-                        <th style="width: 15%;">Vehical Number</th>
-                        <th style="width: 15%;">Driver Name</th>
-                        <th style="width: 15%;">Driver Number</th>
-                        <th style="width: 15%;">Unloading Amount</th>
-                        <th style="width: 15%;">Transhipment Amount</th>
-                        <th style="width: 15%;">Weight</th>
                         <th style="width: 15%;">Bill Amount</th>
                         <th style="width: 15%;">Delivery To</th>
                         <th style="width: 15%;">Phone Number</th>
+                        <th style="width: 15%;">Delivery Charges</th>
+                        <th style="width: 15%;">Demo Charges</th>
                         <th style="width: 10%;">Remarks</th>
-                        <th style="width: 10%;">Status</th>
                     </tr>
                 </thead>
-                <tbody id="tbodyreceivingrecords">
+                <tbody id="tbodydeliveryrecords">
                     <tr>
-                        <td colspan="18" style="text-align:center">No receiving records found</td>
+                        <td colspan="12" style="text-align:center">No delivery records found</td>
                     </tr>
                 </tbody>
             </table>
@@ -138,12 +124,12 @@
 <script src="~/scripts/kendo/2014.1.318/kendo.web.min.js"></script>
 <script src="~/scripts/moment.js"></script>
 <script src="~/scripts/common.js"></script>
-<script src="~/scripts/receivingreports.js"></script>
+<script src="~/scripts/deliveryreports.js"></script>
 
 <script type="text/javascript">
     jQuery(function ($) {
         $("#txtFromDate,#txtToDate").kendoDateTimePicker({ format: "MM/dd/yyyy hh:mm tt" });
-        getReceivingReportsData();
+        getDeliveryReportsData();
     });
 
 </script>

@@ -82,6 +82,8 @@ namespace CargoBE.Responses
         public List<GCTypesResponse> GCTypes { get; set; }
         public List<CounterMastersResponse> Counters { get; set; }
         public List<ReceivingTypesResponse> ReceivingTypes { get; set; }
+
+        public List<ProductTypesResponse> ProductTypes { get; set; }
     }
 
     public class DeliveryMastersResponse
@@ -89,6 +91,8 @@ namespace CargoBE.Responses
         public int StatusId { get; set; }
         public string StatusMessage { get; set; }
         public List<GCTypesResponse> GCTypes { get; set; }
+
+        public List<ProductTypesResponse> ProductTypes { get; set; }
     }
 
     public class CustomerDetailsResponse
@@ -159,6 +163,7 @@ namespace CargoBE.Responses
         public int ReceivingId { get; set; }
         public int GCTypeId { get; set; }
         public string GCType { get; set; }
+        public int ProductTypeId { get; set; }
         public string MeasurementIn { get; set; }
         public string GCBookingNumber { get; set; }
         public string FromCounterName { get; set; }

@@ -184,7 +184,22 @@ namespace CargoBAL
             }
             return ds;
         }
-                
+
+        public DataSet GetDeliveryReport(JObject input)
+        {
+            DataSet ds = null;
+
+            try
+            {
+                ds = objReportsDal.GetDeliveryReport(input);
+            }
+            catch
+            {
+
+            }
+            return ds;
+        }
+
         public bool UpdateBookingStatus(JObject input)
         {
             bool result = false;

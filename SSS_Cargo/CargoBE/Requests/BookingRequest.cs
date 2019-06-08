@@ -114,6 +114,8 @@ namespace CargoBE.Requests
         public int BookingId { get; set; }
         public string GCBookingNumber { get; set; }
         public int GCType { get; set; }
+
+        public int ProductType { get; set; }
         public string FromCounter { get; set; }
         public int ReceivingType { get; set; }
         public int NumberOfPieces { get; set; }
@@ -137,6 +139,8 @@ namespace CargoBE.Requests
         public int BookingId { get; set; }
         public string GCBookingNumber { get; set; }
         public int GCType { get; set; }
+
+        public int ProductType { get; set; }
         public decimal DeliveryCharges { get; set; }
         public decimal DemoCharges { get; set; }
         public string Remarks { get; set; }
